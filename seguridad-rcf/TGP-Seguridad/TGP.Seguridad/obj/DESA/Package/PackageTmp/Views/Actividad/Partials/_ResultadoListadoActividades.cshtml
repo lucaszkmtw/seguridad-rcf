@@ -1,0 +1,30 @@
+﻿@using TGP.Seguridad.BussinessLogic.Dto
+@model  IEnumerable<ListadoActividadViewModel>
+    <table id="lista-actividades" class="uk-table" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Descripción</th>
+                <th>Estructura Funcional</th>
+                <th>Operación</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (ListadoActividadViewModel actividad in Model)
+            {
+                <!-- un registro -->
+                <tr>
+                    <td>@actividad.Codigo</td>
+                    <td>@actividad.Descripcion</td>
+                    <td>@actividad.DescripcionEstructura</td>
+                    <td>
+                        <a class="acciones" data-original-title="Editar" data-toggle="tooltip" href="@Url.Action("Editar", "Actividad", new {id = actividad.Id })">
+                            <i class="material-icons ">mode_edit</i>
+                        </a>
+                        <a class="acciones" data-original-title="Editar" data-toggle="tooltip" href="#" onclick="eliminarActividad('@actividad.Descripcion','@actividad.Id',@actividad.Version)">
+                            <i class="material-icons ">delete</i>
+                        </a>
+                </tr>
+            }
+        </tbody>
+    </table>

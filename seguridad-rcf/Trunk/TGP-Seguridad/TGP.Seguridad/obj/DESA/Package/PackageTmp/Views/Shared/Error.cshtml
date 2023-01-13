@@ -1,0 +1,116 @@
+﻿
+@{
+    ViewBag.Title = "Error Inesperado";
+    Layout = "~/Views/Shared/_LayoutBootstrap.cshtml";
+}
+
+
+<div class="uk-grid uk-flex uk-flex-center">
+    <div class="uk-width-large-3-5 uk-width-medium-3-4">
+        <div class="md-card">
+            <div class="uk-flex uk-flex-center">
+                <div class="md-card-content">
+                    <div class="uk-width-1-1 uk-flex uk-flex-center">
+                        <img src="~/Content/img/error-inesperado.png" />
+                    </div>
+                    <div class="uk-width-1-1 uk-flex uk-flex-center">
+                        @*<img src="~/Content/img/error-sesion.png" />*@
+                        <span class="ops">OOPS!</span><br>
+                    </div>
+                    <div class="uk-grid">
+                        <div class="uk-width-1-1 uk-flex uk-flex-center">
+                            <span class="error">ERROR INESPERADO</span>
+                        </div>
+                        <div class="uk-width-1-1 uk-flex uk-flex-center">
+                            <span class="error">Ha ocurrido un error durante la ejecución del proceso.</span>
+                        </div>
+                    </div>
+                    <div class="uk-width-1-1 uk-margin-large-top">
+                        <div class="uk-flex uk-flex-center">
+                            <div>
+                                <a class="md-btn enviarformulario" id="btnEnviarError" onclick="enviarMailError()" style="margin-left:20px;">
+                                    ENVIAR FORMULARIO DE ERROR&nbsp;<i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <p class="error">*Si el error persiste comunicarse via mail a depto-usuarios@tesoreria.gba.gov.ar o telefónicamente al 0221 4294400 Int 84633</p>
+
+                    </div>
+
+                    <div class="uk-width-1-1">
+                        @if (@ViewData["codigoError"] != null)
+                        {
+                            <div class="uk-accordion" data-uk-accordion="">
+
+                                <h3 class="uk-accordion-title md-bg-grey-50 md-color-red-900 uk-active">Mas información</h3>
+                                <div class="uk-accordion-content uk-active">
+                                    <div id="error-collapse">
+                                        <p style="line-height: 1.8;" class="text-justify  md-color-red-900">
+                                            Error al procesar la solicitud. Código de error: @ViewData["codigoError"].
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+@section scripts{
+    <script>
+
+    function enviarMailError() {
+           var textArea = document.createElement("textarea");
+           textArea.maxLength = 1024;
+           textArea.style = 'width: 90%; margin: 0px; height: 80px; font-family:Arial,Helvetica,sans-serif; resize: none;';
+           textArea.id = "idTextArea";
+           textArea.placeholder = "Describa la operación realizada (opcional)"
+           swal({
+               title: "¿Desea enviar el formulario de error?",
+               text: "",
+               content: textArea,
+               icon: "warning",
+               dangerMode: true,
+               buttons: [
+               'Cancelar',
+               'Aceptar'
+               ],
+               closeOnClickOutside: false,
+           }).then(function (isConfirm) {
+               if (isConfirm) {                   
+                   $.ajax({
+                       url: '@Url.Action("EnviarEmail")',
+                       type: "POST",
+                       data: {
+                           programmerError: '@Html.Raw(Json.Encode(@ViewData["ProgramerErrorMessage"]))',
+                           controllerName: '@ViewData["controllerName"]',
+                           actionName: '@ViewData["actionName"]',
+                           descripcionFormulario: textArea.value,
+                           usuario:  '@(Session["Usuario"] != null ? Session["Usuario"].ToString() : "")' 
+                       },
+                       beforeSend: function (xhr) {
+                           showLoadingModal();
+                       },
+                       cache: false,
+                       async: true,
+                       success: function () {
+                           hideLoadingModal();
+                           swal("Enviado", "El formulario de error se ha enviado correctamente", "success");
+                       },
+                       error: function(e) {
+                           hideLoadingModal();
+                       }
+                   });
+               }
+           })
+        }
+
+    </script>
+
+}

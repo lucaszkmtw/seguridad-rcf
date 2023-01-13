@@ -1,0 +1,182 @@
+﻿@using TGP.Seguridad.BussinessLogic.Dto
+@model CopiaMasivaPermisosViewModel
+
+@{
+    ViewBag.Title = "Seg - Copiar Roles a Usuarios";
+    Layout = "~/Views/Shared/_LayoutBootstrap.cshtml";
+}
+
+
+<div class="uk-grid sigaf-titulo">
+    <div class="uk-width-1-2">
+        <h2 class="uk-margin-bottom">Copiar Rol/es a Usuario/s</h2>
+    </div>
+</div>
+
+@using (Ajax.BeginForm("CopiarAsignacionRolesMasivo", "Usuario", new AjaxOptions() { HttpMethod = "POST", OnSuccess = "AjaxReturn", OnFailure = "AjaxReturn" }, new { id = "FormCopiaMasiva" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.TipoUsuario)
+    @Html.HiddenFor(model => model.Permisos)
+    @Html.HiddenFor(model => model.CodigosEstructuras)
+    <div class="md-card uk-margin-large-bottom">
+        <div class="md-card-content">
+            <div class="uk-grid">
+                <div class="uk-width-medium-1-1">
+                    <div class="uk-grid margin-top-grid">
+                        <div class="uk-width-1-1">
+                            <div class="md-input-wrapper md-input-filled">
+                                @Html.Label("Estructuras", "Estructuras")
+                                @*@foreach (string itemEstructura in (List<string>)Model.Estructuras)
+                                {
+                                    <a class="uk-badge uk-badge-success" href="javascript:void(0)">@Html.Raw(itemEstructura)</a>
+                                    <span hidden="hidden">
+                                        @Html.TextBoxFor(model => model.Estructuras, itemEstructura, new { @class = "md-input label-fixed", @readonly = "readonly" })
+                                    </span>
+                                }*@
+                                @*@foreach (string itemCodigoEstructura in (List<string>)Model.CodigosEstructuras)
+                                {
+                                    <p hidden="hidden">
+                                        @Html.Raw(itemCodigoEstructura)
+                                        @Html.TextBoxFor(model => model.CodigosEstructuras, itemCodigoEstructura, new { @class = "md-input label-fixed", @readonly = "readonly" })
+                                    </p>
+                                }*@
+                                @Html.DropDownListFor(model => model.Estructuras, (SelectList)ViewBag.Estructuras, "Seleccione uno o mas Estructuras del Usuario Origen", new { @class = "md-input label-fixed selectizeMulti ", data_uk_tooltip = "{pos:'top'}", title = "Select with tooltip" })
+                                @Html.ValidationMessageFor(model => model.Estructuras, null, new { @class = "error" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="uk-grid">
+                <div class="uk-width-medium-1-1">
+                    <div id="RolesNodosUsuario">
+                        <div class="uk-grid margin-top-grid">
+                            <div class="uk-width-1-1">
+                                @Html.Label("Usuarios", "Usuarios")
+                                @Html.DropDownListFor(model => model.Usuarios, (SelectList)ViewBag.Usuarios, "Seleccione uno o mas Usuarios", new { @class = "md-input label-fixed selectizeMulti ", data_uk_tooltip = "{pos:'top'}", title = "Select with tooltip" })
+                                @Html.ValidationMessageFor(model => model.Usuarios, null, new { @class = "error" })
+                            </div>
+                        </div>
+                        <div class="uk-grid">
+                            <div class="uk-width-1-1">
+                                <div class="uk-flex uk-flex-center">
+                                    <button title="Guardar" id="btnGuardar" class="md-btn md-btn-accent" type="submit"><span>Guardar</span></button>
+                                    @*<button title="Guardar" id="btnGuardar" class="md-btn md-btn-accent" type="button"><span>Guardar</span></button>*@
+                                    &nbsp;
+                                    <a title="Cancelar" class="md-btn md-btn-danger" onclick="window.location='@Url.Action("Permisos", "Usuario", new { id = ViewBag.IdUsuario, tipoUsuario = ViewBag.TipoUsuario })'">Cancelar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+    $(document).ready(function () {
+        aplicarSelectize($('.selectize'));
+
+        //AplicarSelectizeMultiple debe recibir un elemento jQuery identificado por id.
+        aplicarSelectizeMultiple($("#Usuarios"));
+        aplicarSelectizeMultiple($("#Estructuras"));
+        selectAll();
+        activarMenu('#@ViewBag.MenuId');
+
+        //Precarga de las Estructuras Funcionales disponibles ver como hacerlo funcionar!!!
+        @*if (@Model.Estructuras !== null) {
+            let selectizeControlEstructuras = $('#Estructuras').selectize()[0].selectize;
+            selectizeControlEstructuras.clearOptions();
+            $.each(@Model.Estructuras, function (i, data) {
+                if (data.Value === -1) {
+                    selectizeControlEstructuras.addOption({ value: data.Value, text: data.Text });
+                    selectizeControlEstructuras.addItem(-1);
+                } else {
+                    selectizeControlEstructuras.addOption({ value: data.Value, text: data.Text });
+                }
+            }
+            );
+            let arrayEstructuras = Object.keys(selectizeControlEstructuras.options);
+            if (arrayEstructuras.length === 1) {
+                selectizeControlEstructuras.addItem(arrayEstructuras[0]);
+            }
+        }
+        $("#Estructuras").show();*@
+    });
+
+        function selectAll() {
+            $(function () {
+                var $projectEstructurasIds = $('#Estructuras')[0].selectize;
+                var optKeys = Object.keys($projectEstructurasIds.options);
+                optKeys.forEach(function (key, index) {
+                    $projectEstructurasIds.addItem(key);
+                });
+            });
+        }
+
+        function desSelectAll() {
+            $(function () {
+                $('#Estructuras').selectize({})[0].selectize.clear();
+            });
+        }
+
+        $("#btnGuardar").click(function (e) {
+            //debugger;
+            e.preventDefault();
+            var errors;
+            var $validator = $("#FormCopiaMasiva").validate();
+            if ($("#Estructuras").val() === null || $("#Estructuras").val() === "") {
+                errors = { "Estructuras": "Campo Requerido" };
+                $validator.showErrors(errors);
+            }
+            else if ($("#Usuarios").val() === null || $("#Usuarios").val() === "") {
+                errors = { "Usuarios": "Campo Requerido" };
+                $validator.showErrors(errors);
+            }
+            else {
+                swal({
+                    title: "Advertencia",
+                    text: "Se eliminarán los permisos que poseían los usuarios seleccionados, para las estructuras indicadas en la pantalla. ¿Desea continuar?",
+                    icon: "warning",
+                    buttons: {
+                        confirm: "Aceptar",
+                        cancel: "Cancelar"
+                    },
+                    closeOnClickOutside: false,
+                }).then(
+                    (isConfirm) => {
+                        if (isConfirm) {
+                            showLoadingModal();
+                            $("#FormCopiaMasiva").submit();
+                        }
+                    }
+                );
+            }
+        });
+
+        function AjaxReturn(data) {
+            hideLoadingModal();
+            swal({
+                title: "",
+                text: data.mensaje,
+                icon: data.tipoMensaje,
+                buttons: {
+                    confirm: "Aceptar"
+                },
+                closeOnClickOutside: false,
+            }).then(() => {
+                 if (data.tipoMensaje != "error") {
+                     window.location.href = "@Url.Action("Permisos","Usuario", new { id = ViewBag.IdUsuario, tipoUsuario = ViewBag.TipoUsuario })";
+                    }
+            });
+        }
+
+    </script>
+}

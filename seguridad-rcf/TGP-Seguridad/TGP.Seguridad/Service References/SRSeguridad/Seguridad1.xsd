@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://ws-tesoreria.cgp.sigaf.bajos/TGP.WSS_desa/Seguridad.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/TGP.WSS.Models.Requerimiento" />
+  <xs:import schemaLocation="http://ws-tesoreria.cgp.sigaf.bajos/TGP.WSS_desa/Seguridad.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/TGP.WSS.Models.Resultado" />
+  <xs:import schemaLocation="http://ws-tesoreria.cgp.sigaf.bajos/TGP.WSS_desa/Seguridad.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/TGP.WSS" />
+  <xs:import schemaLocation="http://ws-tesoreria.cgp.sigaf.bajos/TGP.WSS_desa/Seguridad.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/TGP.WSS.Models.DTO" />
+  <xs:element name="Eco">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EcoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="EcoResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Favoritear">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/TGP.WSS.Models.Requerimiento" minOccurs="0" name="requerimiento" nillable="true" type="q1:RequerimientoFavoritearDTO" />
+        <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FavoritearResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/TGP.WSS.Models.Resultado" minOccurs="0" name="FavoritearResult" nillable="true" type="q2:ResultadoDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerFavoritos">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/TGP.WSS.Models.Requerimiento" minOccurs="0" name="requerimiento" nillable="true" type="q3:RequerimientoObtenerFavoritosDTO" />
+        <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerFavoritosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/TGP.WSS.Models.Resultado" minOccurs="0" name="ObtenerFavoritosResult" nillable="true" type="q4:ResultadoObtenerFavoritosDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerUsuarioNominado">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/TGP.WSS.Models.Requerimiento" minOccurs="0" name="requerimiento" nillable="true" type="q5:RequerimientoObtenerUsuarioDTO" />
+        <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerUsuarioNominadoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/TGP.WSS.Models.Resultado" minOccurs="0" name="ObtenerUsuarioNominadoResult" nillable="true" type="q6:ResultadoObtenerUsuarioDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerUsuariosNominadosPorRol">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/TGP.WSS.Models.Requerimiento" minOccurs="0" name="requerimiento" nillable="true" type="q7:RequerimientoObtenerUsuariosNominadosPorRolDTO" />
+        <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerUsuariosNominadosPorRolResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/TGP.WSS.Models.Resultado" minOccurs="0" name="ObtenerUsuariosNominadosPorRolResult" nillable="true" type="q8:ResultadoObtenerUsuariosNominadosPorRolDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Login">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="usu" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="pass" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="codigo_estruc_func" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoginResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/TGP.WSS" minOccurs="0" name="LoginResult" nillable="true" type="q9:ResultadoLogin" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExternalLogin">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="usu" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="codigo_estruc_func" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExternalLoginResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/TGP.WSS" minOccurs="0" name="ExternalLoginResult" nillable="true" type="q10:ResultadoLogin" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangePassword">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="usu" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="passActual" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="passNueva" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangePasswordResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/TGP.WSS" minOccurs="0" name="ChangePasswordResult" nillable="true" type="q11:ResultadoChangePassword" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendPasswordFT">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="usu" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendPasswordFTResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/TGP.WSS" minOccurs="0" name="SendPasswordFTResult" nillable="true" type="q12:ResultadoSendPasswordFT" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ResetPassword">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="usu" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ResetPasswordResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/TGP.WSS" minOccurs="0" name="ResetPasswordResult" nillable="true" type="q13:ResultadoResetPassword" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetNewPasswordByActiveDirectory">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="usu" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="passNueva" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetNewPasswordByActiveDirectoryResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/TGP.WSS" minOccurs="0" name="SetNewPasswordByActiveDirectoryResult" nillable="true" type="q14:ResultadoSetNewPasswordByActiveDirectory" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="addAuditoria">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="usuario" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="fecha" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="codEstrutura" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="codActividad" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="observaciones" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="addAuditoriaResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RegistarAuditoriaConexion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="avatar" nillable="true" type="xs:base64Binary" />
+        <xs:element minOccurs="0" name="nombreUsuario" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="aplicacion" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="usuarioID" type="xs:long" />
+        <xs:element minOccurs="0" name="IPCliente" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="browserCliente" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="serverDescripcion" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RegistarAuditoriaConexionResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RegistarAuditoriaDesconexion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="avatar" nillable="true" type="xs:base64Binary" />
+        <xs:element minOccurs="0" name="nombreUsuario" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="aplicacion" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="usuarioID" type="xs:long" />
+        <xs:element minOccurs="0" name="IPCliente" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="browserCliente" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="serverDescripcion" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RegistarAuditoriaDesconexionResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UsuariosXEstructura">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="codEstructura" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UsuariosXEstructuraResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/TGP.WSS" minOccurs="0" name="UsuariosXEstructuraResult" nillable="true" type="q15:ArrayOfUsuarioSTGP" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAuditoria">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/TGP.WSS.Models.DTO" minOccurs="0" name="request" nillable="true" type="q16:SolicitudGetAuditoria" />
+        <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAuditoriaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/TGP.WSS.Models.DTO" minOccurs="0" name="GetAuditoriaResult" nillable="true" type="q17:ResultadoGetAuditoriaDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

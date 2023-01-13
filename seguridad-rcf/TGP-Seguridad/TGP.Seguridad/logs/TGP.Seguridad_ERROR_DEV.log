@@ -1,0 +1,563 @@
+[09:01:10 31/08/2022] ERROR (TGP.Seguridad.MvcApplication) The controller for path '/Scripts/opcionMenu.js' was not found or does not implement IController.
+[09:01:33 31/08/2022] ERROR (TGP.Seguridad.MvcApplication) The controller for path '/Scripts/opcionMenu.js' was not found or does not implement IController.
+[09:03:46 31/08/2022] ERROR (TGP.Seguridad.MvcApplication) The controller for path '/Scripts/opcionMenu.js' was not found or does not implement IController.
+[13:32:06 04/10/2022] ERROR (TGP.Seguridad.MvcApplication) "~" is not valid at the start of a code block.  Only identifiers, keywords, comments, "(" and "{" are valid.
+
+[13:38:00 04/10/2022] ERROR (TGP.Seguridad.MvcApplication) "~" is not valid at the start of a code block.  Only identifiers, keywords, comments, "(" and "{" are valid.
+
+[13:45:46 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:45:46 04/10/2022] ERROR (Account) Excepcion: c:\TGP-Proyetos\TGP-Seguridad\Trunk\TGP-Seguridad\TGP.Seguridad\Views\Account\Login.cshtml(28): error CS1525: El término de la expresión '/' no es válido - Controller: Account - Action: Login - Usuario:  - Navegador: Chrome - Version: 105.0
+[13:45:46 04/10/2022] ERROR (Account) -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[13:45:46 04/10/2022] ERROR (Account) Pila de Ejecucion: 
+   en System.Web.Compilation.AssemblyBuilder.Compile()
+   en System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   en System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+[13:45:46 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:45:47 04/10/2022] ERROR (TGP.Seguridad.MvcApplication) "~" is not valid at the start of a code block.  Only identifiers, keywords, comments, "(" and "{" are valid.
+
+[13:45:56 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:45:56 04/10/2022] ERROR (Account) Excepcion: c:\TGP-Proyetos\TGP-Seguridad\Trunk\TGP-Seguridad\TGP.Seguridad\Views\Account\Login.cshtml(28): error CS1525: El término de la expresión '/' no es válido - Controller: Account - Action: Login - Usuario:  - Navegador: Chrome - Version: 105.0
+[13:45:56 04/10/2022] ERROR (Account) -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[13:45:56 04/10/2022] ERROR (Account) Pila de Ejecucion: 
+   en System.Web.Compilation.BuildManager.PostProcessFoundBuildResult(BuildResult result, Boolean keyFromVPP, VirtualPath virtualPath)
+   en System.Web.Compilation.BuildManager.GetBuildResultFromCacheInternal(String cacheKey, Boolean keyFromVPP, VirtualPath virtualPath, Int64 hashCode, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultFromCacheInternal(VirtualPath virtualPath, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+[13:45:56 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:45:57 04/10/2022] ERROR (TGP.Seguridad.MvcApplication) "~" is not valid at the start of a code block.  Only identifiers, keywords, comments, "(" and "{" are valid.
+
+[13:46:18 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:46:18 04/10/2022] ERROR (Account) Excepcion: c:\TGP-Proyetos\TGP-Seguridad\Trunk\TGP-Seguridad\TGP.Seguridad\Views\Account\Login.cshtml(28): error CS1525: El término de la expresión '/' no es válido - Controller: Account - Action: Login - Usuario:  - Navegador: Chrome - Version: 105.0
+[13:46:18 04/10/2022] ERROR (Account) -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[13:46:18 04/10/2022] ERROR (Account) Pila de Ejecucion: 
+   en System.Web.Compilation.AssemblyBuilder.Compile()
+   en System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   en System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+[13:46:18 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:46:18 04/10/2022] ERROR (TGP.Seguridad.MvcApplication) "~" is not valid at the start of a code block.  Only identifiers, keywords, comments, "(" and "{" are valid.
+
+[13:46:18 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:46:18 04/10/2022] ERROR (Account) Excepcion: c:\TGP-Proyetos\TGP-Seguridad\Trunk\TGP-Seguridad\TGP.Seguridad\Views\Account\Login.cshtml(28): error CS1525: El término de la expresión '/' no es válido - Controller: Account - Action: Login - Usuario:  - Navegador: Chrome - Version: 105.0
+[13:46:18 04/10/2022] ERROR (Account) -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[13:46:18 04/10/2022] ERROR (Account) Pila de Ejecucion: 
+   en System.Web.Compilation.BuildManager.PostProcessFoundBuildResult(BuildResult result, Boolean keyFromVPP, VirtualPath virtualPath)
+   en System.Web.Compilation.BuildManager.GetBuildResultFromCacheInternal(String cacheKey, Boolean keyFromVPP, VirtualPath virtualPath, Int64 hashCode, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultFromCacheInternal(VirtualPath virtualPath, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+[13:46:18 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:46:19 04/10/2022] ERROR (TGP.Seguridad.MvcApplication) "~" is not valid at the start of a code block.  Only identifiers, keywords, comments, "(" and "{" are valid.
+
+[13:46:19 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:46:19 04/10/2022] ERROR (Account) Excepcion: c:\TGP-Proyetos\TGP-Seguridad\Trunk\TGP-Seguridad\TGP.Seguridad\Views\Account\Login.cshtml(28): error CS1525: El término de la expresión '/' no es válido - Controller: Account - Action: Login - Usuario:  - Navegador: Chrome - Version: 105.0
+[13:46:19 04/10/2022] ERROR (Account) -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[13:46:19 04/10/2022] ERROR (Account) Pila de Ejecucion: 
+   en System.Web.Compilation.BuildManager.PostProcessFoundBuildResult(BuildResult result, Boolean keyFromVPP, VirtualPath virtualPath)
+   en System.Web.Compilation.BuildManager.GetBuildResultFromCacheInternal(String cacheKey, Boolean keyFromVPP, VirtualPath virtualPath, Int64 hashCode, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultFromCacheInternal(VirtualPath virtualPath, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+[13:46:19 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:46:19 04/10/2022] ERROR (TGP.Seguridad.MvcApplication) "~" is not valid at the start of a code block.  Only identifiers, keywords, comments, "(" and "{" are valid.
+
+[13:46:19 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:46:19 04/10/2022] ERROR (Account) Excepcion: c:\TGP-Proyetos\TGP-Seguridad\Trunk\TGP-Seguridad\TGP.Seguridad\Views\Account\Login.cshtml(28): error CS1525: El término de la expresión '/' no es válido - Controller: Account - Action: Login - Usuario:  - Navegador: Chrome - Version: 105.0
+[13:46:19 04/10/2022] ERROR (Account) -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[13:46:19 04/10/2022] ERROR (Account) Pila de Ejecucion: 
+   en System.Web.Compilation.BuildManager.PostProcessFoundBuildResult(BuildResult result, Boolean keyFromVPP, VirtualPath virtualPath)
+   en System.Web.Compilation.BuildManager.GetBuildResultFromCacheInternal(String cacheKey, Boolean keyFromVPP, VirtualPath virtualPath, Int64 hashCode, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultFromCacheInternal(VirtualPath virtualPath, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+[13:46:19 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:46:19 04/10/2022] ERROR (TGP.Seguridad.MvcApplication) "~" is not valid at the start of a code block.  Only identifiers, keywords, comments, "(" and "{" are valid.
+
+[13:46:20 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:46:20 04/10/2022] ERROR (Account) Excepcion: c:\TGP-Proyetos\TGP-Seguridad\Trunk\TGP-Seguridad\TGP.Seguridad\Views\Account\Login.cshtml(28): error CS1525: El término de la expresión '/' no es válido - Controller: Account - Action: Login - Usuario:  - Navegador: Chrome - Version: 105.0
+[13:46:20 04/10/2022] ERROR (Account) -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[13:46:20 04/10/2022] ERROR (Account) Pila de Ejecucion: 
+   en System.Web.Compilation.BuildManager.PostProcessFoundBuildResult(BuildResult result, Boolean keyFromVPP, VirtualPath virtualPath)
+   en System.Web.Compilation.BuildManager.GetBuildResultFromCacheInternal(String cacheKey, Boolean keyFromVPP, VirtualPath virtualPath, Int64 hashCode, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultFromCacheInternal(VirtualPath virtualPath, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+[13:46:20 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:46:20 04/10/2022] ERROR (TGP.Seguridad.MvcApplication) "~" is not valid at the start of a code block.  Only identifiers, keywords, comments, "(" and "{" are valid.
+
+[13:46:20 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:46:20 04/10/2022] ERROR (Account) Excepcion: c:\TGP-Proyetos\TGP-Seguridad\Trunk\TGP-Seguridad\TGP.Seguridad\Views\Account\Login.cshtml(28): error CS1525: El término de la expresión '/' no es válido - Controller: Account - Action: Login - Usuario:  - Navegador: Chrome - Version: 105.0
+[13:46:20 04/10/2022] ERROR (Account) -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[13:46:20 04/10/2022] ERROR (Account) Pila de Ejecucion: 
+   en System.Web.Compilation.BuildManager.PostProcessFoundBuildResult(BuildResult result, Boolean keyFromVPP, VirtualPath virtualPath)
+   en System.Web.Compilation.BuildManager.GetBuildResultFromCacheInternal(String cacheKey, Boolean keyFromVPP, VirtualPath virtualPath, Int64 hashCode, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultFromCacheInternal(VirtualPath virtualPath, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+[13:46:20 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:46:21 04/10/2022] ERROR (TGP.Seguridad.MvcApplication) "~" is not valid at the start of a code block.  Only identifiers, keywords, comments, "(" and "{" are valid.
+
+[13:46:21 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:46:21 04/10/2022] ERROR (Account) Excepcion: c:\TGP-Proyetos\TGP-Seguridad\Trunk\TGP-Seguridad\TGP.Seguridad\Views\Account\Login.cshtml(28): error CS1525: El término de la expresión '/' no es válido - Controller: Account - Action: Login - Usuario:  - Navegador: Chrome - Version: 105.0
+[13:46:21 04/10/2022] ERROR (Account) -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[13:46:21 04/10/2022] ERROR (Account) Pila de Ejecucion: 
+   en System.Web.Compilation.BuildManager.PostProcessFoundBuildResult(BuildResult result, Boolean keyFromVPP, VirtualPath virtualPath)
+   en System.Web.Compilation.BuildManager.GetBuildResultFromCacheInternal(String cacheKey, Boolean keyFromVPP, VirtualPath virtualPath, Int64 hashCode, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultFromCacheInternal(VirtualPath virtualPath, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+[13:46:21 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:46:21 04/10/2022] ERROR (TGP.Seguridad.MvcApplication) "~" is not valid at the start of a code block.  Only identifiers, keywords, comments, "(" and "{" are valid.
+
+[13:46:21 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:46:21 04/10/2022] ERROR (Account) Excepcion: c:\TGP-Proyetos\TGP-Seguridad\Trunk\TGP-Seguridad\TGP.Seguridad\Views\Account\Login.cshtml(28): error CS1525: El término de la expresión '/' no es válido - Controller: Account - Action: Login - Usuario:  - Navegador: Chrome - Version: 105.0
+[13:46:21 04/10/2022] ERROR (Account) -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[13:46:21 04/10/2022] ERROR (Account) Pila de Ejecucion: 
+   en System.Web.Compilation.BuildManager.PostProcessFoundBuildResult(BuildResult result, Boolean keyFromVPP, VirtualPath virtualPath)
+   en System.Web.Compilation.BuildManager.GetBuildResultFromCacheInternal(String cacheKey, Boolean keyFromVPP, VirtualPath virtualPath, Int64 hashCode, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultFromCacheInternal(VirtualPath virtualPath, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+[13:46:21 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:46:22 04/10/2022] ERROR (TGP.Seguridad.MvcApplication) "~" is not valid at the start of a code block.  Only identifiers, keywords, comments, "(" and "{" are valid.
+
+[13:46:22 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:46:22 04/10/2022] ERROR (Account) Excepcion: c:\TGP-Proyetos\TGP-Seguridad\Trunk\TGP-Seguridad\TGP.Seguridad\Views\Account\Login.cshtml(28): error CS1525: El término de la expresión '/' no es válido - Controller: Account - Action: Login - Usuario:  - Navegador: Chrome - Version: 105.0
+[13:46:22 04/10/2022] ERROR (Account) -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[13:46:22 04/10/2022] ERROR (Account) Pila de Ejecucion: 
+   en System.Web.Compilation.BuildManager.PostProcessFoundBuildResult(BuildResult result, Boolean keyFromVPP, VirtualPath virtualPath)
+   en System.Web.Compilation.BuildManager.GetBuildResultFromCacheInternal(String cacheKey, Boolean keyFromVPP, VirtualPath virtualPath, Int64 hashCode, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultFromCacheInternal(VirtualPath virtualPath, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+[13:46:22 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:46:22 04/10/2022] ERROR (TGP.Seguridad.MvcApplication) "~" is not valid at the start of a code block.  Only identifiers, keywords, comments, "(" and "{" are valid.
+
+[13:46:22 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:46:22 04/10/2022] ERROR (Account) Excepcion: c:\TGP-Proyetos\TGP-Seguridad\Trunk\TGP-Seguridad\TGP.Seguridad\Views\Account\Login.cshtml(28): error CS1525: El término de la expresión '/' no es válido - Controller: Account - Action: Login - Usuario:  - Navegador: Chrome - Version: 105.0
+[13:46:22 04/10/2022] ERROR (Account) -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[13:46:22 04/10/2022] ERROR (Account) Pila de Ejecucion: 
+   en System.Web.Compilation.BuildManager.PostProcessFoundBuildResult(BuildResult result, Boolean keyFromVPP, VirtualPath virtualPath)
+   en System.Web.Compilation.BuildManager.GetBuildResultFromCacheInternal(String cacheKey, Boolean keyFromVPP, VirtualPath virtualPath, Int64 hashCode, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultFromCacheInternal(VirtualPath virtualPath, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+[13:46:22 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:46:22 04/10/2022] ERROR (TGP.Seguridad.MvcApplication) "~" is not valid at the start of a code block.  Only identifiers, keywords, comments, "(" and "{" are valid.
+
+[13:46:22 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:46:22 04/10/2022] ERROR (Account) Excepcion: c:\TGP-Proyetos\TGP-Seguridad\Trunk\TGP-Seguridad\TGP.Seguridad\Views\Account\Login.cshtml(28): error CS1525: El término de la expresión '/' no es válido - Controller: Account - Action: Login - Usuario:  - Navegador: Chrome - Version: 105.0
+[13:46:22 04/10/2022] ERROR (Account) -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[13:46:22 04/10/2022] ERROR (Account) Pila de Ejecucion: 
+   en System.Web.Compilation.BuildManager.PostProcessFoundBuildResult(BuildResult result, Boolean keyFromVPP, VirtualPath virtualPath)
+   en System.Web.Compilation.BuildManager.GetBuildResultFromCacheInternal(String cacheKey, Boolean keyFromVPP, VirtualPath virtualPath, Int64 hashCode, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultFromCacheInternal(VirtualPath virtualPath, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+[13:46:22 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:46:23 04/10/2022] ERROR (TGP.Seguridad.MvcApplication) "~" is not valid at the start of a code block.  Only identifiers, keywords, comments, "(" and "{" are valid.
+
+[13:46:23 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:46:23 04/10/2022] ERROR (Account) Excepcion: c:\TGP-Proyetos\TGP-Seguridad\Trunk\TGP-Seguridad\TGP.Seguridad\Views\Account\Login.cshtml(28): error CS1525: El término de la expresión '/' no es válido - Controller: Account - Action: Login - Usuario:  - Navegador: Chrome - Version: 105.0
+[13:46:23 04/10/2022] ERROR (Account) -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[13:46:23 04/10/2022] ERROR (Account) Pila de Ejecucion: 
+   en System.Web.Compilation.BuildManager.PostProcessFoundBuildResult(BuildResult result, Boolean keyFromVPP, VirtualPath virtualPath)
+   en System.Web.Compilation.BuildManager.GetBuildResultFromCacheInternal(String cacheKey, Boolean keyFromVPP, VirtualPath virtualPath, Int64 hashCode, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultFromCacheInternal(VirtualPath virtualPath, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+[13:46:23 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:46:23 04/10/2022] ERROR (TGP.Seguridad.MvcApplication) "~" is not valid at the start of a code block.  Only identifiers, keywords, comments, "(" and "{" are valid.
+
+[13:46:24 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:46:24 04/10/2022] ERROR (Account) Excepcion: c:\TGP-Proyetos\TGP-Seguridad\Trunk\TGP-Seguridad\TGP.Seguridad\Views\Account\Login.cshtml(28): error CS1525: El término de la expresión '/' no es válido - Controller: Account - Action: Login - Usuario:  - Navegador: Chrome - Version: 105.0
+[13:46:24 04/10/2022] ERROR (Account) -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[13:46:24 04/10/2022] ERROR (Account) Pila de Ejecucion: 
+   en System.Web.Compilation.BuildManager.PostProcessFoundBuildResult(BuildResult result, Boolean keyFromVPP, VirtualPath virtualPath)
+   en System.Web.Compilation.BuildManager.GetBuildResultFromCacheInternal(String cacheKey, Boolean keyFromVPP, VirtualPath virtualPath, Int64 hashCode, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultFromCacheInternal(VirtualPath virtualPath, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+[13:46:24 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:46:24 04/10/2022] ERROR (TGP.Seguridad.MvcApplication) "~" is not valid at the start of a code block.  Only identifiers, keywords, comments, "(" and "{" are valid.
+
+[13:46:24 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:46:24 04/10/2022] ERROR (Account) Excepcion: c:\TGP-Proyetos\TGP-Seguridad\Trunk\TGP-Seguridad\TGP.Seguridad\Views\Account\Login.cshtml(28): error CS1525: El término de la expresión '/' no es válido - Controller: Account - Action: Login - Usuario:  - Navegador: Chrome - Version: 105.0
+[13:46:24 04/10/2022] ERROR (Account) -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[13:46:24 04/10/2022] ERROR (Account) Pila de Ejecucion: 
+   en System.Web.Compilation.BuildManager.PostProcessFoundBuildResult(BuildResult result, Boolean keyFromVPP, VirtualPath virtualPath)
+   en System.Web.Compilation.BuildManager.GetBuildResultFromCacheInternal(String cacheKey, Boolean keyFromVPP, VirtualPath virtualPath, Int64 hashCode, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultFromCacheInternal(VirtualPath virtualPath, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+[13:46:24 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:46:25 04/10/2022] ERROR (TGP.Seguridad.MvcApplication) "~" is not valid at the start of a code block.  Only identifiers, keywords, comments, "(" and "{" are valid.
+
+[13:46:25 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:46:25 04/10/2022] ERROR (Account) Excepcion: c:\TGP-Proyetos\TGP-Seguridad\Trunk\TGP-Seguridad\TGP.Seguridad\Views\Account\Login.cshtml(28): error CS1525: El término de la expresión '/' no es válido - Controller: Account - Action: Login - Usuario:  - Navegador: Chrome - Version: 105.0
+[13:46:25 04/10/2022] ERROR (Account) -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[13:46:25 04/10/2022] ERROR (Account) Pila de Ejecucion: 
+   en System.Web.Compilation.BuildManager.PostProcessFoundBuildResult(BuildResult result, Boolean keyFromVPP, VirtualPath virtualPath)
+   en System.Web.Compilation.BuildManager.GetBuildResultFromCacheInternal(String cacheKey, Boolean keyFromVPP, VirtualPath virtualPath, Int64 hashCode, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultFromCacheInternal(VirtualPath virtualPath, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+[13:46:25 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:46:25 04/10/2022] ERROR (TGP.Seguridad.MvcApplication) "~" is not valid at the start of a code block.  Only identifiers, keywords, comments, "(" and "{" are valid.
+
+[13:46:25 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:46:25 04/10/2022] ERROR (Account) Excepcion: c:\TGP-Proyetos\TGP-Seguridad\Trunk\TGP-Seguridad\TGP.Seguridad\Views\Account\Login.cshtml(28): error CS1525: El término de la expresión '/' no es válido - Controller: Account - Action: Login - Usuario:  - Navegador: Chrome - Version: 105.0
+[13:46:25 04/10/2022] ERROR (Account) -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[13:46:25 04/10/2022] ERROR (Account) Pila de Ejecucion: 
+   en System.Web.Compilation.BuildManager.PostProcessFoundBuildResult(BuildResult result, Boolean keyFromVPP, VirtualPath virtualPath)
+   en System.Web.Compilation.BuildManager.GetBuildResultFromCacheInternal(String cacheKey, Boolean keyFromVPP, VirtualPath virtualPath, Int64 hashCode, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultFromCacheInternal(VirtualPath virtualPath, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+[13:46:25 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:46:25 04/10/2022] ERROR (TGP.Seguridad.MvcApplication) "~" is not valid at the start of a code block.  Only identifiers, keywords, comments, "(" and "{" are valid.
+
+[13:46:25 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:46:25 04/10/2022] ERROR (Account) Excepcion: c:\TGP-Proyetos\TGP-Seguridad\Trunk\TGP-Seguridad\TGP.Seguridad\Views\Account\Login.cshtml(28): error CS1525: El término de la expresión '/' no es válido - Controller: Account - Action: Login - Usuario:  - Navegador: Chrome - Version: 105.0
+[13:46:25 04/10/2022] ERROR (Account) -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[13:46:25 04/10/2022] ERROR (Account) Pila de Ejecucion: 
+   en System.Web.Compilation.BuildManager.PostProcessFoundBuildResult(BuildResult result, Boolean keyFromVPP, VirtualPath virtualPath)
+   en System.Web.Compilation.BuildManager.GetBuildResultFromCacheInternal(String cacheKey, Boolean keyFromVPP, VirtualPath virtualPath, Int64 hashCode, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultFromCacheInternal(VirtualPath virtualPath, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+[13:46:25 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:46:26 04/10/2022] ERROR (TGP.Seguridad.MvcApplication) "~" is not valid at the start of a code block.  Only identifiers, keywords, comments, "(" and "{" are valid.
+
+[13:46:27 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:46:27 04/10/2022] ERROR (Account) Excepcion: c:\TGP-Proyetos\TGP-Seguridad\Trunk\TGP-Seguridad\TGP.Seguridad\Views\Account\Login.cshtml(28): error CS1525: El término de la expresión '/' no es válido - Controller: Account - Action: Login - Usuario:  - Navegador: Chrome - Version: 105.0
+[13:46:27 04/10/2022] ERROR (Account) -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[13:46:27 04/10/2022] ERROR (Account) Pila de Ejecucion: 
+   en System.Web.Compilation.BuildManager.PostProcessFoundBuildResult(BuildResult result, Boolean keyFromVPP, VirtualPath virtualPath)
+   en System.Web.Compilation.BuildManager.GetBuildResultFromCacheInternal(String cacheKey, Boolean keyFromVPP, VirtualPath virtualPath, Int64 hashCode, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultFromCacheInternal(VirtualPath virtualPath, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+[13:46:27 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:46:27 04/10/2022] ERROR (TGP.Seguridad.MvcApplication) "~" is not valid at the start of a code block.  Only identifiers, keywords, comments, "(" and "{" are valid.
+
+[13:46:27 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:46:27 04/10/2022] ERROR (Account) Excepcion: c:\TGP-Proyetos\TGP-Seguridad\Trunk\TGP-Seguridad\TGP.Seguridad\Views\Account\Login.cshtml(28): error CS1525: El término de la expresión '/' no es válido - Controller: Account - Action: Login - Usuario:  - Navegador: Chrome - Version: 105.0
+[13:46:27 04/10/2022] ERROR (Account) -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[13:46:27 04/10/2022] ERROR (Account) Pila de Ejecucion: 
+   en System.Web.Compilation.BuildManager.PostProcessFoundBuildResult(BuildResult result, Boolean keyFromVPP, VirtualPath virtualPath)
+   en System.Web.Compilation.BuildManager.GetBuildResultFromCacheInternal(String cacheKey, Boolean keyFromVPP, VirtualPath virtualPath, Int64 hashCode, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultFromCacheInternal(VirtualPath virtualPath, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+[13:46:27 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:46:28 04/10/2022] ERROR (TGP.Seguridad.MvcApplication) "~" is not valid at the start of a code block.  Only identifiers, keywords, comments, "(" and "{" are valid.
+
+[13:46:28 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:46:28 04/10/2022] ERROR (Account) Excepcion: c:\TGP-Proyetos\TGP-Seguridad\Trunk\TGP-Seguridad\TGP.Seguridad\Views\Account\Login.cshtml(28): error CS1525: El término de la expresión '/' no es válido - Controller: Account - Action: Login - Usuario:  - Navegador: Chrome - Version: 105.0
+[13:46:28 04/10/2022] ERROR (Account) -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[13:46:28 04/10/2022] ERROR (Account) Pila de Ejecucion: 
+   en System.Web.Compilation.BuildManager.PostProcessFoundBuildResult(BuildResult result, Boolean keyFromVPP, VirtualPath virtualPath)
+   en System.Web.Compilation.BuildManager.GetBuildResultFromCacheInternal(String cacheKey, Boolean keyFromVPP, VirtualPath virtualPath, Int64 hashCode, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultFromCacheInternal(VirtualPath virtualPath, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+[13:46:28 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:46:28 04/10/2022] ERROR (TGP.Seguridad.MvcApplication) "~" is not valid at the start of a code block.  Only identifiers, keywords, comments, "(" and "{" are valid.
+
+[13:46:28 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:46:28 04/10/2022] ERROR (Account) Excepcion: c:\TGP-Proyetos\TGP-Seguridad\Trunk\TGP-Seguridad\TGP.Seguridad\Views\Account\Login.cshtml(28): error CS1525: El término de la expresión '/' no es válido - Controller: Account - Action: Login - Usuario:  - Navegador: Chrome - Version: 105.0
+[13:46:28 04/10/2022] ERROR (Account) -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[13:46:28 04/10/2022] ERROR (Account) Pila de Ejecucion: 
+   en System.Web.Compilation.BuildManager.PostProcessFoundBuildResult(BuildResult result, Boolean keyFromVPP, VirtualPath virtualPath)
+   en System.Web.Compilation.BuildManager.GetBuildResultFromCacheInternal(String cacheKey, Boolean keyFromVPP, VirtualPath virtualPath, Int64 hashCode, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultFromCacheInternal(VirtualPath virtualPath, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+[13:46:28 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[13:46:28 04/10/2022] ERROR (TGP.Seguridad.MvcApplication) "~" is not valid at the start of a code block.  Only identifiers, keywords, comments, "(" and "{" are valid.
+
+[14:20:31 04/10/2022] ERROR (TGP.Seguridad.MvcApplication) A public action method 'EditarNovedad' was not found on controller 'TGP.Seguridad.Controllers.NovedadController'.
+[14:21:46 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[14:21:46 04/10/2022] ERROR (Account) Excepcion: c:\TGP-Proyetos\TGP-Seguridad\Trunk\TGP-Seguridad\TGP.Seguridad\Views\Account\Login.cshtml(28): error CS1525: El término de la expresión '/' no es válido - Controller: Account - Action: Login - Usuario:  - Navegador: Chrome - Version: 105.0
+[14:21:46 04/10/2022] ERROR (Account) -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[14:21:46 04/10/2022] ERROR (Account) Pila de Ejecucion: 
+   en System.Web.Compilation.AssemblyBuilder.Compile()
+   en System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   en System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+[14:21:46 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[14:25:32 04/10/2022] ERROR (TGP.Seguridad.MvcApplication) The controller for path '/Scripts/opcionMenu.js' was not found or does not implement IController.
+[14:25:55 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[14:25:55 04/10/2022] ERROR (Account) Excepcion: c:\TGP-Proyetos\TGP-Seguridad\Trunk\TGP-Seguridad\TGP.Seguridad\Views\Account\Login.cshtml(28): error CS1525: El término de la expresión '/' no es válido - Controller: Account - Action: Login - Usuario:  - Navegador: Chrome - Version: 105.0
+[14:25:55 04/10/2022] ERROR (Account) -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[14:25:55 04/10/2022] ERROR (Account) Pila de Ejecucion: 
+   en System.Web.Compilation.AssemblyBuilder.Compile()
+   en System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   en System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+[14:25:55 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[14:26:41 04/10/2022] ERROR (TGP.Seguridad.MvcApplication) Referencia a objeto no establecida como instancia de un objeto.
+[14:26:47 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[14:26:47 04/10/2022] ERROR (Account) Excepcion: c:\TGP-Proyetos\TGP-Seguridad\Trunk\TGP-Seguridad\TGP.Seguridad\Views\Account\Login.cshtml(28): error CS1525: El término de la expresión '/' no es válido - Controller: Account - Action: Login - Usuario:  - Navegador: Chrome - Version: 105.0
+[14:26:47 04/10/2022] ERROR (Account) -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[14:26:47 04/10/2022] ERROR (Account) Pila de Ejecucion: 
+   en System.Web.Compilation.AssemblyBuilder.Compile()
+   en System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   en System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+[14:26:47 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[14:42:33 04/10/2022] ERROR (TGP.Seguridad.MvcApplication) The controller for path '/Scripts/opcionMenu.js' was not found or does not implement IController.
+[14:43:23 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[14:43:23 04/10/2022] ERROR (Account) Excepcion: c:\TGP-Proyetos\TGP-Seguridad\Trunk\TGP-Seguridad\TGP.Seguridad\Views\Account\Login.cshtml(28): error CS1525: El término de la expresión '/' no es válido - Controller: Account - Action: Login - Usuario:  - Navegador: Chrome - Version: 105.0
+[14:43:23 04/10/2022] ERROR (Account) -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[14:43:23 04/10/2022] ERROR (Account) Pila de Ejecucion: 
+   en System.Web.Compilation.AssemblyBuilder.Compile()
+   en System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   en System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+[14:43:23 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[14:43:57 04/10/2022] ERROR (TGP.Seguridad.MvcApplication) Referencia a objeto no establecida como instancia de un objeto.
+[14:44:09 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[14:44:09 04/10/2022] ERROR (Account) Excepcion: c:\TGP-Proyetos\TGP-Seguridad\Trunk\TGP-Seguridad\TGP.Seguridad\Views\Account\Login.cshtml(28): error CS1525: El término de la expresión '/' no es válido - Controller: Account - Action: Login - Usuario:  - Navegador: Chrome - Version: 105.0
+[14:44:09 04/10/2022] ERROR (Account) -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[14:44:09 04/10/2022] ERROR (Account) Pila de Ejecucion: 
+   en System.Web.Compilation.AssemblyBuilder.Compile()
+   en System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   en System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+[14:44:09 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[14:44:34 04/10/2022] ERROR (TGP.Seguridad.MvcApplication) Referencia a objeto no establecida como instancia de un objeto.
+[14:44:42 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[14:44:42 04/10/2022] ERROR (Account) Excepcion: c:\TGP-Proyetos\TGP-Seguridad\Trunk\TGP-Seguridad\TGP.Seguridad\Views\Account\Login.cshtml(28): error CS1525: El término de la expresión '/' no es válido - Controller: Account - Action: Login - Usuario:  - Navegador: Chrome - Version: 105.0
+[14:44:42 04/10/2022] ERROR (Account) -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[14:44:42 04/10/2022] ERROR (Account) Pila de Ejecucion: 
+   en System.Web.Compilation.AssemblyBuilder.Compile()
+   en System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   en System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+[14:44:42 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[14:45:21 04/10/2022] ERROR (TGP.Seguridad.MvcApplication) Referencia a objeto no establecida como instancia de un objeto.
+[14:46:01 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[14:46:01 04/10/2022] ERROR (Account) Excepcion: c:\TGP-Proyetos\TGP-Seguridad\Trunk\TGP-Seguridad\TGP.Seguridad\Views\Account\Login.cshtml(28): error CS1525: El término de la expresión '/' no es válido - Controller: Account - Action: Login - Usuario:  - Navegador: Chrome - Version: 105.0
+[14:46:01 04/10/2022] ERROR (Account) -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[14:46:01 04/10/2022] ERROR (Account) Pila de Ejecucion: 
+   en System.Web.Compilation.AssemblyBuilder.Compile()
+   en System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   en System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+[14:46:01 04/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[08:19:42 05/10/2022] ERROR (TGP.Seguridad.MvcApplication) The controller for path '/Scripts/opcionMenu.js' was not found or does not implement IController.
+[08:20:01 05/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[08:20:01 05/10/2022] ERROR (Account) Excepcion: c:\TGP-Proyetos\TGP-Seguridad\Trunk\TGP-Seguridad\TGP.Seguridad\Views\Account\Login.cshtml(28): error CS1525: El término de la expresión '/' no es válido - Controller: Account - Action: Login - Usuario:  - Navegador: Chrome - Version: 105.0
+[08:20:01 05/10/2022] ERROR (Account) -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[08:20:01 05/10/2022] ERROR (Account) Pila de Ejecucion: 
+   en System.Web.Compilation.AssemblyBuilder.Compile()
+   en System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   en System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+[08:20:01 05/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[08:34:17 05/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[08:34:17 05/10/2022] ERROR (Account) Excepcion: c:\TGP-Proyetos\TGP-Seguridad\Trunk\TGP-Seguridad\TGP.Seguridad\Views\Account\Login.cshtml(28): error CS1525: El término de la expresión '/' no es válido - Controller: Account - Action: Login - Usuario:  - Navegador: Chrome - Version: 105.0
+[08:34:17 05/10/2022] ERROR (Account) -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[08:34:17 05/10/2022] ERROR (Account) Pila de Ejecucion: 
+   en System.Web.Compilation.AssemblyBuilder.Compile()
+   en System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   en System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+[08:34:17 05/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[08:35:19 05/10/2022] ERROR (TGP.Seguridad.MvcApplication) Referencia a objeto no establecida como instancia de un objeto.
+[08:35:27 05/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[08:35:27 05/10/2022] ERROR (Account) Excepcion: c:\TGP-Proyetos\TGP-Seguridad\Trunk\TGP-Seguridad\TGP.Seguridad\Views\Account\Login.cshtml(28): error CS1525: El término de la expresión '/' no es válido - Controller: Account - Action: Login - Usuario:  - Navegador: Chrome - Version: 105.0
+[08:35:27 05/10/2022] ERROR (Account) -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[08:35:27 05/10/2022] ERROR (Account) Pila de Ejecucion: 
+   en System.Web.Compilation.AssemblyBuilder.Compile()
+   en System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   en System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+[08:35:27 05/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[08:35:33 05/10/2022] ERROR (TGP.Seguridad.MvcApplication) Referencia a objeto no establecida como instancia de un objeto.
+[08:35:33 05/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[08:35:33 05/10/2022] ERROR (Account) Excepcion: c:\TGP-Proyetos\TGP-Seguridad\Trunk\TGP-Seguridad\TGP.Seguridad\Views\Account\Login.cshtml(28): error CS1525: El término de la expresión '/' no es válido - Controller: Account - Action: Login - Usuario:  - Navegador: Chrome - Version: 105.0
+[08:35:33 05/10/2022] ERROR (Account) -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[08:35:33 05/10/2022] ERROR (Account) Pila de Ejecucion: 
+   en System.Web.Compilation.BuildManager.PostProcessFoundBuildResult(BuildResult result, Boolean keyFromVPP, VirtualPath virtualPath)
+   en System.Web.Compilation.BuildManager.GetBuildResultFromCacheInternal(String cacheKey, Boolean keyFromVPP, VirtualPath virtualPath, Int64 hashCode, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultFromCacheInternal(VirtualPath virtualPath, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+[08:35:33 05/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[08:35:36 05/10/2022] ERROR (TGP.Seguridad.MvcApplication) Referencia a objeto no establecida como instancia de un objeto.
+[08:35:36 05/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[08:35:36 05/10/2022] ERROR (Account) Excepcion: c:\TGP-Proyetos\TGP-Seguridad\Trunk\TGP-Seguridad\TGP.Seguridad\Views\Account\Login.cshtml(28): error CS1525: El término de la expresión '/' no es válido - Controller: Account - Action: Login - Usuario:  - Navegador: Chrome - Version: 105.0
+[08:35:36 05/10/2022] ERROR (Account) -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[08:35:36 05/10/2022] ERROR (Account) Pila de Ejecucion: 
+   en System.Web.Compilation.BuildManager.PostProcessFoundBuildResult(BuildResult result, Boolean keyFromVPP, VirtualPath virtualPath)
+   en System.Web.Compilation.BuildManager.GetBuildResultFromCacheInternal(String cacheKey, Boolean keyFromVPP, VirtualPath virtualPath, Int64 hashCode, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultFromCacheInternal(VirtualPath virtualPath, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+[08:35:36 05/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[08:36:06 05/10/2022] ERROR (TGP.Seguridad.MvcApplication) Referencia a objeto no establecida como instancia de un objeto.
+[08:36:08 05/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[08:36:08 05/10/2022] ERROR (Account) Excepcion: c:\TGP-Proyetos\TGP-Seguridad\Trunk\TGP-Seguridad\TGP.Seguridad\Views\Account\Login.cshtml(28): error CS1525: El término de la expresión '/' no es válido - Controller: Account - Action: Login - Usuario:  - Navegador: Chrome - Version: 105.0
+[08:36:08 05/10/2022] ERROR (Account) -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[08:36:08 05/10/2022] ERROR (Account) Pila de Ejecucion: 
+   en System.Web.Compilation.AssemblyBuilder.Compile()
+   en System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   en System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+[08:36:08 05/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[08:36:56 05/10/2022] ERROR (TGP.Seguridad.MvcApplication) Referencia a objeto no establecida como instancia de un objeto.
+[08:39:09 05/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[08:39:09 05/10/2022] ERROR (Account) Excepcion: c:\TGP-Proyetos\TGP-Seguridad\Trunk\TGP-Seguridad\TGP.Seguridad\Views\Account\Login.cshtml(28): error CS1525: El término de la expresión '/' no es válido - Controller: Account - Action: Login - Usuario:  - Navegador: Chrome - Version: 105.0
+[08:39:09 05/10/2022] ERROR (Account) -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[08:39:09 05/10/2022] ERROR (Account) Pila de Ejecucion: 
+   en System.Web.Compilation.AssemblyBuilder.Compile()
+   en System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   en System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+[08:39:09 05/10/2022] ERROR (Account) ***********************************************************************************************************************************************************************************************************************************************************
+[08:46:35 05/10/2022] ERROR (NHibernate.AdoNet.AbstractBatcher) Could not execute query: select pk_tgp.sp_obtener_secuencia(:p0,:p1) from dual
+Oracle.DataAccess.Client.OracleException ORA-00904: "PK_TGP"."SP_OBTENER_SECUENCIA": invalid identifier    en Oracle.DataAccess.Client.OracleException.HandleErrorHelper(Int32 errCode, OracleConnection conn, IntPtr opsErrCtx, OpoSqlValCtx* pOpoSqlValCtx, Object src, String procedure, Boolean bCheck, Int32 isRecoverable)
+   en Oracle.DataAccess.Client.OracleException.HandleError(Int32 errCode, OracleConnection conn, String procedure, IntPtr opsErrCtx, OpoSqlValCtx* pOpoSqlValCtx, Object src, Boolean bCheck)
+   en Oracle.DataAccess.Client.OracleCommand.ExecuteReader(Boolean requery, Boolean fillRequest, CommandBehavior behavior)
+   en Oracle.DataAccess.Client.OracleCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   en System.Data.Common.DbCommand.ExecuteReader()
+   en NHibernate.AdoNet.AbstractBatcher.ExecuteReader(DbCommand cmd)
+[08:46:35 05/10/2022] ERROR (NHibernate.Util.ADOExceptionReporter) ORA-00904: "PK_TGP"."SP_OBTENER_SECUENCIA": invalid identifier
+[08:46:35 05/10/2022] ERROR (NHibernate.Util.ADOExceptionReporter) ORA-00904: "PK_TGP"."SP_OBTENER_SECUENCIA": invalid identifier
+[08:46:35 05/10/2022] ERROR (NHibernate.Util.ADOExceptionReporter) ORA-00904: "PK_TGP"."SP_OBTENER_SECUENCIA": invalid identifier
+[08:46:35 05/10/2022] ERROR (EstructuraFuncional) ***************************************************************************************************************************************************************************************************************************************************************************************************************************
+[08:46:35 05/10/2022] ERROR (EstructuraFuncional) Excepcion: El proceso no puede obtener acceso al archivo 'C:\TGP-Proyetos\TGP-Seguridad\Trunk\TGP-Seguridad\TGP.Seguridad\Views\EstructuraFuncional\Listado.cshtml' porque está siendo utilizado en otro proceso. - Controller: EstructuraFuncional - Action: Listado - Usuario: admin - Navegador: Chrome - Version: 105.0
+[08:46:35 05/10/2022] ERROR (EstructuraFuncional) ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[08:46:35 05/10/2022] ERROR (EstructuraFuncional) Pila de Ejecucion: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   en System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   en System.Web.Hosting.MapPathBasedVirtualFile.Open()
+   en System.Web.Hosting.VirtualPathProvider.OpenFile(String virtualPath)
+[08:46:35 05/10/2022] ERROR (EstructuraFuncional) ***************************************************************************************************************************************************************************************************************************************************************************************************************************
+[08:49:52 05/10/2022] ERROR (NHibernate.AdoNet.AbstractBatcher) Could not execute query: select pk_tgp.sp_obtener_secuencia(:p0,:p1) from dual
+Oracle.DataAccess.Client.OracleException ORA-00904: "PK_TGP"."SP_OBTENER_SECUENCIA": invalid identifier    en Oracle.DataAccess.Client.OracleException.HandleErrorHelper(Int32 errCode, OracleConnection conn, IntPtr opsErrCtx, OpoSqlValCtx* pOpoSqlValCtx, Object src, String procedure, Boolean bCheck, Int32 isRecoverable)
+   en Oracle.DataAccess.Client.OracleException.HandleError(Int32 errCode, OracleConnection conn, String procedure, IntPtr opsErrCtx, OpoSqlValCtx* pOpoSqlValCtx, Object src, Boolean bCheck)
+   en Oracle.DataAccess.Client.OracleCommand.ExecuteReader(Boolean requery, Boolean fillRequest, CommandBehavior behavior)
+   en Oracle.DataAccess.Client.OracleCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   en System.Data.Common.DbCommand.ExecuteReader()
+   en NHibernate.AdoNet.AbstractBatcher.ExecuteReader(DbCommand cmd)
+[08:49:52 05/10/2022] ERROR (NHibernate.Util.ADOExceptionReporter) ORA-00904: "PK_TGP"."SP_OBTENER_SECUENCIA": invalid identifier
+[08:49:52 05/10/2022] ERROR (NHibernate.Util.ADOExceptionReporter) ORA-00904: "PK_TGP"."SP_OBTENER_SECUENCIA": invalid identifier
+[08:49:52 05/10/2022] ERROR (NHibernate.Util.ADOExceptionReporter) ORA-00904: "PK_TGP"."SP_OBTENER_SECUENCIA": invalid identifier
+[08:49:53 05/10/2022] ERROR (EstructuraFuncional) *************************************************************************************************************************************************************************************************************
+[08:49:53 05/10/2022] ERROR (EstructuraFuncional) Excepcion: No se puede resolver el nombre remoto: 'ws-tesoreria.cgp.sigaf.bajos' - Controller: EstructuraFuncional - Action: PrevGuardarNuevaEstructura - Usuario: admin - Navegador: Chrome - Version: 105.0
+[08:49:53 05/10/2022] ERROR (EstructuraFuncional) -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[08:49:53 05/10/2022] ERROR (EstructuraFuncional) Pila de Ejecucion: 
+   en System.Net.HttpWebRequest.EndGetRequestStream(IAsyncResult asyncResult, TransportContext& context)
+   en System.Net.Http.HttpClientHandler.GetRequestStreamCallback(IAsyncResult ar)
+[08:49:53 05/10/2022] ERROR (EstructuraFuncional) *************************************************************************************************************************************************************************************************************
+[08:53:34 05/10/2022] ERROR (NHibernate.AdoNet.AbstractBatcher) Could not execute query: SELECT pk_tgp.sp_obtener_secuencia('SEG_ESTRUCTURA_FUNCIONAL') FROM dual
+Oracle.DataAccess.Client.OracleException ORA-00904: "PK_TGP"."SP_OBTENER_SECUENCIA": invalid identifier    en Oracle.DataAccess.Client.OracleException.HandleErrorHelper(Int32 errCode, OracleConnection conn, IntPtr opsErrCtx, OpoSqlValCtx* pOpoSqlValCtx, Object src, String procedure, Boolean bCheck, Int32 isRecoverable)
+   en Oracle.DataAccess.Client.OracleException.HandleError(Int32 errCode, OracleConnection conn, String procedure, IntPtr opsErrCtx, OpoSqlValCtx* pOpoSqlValCtx, Object src, Boolean bCheck)
+   en Oracle.DataAccess.Client.OracleCommand.ExecuteReader(Boolean requery, Boolean fillRequest, CommandBehavior behavior)
+   en Oracle.DataAccess.Client.OracleCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   en System.Data.Common.DbCommand.ExecuteReader()
+   en NHibernate.AdoNet.AbstractBatcher.ExecuteReader(DbCommand cmd)
+[08:53:34 05/10/2022] ERROR (NHibernate.Util.ADOExceptionReporter) ORA-00904: "PK_TGP"."SP_OBTENER_SECUENCIA": invalid identifier
+[08:53:34 05/10/2022] ERROR (NHibernate.Util.ADOExceptionReporter) ORA-00904: "PK_TGP"."SP_OBTENER_SECUENCIA": invalid identifier
+[08:53:34 05/10/2022] ERROR (NHibernate.Util.ADOExceptionReporter) ORA-00904: "PK_TGP"."SP_OBTENER_SECUENCIA": invalid identifier
+[08:53:53 05/10/2022] ERROR (NHibernate.AdoNet.AbstractBatcher) Could not execute query: select pk_tgp.sp_obtener_secuencia(:p0,:p1) from dual
+Oracle.DataAccess.Client.OracleException ORA-00904: "PK_TGP"."SP_OBTENER_SECUENCIA": invalid identifier    en Oracle.DataAccess.Client.OracleException.HandleErrorHelper(Int32 errCode, OracleConnection conn, IntPtr opsErrCtx, OpoSqlValCtx* pOpoSqlValCtx, Object src, String procedure, Boolean bCheck, Int32 isRecoverable)
+   en Oracle.DataAccess.Client.OracleException.HandleError(Int32 errCode, OracleConnection conn, String procedure, IntPtr opsErrCtx, OpoSqlValCtx* pOpoSqlValCtx, Object src, Boolean bCheck)
+   en Oracle.DataAccess.Client.OracleCommand.ExecuteReader(Boolean requery, Boolean fillRequest, CommandBehavior behavior)
+   en Oracle.DataAccess.Client.OracleCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   en System.Data.Common.DbCommand.ExecuteReader()
+   en NHibernate.AdoNet.AbstractBatcher.ExecuteReader(DbCommand cmd)
+[08:53:53 05/10/2022] ERROR (NHibernate.Util.ADOExceptionReporter) ORA-00904: "PK_TGP"."SP_OBTENER_SECUENCIA": invalid identifier
+[08:53:53 05/10/2022] ERROR (NHibernate.Util.ADOExceptionReporter) ORA-00904: "PK_TGP"."SP_OBTENER_SECUENCIA": invalid identifier
+[08:53:53 05/10/2022] ERROR (NHibernate.Util.ADOExceptionReporter) ORA-00904: "PK_TGP"."SP_OBTENER_SECUENCIA": invalid identifier
+[08:53:53 05/10/2022] ERROR (EstructuraFuncional) **************************************************************************************************************************************************************************************************
+[08:53:53 05/10/2022] ERROR (EstructuraFuncional) Excepcion: ORA-00904: "PK_TGP"."SP_OBTENER_SECUENCIA": invalid identifier - Controller: EstructuraFuncional - Action: GuardarNuevaEstructura - Usuario: admin - Navegador: Chrome - Version: 105.0
+[08:53:53 05/10/2022] ERROR (EstructuraFuncional) --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[08:53:53 05/10/2022] ERROR (EstructuraFuncional) Pila de Ejecucion: 
+   en Oracle.DataAccess.Client.OracleException.HandleErrorHelper(Int32 errCode, OracleConnection conn, IntPtr opsErrCtx, OpoSqlValCtx* pOpoSqlValCtx, Object src, String procedure, Boolean bCheck, Int32 isRecoverable)
+   en Oracle.DataAccess.Client.OracleException.HandleError(Int32 errCode, OracleConnection conn, String procedure, IntPtr opsErrCtx, OpoSqlValCtx* pOpoSqlValCtx, Object src, Boolean bCheck)
+   en Oracle.DataAccess.Client.OracleCommand.ExecuteReader(Boolean requery, Boolean fillRequest, CommandBehavior behavior)
+   en Oracle.DataAccess.Client.OracleCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   en System.Data.Common.DbCommand.ExecuteReader()
+[08:53:53 05/10/2022] ERROR (EstructuraFuncional) **************************************************************************************************************************************************************************************************
+[12:30:24 05/10/2022] ERROR (Rol) *****************************************************************************************************************************************************************************************************************************************************************************************************
+[12:30:24 05/10/2022] ERROR (Rol) Código de error: 161529 - Excepcion: ORA-06550: line 1, column 7:
+PLS-00201: identifier 'PK_TGP_CONTEXTO.SP_LIMPIAR_USUARIO_APP' must be declared
+ORA-06550: line 1, column 7:
+PL/SQL: Statement ignored - Controller: Rol - Action: GuardarRol - Usuario: admin - Navegador: Chrome - Version: 105.0
+[12:30:24 05/10/2022] ERROR (Rol) -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[12:30:24 05/10/2022] ERROR (Rol) Pila de Ejecucion: 
+   en TGP.Seguridad.BussinessLogic.Generics.GenericService.Insert(BaseEntity entity, ISession session) en C:\TGP-Proyetos\TGP-Seguridad\Trunk\TGP-Seguridad\TGP.Seguridad.BussinessLogic\Generics\GenericService.cs:línea 335
+   en TGP.Seguridad.BussinessLogic.RolApplicationService.GuardarRol(RolDTO rol) en C:\TGP-Proyetos\TGP-Seguridad\Trunk\TGP-Seguridad\TGP.Seguridad.BussinessLogic\Services\RolApplicationService .cs:línea 97
+   en TGP.Seguridad.Controllers.RolController.GuardarRol(RolDTO rol) en C:\TGP-Proyetos\TGP-Seguridad\Trunk\TGP-Seguridad\TGP.Seguridad\Controllers\RolController.cs:línea 100
+   en lambda_method(Closure , ControllerBase , Object[] )
+   en System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+[12:30:24 05/10/2022] ERROR (Rol) *****************************************************************************************************************************************************************************************************************************************************************************************************
+[14:29:17 05/10/2022] ERROR (MenuOpcion) ************************************************************************************************************************************************************************************************************************
+[14:29:17 05/10/2022] ERROR (MenuOpcion) Código de error: 161530 - Excepcion: No se puede resolver el nombre remoto: 'ws-tesoreria.cgp.sigaf.bajos' - Controller: MenuOpcion - Action: PrevGuardarNuevoMenu - Usuario: admin - Navegador: Chrome - Version: 105.0
+[14:29:17 05/10/2022] ERROR (MenuOpcion) ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[14:29:17 05/10/2022] ERROR (MenuOpcion) Pila de Ejecucion: 
+   en System.Net.HttpWebRequest.EndGetRequestStream(IAsyncResult asyncResult, TransportContext& context)
+   en System.Net.Http.HttpClientHandler.GetRequestStreamCallback(IAsyncResult ar)
+[14:29:17 05/10/2022] ERROR (MenuOpcion) ************************************************************************************************************************************************************************************************************************
+[10:40:19 09/01/2023] ERROR (Account) *************************************************************************************************************************************************************************************************************************************************************************************************************
+[10:40:19 09/01/2023] ERROR (Account) Código de error: 161617 - Excepcion: No se pudo activar el servicio solicitado, 'http://localhost:2602/Seguridad.svc'. Consulte los registros de seguimiento de diagnóstico del servidor para obtener más información. - Controller: Account - Action: Login - Usuario:  - Navegador: Chrome - Version: 108.0
+[10:40:19 09/01/2023] ERROR (Account) -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[10:40:19 09/01/2023] ERROR (Account) Pila de Ejecucion: 
+
+Server stack trace: 
+   en System.ServiceModel.Channels.HttpChannelUtilities.ValidateRequestReplyResponse(HttpWebRequest request, HttpWebResponse response, HttpChannelFactory`1 factory, WebException responseException, ChannelBinding channelBinding)
+   en System.ServiceModel.Channels.HttpChannelFactory`1.HttpRequestChannel.HttpChannelRequest.WaitForReply(TimeSpan timeout)
+   en System.ServiceModel.Channels.RequestChannel.Request(Message message, TimeSpan timeout)
+[10:40:19 09/01/2023] ERROR (Account) *************************************************************************************************************************************************************************************************************************************************************************************************************
+[10:43:29 09/01/2023] ERROR (NHibernate.AdoNet.AbstractBatcher) Could not execute query: SELECT this_.AA_EJERVG as aa1_5_0_, this_.C_SERVICIO as c2_5_0_, this_.XL_SERVICIO as xl3_5_0_ FROM SEGU.BSERVICIO this_
+Oracle.DataAccess.Client.OracleException ORA-00942: table or view does not exist    en Oracle.DataAccess.Client.OracleException.HandleErrorHelper(Int32 errCode, OracleConnection conn, IntPtr opsErrCtx, OpoSqlValCtx* pOpoSqlValCtx, Object src, String procedure, Boolean bCheck, Int32 isRecoverable)
+   en Oracle.DataAccess.Client.OracleException.HandleError(Int32 errCode, OracleConnection conn, String procedure, IntPtr opsErrCtx, OpoSqlValCtx* pOpoSqlValCtx, Object src, Boolean bCheck)
+   en Oracle.DataAccess.Client.OracleCommand.ExecuteReader(Boolean requery, Boolean fillRequest, CommandBehavior behavior)
+   en Oracle.DataAccess.Client.OracleCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   en System.Data.Common.DbCommand.ExecuteReader()
+   en NHibernate.AdoNet.AbstractBatcher.ExecuteReader(DbCommand cmd)
+[10:43:29 09/01/2023] ERROR (NHibernate.Util.ADOExceptionReporter) ORA-00942: table or view does not exist
+[10:43:29 09/01/2023] ERROR (NHibernate.Util.ADOExceptionReporter) ORA-00942: table or view does not exist
+[10:43:29 09/01/2023] ERROR (NHibernate.Util.ADOExceptionReporter) ORA-00942: table or view does not exist
+[10:43:41 09/01/2023] ERROR (Usuario) ********************************************************************************************************************************************************************************
+[10:43:41 09/01/2023] ERROR (Usuario) Código de error: 161618 - Excepcion: ORA-00942: table or view does not exist - Controller: Usuario - Action: NuevoNominado - Usuario: admin - Navegador: Chrome - Version: 108.0
+[10:43:41 09/01/2023] ERROR (Usuario) --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[10:43:41 09/01/2023] ERROR (Usuario) Pila de Ejecucion: 
+   en Oracle.DataAccess.Client.OracleException.HandleErrorHelper(Int32 errCode, OracleConnection conn, IntPtr opsErrCtx, OpoSqlValCtx* pOpoSqlValCtx, Object src, String procedure, Boolean bCheck, Int32 isRecoverable)
+   en Oracle.DataAccess.Client.OracleException.HandleError(Int32 errCode, OracleConnection conn, String procedure, IntPtr opsErrCtx, OpoSqlValCtx* pOpoSqlValCtx, Object src, Boolean bCheck)
+   en Oracle.DataAccess.Client.OracleCommand.ExecuteReader(Boolean requery, Boolean fillRequest, CommandBehavior behavior)
+   en Oracle.DataAccess.Client.OracleCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   en System.Data.Common.DbCommand.ExecuteReader()
+[10:43:41 09/01/2023] ERROR (Usuario) ********************************************************************************************************************************************************************************
+[10:44:46 09/01/2023] ERROR (NHibernate.AdoNet.AbstractBatcher) Could not execute query: SELECT this_.AA_EJERVG as aa1_5_0_, this_.C_SERVICIO as c2_5_0_, this_.XL_SERVICIO as xl3_5_0_ FROM SEGU.BSERVICIO this_
+Oracle.DataAccess.Client.OracleException ORA-00942: table or view does not exist    en Oracle.DataAccess.Client.OracleException.HandleErrorHelper(Int32 errCode, OracleConnection conn, IntPtr opsErrCtx, OpoSqlValCtx* pOpoSqlValCtx, Object src, String procedure, Boolean bCheck, Int32 isRecoverable)
+   en Oracle.DataAccess.Client.OracleException.HandleError(Int32 errCode, OracleConnection conn, String procedure, IntPtr opsErrCtx, OpoSqlValCtx* pOpoSqlValCtx, Object src, Boolean bCheck)
+   en Oracle.DataAccess.Client.OracleCommand.ExecuteReader(Boolean requery, Boolean fillRequest, CommandBehavior behavior)
+   en Oracle.DataAccess.Client.OracleCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   en System.Data.Common.DbCommand.ExecuteReader()
+   en NHibernate.AdoNet.AbstractBatcher.ExecuteReader(DbCommand cmd)
+[10:44:46 09/01/2023] ERROR (NHibernate.Util.ADOExceptionReporter) ORA-00942: table or view does not exist
+[10:44:46 09/01/2023] ERROR (NHibernate.Util.ADOExceptionReporter) ORA-00942: table or view does not exist
+[10:44:46 09/01/2023] ERROR (NHibernate.Util.ADOExceptionReporter) ORA-00942: table or view does not exist

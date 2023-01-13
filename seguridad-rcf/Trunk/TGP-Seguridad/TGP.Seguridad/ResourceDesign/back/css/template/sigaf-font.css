@@ -1,0 +1,61 @@
+﻿@charset "UTF-8";
+
+@font-face {
+  font-family: "sigaf-font";
+  src:url("../icons/sigaf-font/sigaf-font.eot");
+  src:url("../icons/sigaf-font/sigaf-font.eot?#iefix") format("embedded-opentype"),
+    url("../icons/sigaf-font/sigaf-font.woff") format("woff"),
+    url("../icons/sigaf-font/sigaf-font.ttf") format("truetype"),
+    url("../icons/sigaf-font/sigaf-font.svg#sigaf-font") format("svg");
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+[data-icon]:before {
+  font-family: "sigaf-font" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: "sigaf-font" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+.icon-afip2-minified:before {
+    content: "\61";
+    font-size:18px;
+}
+
+.icon-arba3-minified:before {
+    content: "\62";
+    font-size: 21px;
+}
+
+.icon-bco-provincia-black:before {
+    content: "\63";
+    font-size: 20px;
+}
+
+.icon-interdeposito:before {
+    content: "\64";
+    font-size: 20px;
+}
+

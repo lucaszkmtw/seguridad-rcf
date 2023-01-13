@@ -1,0 +1,254 @@
+﻿@model IList<TGP.Seguridad.BussinessLogic.Dto.ListadoAcreedoresViewModel>
+
+@{
+    ViewBag.Title = "Seg - Listado de Acreedores";
+    Layout = "~/Views/Shared/_LayoutBootstrap.cshtml";
+}
+
+
+<div class="uk-grid sigaf-titulo">
+    <div class="uk-width-large-1-2">
+        <h2 class="uk-margin-bottom">Listado de Acreedores</h2>
+    </div>
+
+    <div class="uk-width-large-1-2">
+        <div class="uk-grid uk-grid-small uk-flex uk-flex-right" data-uk-grid-margin data-uk-grid-match="{target:'.md-btn-sigaf'}">
+            <div id="divGenerarArchivo">
+                <a onclick="showLoadingModal()" title="generar" href="@Url.Action("NuevoAcreedor", "Usuario")" class="md-btn md-btn-sigaf md-btn-accent md-fab-wave-light waves-effect waves-button waves-light">
+                    <h2 class="heading_d uk-text-left md-color-white">
+                        Nuevo
+                        <span class="sub-heading md-color-white uk-text-upper">
+                            Acredor
+                        </span>
+                    </h2>
+                    <i class="icon-appSigaf material-icons">add_circle</i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="md-card uk-margin-bottom">
+    <div class="md-card-content">
+        <table id="listaAcreedores" class="uk-table" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+
+                    <th>Usuario/CUIT</th>
+                    <th>Razón Social</th>
+                    <th>E-Mail</th>
+                    <th>Activo</th>
+                    <th>Bloqueado</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+
+
+<div id="editModalDescargaID" class="modal fade in" aria-hidden="false" data-url="@Url.Action("ModalPassMail", "Usuario", new { origen = "listado" })" aria-labelledby="myModalLabel" role="dialog" tabindex="-1">
+    <div class="modal-dialog" style="width: 50%">
+        <div class="modal-content">
+            <div id="editModalDescargaBodyID">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            showLoadingModal();
+                activarMenu('#@ViewBag.MenuId');
+                UpdateTable();
+            });
+
+            function UpdateTable() {
+                var dt = $('#listaAcreedores').dataTable({
+                    "scrollX": true,
+                    "processing": true, // for show progress bar
+                    "bProcessing": true,
+                    "serverSide": true, // for process server side
+                    "filter": true, // this is for enable filter (search box)
+                    "orderMulti": false, // for disable multiple column at once
+                    "iDisplayLength": 50,
+                    "ajax": {
+                        "url": "@Url.Action("PaginadoAcreedores", "Usuario")",
+                        "type": "POST",
+                        "datatype": "json",
+                        "beforeSend": function (xhr) {
+                            setTimeout(function () { hideLoadingModal() }, 500);
+                        },
+                        "dataSrc": function (json) {
+                            return json.data;
+                        },
+                        //"success": function (xhr) {
+                        //    hideLoadingModal();
+                        //},
+                    },
+                    aaSorting: [[0, "desc"]],
+                    dom: agregarDomDatatable(),
+                    aoColumnDefs: [
+                        //{ sType: "de_datetime", aTargets: [0] },
+                        { bSortable: false, aTargets: [5, 6, 7] }
+                    ],
+                    "columns": [
+                        { "data": "NombreUsuario", "name": "NombreUsuario" },
+                        { "data": "RazonSocial", "name": "RazonSocial" },
+                        { "data": "EMail", "name": "EMail" },
+                        { "data": "SiActivo", "name": "SiActivo" },
+                        { "data": "SiBloqueado", "name": "SiBloqueado" },
+                        {
+                            "orderable": false,
+                            "data": "Editar"
+                        },
+                        {
+                            "orderable": false,
+                            "data": "Eliminar",
+                        },
+                        {
+                            "orderable": false,
+                            "data": "Pass",
+                        }
+
+                    ],
+                    "lengthMenu": [[10, 25, 50, 100, 300], [10, 25, 50, 100, 300]],
+                    buttons: [
+                        { extend: 'copy', className: 'md-btn md-btn-small', text: 'Copiar' },
+                        { extend: 'csv', title: 'Cuentas', className: 'md-btn md-btn-small' },
+                        { extend: 'pdf', title: 'Cuentas', className: 'md-btn md-btn-small', orientation: 'vertical' },
+                        { extend: 'print', className: 'md-btn md-btn-small', text: 'Imprimir' }
+                    ],
+                    language: agregarLenguajeDatatable(),
+                });
+
+                $('#listaAcreedores_filter input').unbind();
+                $('#listaAcreedores_filter input').bind('keyup', function (e) {
+                    //if (e.keyCode == 13) {
+                    //    dt.fnFilter(this.value);
+                    //}
+
+                    if ($('#listaAcreedores_filter input').val().length > 3) {
+                        dt.fnFilter(this.value);
+                    } else {
+                        dt.fnFilter("");
+                    }
+                });
+            }
+
+        function eliminarUsuario(descripcion, id, version) {
+            swal({
+                title: "",
+                text: "¿Desea eliminar al Usuario " + descripcion +  "? ",
+                icon: "warning",
+                buttons: {
+                    confirm: "Aceptar",
+                    cancel: "Cancelar"
+                },
+                closeOnClickOutside: false,
+            }).then((isConfirm) => {
+                    if (isConfirm) {
+                        $.ajax({
+                            type: "POST",
+                            url: '@Url.Action("EliminarAcreedor", "Usuario")',
+                            data: {
+                                id: id,
+                                v: version
+                            },
+                            beforeSend: function (xhr) {
+                                showLoadingModal();
+                            },
+                            success: function (data) {
+                                hideLoadingModal();
+                                    swal({
+                                        title: "",
+                                        text: data.Mensaje,
+                                        icon: data.Tipo,
+                                        buttons: {
+                                            confirm: "Aceptar"
+                                        },
+                                        closeOnClickOutside: false,
+                                    }).then(() => {
+                                        window.location.href = data.Url;
+                                    });
+                            }, error: function (e) {
+                                hideLoadingModal();
+                            }
+                    });
+                    }
+                });
+        }
+
+
+
+            function showModalMail(modalContainerId, idUsu) {
+                var url = $(modalContainerId).data('url');
+                $.get(url, { idUsuario: idUsu }, function (data) {
+                   $("#editModalDescargaBodyID").html(data);
+                    UIkit.modal("#modal-enviar-mail").show();
+                });
+            }
+
+
+        function EnviarMail(nombre, email, id, origen, version) {
+            swal({
+                title: "",
+                text: "Se le enviará al usuario " + nombre + " un mail a la cuenta " + email + " con una nueva contraseña.",
+                icon: "warning",
+                buttons: {
+                    confirm: "Aceptar",
+                    cancel: "Cancelar"
+                },
+                closeOnClickOutside: false,
+            }).then(
+                (isConfirm) => {
+                    if (isConfirm) {
+                        $.ajax({
+                            type: "POST",
+                            url: '@Url.Action("MailFT", "Usuario")',
+                            data: {
+                                id: id,
+                                tipo: "A",
+                                version: version,
+                                origen: origen
+                            },
+                            beforeSend: function (xhr) {
+                                showLoadingModal();
+                            },
+                            success: function (data) {
+                                hideLoadingModal();
+                                swal({
+                                    title: "",
+                                    text: data.Mensaje,
+                                    icon: data.Tipo,
+                                    buttons: {
+                                        confirm: "Aceptar"
+                                    },
+                                    closeOnClickOutside: false,
+                                }).then(() => {
+                                    window.location.href = data.Url;
+                                });
+                            },
+                            error: function (e) {
+                                hideLoadingModal();
+                            }
+                        });
+                    }
+                });
+        }
+
+
+
+
+
+    </script>
+
+
+}

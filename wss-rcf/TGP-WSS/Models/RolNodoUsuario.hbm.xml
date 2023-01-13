@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="TGP.WSS" namespace="TGP.WSS" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="RolNodoUsuario" table="SEG_ROL_NODO_USUARIO" lazy="false" >
+    <id name="CId" column="C_ID">
+      <generator class="native" >
+        <param name="sequence">SEG_ROL_NODO_USUARIO_SQ</param>
+      </generator>
+    </id>
+    <version name="NVersionHibernate">
+      <column name="N_VERSION_HIBERNATE" sql-type="NUMBER" not-null="true" />
+    </version>
+    <many-to-one name="Rol">
+      <column name="C_ID_ROL" sql-type="NUMBER" not-null="true" unique="true" />
+    </many-to-one>
+    <many-to-one name="NodoFuncional">
+      <column name="C_ID_NODO_FUNCIONAL" sql-type="NUMBER" not-null="true" unique="true" />
+    </many-to-one>
+    <many-to-one name="Usuario">
+      <column name="C_ID_USUARIO" sql-type="NUMBER"  not-null="true" unique="true" />
+    </many-to-one>
+    <many-to-one name="UsuarioLogin">
+      <column name="C_ID_USUARIO_LOGIN" sql-type="NUMBER" not-null="false" />
+    </many-to-one>
+    <property name="FUltimaOperacion">
+      <column name="F_ULTIMA_OPERACION" sql-type="DATE" not-null="false" />
+    </property>
+  </class>
+</hibernate-mapping>

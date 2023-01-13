@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Error Inesperado";
+    Layout = "~/Views/Shared/_LayoutBootstrap.cshtml";
+}
+<div id="page_content">
+    <div id="page_content_inner">
+        <div class="uk-grid uk-flex uk-flex-center">
+            <div class="uk-width-large-3-5 uk-width-medium-3-4">
+                <div class="md-card">
+                    <div class="uk-flex uk-flex-center">
+                        <div class="md-card-content">
+                            <div class="uk-width-1-1">
+                                <img src="~/Content/img/error.png" style="filter: contrast(85%);" />
+                            </div>
+                            <div class="uk-width-1-1">
+                                <div class="" style="margin-left:6%">
+                                    <span class="ops">OOPS!</span><br>
+                                    <span class="error">@ViewData["ProgramerErrorMessage"]</span>
+                                </div>
+                                <div class="uk-flex uk-flex-center">
+                                    <a class="md-btn md-btn-danger" href="javascript:history.back()">
+                                        <i class="material-icons" aria-hidden="true">arrow_forward</i>&nbsp;VOLVER
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="uk-width-1-1">
+
+                                @if (@ViewData["codigoError"] != null)
+                                {
+                                    <div class="uk-accordion" data-uk-accordion="">
+
+                                        <h3 class="uk-accordion-title md-bg-grey-50 md-color-red-900 uk-active">Mas información</h3>
+                                        <div class="uk-accordion-content uk-active">
+                                            <div id="error-collapse">
+                                                <p style="line-height: 1.8;" class="text-justify  md-color-red-900">
+                                                    Error al procesar la solicitud. Código de error: @ViewData["codigoError"].
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

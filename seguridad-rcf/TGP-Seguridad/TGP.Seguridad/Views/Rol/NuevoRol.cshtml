@@ -1,0 +1,225 @@
+﻿@using TGP.Seguridad.BussinessLogic.Dto
+@model RolDTO
+@{
+    ViewBag.Title = "Nuevo Rol";
+    Layout = "~/Views/Shared/_LayoutBootstrap.cshtml";
+}
+
+
+<div class="uk-grid sigaf-titulo">
+    <div class="uk-width-1-2">
+        <h2>@ViewBag.Title</h2>
+    </div>
+    <div class="uk-width-large-1-2">
+        <div class="uk-grid uk-grid-small uk-flex uk-flex-right" data-uk-grid-margin data-uk-grid-match="{target:'.md-btn-sigaf'}">
+            <div>
+                <button onclick="VolverBtn();" class="md-btn md-btn-primary md-btn-sigaf md-fab-wave-light waves-effect waves-button waves-light">
+                    <h2 class="heading_c md-color-white uk-text-left">
+                        Volver
+                        <span class="sub-heading md-color-white uk-text-upper">
+                            &nbsp;
+                        </span>
+                    </h2>
+                    <i class="icon-appSigaf md-color-black material-icons">reply</i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="uk-grid" data-uk-grid-margin>
+    <div class="uk-width-1-1">
+        <div class="uk-form-row">
+            <div class="md-card uk-margin-bottom">
+                <div class="md-card-content">
+                    @using (Ajax.BeginForm(null, null, new AjaxOptions() { HttpMethod = "POST" }, new { id = "formRol" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                        @Html.Partial("Partials/_FormRol")
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function () {
+
+            if ($("#EstructuraFuncional").val() == 0) {
+                $("#btnGuardar").hide();
+            }
+
+            if ($("#TipoNodoFuncional").val() == "") {
+                $("#btnGuardar").hide();
+            }
+
+            activarMenu('#Listado-Rol');
+
+            $("#EstructuraFuncional").change(function () {
+                if (isNullOrEmpty($("#EstructuraFuncional").val())) {
+                    $("#Codigo").val('');
+                    $("#Descripcion").val('');
+                    $("#btnGuardar").hide();
+                } else {
+                    if (!isNullOrEmpty($("#EstructuraFuncional").val()) && !isNullOrEmpty($('#TipoNodoFuncional').val())) {
+                        $("#btnGuardar").show();
+                    }
+                }
+            }).keyup();
+
+            $("#TipoNodoFuncional").change(function () {
+                if (isNullOrEmpty($('#TipoNodoFuncional').val())) {
+                    $("#Codigo").val('');
+                    $("#Descripcion").val('');
+                    $("#btnGuardar").hide();
+                } else {
+                    if (!isNullOrEmpty($("#EstructuraFuncional").val()) && !isNullOrEmpty($('#TipoNodoFuncional').val())) {
+                        $("#btnGuardar").show();
+                    }
+                }
+            }).keyup();
+
+            aplicarSelectize($("#EstructuraFuncional"));
+            aplicarSelectize($(".selectize"));
+            aplicarSelectizeMultiple($("#multiselectActividades"));
+            $("#EstructuraFuncional").on("change", changeEstructura);
+        });
+        
+
+        function VolverBtn() {
+            var estructura = $('#EstructuraFuncional').val();
+            window.location.href = "@Url.Action("Listado","Rol")?est="+estructura;
+        }
+
+        function selectAll() {
+            $(function () {
+                var $projectNodosIds = $('#multiselectActividades')[0].selectize;
+                var optKeys = Object.keys($projectNodosIds.options);
+                optKeys.forEach(function (key, index) {
+                    $projectNodosIds.addItem(key);
+                });
+            });
+        }
+
+        function desSelectAll() {
+            $(function () {
+                $('#multiselectActividades').selectize({})[0].selectize.clear();
+            });
+        }
+
+        function changeEstructura() {
+            $.ajax({
+                url: '@Url.Action("GetActiviadesPorEstructura", "Rol")',
+                type: "POST",
+                    data: {
+                        cod: $('#EstructuraFuncional').val()
+                    },
+                success: function (data) {
+                    if (data !== null) {
+                        $('#multiselectActividades').selectize({})[0].selectize.clear();
+                        let selectizeControl = $('#multiselectActividades').selectize()[0].selectize;
+                        selectizeControl.clearOptions();
+                        $.each(data, function (i, data) {
+                            if (data.Value === -1) {
+                                selectizeControl.addOption({ value: data.Value, text: data.Text });
+                                selectizeControl.addItem(-1);
+                            } else {
+                                selectizeControl.addOption({ value: data.Value, text: data.Text });
+                            }
+                        }
+                        );
+                        let array = Object.keys(selectizeControl.options);
+                        if (array.length === 1) {
+                            selectizeControl.addItem(array[0]);
+                        }
+                    }
+                },
+            });
+        }
+
+
+        $("#formRol").submit(function (e) {
+            if ($("#formRol").valid()) {
+                e.preventDefault();
+                var formdata = new FormData(this);
+                $.ajax({
+                    url: '@Url.Action("PrevGuardarRol", "Rol")',
+                    type: "POST",
+                    dataType: "json",
+                    data: formdata,
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function (xhr) {
+                        showLoadingModal();
+                    },
+                    success: function (data) {
+                        hideLoadingModal();
+                        if (data.mensaje != "") {
+                            swal({
+                                title: "",
+                                text: data.mensaje,
+                                icon: data.tipoMensaje,
+                                buttons: {
+                                    accept: "Aceptar",
+                                    cancel: "Cancelar"
+                                },
+                                closeOnClickOutside: false,
+                            }).then((resolve) => {
+                                if (resolve) {
+                                    guardar(formdata);
+                                }
+                            });
+                        } else {
+                            guardar(formdata);
+                        }
+                    },
+                    error: function (result) {
+                        hideLoadingModal();
+                    }
+                });
+
+            }
+        });
+
+        function guardar(formdata) {
+            $.ajax({
+                url: '@Url.Action("GuardarRol", "Rol")',
+                type: "POST",
+                dataType: "json",
+                data: formdata,
+                contentType: false,
+                processData: false,
+                beforeSend: function (xhr) {
+                    showLoadingModal();
+                },
+                success: function (data) {
+                    hideLoadingModal();
+                    var estructura = $('#EstructuraFuncional').val();
+                    hideLoadingModal();
+                    swal({
+                        title: "",
+                        text: data.mensaje,
+                        icon: data.tipoMensaje,
+                        buttons: {
+                            confirm: "Aceptar"
+                        },
+                        closeOnClickOutside: false,
+                    }).then(() => {
+                        if (data.tipoMensaje != "error") {
+                            window.location.href = "@Url.Action("Listado","Rol")?est="+estructura;
+                        }
+                    });
+                },
+                error: function (result) {
+                    hideLoadingModal();
+                }
+            });
+        }
+        
+    </script>
+}

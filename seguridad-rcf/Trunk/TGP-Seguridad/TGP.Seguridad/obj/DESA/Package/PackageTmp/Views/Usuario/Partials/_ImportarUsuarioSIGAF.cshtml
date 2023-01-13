@@ -1,0 +1,28 @@
+﻿
+<div class="uk-modal" id="modal-usuario-sigaf" aria-hidden="true" style="display: none; overflow-y: auto;">
+    <div class="uk-modal-dialog" style="top: 97px;">
+        <div class="uk-modal-header modal-header-gestion">
+            <h3 class="uk-modal-title">Importar Usuario desde SIGAF</h3>
+        </div>
+        <div class="uk-modal-body">
+            <div class="uk-grid" data-uk-grid-margin>
+                <div id="usuarioSIGAF" class="uk-autocomplete uk-width-xLarge-1-1" data-uk-autocomplete>
+                    @Html.Label("usuSigaf", "Usuario Sigaf")
+                    <input id="descripcionUsuarioSIGAF" type="text" class="md-input label-fixed" placeholder="Mín. 3 caracteres">
+                    <script type="text/autocomplete">
+                        <ul class="uk-nav uk-nav-autocomplete uk-autocomplete-results">
+                            {{~items}}
+                            <li data-value="{{ $item.value }}" data-id="{{ $item.id }}">{{ $item.value }}</li>
+                            {{/items}}
+                        </ul>
+                    </script>
+                    @Html.Hidden("v_uSIGAF")
+                </div>
+            </div>
+        </div>
+        <div class="uk-modal-footer uk-flex uk-flex-center">
+            <a id="editarUsuSigaf" type="button" class="md-btn md-btn-flat md-btn-flat-primary disabled" onclick="seleccionar()">Aceptar</a>
+            <button type="button" class="md-btn md-btn-flat uk-modal-close">Cancelar</button>
+        </div>
+    </div>
+</div>

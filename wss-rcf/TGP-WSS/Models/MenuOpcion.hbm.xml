@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="TGP.WSS" namespace="TGP.WSS" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="MenuOpcion" table="SEG_MENU_OPCION" lazy="false" >
+    <id name="CId" column="C_ID">
+      <generator class="native" >
+        <param name="sequence">SEG_MENU_OPCION_SQ</param>
+      </generator>
+    </id>
+    <version name="NVersionHibernate">
+      <column name="N_VERSION_HIBERNATE" sql-type="NUMBER" not-null="true" />
+    </version>
+    <many-to-one name="MenuOpcionPadre">
+      <column name="C_ID_PADRE" sql-type="NUMBER" not-null="false" />
+    </many-to-one>
+    <many-to-one name="EstructuraFuncional">
+      <column name="C_ID_ESTRUCTURA_FUNCIONAL" sql-type="NUMBER" not-null="true" />
+    </many-to-one>
+    <many-to-one name="UsuarioLogin">
+      <column name="C_ID_USUARIO_LOGIN" sql-type="NUMBER" not-null="false" />
+    </many-to-one>
+    <property name="CCodigo">
+      <column name="C_CODIGO" sql-type="VARCHAR2" not-null="true" unique="true" />
+    </property>
+    <property name="DDescripcion">
+      <column name="D_DESCRIPCION" sql-type="VARCHAR2" not-null="true" />
+    </property>
+    <property name="NOrden">
+      <column name="N_ORDEN" sql-type="NUMBER" not-null="true" />
+    </property>
+    <property name="DUrl">
+      <column name="D_URL" sql-type="VARCHAR2" not-null="false" />
+    </property>
+    <property name="DIcono">
+      <column name="D_ICONO" sql-type="VARCHAR2" not-null="false" />
+    </property>
+    <property name="FUltimaOperacion">
+      <column name="F_ULTIMA_OPERACION" sql-type="DATE" not-null="false" />
+    </property>
+    <!--esto debe ser una relacion 0..1, pero no encontre otra manera de mapearlo que no sea como bag-->
+    <bag name="Actividades" table="SEG_ACTIVIDAD_MENU_OPCION" cascade="all">
+      <key column="C_ID_MENU_OPCION" />
+      <many-to-many  class="Actividad" column="C_ID_ACTIVIDAD"/>
+    </bag>
+  
+  </class>
+</hibernate-mapping>

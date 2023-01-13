@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="TGP.WSS" namespace="TGP.WSS" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="VWUsuarioPermisos" table="VW_USUARIO_PERMISOS" lazy="false" mutable="false">
+    <composite-id>
+      <key-many-to-one name="EstructuraFuncional" column="C_ID_ESTRUCTURA_FUNCIONAL" />
+      <key-property name="DNodoFuncional" column="NODOFUNCIONAL" />
+      <key-property name="DActividad" column="ACTIVIDAD" />
+      <key-property name="DUsuario" column="D_USUARIO" />
+    </composite-id>
+    <many-to-one name="TipoAutenticacion">
+      <column name="C_ID_TIPO_AUTENTICACION" sql-type="NUMBER" not-null="true" />
+    </many-to-one>
+    <property name="DUsuario">
+      <column name="D_USUARIO" sql-type="VARCHAR2" not-null="true" unique="true" />
+    </property>
+    <property name="DPassword">
+      <column name="D_PASSWORD" sql-type="VARCHAR2" not-null="false" />
+    </property>
+    <property name="MActivo">
+      <column name="M_ACTIVO" sql-type="NUMBER" not-null="true" />
+    </property>
+    <property name="MBloqueado">
+      <column name="M_BLOQUEADO" sql-type="NUMBER" not-null="true" />
+    </property>    
+    <property name="DRol">
+      <column name="ROL" sql-type="VARCHAR2" not-null="false" />
+    </property>
+    <property name="CodigoRol">
+      <column name="c_rol" sql-type="VARCHAR2" not-null="false" />
+    </property>
+    <property name="CNodoFuncional">
+      <column name="NODOFUNCIONAL" sql-type="VARCHAR2" not-null="false" />
+    </property>
+    <property name="DNodoFuncional">
+      <column name="D_NODOFUNCIONAL" sql-type="VARCHAR2" not-null="false" />
+    </property>
+    <property name="DEstructuraFuncional">
+      <column name="ESTRUCTURAFUNCIONAL" sql-type="VARCHAR2" not-null="false" />
+    </property>
+    <property name="CEstructuraFuncional">
+      <column name="C_CODIGO_ESTFUNC" sql-type="VARCHAR2" not-null="false" />
+    </property>
+    <many-to-one name="EstructuraFuncional">
+      <column name="C_ID_ESTRUCTURA_FUNCIONAL" sql-type="NUMBER" not-null="true" />
+    </many-to-one>
+    <property name="DActividad">
+      <column name="ACTIVIDAD" sql-type="VARCHAR2" not-null="false" />
+    </property>
+    <many-to-one name="MenuOpcion">
+      <column name="C_ID_MENU_OPCION" sql-type="NUMBER" not-null="false" />
+    </many-to-one>
+    <many-to-one name="Rol">
+      <column name="C_ID_ROL" sql-type="NUMBER" not-null="false" />
+    </many-to-one>
+    <property name="DMenuOpcion">
+      <column name="MENUOPCION" sql-type="VARCHAR2" not-null="false" />
+    </property>
+    <many-to-one name="MenuOpcionPadre">
+      <column name="MENUOPCIONIDPADRE" sql-type="NUMBER" not-null="false" />
+    </many-to-one>
+    <property name="NOrden">
+      <column name="N_ORDEN" sql-type="NUMBER" not-null="false" />
+    </property>
+    <property name="DUrl">
+      <column name="D_URL" sql-type="VARCHAR2" not-null="false" />
+    </property>
+    <property name="DIcono">
+      <column name="D_ICONO" sql-type="VARCHAR2" not-null="false" />
+    </property>  
+    
+  </class>
+</hibernate-mapping>

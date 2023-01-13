@@ -1,0 +1,134 @@
+﻿@using TGP.Seguridad.BussinessLogic.Dto
+@model ComparadorGenerico
+
+
+<br>
+<div class="uk-grid uk-grid-match">
+    <div class="uk-width-medium-1-2">
+        <div class="md-card">
+            <div class="md-card-content">
+                <div class="uk-flex uk-flex-right uk-margin-top">
+                    <button id="btnGenerar" class="md-btn md-btn-accent disabled" type="button" onclick="copiarMasivo('@Model.TipoComparador', '@Model.EstructuraSeleccionada');">
+                        Pasar de Ambiente
+                    </button>
+                </div>
+                <table id="datatable-origen" class="uk-table" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>
+                                <label class="">
+                                    <input type="checkbox" class="selector" data-md-icheck id="select-all">
+                                    <span> </span>
+                                </label>
+                            </th>
+                            <th></th>
+                            <th>Código</th>
+                            <th>Descripción</th>
+                            @if (Model.TipoComparador == ComparadorGenerico.MENUOPCION)
+                            {
+                                <th>Padre </th>
+                            }
+                            <th>Estructura Funcional</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (ElementoComparar elementoOrigen in Model.ElementosOrigen)
+                        {
+
+                            <!-- un registro -->
+                            <tr>
+                                <td>
+                                    <label class="">
+                                        <input name="idElemento" type="checkbox" data-md-icheck class="selector checkDetalles" value="@elementoOrigen.Codigo">
+                                        <span> </span>
+                                    </label>
+                                </td>
+                                <td>
+                                    @if (elementoOrigen.Estado == 'N')
+                                    {
+                                        <a onclick="copiarDestino('@elementoOrigen.Descripcion','@elementoOrigen.Codigo', '@Model.TipoComparador', '@Model.EstructuraSeleccionada')">
+                                            <span class="uk-badge uk-badge-success" data-uk-tooltip="{pos:'right'}" title="Nuevo">
+                                                @elementoOrigen.Estado
+                                            </span>
+                                        </a>
+                                    }
+                                    else if (elementoOrigen.Estado == 'M')
+                                    {
+                                        <a onclick="copiarDestino('@elementoOrigen.Descripcion','@elementoOrigen.Codigo', '@Model.TipoComparador', '@Model.EstructuraSeleccionada')">
+                                            <span class="uk-badge uk-badge-warning" data-uk-tooltip="{pos:'right'}" title="Sobreescribir">
+                                                @elementoOrigen.Estado
+                                            </span>
+                                        </a>
+                                    }
+                                </td>
+                                <td>@elementoOrigen.Codigo</td>
+                                <td>@elementoOrigen.Descripcion</td>
+                                @if (Model.TipoComparador == ComparadorGenerico.MENUOPCION)
+                                {
+                                    <td>@elementoOrigen.Padre </td>
+                                }
+                                <td>@elementoOrigen.DescripcionEstructura</td>
+
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="uk-width-medium-1-2">
+        <div class="md-card">
+            <div class="md-card-content">
+                <br /><br /><br />
+                <table id="datatable-destino" class="uk-table" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th>Codigo</th>
+                            <th>Descripcion</th>
+                            @if (Model.TipoComparador == ComparadorGenerico.MENUOPCION)
+                            {
+                                <th>Padre </th>
+                            }
+                            <th>Estructura Funcional</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (ElementoComparar elementoDestino in Model.ElementosDestino)
+                        {
+                            <!-- un registro -->
+                            <tr>
+                                <td></td>
+                                <td>
+                                    @if (elementoDestino.Estado == 'X')
+                                    {
+                                        <a onclick="eliminarDestino('@elementoDestino.Descripcion','@elementoDestino.Id', '@Model.TipoComparador',@elementoDestino.Version)">
+                                            <span class="uk-badge uk-badge-danger" data-uk-tooltip="{pos:'right'}" title="No se encuentra en el ambiente de origen">
+                                                @elementoDestino.Estado
+                                            </span>
+                                        </a>
+
+                                    }
+                                </td>
+                                <td>@elementoDestino.Codigo</td>
+                                <td>@elementoDestino.Descripcion</td>
+                                @if (Model.TipoComparador == ComparadorGenerico.MENUOPCION)
+                                {
+                                    <td>@elementoDestino.Padre </td>
+                                }
+                                <td>@elementoDestino.DescripcionEstructura</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,430 @@
+﻿@using TGP.Seguridad.BussinessLogic.Dto;
+@model NominadoViewModel
+
+@{
+    ViewBag.Title = "Seg - Editar Nominado";
+    Layout = "~/Views/Shared/_LayoutBootstrap.cshtml";
+
+    int @safAnterior = Model.CodigoMsaf != null ? Model.CodigoMsaf.Value : 0;
+}
+
+
+
+<h2>Editar Nominado</h2>
+
+
+<div class="uk-grid" data-uk-grid-margin>
+    <div class="uk-width-large-10-10">
+        <div class="md-card">
+            <div class="user_heading" data-uk-sticky="{ top: 48, media: 960 }">
+                <div class="user_heading_avatar fileinput fileinput-new" data-provides="fileinput">
+                    @if (Model.Avatar != null && Model.Avatar.Length == 0)
+                    {
+                        <div class="fileinput-new thumbnail uk-margin-small-bottom">
+                            <img src="~/Content/img/add_user.png" alt="user avatar" />
+                        </div>
+
+                    }
+                    else
+                    {
+                        <div class="fileinput-new thumbnail uk-margin-small-bottom">
+                            <img class="user-imgs" src="@Url.Action("GetAvatar", "Usuario", new { idUsuario = Model.Id})" alt="user avatar" />
+                        </div>
+
+                    }
+                    <div class="user_avatar_controls">
+                        <span class="btn-file">
+                            <span class="fileinput-new"><i class="material-icons">&#xE2C6;</i></span>
+                            @using (Html.BeginForm("ImageUpload", "Usuario", FormMethod.Post, new { id = "imageForm", enctype = "multipart/form-data" }))
+                            {
+                                @Html.Hidden("idUsuario", Model.Id)
+                                @Html.Hidden("tipoUsuario", UsuarioDTO.USUARIONOMINADO)
+                                <input type="file" name="imagefile" id="fileButton" onchange="document.getElementById('imageForm').submit()"
+                                       accept="image/x-png, image/jpeg" title="Seleccione una imagen">
+                            }
+                        </span>
+                    </div>
+                </div>
+
+
+                <div class="user_heading_content">
+                    <h2 class="heading_b"><span class="uk-text-truncate" id="user_edit_uname">@Model.NombreNominado @Model.Apellido</span><span class="sub-heading" id="user_edit_position"></span></h2>
+                </div>
+            </div>
+            <div class="user_content">
+                @using (Ajax.BeginForm("GuardarEdicionNominado", "Usuario", new AjaxOptions() { HttpMethod = "POST", OnSuccess = "MostrarResultados", OnFailure = "MostrarResultados" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+
+                    @Html.HiddenFor(model => model.Id)
+                    @Html.HiddenFor(model => model.Avatar)
+                    @Html.HiddenFor(model => model.Version)
+                    @Html.HiddenFor(model => model.CodigoTipoAutenticacion)
+                    //Template de edicion de usuario nominado
+                    <div class="uk-margin-top">
+                        <h3 class="full_width_in_card heading_c">
+                            Datos Personales
+                        </h3>
+                        <div class="uk-grid" data-uk-grid-margin>
+                            <div class="uk-width-medium-1-3">
+                                @Html.Label("DNI", "DNI")
+                                @Html.TextBoxFor(model => model.NumeroDni, new { @class = "md-input label-fixed" })
+                                @Html.ValidationMessageFor(model => model.NumeroDni, null, new { @class = "error" })
+                            </div>
+                            <div class="uk-width-medium-1-3">
+                                @Html.Label("Nombre", "Nombre")
+                                @Html.TextBoxFor(model => model.NombreNominado, new { @class = "md-input label-fixed" })
+                                @Html.ValidationMessageFor(model => model.NombreNominado, null, new { @class = "error" })
+
+                            </div>
+                            <div class="uk-width-medium-1-3">
+                                @Html.Label("Apellido", "Apellido")
+                                @Html.TextBoxFor(model => model.Apellido, new { @class = "md-input label-fixed" })
+                                @Html.ValidationMessageFor(model => model.Apellido, null, new { @class = "error" })
+                            </div>
+                        </div>
+                        <div class="uk-grid" data-uk-grid-margin>
+                            <div class="uk-width-medium-1-2">
+                                @Html.Label("Saf", "Saf")
+                                @Html.DropDownListFor(model => model.CodigoMsaf, new SelectList(ViewBag.Servicios, "C_SERVICIO", "XL_SERVICIO"), new { @class = "md-input label-fixed" })
+                                @Html.ValidationMessageFor(model => model.CodigoMsaf, null, new { @class = "error" })
+
+                            </div>
+                            <div class="uk-width-medium-1-2">
+                                @Html.Label("Cargo", "Cargo")
+                                @Html.DropDownListFor(model => model.NivelJerarquico.Codigo, (SelectList)ViewBag.Cargos, new { @class = "selectize md-input label-fixed" })
+                                @Html.ValidationMessageFor(model => model.NivelJerarquico.Codigo, null, new { @class = "error" })
+                            </div>
+                        </div>
+                        <h3 class="full_width_in_card heading_c">
+                            Datos de Sistema
+                        </h3>
+                        <div class="uk-grid">
+                            <div class="uk-width-1-1">
+                                <div class="uk-grid uk-grid-width-1-1 uk-grid-width-large-1-6" data-uk-grid-margin>
+                                    <div>
+                                        <div class="uk-input-group">
+                                            @Html.Label("Tipo Usuario", "Tipo Usuario")
+                                            @Html.TextBoxFor(model => model.DescripcionTipoUsuario, new { @class = "md-input label-fixed", @readonly = "readonly" })
+
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="uk-input-group">
+                                            @Html.Label("Usuario", "Usuario ")
+                                            @Html.TextBoxFor(model => model.NombreUsuario, new { @class = "md-input label-fixed" })
+                                            @Html.ValidationMessageFor(model => model.NombreUsuario, null, new { @class = "error" })
+
+                                        </div>
+                                    </div>
+                                    <div id="divSiActivo">
+                                        <div class="uk-input-group">
+                                            <div class="uk-width-medium-1-3 uk-row-first">
+                                                @Html.Label("Activo", "Activo")
+                                                @Html.CheckBoxFor(model => model.SiActivo, new { data_switchery = "" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="divSiBloqueado">
+                                        <div class="uk-input-group">
+                                            <div class="uk-width-medium-1-3 uk-row-first">
+                                                @Html.Label("Bloqueado", "Bloqueado")
+                                                @Html.CheckBoxFor(model => model.SiBloqueado, new { data_switchery = "" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="uk-input-group">
+                                            <div class="uk-width-medium-1-3 uk-row-first">
+                                                @Html.Label("SiDGA", "Dga")
+                                                @Html.CheckBoxFor(model => model.SiDGA, new { data_md_icheck = "" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="uk-input-group">
+                                            @Html.Label("Intentos", "Intentos ")
+                                            @Html.TextBoxFor(model => model.CantidadIntentos, new { @class = "md-input label-fixed" })
+                                            @Html.ValidationMessageFor(model => model.CantidadIntentos, null, new { @class = "error" })
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <h3 class="full_width_in_card heading_c">
+                            Datos de Contacto
+                        </h3>
+                        <div class="uk-grid ">
+                            <div class="uk-width-medium-1-2">
+                                @Html.Label("E-Mail", "E-Mail")
+                                @Html.TextBoxFor(model => model.EMail, new { @class = "md-input label-fixed" })
+                                @Html.ValidationMessageFor(model => model.EMail, null, new { @class = "error" })
+                            </div>
+                        </div>
+
+                        <div class="uk-grid uk-margin">
+                            <div class="uk-width-medium-1-5">
+                                @Html.Label("TipoTel", "Tipo Telefono")
+                                <select id="tipoTelefono" name="TipoTelefono" class="selectize md-input label-fixed">
+                                    @if (Model.TipoTelefono == "F")
+                                    {
+                                        @Html.Raw("<option value='F' selected>Fijo</option>")
+                                        @Html.Raw("<option value='C'>Movil</option>")
+                                    }
+                                    else
+                                    {
+                                        @Html.Raw("<option value='C' selected>Movil</option>")
+                                        @Html.Raw("<option value='F'>Fijo</option>")
+                                    }
+                                </select>
+                            </div>
+                            <div class="uk-width-1-5">
+                                @Html.Label("CodArea", "Cod Area")
+                                @Html.TextBoxFor(model => model.CodigoAreaTelefono, new { @class = "md-input label-fixed" })
+                            </div>
+                            <div class="uk-width-2-5">
+                                @Html.Label("Numero", "Numero")
+                                @Html.TextBoxFor(model => model.NumeroTelefono, new { @class = "md-input label-fixed" })
+                            </div>
+                            <div id="interno" class="uk-width-1-5">
+                                @Html.Label("Interno", "Interno")
+                                @Html.TextBoxFor(model => model.NumeroInterno, new { @class = "md-input label-fixed" })
+                            </div>
+
+                            @Html.ValidationMessageFor(model => model.CodigoAreaTelefono, null, new { @class = "error", @style = "color:#A80000" })
+                            @Html.ValidationMessageFor(model => model.NumeroTelefono, null, new { @class = "error", @style = "color:#A80000" })
+                            @Html.ValidationMessageFor(model => model.NumeroInterno, null, new { @class = "error", @style = "color:#A80000" })
+                        </div>
+                    </div>
+
+                    <div class="uk-width-1-1">
+                        <div class="uk-flex uk-flex-center uk-margin-medium-top">
+                            <button title="Buscar" id="btnGuardar" class="md-btn md-btn-accent" type="submit"><span>Guardar</span></button>
+                            <a class="md-btn md-btn-danger" href="@Url.Action("UsuarioDashboard", new {id=Model.Id, tipoUsuario = UsuarioDTO.USUARIONOMINADO})">Cancelar</a>
+                        </div>
+                    </div>
+                }
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    @if (ViewBag.Error != null && ViewBag.Error != "")
+    {
+        <script>
+            swal("", '@Html.Raw(ViewBag.Error)', "error")
+        </script>
+    }
+    @*<script src="~/Scripts/template/plugins/uikit_fileinput.js"></script>*@
+        <script>
+        $(document).ready(function () {
+            activarMenu('#ListadoNominados-Usuario');
+            aplicarSelectize($('#NivelJerarquico_Codigo'));
+            aplicarSelectize($('#tipoTelefono'));
+            msaf = new FilterTypeSelect($("#CodigoMsaf"));
+            msaf.selectValue("@safAnterior");
+
+
+
+            $('#tipoTelefono').on('change', function () {
+                if (this.value == 'F') {
+                    $('#interno').show();
+                } else {
+                    $('#interno').hide();
+                }
+            });
+            $('#tipoTelefono').change();
+
+            $("#SiBloqueado").change(function () {
+                if (!$("#SiBloqueado").is(':checked')) {
+                    $("#CantidadIntentos").val(0);
+                }
+            }).keyup(function () {
+                if (!$("#SiBloqueado").is(':checked')) {
+                    $("#CantidadIntentos").val(0);
+                }
+                });
+
+             if ($('#CodigoTipoAutenticacion').val() == '@UsuarioDTO.SIGAF') {
+
+            if ('@(ViewBag.UsuarioSigafSiDadoBaja)' == 'True') {
+                    swal({
+                        title: "",
+                        text: "El usuario se encuentra dado de baja en SIGAF, no se puede desbloquear en el Portal",
+                        icon: "warning",
+                        buttons: {
+                            confirm: "Aceptar"
+                        },
+                        closeOnClickOutside: false,
+                    });
+                    $("#divSiActivo").hide();
+                    $("#divSiBloqueado").hide();
+                }
+                else  if ('@(ViewBag.UsuarioSigafBloqueado)' == 'True') {
+                    swal({
+                        title: "",
+                        text: "El usuario se encuentra bloqueado en SIGAF, no se puede desbloquear en el Portal. ",
+                        icon: "warning",
+                        buttons: {
+                            confirm: "Aceptar"
+                        },
+                        closeOnClickOutside: false,
+                    });
+                    $("#divSiActivo").hide();
+                    $("#divSiBloqueado").hide();
+                }
+            }
+
+        });
+
+        $("#SiActivo").change(function () {
+            if ($("#SiActivo").is(':checked') && $('#CodigoTipoAutenticacion').val() == '@UsuarioDTO.SIGAF') {
+                $.ajax({
+                    type: "POST",
+                    async: false,
+                    url: '@Url.Action("ValidarUsuarioSIGAF", "Usuario")',
+                    data: {
+                        nombreUsuarioSigaf: $('#NombreUsuario').val()
+                    },
+                    beforeSend: function (xhr) {
+                        //sacar el cerrar con el ESC al modal
+                        //$('#divLoading').modal({
+                        //    keyboard: false
+                        //});
+                    },
+                    success: function (data) {
+                        if (data.tipoMensaje == "ERROR") {
+                            swal({
+                                title: "Validacion Usuario SIGAF",
+                                text: data.mensaje,
+                                icon: "warning",
+                                buttons: {
+                                    confirm: "Aceptar"
+                                },
+                                closeOnClickOutside: false,
+                                closeOnEsc: false
+                            });
+                            $("#divSiActivo").hide();
+                            $("#divSiBloqueado").hide();
+                            ok = false;
+                        }
+                        else if (data.tipoMensaje == "ATENCION") {
+                            swal({
+                                title: "Validacion Usuario SIGAF",
+                                text: data.mensaje + ". Presione guardar para aplicar los cambios",
+                                icon: "warning",
+                                buttons: {
+                                    confirm: "Aceptar"
+                                },
+                                closeOnClickOutside: false,
+                                closeOnEsc: false
+                            });
+                            ok = false;
+                        }
+                    },
+                    error: function (req, status, error) {
+                        alert("error");
+                        $('#demo-wizard').wizard('previous');
+                        alert("R: " + req + " S: " + status + " E: " + error);
+                    }
+                });
+            }
+            else if ($("#SiActivo").is(':checked') == false)
+            {
+                swal({
+                    title: "",
+                    text: "Al dar de baja a [" + $('#NombreUsuario').val() +"], se le eliminarán todos sus roles en las aplicaciones. ¿Desea continuar?",
+                    icon: "info",
+                    html: true,
+                    showCancelButton: true,
+                    buttons: [
+                        'Cancelar',
+                        'Aceptar'
+                    ],
+                    closeOnClickOutside: false,
+                }).then((willDelete) => {
+                    if (willDelete) {
+                        $.ajax({
+                        url: '@Url.Action("DesactivarUsuario", "Usuario")',
+                        type: "POST",
+                        data: {
+                            id: $('#Id').val()
+                        },
+                        cache: false,
+                        async: true,
+                        success: function (data) {
+                            if (data.tipoMensaje == "ERROR") {
+                                swal({
+                                    title: "Atención",
+                                    text: data.mensaje,
+                                    icon: "warning",
+                                    buttons: {
+                                        confirm: "Aceptar"
+                                    },
+                                    closeOnClickOutside: false,
+                                    closeOnEsc: false
+                                });
+                                ok = false;
+                            }
+                            else if (data.tipoMensaje == "OK") {
+                                //swal({
+                                //    title: "La operación se realizo con exito.",
+                                //    icon: "ok",
+                                //    buttons: {
+                                //        confirm: "Aceptar"
+                                //    },
+                                //    closeOnClickOutside: false,
+                                //    closeOnEsc: false
+                                //});
+                                location.reload();
+                            }
+                        },
+                    });
+                    } else {
+                        $('#SiActivo').trigger('click');
+                        return;
+                    }
+                });
+            }
+        });
+
+
+        $("#btnGuardar").click(function (e) {
+            e.preventDefault();
+            if ($("#form0").valid()) {
+                showLoadingModal();
+                $("#form0").submit();
+            }
+        });
+
+        function MostrarResultados(data) {
+            hideLoadingModal();
+            swal({
+                title: "",
+                text: data.mensaje,
+                icon: data.tipoMensaje,
+                buttons: {
+                    confirm: "Aceptar"
+                },
+                closeOnClickOutside: false,
+            }).then(() => {
+                if (data.tipoMensaje != "error") {
+                        //hideLoadingModal();
+                        window.location.href = "@Url.Action("UsuarioDashboard", new {id=Model.Id, tipoUsuario=UsuarioDTO.USUARIONOMINADO})";
+                }
+            });
+        }
+        </script>
+}
+

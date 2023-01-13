@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32901.82
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TGP.WSS", "TGP-WSS\TGP.WSS.csproj", "{8BFA1F0D-5F9B-4829-98E2-1312EEAADC87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TGP.WSS.API", "TGP-WSS-API\TGP.WSS.API.csproj", "{9E27050F-A93F-4746-9CC6-EDC53C5D296B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		DESA|Any CPU = DESA|Any CPU
+		DESA|x86 = DESA|x86
+		TEST|Any CPU = TEST|Any CPU
+		TEST|x86 = TEST|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8BFA1F0D-5F9B-4829-98E2-1312EEAADC87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BFA1F0D-5F9B-4829-98E2-1312EEAADC87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BFA1F0D-5F9B-4829-98E2-1312EEAADC87}.Debug|x86.ActiveCfg = Debug|x86
+		{8BFA1F0D-5F9B-4829-98E2-1312EEAADC87}.Debug|x86.Build.0 = Debug|x86
+		{8BFA1F0D-5F9B-4829-98E2-1312EEAADC87}.DESA|Any CPU.ActiveCfg = DESA|Any CPU
+		{8BFA1F0D-5F9B-4829-98E2-1312EEAADC87}.DESA|Any CPU.Build.0 = DESA|Any CPU
+		{8BFA1F0D-5F9B-4829-98E2-1312EEAADC87}.DESA|x86.ActiveCfg = DESA|x86
+		{8BFA1F0D-5F9B-4829-98E2-1312EEAADC87}.DESA|x86.Build.0 = DESA|x86
+		{8BFA1F0D-5F9B-4829-98E2-1312EEAADC87}.TEST|Any CPU.ActiveCfg = TEST|Any CPU
+		{8BFA1F0D-5F9B-4829-98E2-1312EEAADC87}.TEST|Any CPU.Build.0 = TEST|Any CPU
+		{8BFA1F0D-5F9B-4829-98E2-1312EEAADC87}.TEST|x86.ActiveCfg = TEST|x86
+		{8BFA1F0D-5F9B-4829-98E2-1312EEAADC87}.TEST|x86.Build.0 = TEST|x86
+		{9E27050F-A93F-4746-9CC6-EDC53C5D296B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E27050F-A93F-4746-9CC6-EDC53C5D296B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E27050F-A93F-4746-9CC6-EDC53C5D296B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9E27050F-A93F-4746-9CC6-EDC53C5D296B}.Debug|x86.Build.0 = Debug|Any CPU
+		{9E27050F-A93F-4746-9CC6-EDC53C5D296B}.DESA|Any CPU.ActiveCfg = DESA|Any CPU
+		{9E27050F-A93F-4746-9CC6-EDC53C5D296B}.DESA|Any CPU.Build.0 = DESA|Any CPU
+		{9E27050F-A93F-4746-9CC6-EDC53C5D296B}.DESA|x86.ActiveCfg = TEST|Any CPU
+		{9E27050F-A93F-4746-9CC6-EDC53C5D296B}.DESA|x86.Build.0 = TEST|Any CPU
+		{9E27050F-A93F-4746-9CC6-EDC53C5D296B}.TEST|Any CPU.ActiveCfg = TEST|Any CPU
+		{9E27050F-A93F-4746-9CC6-EDC53C5D296B}.TEST|Any CPU.Build.0 = TEST|Any CPU
+		{9E27050F-A93F-4746-9CC6-EDC53C5D296B}.TEST|x86.ActiveCfg = TEST|Any CPU
+		{9E27050F-A93F-4746-9CC6-EDC53C5D296B}.TEST|x86.Build.0 = TEST|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		VisualSVNWorkingCopyRoot = .
+		SolutionGuid = {4E15803B-5313-404A-84FA-5FCD1ACE765B}
+	EndGlobalSection
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+EndGlobal

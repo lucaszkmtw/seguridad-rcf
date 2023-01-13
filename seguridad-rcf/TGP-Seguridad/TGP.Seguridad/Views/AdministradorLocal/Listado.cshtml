@@ -1,0 +1,184 @@
+﻿@using TGP.Seguridad.BussinessLogic.Dto
+@using System.Linq
+@model IList<ListadoAdministradoresLocalesViewModel>
+@{
+    Layout = "~/Views/Shared/_LayoutBootstrap.cshtml";
+}
+
+<div class="uk-grid sigaf-titulo uk-margin-small-bottom">
+    <div class="uk-width-large-1-2">
+        <h2 class="uk-margin-bottom">@ViewBag.Title</h2>
+    </div>
+    <div class="uk-width-large-1-2">
+        <div class="uk-grid uk-grid-small uk-flex uk-flex-right" data-uk-grid-margin data-uk-grid-match="{target:'.md-btn-sigaf'}">
+            <div id="divGenerarArchivo">
+                <button title="generar" type="button" onclick="BuscarUsuarios()" class="md-btn md-btn-sigaf md-btn-accent md-fab-wave-light waves-effect waves-button waves-light">
+                    <h2 class="heading_d uk-text-left md-color-white">
+                        Nuevo
+                        <span class="sub-heading md-color-white uk-text-upper">
+                            Administrador Local
+                        </span>
+                    </h2>
+                    <i class="icon-appSigaf material-icons">add_circle</i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="md-card uk-margin-bottom">
+    <div class="md-card-content">
+        <table id="lista-usuarios" class="uk-table" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+
+                    <th>Usuario</th>
+                    <th>Descripcion</th>
+                    <th>Aplicaciones</th>
+                    <th>Nodos</th>
+                    <th class="uk-text-center">Detalle</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (ListadoAdministradoresLocalesViewModel usuario in Model)
+                {
+                    <!-- un registro -->
+                    <tr>
+                        <td>@usuario.NombreUsuario</td>
+                        <td>@usuario.DescripcionUsuario</td>
+                        <td>
+                            @if (usuario.Estructuras.Count > 4)
+                            {
+                                for (int i = 0; i < 4; i++)
+                                {
+                                    <span class="uk-badge uk-badge-warning uk-badge-notification">@usuario.Estructuras[i]</span>
+                                    @Html.Raw(" ")
+                                }
+                                <span class="uk-badge uk-badge-warning uk-badge-notification">@(usuario.Estructuras.Count - 4) +</span>
+
+                            }
+                            else
+                            {
+                                foreach (var i in usuario.Estructuras)
+                                {
+                                    <span class="uk-badge uk-badge-warning uk-badge-notification">@i</span>
+                                }
+                            }
+                        </td>
+
+                        @{ string tipplyContent = ""; }
+                        @if (usuario.AdministradoresLocalesDTO.Count > 4)
+                        {
+                            tipplyContent = "<div style='max-height: 300px; overflow-y: scroll;'>";
+
+                            for (int i = 0; i < usuario.AdministradoresLocalesDTO.Count; i++)
+                            {
+                                tipplyContent += "<p class='uk-text-small' style='margin: 5px;'>" + @usuario.AdministradoresLocalesDTO[i].NodoFuncional + "</p>";
+                            }
+
+                            tipplyContent += "</div>";
+                        }
+
+                        <td>
+                            @if (usuario.AdministradoresLocalesDTO.Count > 4)
+                            {
+                                <span class="nodosNoVisibles" data-tippy-content='@tipplyContent'>
+                                    @for (int i = 0; i < 4; i++)
+                                    {
+                                        <span class="uk-badge uk-badge-success uk-badge-notification">@usuario.AdministradoresLocalesDTO[i].NodoFuncional</span>
+                                        @Html.Raw(" ")
+                                    }
+                                    <span class="uk-badge uk-badge-success uk-badge-notification">@(usuario.AdministradoresLocalesDTO.Count - 4) +</span>
+                                </span>
+                            }
+                            else
+                            {
+                                foreach (var i in usuario.AdministradoresLocalesDTO)
+                                {
+                                    <span class="uk-badge uk-badge-success uk-badge-notification">@i.NodoFuncional</span>
+                                }
+
+                            }
+                        </td>
+                        <td class="uk-text-center">
+                            <a class="acciones" data-original-title="Detalle" data-toggle="tooltip" href="@Url.Action("DetalleAdmin", "AdministradorLocal", new {id = usuario.Id})">
+                                <i class="material-icons ">&#xE02F;</i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@Html.Partial("Partials/_BuscarUsuarios")
+
+@section scripts{
+    <script src="~/ResourceDesign//Scripts/template/plugins/tippy/popper.js"></script>
+    <script src="~/ResourceDesign//Scripts/template/plugins/tippy/tippy.js"></script>
+
+    <script>
+        _TIPPYINSTANCES = null;
+        $(document).ready(function () {
+            activarMenu('#@ViewBag.MenuId');
+            aplicarSelectize($('.selectize'));
+
+            _TIPPYINSTANCES = null;
+            $('#lista-usuarios').DataTable({
+                "scrollX": true,
+                iDisplayLength: 25,
+                aaSorting: [[0, "asc"]],
+                dom: agregarDomDatatable(),
+                colVis: {
+                    buttonText: '<i class="fa fa-eye" title="Mostrar / Ocultar"></i>',
+                    restore: "Reestablecer",
+                    showAll: "Mostrar Todas"
+                },
+                aoColumnDefs: [
+                    { bSortable: false, aTargets: [2] },
+                    { bSortable: false, aTargets: [3] },
+                    { bSortable: false, aTargets: [4] },
+                ],
+                "drawCallback": function (settings) {
+                    if (_TIPPYINSTANCES != null) {
+                        for (let instance of _TIPPYINSTANCES) {
+                            instance.destroy();
+                        }
+                    }
+
+                    _TIPPYINSTANCES = tippy('.nodosNoVisibles', {
+                        maxWidth: 800,
+                        interactive: true,
+                        appendTo: document.body
+                    });
+                },
+                "lengthMenu": [[25, 50, 100, 300], [25, 50, 100, 300]],
+                buttons: [
+                    { extend: 'copy', className: 'md-btn md-btn-small', text: 'Copiar' },
+                    { extend: 'csv', title: '@ViewBag.Title', className: 'md-btn md-btn-small' },
+                    { extend: 'pdf', title: ' @ViewBag.Title', className: 'md-btn md-btn-small', orientation: 'landscape', exportOptions: { columns: [0, 1, 2, 3] }, customize: function (doc) { doc.defaultStyle.alignment = 'landscape'; } },
+                    { extend: 'print', className: 'md-btn md-btn-small', text: 'Imprimir' }
+                ],
+                language: agregarLenguajeDatatable(),
+            });
+        });
+
+        function BuscarUsuarios() {
+            UIkit.modal("#modal-usuarios").show();
+
+            $("#btnBuscar").click(function (e) {
+                e.preventDefault();
+                var usuario = $("#usuarioSelect").val();
+                if (usuario != "") {
+                    $("#formNuevoAdmin").submit();
+                } else {
+                    swal("", "Seleccione un usuario", "error");
+                }
+        });
+            }
+
+    </script>
+
+}

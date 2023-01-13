@@ -1,0 +1,45 @@
+﻿@using TGP.Seguridad.BussinessLogic.Dto
+@model NodoFuncionalDTO
+<div class="uk-grid uk-margin-top">
+    <div class="uk-width-medium-1-2">
+        @Html.Label("Codigo", "Codigo")
+        @Html.TextBoxFor(model => model.Codigo, new { @class = "md-input label-fixed", maxlength = 50 })
+        @Html.ValidationMessageFor(model => model.Codigo, null, new { @class = "error" })
+
+    </div>
+
+    <div class="uk-width-medium-1-2">
+        @Html.Label("Descripcion", "Descripción")
+        @Html.TextBoxFor(model => model.Descripcion, new { @class = "md-input label-fixed" })
+        @Html.ValidationMessageFor(model => model.Descripcion, null, new { @class = "error" })
+    </div>
+</div>
+<div class="uk-grid">
+    <div class="uk-width-medium-1-2">
+        @Html.Label("EstructuraFuncional", "Estructura Funcional")
+        @Html.DropDownListFor(model => model.EstructuraFuncional, (SelectList)ViewBag.Estructuras, "Seleccione una Estructura", new { @class = "md-input label-fixed selectize" })
+        @Html.ValidationMessageFor(model => model.EstructuraFuncional, null, new { @class = "error" })
+    </div>
+    <div class="uk-width-medium-1-2">
+        @Html.Label("NodoPadre", "Nodo Padre")
+        @Html.DropDownListFor(model => model.NodoPadre, (SelectList)ViewBag.NodosPadre, new { @class = "md-input label-fixed selectize" })
+        @Html.ValidationMessageFor(model => model.NodoPadre, null, new { @class = "error" })
+    </div>
+
+</div>
+<div class="uk-grid">
+    <div class="uk-width-medium-1-2">
+        @Html.Label("TipoNodo", "Tipo Nodo")
+        @Html.DropDownListFor(model => model.TipoNodoFuncional, (SelectList)ViewBag.TipoNodo, "Seleccione tipo de nodo", new { @class = "md-input label-fixed selectize" })
+        @Html.ValidationMessageFor(model => model.TipoNodoFuncional, null, new { @class = "error" })
+    </div>
+    <div class="uk-width-medium-1-2">
+        @Html.Label("Descentralizado", "Descentralizado", new { @class = "inline-label" })
+        @Html.CheckBoxFor(model => model.SiDescentralizado, new { data_md_icheck = "" })
+    </div>
+</div>
+<div class="uk-width-1-1">
+    <div class="uk-flex uk-flex-center uk-margin-medium-top">
+        <button title="Buscar" class="md-btn md-btn-accent" id="btnGuardar" type="submit"><span>Guardar</span></button>
+    </div>
+</div>

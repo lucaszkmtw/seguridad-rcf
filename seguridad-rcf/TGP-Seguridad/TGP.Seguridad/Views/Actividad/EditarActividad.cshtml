@@ -1,0 +1,59 @@
+﻿@using TGP.Seguridad.BussinessLogic.Dto
+@model ActividadDTO
+@{
+    ViewBag.Title = "Seg - Editar Actividad";
+    Layout = "~/Views/Shared/_LayoutBootstrap.cshtml";
+}
+
+
+<div class="uk-grid sigaf-titulo">
+    <div class="uk-width-1-2">
+        <h2 class="uk-margin-bottom">Editar Actividad</h2>
+    </div>
+</div>
+
+
+
+<div class="md-card uk-margin-bottom">
+    <div class="md-card-content">
+        @using (Ajax.BeginForm("GuardarEdicionActividad", "Actividad", new AjaxOptions() { HttpMethod = "POST", OnSuccess = "VolverAlListado", OnFailure = "VolverAlListado" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            @Html.HiddenFor(m => m.Id)
+            @Html.HiddenFor(m => m.Version)
+            @Html.Partial("Partials/_FormActividad")
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function () {
+            activarMenu('#Listado-Actividad');
+            $("#EstructuraFuncional").prop("disabled", true);
+            aplicarSelectize($("#EstructuraFuncional"));
+
+        });
+
+        function VolverAlListado(data) {
+            hideLoadingModal();
+            swal({
+                title: "",
+                text: data.mensaje,
+                icon: data.tipoMensaje,
+                buttons: {
+                    confirm: "Aceptar"
+                },
+                closeOnClickOutside: false,
+            }).then(() => {
+                if (data.tipoMensaje != "error") {
+                        window.location.href = "@Url.Action("Listado","Actividad")";
+                    }
+            });
+         
+        }
+    </script>
+}

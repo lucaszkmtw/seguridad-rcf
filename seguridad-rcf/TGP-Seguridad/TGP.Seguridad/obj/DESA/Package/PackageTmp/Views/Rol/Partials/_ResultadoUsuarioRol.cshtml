@@ -1,0 +1,60 @@
+﻿@model IList<TGP.Seguridad.BussinessLogic.Dto.RolUsuarioViewModel>
+<table id="lista-roles" class="uk-table" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>
+                Usuario
+            </th>
+            <th>
+                Rol
+            </th>
+            <th style="width: 50%;">
+                Nodo
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (TGP.Seguridad.BussinessLogic.Dto.RolUsuarioViewModel user in Model)
+        {
+            <tr>
+                <td>
+                    @user.NombreUsuario
+                </td>
+                <td>
+                    @user.Rol
+                </td>
+                @{ string tipplyContent = ""; }
+                @if (user.Nodos.Count > 3)
+                {
+                    tipplyContent = "<div style='max-height: 300px; overflow-y: scroll;'>";
+                    foreach (string nodo in user.Nodos)
+                    {
+                        tipplyContent += "<p class='uk-text-small' style='margin: 5px;'>" + @nodo + "</p>";
+                    }
+                    tipplyContent += "</div>";
+                }
+                <td>
+                    @if (user.Nodos.Count > 3)
+                    {
+                        <span class="nodosNoVisibles" data-tippy-content='@tipplyContent'>
+                            @for (int i = 0; i < 3; i++)
+                            {
+                                <span class="uk-badge uk-badge-success uk-badge-notification">@user.Nodos[i]</span>
+                                @Html.Raw(" ")
+                            }
+                            <span class="uk-badge uk-badge-success uk-badge-notification">@(user.Nodos.Count - 3) +</span>
+                        </span>
+
+                    }
+                    else
+                    {
+                        foreach (var i in user.Nodos)
+                        {
+                            <span class="uk-badge uk-badge-success uk-badge-notification">@i</span>
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

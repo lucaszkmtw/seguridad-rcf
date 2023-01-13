@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A555CFCF-4750-44D0-9A8B-076228559EC7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TGP.Seguridad.DataAccess</RootNamespace>
+    <AssemblyName>TGP.Seguridad.DataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>%24/TGP-Seguridad/Trunk/TGP-Seguridad/TGP.Seguridad.DataAccess</SccProjectName>
+    <SccLocalPath>.</SccLocalPath>
+    <SccAuxPath>http://tfs:8080/tfs/defaultcollection</SccAuxPath>
+    <SccProvider>{4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'DESA|AnyCPU' ">
+    <OutputPath>bin\DESACG\</OutputPath>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'TEST|AnyCPU'">
+    <OutputPath>bin\TEST\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr3.Runtime.3.5.1\lib\net40-client\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.4.3.1\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus">
+      <HintPath>..\..\Lib\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentNHibernate, Version=2.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentNHibernate.2.1.2\lib\net461\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Iesi.Collections.4.0.4\lib\net461\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.9.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.9\lib\net45\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate, Version=5.2.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\packages\NHibernate.5.2.3\lib\net461\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.Envers, Version=5.2.1.0, Culture=neutral, PublicKeyToken=e2c5b946037fb7f8, processorArchitecture=MSIL">
+      <HintPath>..\packages\NHibernate.Envers.5.2.1\lib\net461\NHibernate.Envers.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.DataAccess, Version=4.121.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\Oracle.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Linq, Version=2.2.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Remotion.Linq.2.2.0\lib\net45\Remotion.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Linq.EagerFetching, Version=2.2.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Remotion.Linq.EagerFetching.2.2.0\lib\net45\Remotion.Linq.EagerFetching.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TGP-CommonAnnotationsLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\TGPCommonAnnotationsLibrary.1.0.0\lib\TGP-CommonAnnotationsLibrary.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Generics\Audit.cs" />
+    <Compile Include="Generics\BaseEntity.cs" />
+    <Compile Include="Generics\TipoRevision.cs" />
+    <Compile Include="Helpers\UserDBContextSPFactory.cs" />
+    <Compile Include="Infrastructure\Listeners\BaseListener.cs" />
+    <Compile Include="Infrastructure\Listeners\DeleteEventListener.cs" />
+    <Compile Include="Infrastructure\NHibernateHelper.cs" />
+    <Compile Include="Infrastructure\NhibernateInterceptor.cs" />
+    <Compile Include="Infrastructure\OracleInterceptor.cs" />
+    <Compile Include="Infrastructure\SessionWrapper.cs" />
+    <Compile Include="Infrastructure\TransactionInterceptor.cs" />
+    <Compile Include="Infrastructure\Transactions\Transaction.cs" />
+    <Compile Include="Infrastructure\Transformers\DeepTransformer.cs" />
+    <Compile Include="Infrastructure\Trigger.cs" />
+    <Compile Include="Infrastructure\Wcf\NhibernateContext.cs" />
+    <Compile Include="Infrastructure\Wcf\NhibernateContextAttribute.cs" />
+    <Compile Include="Infrastructure\Wcf\NhibernateContextExtension.cs" />
+    <Compile Include="Infrastructure\Wcf\NhibernateContextInitializer.cs" />
+    <Compile Include="Mapping\Acreedor.cs" />
+    <Compile Include="Mapping\Actividad.cs" />
+    <Compile Include="Mapping\ActividadMenuOpcion.cs" />
+    <Compile Include="Mapping\AdministradorLocal.cs" />
+    <Compile Include="Mapping\AuditoriaAdministradorLocal.cs" />
+    <Compile Include="Mapping\AuditoriaConexion.cs" />
+    <Compile Include="Mapping\BServicio.cs" />
+    <Compile Include="Mapping\EstructuraFuncional.cs" />
+    <Compile Include="Mapping\MenuOpcion.cs" />
+    <Compile Include="Mapping\NivelJerarquico.cs" />
+    <Compile Include="Mapping\NodoFuncional.cs" />
+    <Compile Include="Mapping\Nominado.cs" />
+    <Compile Include="Mapping\Novedad.cs" />
+    <Compile Include="Mapping\NovedadGuardada.cs" />
+    <Compile Include="Mapping\NovedadLeida.cs" />
+    <Compile Include="Mapping\NovedadRolNodo.cs" />
+    <Compile Include="Mapping\Rol.cs" />
+    <Compile Include="Mapping\RolActividad.cs" />
+    <Compile Include="Mapping\RolDelegadoAdmin.cs" />
+    <Compile Include="Mapping\RolNodoUsuario.cs" />
+    <Compile Include="Mapping\TipoAutenticacion.cs" />
+    <Compile Include="Mapping\TipoNodoFuncional.cs" />
+    <Compile Include="Mapping\VWUsuarioPermisos.cs" />
+    <Compile Include="Mapping\TokenMobile.cs" />
+    <Compile Include="Mapping\SolicitudToken.cs" />
+    <Compile Include="Mapping\TipoUsuario.cs" />
+    <Compile Include="Mapping\Usuario.cs" />
+    <Compile Include="Mapping\UsuarioSIGAF.cs" />
+    <Compile Include="Mapping\VWRolNodoUsuario.cs" />
+    <Compile Include="NHibernateRepository.cs" />
+    <Compile Include="Generics\Search.cs" />
+    <Compile Include="GenericDataAccessService.cs" />
+    <Compile Include="Helpers\HelperService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

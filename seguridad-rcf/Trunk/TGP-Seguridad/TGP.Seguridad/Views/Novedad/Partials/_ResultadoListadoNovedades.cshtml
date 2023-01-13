@@ -1,0 +1,110 @@
+﻿@using TGP.Seguridad.BussinessLogic.Dto
+@model IEnumerable<TGP.Seguridad.BussinessLogic.Dto.NovedadDTO>
+
+    @if (Model.Count() > 0)
+    {
+        <table id="detalle-datatable" class="uk-table" cellspacing="0" width="100%">
+            <thead>
+                <tr class="row">
+                    <th>
+                        Estructura Funcional
+                    </th>
+                    <th>
+                        Descripción
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FechaDesde)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FechaHasta)
+                    </th>
+
+                    <th>
+                        Tipo de Notificación
+                    </th>
+                    <th>
+                        Edición
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (NovedadDTO item in Model)
+                {
+                    <tr>
+                        <td>
+                            @if (item.EstructuraFuncionalCodigo != null)
+                            {
+                                @item.EstructuraFuncionalCodigo
+                            }
+                            else
+                            {
+                                @Html.Raw("PORTAL")
+                            }
+                        </td>
+                        <td>
+                            @*@Html.Raw((item.Descripcion.Length > 100) ? item.Descripcion.Substring(0, 100) + "..." : item.Descripcion)*@
+                            @if (item.Descripcion.Length < 100)
+                            {
+                                @*@Html.Raw((item.Descripcion.Length > 100) ? item.Descripcion.Substring(0, 100) + "..." : item.Descripcion)*@
+
+                                @Html.Raw((item.Descripcion.Length > 100) ? item.Descripcion.Substring(0, 100) : item.Descripcion)
+
+                                @*<a id="btn-detalle" data-sigaf-tooltip content="@item.Descripcion" data-value="@item.Id" style="cursor: help;"><i class="material-icons md-24" href="#">info</i></a>*@
+                            }
+                            else
+
+                            if (item.Descripcion.Length > 500)
+                            {
+                                @Html.Raw((item.Descripcion.Length > 100) ? item.Descripcion.Substring(0, 100) + "..." : item.Descripcion)
+                                <a id="btn-detalle" data-sigaf-tooltip content="@item.Descripcion" data-value="@item.Id"><i class="material-icons md-24" href="#">info</i></a>
+                                @*<script>
+                                            let content = $(`<div>@item.Descripcion</div>`).text().slice(0, 400);
+                                            content.concat(`<a onclick="verDescripcion(@item.Descripcion)">Ver Mas</a>`)
+                                            $("[data-sigaf-tooltip][data-value='@item.Id']").attr("content", content);
+                                    </script>*@
+
+                            }
+                            else
+                            if (item.Descripcion.Length > 100 || item.Descripcion.Length < 500)
+                            {
+                                @Html.Raw((item.Descripcion.Length > 100) ? item.Descripcion.Substring(0, 100) + "..." : item.Descripcion)
+                                <a id="btn-detalle" data-sigaf-tooltip content="@item.Descripcion" data-value="@item.Id" @*style="cursor: help;"*@><i class="material-icons md-24" href="#">info</i></a>
+
+                            }
+                        </td>
+                        <td>
+                            @string.Format("{0:d}", item.FechaDesde)
+                        </td>
+                        <td>
+                            @string.Format("{0:d}", item.FechaHasta)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TipoNovedad)
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Editar", "Novedad", new { id = item.Id })"
+                               title="Editar Novedad" class="badge element-bg-color-seagreen linkSubmit">
+                                <i class="material-icons md-24">edit</i>
+                            </a>
+                            @{
+                                string result = System.Text.RegularExpressions.Regex.Replace(item.Descripcion, @"\s{2,}", " ");
+                                <a onclick="deleteItem('@item.Id', `@item.Descripcion`,'@item.Version')" href="#"
+                                   title="Eliminar Novedad" class="badge element-bg-color-red linkSubmit">
+                                    <i class="material-icons md-24">delete</i>
+                                </a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    else
+    {
+        <div class="uk-flex uk-flex-center uk-margin-medium-bottom">
+            <h2 class="heading_b"> Click en Buscar para mostrar Novedades.</h2>
+        </div>
+
+    }

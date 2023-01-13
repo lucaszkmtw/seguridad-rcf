@@ -1,0 +1,200 @@
+﻿@using TGP.Seguridad.BussinessLogic.Dto
+@model MenuOpcionDTO
+@{
+    ViewBag.Title = "Seg - Nuevo Menu Opción";
+    Layout = "~/Views/Shared/_LayoutBootstrap.cshtml";
+}
+
+
+<div class="uk-grid sigaf-titulo">
+    <div class="uk-width-1-2">
+        <h2 class="uk-margin-bottom">Nueva Menu Opción</h2>
+    </div>
+    <div class="uk-width-1-2">
+        <div class="uk-grid uk-grid-small uk-flex uk-flex-right" data-uk-grid-margin data-uk-grid-match="{target:'.md-btn-sigaf'}">
+            <div>
+                <button onclick="VolverBtn();" class="md-btn md-btn-primary md-btn-sigaf md-fab-wave-light waves-effect waves-button waves-light">
+                    <h2 class="heading_c md-color-white uk-text-left">
+                        Volver
+                        <span class="sub-heading md-color-white uk-text-upper">
+                            &nbsp;
+                        </span>
+                    </h2>
+                    <i class="icon-appSigaf md-color-black material-icons">reply</i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+
+
+<div class="md-card uk-margin-bottom">
+    <div class="md-card-content">
+        @using (Ajax.BeginForm(null, null, new AjaxOptions() { HttpMethod = "POST" }, new { id = "formMenuOpcion" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            @Html.Partial("Partials/_FormMenuOpcion")
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    @if (ViewBag.Error != null && ViewBag.Error != "")
+    {
+        <script>
+            swal("", '@Html.Raw(ViewBag.Error)', "error")
+        </script>
+    }
+    <script>
+        $(document).ready(function () {
+
+            activarMenu('#Listado-MenuOpcion');
+
+
+            $("#EstructuraFuncional").change(function () {
+                changeEstructura();
+            }).keyup(function () {
+                changeEstructura();
+                });
+            aplicarSelectize($('.selectize'));
+            if ('@Model.EstructuraFuncional' !== "")
+                changeEstructura();
+
+        });
+
+
+            function changeEstructura() {
+                $("#btnGuardar").show();
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("GetCombosFormMenu", "MenuOpcion")',
+                    data: {
+                        cod: $("#EstructuraFuncional").val()
+                    },
+                    beforeSend: function () {
+                    },
+                    success: function (data) {
+                        //Llenamos el combo de actividades
+                        let selectizeControlActividad = $('#ActividadAsociada').selectize()[0].selectize;
+                        selectizeControlActividad.clearOptions();
+                        $.each(data.Actividades, function (i, data) {
+                            if (data.Value === "0") {
+                                selectizeControlActividad.addOption({ value: data.Value, text: data.Text });
+                                selectizeControlActividad.addItem("0");
+                            } else {
+                                selectizeControlActividad.addOption({ value: data.Value, text: data.Text });
+                            }
+                        }
+                        );
+                        let arrayActividad = Object.keys(selectizeControlActividad.options);
+                        if (arrayActividad.length === 1) {
+                            selectizeControlActividad.addItem(arrayActividad[0]);
+                        }
+
+                        //Llenamos el combo de Menues Padre
+                        let selectizeControlMenuOpcionPadre = $('#MenuOpcionPadre').selectize()[0].selectize;
+                        selectizeControlMenuOpcionPadre.clearOptions();
+                        $.each(data.Menues, function (i, data) {
+                            if (data.Value === "0") {
+                                selectizeControlMenuOpcionPadre.addOption({ value: data.Value, text: data.Text });
+                                selectizeControlMenuOpcionPadre.addItem("0");
+                            } else {
+                                selectizeControlMenuOpcionPadre.addOption({ value: data.Value, text: data.Text });
+                            }
+                        }
+                        );
+                        let arrayMenues = Object.keys(selectizeControlMenuOpcionPadre.options);
+                        if (arrayMenues.length === 1) {
+                            selectizeControlMenuOpcionPadre.addItem(arrayMenues[0]);
+                        }
+
+                        $("#Codigo").val(data.CodigoNuevoMenu).change();
+                    }
+                })
+            }
+
+
+        function VolverBtn() {
+            var estructura = $('#EstructuraFuncional').val();
+            window.location.href = "@Url.Action("Listado", "MenuOpcion")?est="+estructura;
+        }
+
+        $("#formMenuOpcion").submit(function (e) {
+            var formdata = new FormData(this);
+            e.preventDefault();
+            $.ajax({
+                url: '@Url.Action("PrevGuardarNuevoMenu", "MenuOpcion")',
+                type: "POST",
+                dataType: "json",
+                data: formdata,
+                contentType: false,
+                processData: false,
+                beforeSend: function (xhr) {
+                    showLoadingModal();
+                },
+                success: function (data) {
+                    hideLoadingModal();
+                    if (data.mensaje != "") {
+                        swal({
+                            title: "",
+                            text: data.mensaje,
+                            icon: data.tipoMensaje,
+                            buttons: {
+                                accept: "Aceptar",
+                                cancel: "Cancelar"
+                            },
+                            closeOnClickOutside: false,
+                        }).then((resolve) => {
+                            if (resolve) {
+                                guardar(formdata);
+                            }
+                        });
+                    } else {
+                        guardar(formdata);
+                    }
+                },
+                error: function (result) {
+                    hideLoadingModal();
+                }
+            });
+        });
+
+        function guardar(formdata) {
+            $.ajax({
+                url: '@Url.Action("GuardarNuevoMenu", "MenuOpcion")',
+                type: "POST",
+                dataType: "json",
+                data: formdata,
+                contentType: false,
+                processData: false,
+                beforeSend: function (xhr) {
+                    showLoadingModal();
+                },
+                success: function (data) {
+                    hideLoadingModal();
+                swal({
+                    title: "",
+                    text: data.mensaje,
+                    icon: data.tipoMensaje,
+                    buttons: {
+                        confirm: "Aceptar"
+                    },
+                    closeOnClickOutside: false
+                }).then(() => {
+                    if (data.tipoMensaje != "error") {
+                        window.location.href = "@Url.Action("Listado","MenuOpcion")";
+                    }
+                });
+                },
+                error: function (result) {
+                    hideLoadingModal();
+                }
+            });
+        }
+        
+    </script>
+}

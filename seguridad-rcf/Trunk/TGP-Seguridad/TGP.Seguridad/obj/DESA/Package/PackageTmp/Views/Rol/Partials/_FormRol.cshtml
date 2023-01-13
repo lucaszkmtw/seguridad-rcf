@@ -1,0 +1,69 @@
+﻿@using TGP.Seguridad.BussinessLogic.Dto
+@model RolDTO
+<div class="uk-grid uk-margin-top">
+    <div class="uk-width-medium-1-3">
+        @Html.Label("Codigo", "Codigo")
+        @Html.TextBoxFor(model => model.Codigo, new { @class = "md-input label-fixed", maxlength = 20 })
+        @Html.ValidationMessageFor(model => model.Codigo, null, new { @class = "error" })
+
+    </div>
+    <div class="uk-width-medium-1-3">
+        @Html.Label("Descripcion", "Descripción")
+        @Html.TextBoxFor(model => model.Descripcion, new { @class = "md-input label-fixed", maxlength = 100 })
+        @Html.ValidationMessageFor(model => model.Descripcion, null, new { @class = "error" })
+    </div>
+    <div class="uk-width-medium-1-3">
+        <span class="icheck-inline">
+            @Html.Label("SiDelegable", "Es Delegable")
+            @Html.CheckBoxFor(model => model.SiDelegable, new { data_md_icheck = "" })
+        </span>
+    </div>
+</div>
+<div class="uk-grid uk-margin-top">
+    <div class="uk-width-medium-1-3">
+        @Html.Label("EstructuraFuncional", "Estructura Funacional")
+        @Html.DropDownListFor(model => model.EstructuraFuncional, (SelectList)ViewBag.Estructuras, "Selecciones una Estructura", new { @class = "md-input label-fixed", @id = "EstructuraFuncional" })
+        @Html.ValidationMessageFor(model => model.EstructuraFuncional, null, new { @class = "error" })
+    </div>
+    <div class="uk-width-medium-1-3">
+        @Html.Label("TipoNodo", "Tipo Nodo")
+        @Html.DropDownListFor(model => model.TipoNodoFuncional, (SelectList)ViewBag.TipoNodo, "Seleccione tipo de nodo", new { @class = "md-input label-fixed selectize" })
+        @Html.ValidationMessageFor(model => model.TipoNodoFuncional, null, new { @class = "error" })
+    </div>
+    <div class="uk-width-medium-1-3">
+        <span class="icheck-inline">
+            @Html.Label("EsMultinodo", "Puede tener mas de un nodo")
+            @Html.CheckBoxFor(model => model.EsMultinodo, new { data_md_icheck = "" })
+        </span>
+    </div>
+</div>
+<div class="uk-grid" id="nodoFuncionalID">
+    <div class="uk-width-medium-4-5">
+        @Html.Label("Actividades")
+        <select id="multiselectActividades" name="Actividades" class="md-input label-fixed selectizeMulti" multiple>
+            @foreach (ComboGenerico actividad in (ViewBag.Actividades))
+            {
+                <option value="@actividad.Codigo">@actividad.Descripcion</option>
+            }
+        </select>
+    </div>
+    <div class="uk-width-medium-1-5 uk-flex uk-flex-middle">
+        <button class="md-btn  md-btn-accent" type="button" onclick="selectAll();">Todos</button>
+        <button class="md-btn" type="button" onclick="desSelectAll()">Ninguno</button>
+    </div>
+</div>
+
+<div class="uk-grid">
+    <div class="uk-width-medium-1">
+        @Html.Label("InformacionRol", "Información del Rol")
+        @Html.TextAreaFor(model => model.InformacionRol, new { @class = "md-input label-fixed", maxlength = 500, @required = ""})
+        @Html.ValidationMessageFor(model => model.InformacionRol, null, new { @class = "error" })
+    </div>
+</div>
+
+<div class="uk-width-1-1">
+    <div class="uk-flex uk-flex-center uk-margin-medium-top" >
+        <button id="btnGuardar" title="Guardar" class="md-btn md-btn-accent" type="submit"><span>Guardar</span></button>
+    </div>
+</div>
+

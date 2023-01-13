@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="TGP.WSS" namespace="TGP.WSS" xmlns="urn:nhibernate-mapping-2.2">
+  <joined-subclass name="Innominado" table="SEG_INNOMINADO" extends="Usuario">
+    <key column="C_ID" on-delete="cascade"/>  
+    <property name="DDescripcion">
+      <column name="D_DESCRIPCION" sql-type="VARCHAR2" not-null="true" />
+    </property>
+  </joined-subclass>
+</hibernate-mapping>

@@ -1,0 +1,36 @@
+﻿@using TGP.Seguridad.BussinessLogic.Dto
+@model IEnumerable<UsuarioListadoAuditoria>
+<table id="datos-auditoria" class="uk-table" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>Usuario</th>
+            <th>Tipo de Usuario</th>
+            <th>APP Accedidas</th>
+            <th>Última Conexión</th>
+            <th>Detalle</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (UsuarioListadoAuditoria usuario in Model)
+        {
+            <!-- un registro -->
+            <tr>
+                <td>@usuario.Usuario</td>
+                <td>@usuario.TipoUsuario</td>
+                <td>
+                    @foreach (string i in usuario.AplicacionesAccedidas)
+                    {
+                        <span class="uk-badge uk-badge-success uk-badge-notification">@i</span>
+                        @Html.Raw(" ")
+                    }
+                </td>
+                <td>@string.Format("{0:dd/MM/yyyy HH:mm:ss}", usuario.UltimaConexion)</td>
+                <td>
+                    <a class="acciones" data-original-title="Editar" data-toggle="tooltip" href="@Url.Action("DetalleConexionesUsuario", "Auditoria", new { usuario = usuario.Usuario, tipo = usuario.CodigoTipoUsuario, fechaDesde = Session["FechaInicio"], fechaHasta = Session["FechaFin"] })">
+                        <i class="material-icons">zoom_in</i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

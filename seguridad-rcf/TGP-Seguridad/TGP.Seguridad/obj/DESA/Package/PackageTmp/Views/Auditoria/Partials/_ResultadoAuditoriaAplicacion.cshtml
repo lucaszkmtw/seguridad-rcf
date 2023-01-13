@@ -1,0 +1,27 @@
+﻿
+@if (ViewBag.LogAplicacion != null)
+{
+    <!--Contenido de la tabla-->
+    <table id="datos-auditoria" class="uk-table uk-table-hover" cellspacing="0" width="100%">
+      
+        <thead>
+            <tr class="row">
+                <th><span class="sub-heading"> Log -> <strong>@ViewBag.NombreAplicacion</strong> | <strong>@ViewBag.TipoArchivo </strong></span><th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (TGP.Seguridad.Models.AuditoriaAplicacion aud in ViewBag.LogAplicacion)
+            {
+                <!-- un registro -->
+                <tr>
+                    <td>@aud.Descripcion</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <!--Fin Contenido de la tabla-->
+}
+else
+{
+    <h4>@Html.Raw(ViewBag.MensajeLogAplicacion)</h4>
+}

@@ -1,0 +1,15 @@
+﻿-------------------------------------------------------------------------------------------------------
+Creacion del proyecto - Version 1.0.0.0 - 25/11/2016
+
+Cambio a realizar al proyecto BitacoraDeEventos
+1) Revisar el Web.Config y modificar las key declaradas.
+2) Revisar las conexiones a la base de los distintos ambientes y los Assembly que estan declarados en ellos.
+3) En el .project (click derecho / descargar / editar), modificar los asembly tambien.
+4) Revisar el Skin a utilizar en la aplicacion en la vista compartida: Views/Shared/_LayoutBootstrap.cshtml
+5) En AccountController modificar la estructura funcional a la cual va apuntar la aplicar.
+6) Renombrar los Namespace de la aplicacion con el de la nueva Aplicacion.
+7) Revisar el archivo Global.asax configurar el envio de email ante un eventual error de la aplicacion.
+8) Quitar y referenciar nuevamente la aplicacion al servicio de Seguridad.
+9) Configurar la 'Trasformacion de Configuracion' del web.config (los distintos web.config por ambiente)
+
+

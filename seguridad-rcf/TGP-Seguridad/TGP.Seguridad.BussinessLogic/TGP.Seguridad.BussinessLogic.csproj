@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7537100D-92C5-407F-846C-85269A22E8DD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TGP.Seguridad.BussinessLogic</RootNamespace>
+    <AssemblyName>TGP.Seguridad.BussinessLogic</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>%24/TGP-Seguridad/Trunk/TGP-Seguridad/TGP.Seguridad.BussinessLogic</SccProjectName>
+    <SccLocalPath>.</SccLocalPath>
+    <SccAuxPath>http://tfs:8080/tfs/defaultcollection</SccAuxPath>
+    <SccProvider>{4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'DESA|AnyCPU' ">
+    <OutputPath>bin\DESACG\</OutputPath>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'TEST|AnyCPU'">
+    <OutputPath>bin\TEST\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=8.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.8.0.0\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus">
+      <HintPath>..\..\Lib\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="FastMember, Version=1.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FastMember.1.4.1\lib\net461\FastMember.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Iesi.Collections.4.0.4\lib\net461\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Mapster, Version=3.2.0.0, Culture=neutral, PublicKeyToken=2f39883af23c29a8, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mapster.3.2.0\lib\net45\Mapster.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate, Version=5.2.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\packages\NHibernate.5.2.3\lib\net461\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.Envers, Version=5.2.1.0, Culture=neutral, PublicKeyToken=e2c5b946037fb7f8, processorArchitecture=MSIL">
+      <HintPath>..\packages\NHibernate.Envers.5.2.1\lib\net461\NHibernate.Envers.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TGP-CommonAnnotationsLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\TGPCommonAnnotationsLibrary.1.0.0\lib\TGP-CommonAnnotationsLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Utils, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\TGP-Utils.1.0.1\lib\Utils.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="APIRequests\RequestAPI.cs" />
+    <Compile Include="APIRequests\RequestAppsMasUsadas.cs" />
+    <Compile Include="APIRequests\RequestComparar.cs" />
+    <Compile Include="APIRequests\RequestCopiarEstructuraDestino.cs" />
+    <Compile Include="APIRequests\RequestCopiarNodoDestino.cs" />
+    <Compile Include="APIRequests\RequestCopiarMenuDestino.cs" />
+    <Compile Include="APIRequests\RequestCopiarActividadDestino.cs" />
+    <Compile Include="APIRequests\RequestCopiarRolDestino.cs" />
+    <Compile Include="APIRequests\RequestCrearNovedad.cs" />
+    <Compile Include="APIRequests\RequestEliminar.cs" />
+    <Compile Include="APIRequests\ActividadDestino.cs" />
+    <Compile Include="APIRequests\MenuDestino.cs" />
+    <Compile Include="APIRequests\NodoDestino.cs" />
+    <Compile Include="APIRequests\EstructuraDestino.cs" />
+    <Compile Include="APIRequests\RequestEditarInfoAcreedor.cs" />
+    <Compile Include="APIRequests\RequestBorrarNovedad.cs" />
+    <Compile Include="APIRequests\RequestGuardarNovedad.cs" />
+    <Compile Include="APIRequests\RequestMarcarComoLeida.cs" />
+    <Compile Include="APIRequests\RequestNodos.cs" />
+    <Compile Include="APIRequests\RequestNominadoAutocomplete.cs" />
+    <Compile Include="APIRequests\RequestNominados.cs" />
+    <Compile Include="APIRequests\RequestObtenerNovedades.cs" />
+    <Compile Include="APIRequests\RequestRoles.cs" />
+    <Compile Include="APIRequests\RequestGetInfoContactoUsuario.cs" />
+    <Compile Include="APIRequests\RequestRolNodoUsuario.cs" />
+    <Compile Include="APIRequests\RolDestino.cs" />
+    <Compile Include="APIResponses\ResponseAPI.cs" />
+    <Compile Include="APIResponses\ResponseAPINodos.cs" />
+    <Compile Include="APIResponses\ResponseAPINominadoAutocomplete.cs" />
+    <Compile Include="APIResponses\ResponseAPINominados.cs" />
+    <Compile Include="APIResponses\ResponseAPIRoles.cs" />
+    <Compile Include="APIResponses\ResponseAPIRolNodoUsuario.cs" />
+    <Compile Include="APIResponses\ResponseAPIAppsMasUsadas.cs" />
+    <Compile Include="APIResponses\ResponseGetInfoContactoUsuario.cs" />
+    <Compile Include="APIResponses\ResponseGetEntidades.cs" />
+    <Compile Include="APIResponses\ResponseBorrarNovedad.cs" />
+    <Compile Include="APIResponses\ResponseGuardarNovedad.cs" />
+    <Compile Include="APIResponses\ResponseMarcarComoLeida.cs" />
+    <Compile Include="APIResponses\ResponseObtenerNovedades.cs" />
+    <Compile Include="Config\MapsterConfig.cs" />
+    <Compile Include="Dto\Actividad\ActividadDTO.cs" />
+    <Compile Include="Dto\Actividad\ListadoActividadViewModel.cs" />
+    <Compile Include="Dto\Actividad\RolActividadViewModel.cs" />
+    <Compile Include="Dto\AdministradorLocal\AdministradorLocalDTO.cs" />
+    <Compile Include="Dto\AdministradorLocal\AdminLocalLivianoDTO.cs" />
+    <Compile Include="Dto\AdministradorLocal\AuditoriaAdminDTO.cs" />
+    <Compile Include="Dto\AdministradorLocal\ListadoAdministradoresLocalesViewModel.cs" />
+    <Compile Include="Dto\APIRequest\RequestAPI.cs" />
+    <Compile Include="Dto\APIRequest\RequestAPIAppsMasUsadas.cs" />
+    <Compile Include="Dto\APIRequest\RequestObtenerNovedades.cs" />
+    <Compile Include="Dto\APIResponse\ResponseAPI.cs" />
+    <Compile Include="Dto\APIResponse\ResponseAPIAppsMasUsadas.cs" />
+    <Compile Include="Dto\APIResponse\ResponseObtenerNovedades.cs" />
+    <Compile Include="Dto\Auditoria\AuditoriaDeConexionesDTO.cs" />
+    <Compile Include="Dto\Auditoria\AuditoriaGroupByDate.cs" />
+    <Compile Include="Dto\Auditoria\Conexiones.cs" />
+    <Compile Include="Dto\Auditoria\DetalleConexionesUsuario.cs" />
+    <Compile Include="Dto\Auditoria\ElementoGrafico.cs" />
+    <Compile Include="Dto\Auditoria\GraficoConexiones.cs" />
+    <Compile Include="Dto\Auditoria\GraficoConexionesFecha.cs" />
+    <Compile Include="Dto\Auditoria\GraficoConexionesHora.cs" />
+    <Compile Include="Dto\Auditoria\UsuarioListadoAuditoria.cs" />
+    <Compile Include="Dto\BServicio\BServicioDTO.cs" />
+    <Compile Include="Dto\Combos\ComboGenerico.cs" />
+    <Compile Include="Dto\Combos\ComparadorGenerico.cs" />
+    <Compile Include="Dto\Combos\UsuarioAutoComplete.cs" />
+    <Compile Include="Dto\Combos\UsuarioSIGAFAutocomplete.cs" />
+    <Compile Include="Dto\EstructuraFuncional\EstructuraFuncionalDTO.cs" />
+    <Compile Include="Dto\AdministradorLocal\AdminsLocalesDeUsuarioEstructuraViewModel.cs" />
+    <Compile Include="Dto\Inheritable\BaseDto.cs" />
+    <Compile Include="Dto\MenuOpcion\ListadoMenuOpcionViewModel.cs" />
+    <Compile Include="Dto\MenuOpcion\MenuOpcionDTO.cs" />
+    <Compile Include="Dto\Mobile\RequestMobileDTO.cs" />
+    <Compile Include="Dto\Mobile\RequestLoginMobileDTO.cs" />
+    <Compile Include="Dto\Mobile\RequestSendEmailMobileDTO.cs" />
+    <Compile Include="Dto\Mobile\ResquestLoginOffMobileDTO.cs" />
+    <Compile Include="Dto\Mobile\ResquestValidarTokenSessionDTO.cs" />
+    <Compile Include="Dto\Mobile\ResultadoDTO.cs" />
+    <Compile Include="Dto\Mobile\ResultLoginMobileDTO.cs" />
+    <Compile Include="Dto\Mobile\ResultLoginOffMobileDTO.cs" />
+    <Compile Include="Dto\Mobile\ResultSendEMailMobileDTO.cs" />
+    <Compile Include="Dto\Mobile\ResultValidarTokenSessionDTO.cs" />
+    <Compile Include="Dto\NodoFuncional\ListadoNodoFuncionalViewModel.cs" />
+    <Compile Include="Dto\NodoFuncional\NodoFuncionalDTO.cs" />
+    <Compile Include="Dto\Novedades\NovedadDTO.cs" />
+    <Compile Include="Dto\Novedades\NovedadRolNodoDTO.cs" />
+    <Compile Include="Dto\RolDelegadoAdmin\RolDelegadoAdminDTO.cs" />
+    <Compile Include="Dto\Rol\AsignacionMasivaViewModel.cs" />
+    <Compile Include="Dto\Rol\ItemAutocomplete.cs" />
+    <Compile Include="Dto\Rol\UsuariosPorRolPaginado.cs" />
+    <Compile Include="Dto\Rol\RolDTO.cs" />
+    <Compile Include="Dto\Usuario\AsignacionUsuariosViewModel.cs" />
+    <Compile Include="Dto\Usuario\CambioPasswordViewModel.cs" />
+    <Compile Include="Dto\Usuario\CopiaMasivaPermisosViewModel.cs" />
+    <Compile Include="Dto\Usuario\ListadoAcreedoresViewModel.cs" />
+    <Compile Include="Dto\Usuario\ListadoNominadoViewModel.cs" />
+    <Compile Include="Dto\Usuario\AcreedorViewModel.cs" />
+    <Compile Include="Dto\Usuario\NominadoViewModel.cs" />
+    <Compile Include="Dto\Usuario\PermisosViewModel.cs" />
+    <Compile Include="Dto\Usuario\RolUsuarioViewModel.cs" />
+    <Compile Include="Dto\Usuario\TipoAutenticacionDTO.cs" />
+    <Compile Include="Dto\Usuario\UsuarioDashboardViewModel.cs" />
+    <Compile Include="Dto\Usuario\UsuarioDTO.cs" />
+    <Compile Include="Dto\Usuario\UsuarioSigafDTO.cs" />
+    <Compile Include="Dto\Usuario\VWUsuarioPermisosDTO.cs" />
+    <Compile Include="Generics\ItemAutocomplete.cs" />
+    <Compile Include="Helpers\HelperService.cs" />
+    <Compile Include="Services\AutorizanteApplicationService.cs" />
+    <Compile Include="Services\ApiSegService.cs" />
+    <Compile Include="Services\AdministradorLocalApplicationService.cs" />
+    <Compile Include="Services\EstructuraApplicationService.cs" />
+    <Compile Include="Services\AuditoriaApplicationService.cs" />
+    <Compile Include="Services\NodoFuncionalApplicationService.cs" />
+    <Compile Include="Services\MenuOpcionApplicationService.cs" />
+    <Compile Include="Services\ComparadorApplicationService.cs" />
+    <Compile Include="Services\ActividadApplicationService.cs" />
+    <Compile Include="Services\RolApplicationService .cs" />
+    <Compile Include="Services\NovedadApplicationService.cs" />
+    <Compile Include="Services\SeguridadApplicationService.cs" />
+    <Compile Include="Generics\GenericService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\UsuarioApplicationService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TGP.Seguridad.DataAccess\TGP.Seguridad.DataAccess.csproj">
+      <Project>{a555cfcf-4750-44d0-9a8b-076228559ec7}</Project>
+      <Name>TGP.Seguridad.DataAccess</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,296 @@
+﻿@model IList<TGP.Seguridad.BussinessLogic.Dto.AsignacioUsuariosViewModel>
+
+@{
+    ViewBag.Title = "Seg - Consulta Asignación de Usuarios";
+    Layout = "~/Views/Shared/_LayoutBootstrap.cshtml";
+}
+
+<div class="uk-grid sigaf-titulo">
+    <div class="uk-width-1-2">
+        <h2 class="uk-margin-bottom">Consulta Asignación de Usuarios</h2>
+    </div>
+</div>
+<div class="md-card">
+    <!--FILTROS-->
+    <div class="md-card-content">
+        <div class="uk-grid uk-margin-top uk-grid-match" data-uk-grid-margin data-uk-grid-match="{target:'.uk-width-medium-1-4'}">
+            <!--Filtro autocomplete por Nombre Usuario-->
+            <div id="usuario" class="uk-autocomplete uk-width-1-2" data-uk-autocomplete>
+                @Html.Label("lblUsuario", "Usuario")
+                <input id="descripcionUsuario" type="text" class="md-input label-fixed" placeholder="Mín. 3 caracteres">
+                <script type="text/autocomplete">
+                    <ul class="uk-nav uk-nav-autocomplete uk-autocomplete-results">
+                        {{~items}}
+                        <li data-value="{{ $item.value }}" data-id="{{ $item.id }}">{{ $item.value }}</li>
+                        {{/items}}
+                    </ul>
+                </script>
+            </div>
+            <div id="apellidoNombre" class="uk-autocomplete uk-width-1-2" data-uk-autocomplete>
+                @Html.Label("lblApellidoNombre", "Apellido y Nombre")
+                <input id="descripcionApellidoNombre" type="text" class="md-input label-fixed" placeholder="Mín. 5 caracteres">
+                <script type="text/autocomplete">
+                    <ul class="uk-nav uk-nav-autocomplete uk-autocomplete-results">
+                        {{~items}}
+                        <li data-value="{{ $item.value }}" data-id="{{ $item.id }}">{{ $item.value }}</li>
+                        {{/items}}
+                    </ul>
+                </script>
+            </div>
+            @Html.Hidden("v_usuario")
+            <!--Filtro combo de Organismos-->
+            <div class="uk-width-1-2">
+                <div class="md-input-wrapper md-input-filled">
+                    @Html.Label("Estructura", "Aplicación")
+                    @Html.DropDownList("estructuras", (SelectList)ViewBag.Estructuras, new { @class = "selectize md-input label-fixed" })
+                </div>
+            </div>
+            <div class="uk-width-1-2">
+                <div class="md-input-wrapper md-input-filled">
+                    @Html.Label("Rol", "Rol")
+                    @Html.DropDownList("rol", (SelectList)ViewBag.Roles, new { @class = "selectize md-input label-fixed" })
+                </div>
+            </div>
+            <!--Boton Buscar-->
+            <div class="uk-width-1-1">
+                <div class="uk-flex uk-flex-center uk-margin-medium-top">
+                    <button title="Buscar" class="md-btn md-btn-accent" type="button" id="btnBuscar" onClick='btnBuscar()'>Buscar</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!--DATATABLE-->
+<div class="md-card uk-margin-bottom">
+    <div class="md-card-content">
+        <div id="div-resultados">
+            @if (Model != null && Model.Count > 0)
+            {
+                @Html.Partial("Partials/_ListadoConsultaAsignacionUsuario")
+            }
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts{
+    <script src="~/ResourceDesign//Scripts/template/plugins/tippy/popper.js"></script>
+    <script src="~/ResourceDesign//Scripts/template/plugins/tippy/tippy.js"></script>
+
+    <script>
+
+            $(document).ready(function () {
+
+                activarMenu('#ConsultaAsignacionDeUsuarios-Usuario');
+                aplicarSelectize($('.selectize'));
+
+                $("#estructuras").change(function () {
+                    changeEstructura();
+                }).keyup(function () {
+                    changeEstructura();
+                });
+
+                if ('@(ViewBag.IdEstructura)' != "") {
+                    $('#estructuras').selectize({})[0].selectize.setValue('@(ViewBag.IdEstructura)');
+                }
+            });
+
+
+        /** AUTOCOMPLETE POR USUARIO **/
+        var url = '@Url.Action("GetUsuarioByNombreUsuarioAutoComplete", "Usuario", null)';
+        $.UIkit.autocomplete($('#usuario'), {
+            source: function (response) {
+                $.ajax({
+                    url: url,
+                    data: { query: this.value },
+                    dataType: 'json',
+                    type: 'POST',
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            $('#v_usuario').val(item.Id);
+                            return {
+                                value: item.NombreUsuario,
+                                id: item.Id,
+                            }
+                        }));
+                    }
+                })
+            },
+            minLength: 3,
+        });
+
+        $("#usuario input").on("change", function () {
+            if ($("#usuario input").val() == undefined || $("#usuario input").val() == '') {
+                $("#usuario input").val("");
+                $('#v_usuario').val("");
+            } else if ($("#usuario input").val() != $("#usuario").val()) {
+                $("#usuario input").val("");
+                $('#v_usuario').val("");
+            }
+        });
+        $('#usuario').on('selectitem.uk.autocomplete', function (event, data) {
+            $('#v_usuario').val(data.id);
+            $('#usuario').val(data.value);
+            $("#apellidoNombre input").val("");
+        });
+        /**FIN AUTOCOMPLETE*/
+
+
+        /** AUTOCOMPLETE POR APELLIDO NOMBRE **/
+        var url2 = '@Url.Action("GetUsuarioByNombreApellidoRazonSocial", "Usuario", null)';
+        $.UIkit.autocomplete($('#apellidoNombre'), {
+            source: function (response) {
+                $.ajax({
+                    url: url2,
+                    data: { query: this.value },
+                    dataType: 'json',
+                    type: 'POST',
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            $('#v_usuario').val(item.Id);
+                            return {
+                                value: item.NombreApellidoRazonSocial,
+                                id: item.Id,
+                            }
+                        }));
+                    }
+                })
+            },
+            minLength: 5,
+        });
+
+        $("#apellidoNombre input").on("change", function () {
+            if ($("#apellidoNombre input").val() == undefined || $("#apellidoNombre input").val() == '') {
+                $("#apellidoNombre input").val("");
+                $('#v_usuario').val("");
+            } else if ($("#apellidoNombre input").val() != $("#apellidoNombre").val()) {
+                $("#apellidoNombre input").val("");
+                $('#v_usuario').val("");
+            }
+        });
+        $('#apellidoNombre').on('selectitem.uk.autocomplete', function (event, data) {
+            $('#v_usuario').val(data.id);
+            $('#apellidoNombre').val(data.value);
+            $("#usuario input").val("");
+        });
+        /**FIN AUTOCOMPLETE*/
+
+
+            function changeEstructura() {
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("GetCombosRol", "Usuario")',
+                    data: {
+                        cod: $("#estructuras").val()
+                    },
+                    dataType: 'json',
+                    beforeSend: function () {
+                    },
+                    success: function (data) {
+
+                        if (data !== null) {
+                            $('#rol').selectize({})[0].selectize.clear();
+                            let selectizeControl = $('#rol').selectize()[0].selectize;
+                            selectizeControl.clearOptions();
+                            $.each(data, function (i, data) {
+                                if (data.Value === -1) {
+                                    selectizeControl.addOption({ value: data.Value, text: data.Text });
+                                    selectizeControl.addItem(-1);
+                                } else {
+                                    selectizeControl.addOption({ value: data.Value, text: data.Text });
+                                }
+                            }
+                            );
+                            let array = Object.keys(selectizeControl.options);
+                            if (array.length === 1) {
+                                selectizeControl.addItem(array[0]);
+                            }
+
+                        }
+                        if ('@(ViewBag.IdRol)' !== "") {
+                            @*alert("@ViewBag.IdRol");*@
+                            $('#rol').selectize({})[0].selectize.setValue('@(ViewBag.IdRol)');
+                            $('#btnBuscar').click();
+                        }
+                    }
+                })
+            }
+
+
+
+
+
+            function btnBuscar() {
+            if ($('#v_usuario').val() == "" && $('#estructuras').val() == 0) {
+                swal({
+                    title: "",
+                    text: "Debe seleccionar al menos un filtro",
+                    icon: "warning",
+                    buttons: {
+                        confirm: "Cerrar"
+                    },
+                    closeOnClickOutside: false,
+                });
+                return true;
+            }
+            $.ajax(
+                {
+                    url: '@Url.Action("ResultadosConsultaAsignaciones", "Usuario")',
+                    type: "POST",
+                    data: {
+                        usuario: $('#v_usuario').val(),
+                        codigoEstructura: $('#estructuras').val(),
+                        rol: $('#rol').val()
+                   },
+                    beforeSend: function (xhr) {
+                        //sacar el cerrar con el ESC al modal
+                    },
+                    success: function (data) {
+                        $("#div-resultados").html(data);
+                        updateDatatable();
+                    }
+                });
+        }
+
+             _TIPPYINSTANCES = null;
+            function updateDatatable() {
+                table = $('#listado-ConsultaAsignacionUsuarios').dataTable({
+                //responsive: true,
+                responsive: agregarResponsiveDatatable("1-3"),
+                //scrollX: true,
+                fixedHeader: true,
+                //"pagingType": "full_numbers_no_ellipses",
+                    iDisplayLength: 50,
+                aaSorting: [
+                    [0, "asc"]
+                ],
+                "drawCallback": function (settings) {
+                    if (_TIPPYINSTANCES != null) {
+                        for (let instance of _TIPPYINSTANCES) {
+                            instance.destroy();
+                        }
+                    }
+                    _TIPPYINSTANCES = tippy('.nodosNoVisibles', {
+                        maxWidth: 800,
+                        interactive: true,
+                    });
+                },
+                dom: agregarDomDatatable(),
+                    "lengthMenu": [[10, 25, 50, 100, 300], [10, 25, 50, 100, 300]],
+                buttons: [
+                    { extend: 'colvis', className: 'md-btn md-btn-small', text: 'Visibilidad' },
+                    { extend: 'csv', title: 'Usuarios', className: 'md-btn md-btn-small' },
+                    { extend: 'pdf', title: 'Usuarios', className: 'md-btn md-btn-small', orientation: 'landscape', pageSize: 'LEGAL', exportOptions: { columns: ':not(".notExport")' } },
+                    { extend: 'print', className: 'md-btn md-btn-small', text: 'Imprimir' }
+                ],
+                //buttons: agregarBtns(),
+                language: agregarLenguajeDatatable(),
+            });
+        }
+
+
+    </script>
+}

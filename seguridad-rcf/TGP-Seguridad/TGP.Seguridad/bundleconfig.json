@@ -1,0 +1,8 @@
+[
+  {
+    "outputFileName": "Scripts/template/plugins/validation/forms_validation.min.js",
+    "inputFiles": [
+      "Scripts/template/plugins/validation/forms_validation.js"
+    ]
+  }
+]

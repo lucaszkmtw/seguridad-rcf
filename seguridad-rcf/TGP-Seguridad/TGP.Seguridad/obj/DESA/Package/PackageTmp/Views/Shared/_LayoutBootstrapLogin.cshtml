@@ -1,0 +1,64 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 9 ]><html class="ie ie9" lang="en" class="no-js"> <![endif]-->
+<!--[if !(IE)]><!-->
+<html lang="es">
+<!--<![endif]-->
+
+<head>
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- Mimic Internet Explorer 9 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE11">
+    <meta name="description" content="">
+    <meta name="author" content="Juan Cruz Sabatini">
+
+    <link rel="shortcut icon" href="~/ResourceDesign//css/img/icoprov.ico" />
+    <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500' rel='stylesheet' type='text/css'>
+    @*Template*@
+    @*<!-- uikit -->*@
+    <link href="~/Content/template/uikit.almost-flat.min.css?v=1.1" rel="stylesheet" />
+    @*<!-- altair admin -->*@
+    <link href="~/Content/template/src/main.min.css?v=1.1" rel="stylesheet" />
+    @*<!-- Own styles -->*@
+    <link href="~/Content/template/login_sigaf.min.css?v=1.1" rel="stylesheet" />
+
+</head>
+<body class="app_theme_login login-page uk-cover-background">
+    <header id="header_main">
+        <div class="header_main_content">
+            <nav class="uk-navbar">
+                <div class="uk-container-center">
+                    <a href="" class="uk-navbar-brand">
+                        <img class="logo-provincia" src="~/ResourceDesign/css/img/logo-web-2020B.png" style="width: 175px" />
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="login_page_wrapper">
+        @RenderBody()
+    </div>
+
+
+    <footer id="footer" class="footer">&copy; 2017 - Tesoreria General de la Provincia de Buenos Aires</footer>
+
+    <!-- common functions -->
+    <script src="~/ResourceDesign/Scripts/template/common.min.js"></script>
+    <!-- uikit functions -->
+    <script src="~/ResourceDesign/Scripts/template/uikit_custom.min.js"></script>
+    <!-- altair core functions -->
+    <script src="~/ResourceDesign/Scripts/template/altair_admin_common.js"></script>
+    <!-- altair login page functions -->
+    <script src="~/ResourceDesign//Scripts/template/login.min.js"></script>
+    @*<script src="~/Scripts/template/login.min.js"></script>*@
+
+    @RenderSection("scripts", required: false)
+
+</body>
+
+</html>
+

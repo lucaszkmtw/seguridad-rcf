@@ -1,0 +1,87 @@
+﻿@import 'src/pages/login_page.less';
+@import 'variables_sigaf.less';
+@import "spinner.less";
+
+
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+    background-color: rgb(250, 255, 189) !important;
+    background-image: none !important;
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+    color: rgb(0, 0, 0) !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+body {
+    padding: 60px 24px;
+    background-image: url(../img/845-bn-contrastless.png);
+    height: 100%;
+
+    @media @screen_xlarge_max {
+        padding: 75px 24px 0px;
+    }
+}
+
+.forgetPassDescription {
+    margin: 0px !important;
+    font-size: 12px;
+}
+
+#errorLogin {
+    @media @screen_medium {
+        height: 75px;
+    }
+}
+
+
+
+
+.login-page {
+    @media @screen_medium_max {
+        padding: 0px;
+    }
+
+    .logo-provincia {
+        @media @screen_small {
+            width: 290px;
+        }
+
+        width: 90%;
+    }
+
+    #header_main {
+        height: auto;
+
+        @media @screen_medium_max {
+            position: relative;
+        }
+    }
+
+    #footer {
+        font-weight: bold;
+        background-color: @footer-background;
+        text-align: center;
+        .md_font(300,12px,32px);
+        /*@media @screen_xlarge_max {
+            .md_font(300,12px,32px);
+            }*/
+        @media @screen_medium_max {
+            position: relative;
+            max-width: 312px;
+            margin: 0 auto;
+            transition: all 280ms @md_easing;
+        }
+
+        color: @white;
+    }
+
+    #header_main .uk-navbar .uk-navbar-brand {
+        height: auto;
+        margin: 7px 0;
+    }
+}

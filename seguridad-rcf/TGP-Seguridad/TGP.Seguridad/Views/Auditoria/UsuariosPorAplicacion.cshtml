@@ -1,0 +1,191 @@
+﻿@using TGP.Seguridad.BussinessLogic.Dto
+@model IEnumerable<UsuarioListadoAuditoria>
+@{
+    /**/
+
+    ViewBag.Title = "Seg - Datos de Auditoria";
+    Layout = "~/Views/Shared/_LayoutBootstrap.cshtml";
+}
+@section styles{
+    <link href="~/Content/template/plugins/daterangepicker.min.css" rel="stylesheet" />
+}
+<div class="uk-grid sigaf-titulo">
+    <div class="uk-width-1-2">
+        <h2 class="uk-margin-bottom">Conexiones de usuarios por aplicación</h2>
+    </div>
+</div>
+<div class="md-card">
+    <div class="md-card-content">
+        <div class="uk-grid uk-margin-top uk-grid-match" data-uk-grid-margin data-uk-grid-match="{target:'.uk-width-medium-1-4'}">
+            <div class="uk-width-1-2">
+                @Html.Label("Tipo de Usuario", "Tipo de Usuario")
+                @Html.DropDownList("tipoUsuario", (SelectList)ViewBag.TipoUsuario, new { @class = "selectize md-input label-fixed selectize" })
+            </div>
+            <div class="uk-width-1-2">
+                <div class="md-input-wrapper md-input-filled">
+                    @Html.Label("Estructura", "Estructura")
+                    @Html.DropDownList("estructuras", (SelectList)ViewBag.Estructuras, new { @class = "selectize md-input label-fixed selectize" })
+                </div>
+            </div>
+        </div>
+
+        <div class="uk-grid uk-margin-top">
+            <div class="uk-width-1-2 daterange">
+                @Html.Label("Rango-Predef", "Fecha de Conexión")
+                <div class="uk-grid-match uk-grid-collapse uk-margin-small-top">
+                    <a class="md-btn md-btn-mini md-btn-accent" onclick="configurarFecha(this)">Ultimos 3 meses</a>
+                    <a class="md-btn md-btn-mini md-btn-accent" onclick="configurarFecha(this)">Ultimos 30 dias</a>
+                    <a id="fechaPorDefecto" class="md-btn md-btn-mini md-btn-accent" onclick="configurarFecha(this)">Ultimos 7 dias</a>
+                    <a class="md-btn md-btn-mini md-btn-accent" onclick="configurarFecha(this)">Hoy</a>
+                </div>
+                <input id="reportrange-busqueda" name="fecha" class="md-input label-fixed">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="md-card uk-margin-bottom">
+    <div class="md-card-content">
+        <div id="div-resultados">
+            @Html.Partial("Partials/_ResultadoUsuariosPorAplicacion")
+        </div>
+    </div>
+</div>
+    </div>
+@section scripts{
+    <script src="~/ResourceDesign//Scripts/moment.min.js"></script>
+    <script src="~/ResourceDesign//Scripts/template/plugins/jquery.daterangepicker.js"></script>
+    <script>
+
+        function configurarFecha(element) {
+            var fechaIni;
+            var fechaFin;
+            switch ($(element).text()) {
+                case "Hoy":
+                    fechaIni = moment('@Session["FechaFin"]', 'DD-MM-YYYY').format("DD-MM-YYYY");
+                    fechaFin = moment('@Session["FechaFin"]', 'DD-MM-YYYY').format("DD-MM-YYYY");
+                    break;
+                case "Ultimos 3 meses":
+                    fechaIni = moment('@Session["FechaFin"]', 'DD-MM-YYYY').subtract(91, 'days').format("DD-MM-YYYY");
+                    fechaFin = moment('@Session["FechaFin"]', 'DD-MM-YYYY').format("DD-MM-YYYY");
+                    break;
+                case "Ultimos 7 dias":
+                    fechaIni = moment('@Session["FechaFin"]', 'DD-MM-YYYY').subtract(7, 'days').format("DD-MM-YYYY");
+                    fechaFin = moment('@Session["FechaFin"]', 'DD-MM-YYYY').format("DD-MM-YYYY");
+                    break;
+                case "Ultimos 30 dias":
+                    fechaIni = moment('@Session["FechaFin"]', 'DD-MM-YYYY').subtract(1, 'month').format("DD-MM-YYYY");
+                    fechaFin = moment('@Session["FechaFin"]', 'DD-MM-YYYY').format("DD-MM-YYYY");
+                    break;
+                default:
+            }
+            $("#reportrange-busqueda").data('dateRangePicker').setDateRange(fechaIni, fechaFin);
+
+        }
+
+
+
+          $(document).ready(function () {
+                  activarMenu('#ListadoUsuariosPorAplicacion-Auditoria');
+                  aplicarSelectize($('.selectize'));
+                var date1;
+                var date2;
+                $("#reportrange-busqueda").dateRangePicker(configDateRangePicker()).bind('datepicker-change', function (event, obj) {
+                    changeFilters();
+                });
+
+
+                if ('@Session["FechaInicio"]' && '@Session["FechaFin"]') {
+                    date1 = '@Session["FechaInicio"]';
+                    date2 = '@Session["FechaFin"]';
+                    $("#reportrange-busqueda").data('dateRangePicker').setDateRange(date1, date2);
+
+                }
+                else {
+                    $("#fechaPorDefecto").click();
+              }
+
+                initTabla();
+
+                $("#tipoUsuario").change(function () {
+                    if (!isNullOrEmpty('#tipoUsuario') && $("#tipoUsuario").val() != "")
+                        changeFilters();
+                }).keyup(function () {
+                    if (!isNullOrEmpty('#tipoUsuario') && $("#tipoUsuario").val() != "")
+                        changeFilters();
+                    });
+
+              $("#estructuras").change(function () {
+                  if (!isNullOrEmpty('#estructuras') && $("#estructuras").val() != "")
+                      changeFilters();
+              }).keyup(function () {
+                  if (!isNullOrEmpty('#estructuras') && $("#estructuras").val() != "")
+                      changeFilters();
+              });
+               // updateDatatable();
+                changeFilters();
+
+          });
+
+
+
+
+
+          function changeFilters() {
+                var date = catchValuesDateRange($("#reportrange-busqueda"));
+
+                $.ajax(
+                  {
+                      url: '@Url.Action("GetUsuariosPorAplicacion", "Auditoria")',
+                      type: "POST",
+                      data: {
+                          tipoUsuario: $('#tipoUsuario').val(),
+                          estructura: $('#estructuras').val(),
+                          fechaDesde: date[0],
+                          fechaHasta: date[1]
+                      },
+                      beforeSend: function (xhr) {
+                          //sacar el cerrar con el ESC al modal
+                          showLoadingModal();
+
+                      },
+                      success: function (data) {
+                          hideLoadingModal();
+                          $("#div-resultados").html(data);
+                          initTabla();
+                          //defineDatatable(0)
+                      }
+                  });
+            }
+
+
+                function initTabla() {
+                    $('#datos-auditoria').dataTable({
+                        "scrollX": true,
+                        iDisplayLength: 25,
+                        aaSorting: [[3, "desc"]],
+                        dom: agregarDomDatatable(),
+                        colVis: {
+                            buttonText: '<i class="material-icons" title="Mostrar / Ocultar">&#xE417;</i>',
+                            restore: "Reestablecer",
+                            showAll: "Mostrar Todas"
+                        },
+                        aoColumnDefs: [
+                            { sType: "de_datetime-NoSec", aTargets: [-2] },
+                            { bSortable: false, aTargets: [-1] }
+                        ],
+                        "lengthMenu": [[25, 50, 100, 300], [25, 50, 100, 300]],
+                        buttons: [
+                            { extend: 'copy', className: 'md-btn md-btn-small', text: 'Copiar' },
+                            { extend: 'csv', title: 'Lotes', className: 'md-btn md-btn-small' },
+                            { extend: 'pdf', title: ' Lotes', className: 'md-btn md-btn-small', orientation: 'landscape', exportOptions: { columns: [0, 1, 2] }, customize: function (doc) { doc.defaultStyle.alignment = 'landscape'; } },
+                            { extend: 'print', className: 'md-btn md-btn-small', text: 'Imprimir' }
+                        ],
+                        language: agregarLenguajeDatatable()
+                    });
+                }
+
+
+
+
+    </script>
+}

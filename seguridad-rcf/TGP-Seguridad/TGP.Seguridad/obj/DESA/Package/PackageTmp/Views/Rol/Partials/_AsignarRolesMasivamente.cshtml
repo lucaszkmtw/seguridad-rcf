@@ -1,0 +1,100 @@
+﻿@using TGP.Seguridad.BussinessLogic.Dto
+
+<div class="uk-grid margin-top-grid">
+    <div class="uk-width-medium-2-3">
+
+        @Html.Label("Rol", "Rol")
+        <select name="Rol" id="inputRol" class="md-input label-fixed selectize">
+            <option selected value="">Seleccione un Rol</option>
+            @foreach (RolDTO rol in ViewBag.Roles)
+            {
+                <option value="@rol.Codigo">@rol.Descripcion</option>
+            }
+        </select>
+        <span hidden id="rol-Error" class="error"> Campo Requerido</span>
+
+    </div>
+
+</div>
+<div class="uk-grid margin-top-grid">
+    <div class="uk-width-medium-2-3">
+
+        @Html.Label("Nodos", "Nodos")
+        <select name="Nodos" id="inputNodos" class="md-input label-fixed selectizeMulti">
+            <option selected value="">Seleccione un Nodo</option>
+            @foreach (ComboGenerico nodo in ViewBag.Nodos)
+            {
+                <option value="@nodo.Codigo">@nodo.Descripcion</option>
+            }
+        </select>
+        <span hidden id="nodo-Error" class="error"> Campo Requerido</span>
+
+    </div>
+
+    <div class="uk-width-1-3 uk-flex uk-flex-middle">
+        <button class="md-btn  md-btn-accent" type="button" onclick="selectAll();">Todos</button>
+        <button class="md-btn" type="button" onclick="desSelectAll()">Ninguno</button>
+    </div>
+
+</div>
+
+<div class="uk-grid margin-top-grid">
+    <div class="uk-width-medium-2-3">
+
+
+        <div id="siNominado">
+            <div class="uk-input-group">
+                <span class="uk-width-medium-1-3 uk-row-first">
+                    @Html.Label("Acreedor/Nominado", "Acreedor/Nominado")
+                    <input id="inputNominado" data-switchery type="checkbox" checked />
+                </span>
+            </div>
+        </div>
+
+        <div id="idUsuario" name="Usuarios" class="uk-autocomplete uk-width-1-1" data-uk-autocomplete>
+            @*@Html.Label("USUARIO", "USUARIO")*@
+            <div class="selectize-control multi plugin-remove_button">
+                <div id="user-items" class="selectize-input items not-full has-options has-items">
+                    <input id="inputUsuario" type="text" class="md-input label-fixed uk-width-1-1" placeholder="Mín. 5 caracteres" style="width: auto;" @*onclick="mostrarOpciones()"*@>
+                </div>
+            </div>
+            <script type="text/autocomplete">
+                <ul id="user-results" class="uk-nav uk-nav-autocomplete uk-autocomplete-results uk-width-1-1">
+                    {{~items}}
+                    <li data-value="{{ $item.value }}" data-id="{{ $item.id }}">{{ $item.value }}</li>
+                    {{/items}}
+                </ul>
+            </script>
+            <span hidden id="usuario-Error" class="error"> Campo Requerido</span>
+
+        </div>
+
+
+
+
+
+
+        @*<select id="idUsuario" class="md-input label-fixed selectizeMulti " data_uk_tooltip="{pos:'top'}" title="Select with tooltip">
+            <option selected value="">Seleccione un Usuario</option>
+            @foreach (UsuarioAutoComplete usuario in ViewBag.Usuarios)
+            {
+                <option value="@usuario.NombreUsuario">@usuario.DescripcionAsignacionMasiva</option>
+            }
+        </select>*@
+
+
+    </div>
+
+
+
+</div>
+
+
+
+<div class="uk-grid">
+    <div class="uk-width-1-1">
+        <div class="uk-flex uk-flex-center">
+            <button title="Guardar" id="btnGuardar" class="md-btn md-btn-accent" type="submit"><span>Guardar</span></button>
+        </div>
+    </div>
+</div>

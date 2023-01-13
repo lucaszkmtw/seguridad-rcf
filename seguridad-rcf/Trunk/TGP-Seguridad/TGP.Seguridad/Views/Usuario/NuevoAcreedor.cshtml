@@ -1,0 +1,150 @@
+﻿@using TGP.Seguridad.BussinessLogic.Dto
+@model AcreedorViewModel
+@{
+    ViewBag.Title = "Seg - Nuevo Usuario - Acreedor";
+    Layout = "~/Views/Shared/_LayoutBootstrap.cshtml";
+}
+
+
+<div class="uk-grid sigaf-titulo">
+    <div class="uk-width-1-2">
+        <h2 class="uk-margin-bottom">Nuevo Usuario - Acreedor</h2>
+    </div>
+</div>
+
+
+
+<div class="md-card uk-margin-bottom">
+    <div class="md-card-content">
+        @*@using (Html.BeginForm(null, null, FormMethod.Post, new { @id = "form" }))*@
+        @using (Ajax.BeginForm("GuardarNuevoAcreedor", "Usuario", new AjaxOptions() { HttpMethod = "POST", OnSuccess = "MostrarResultados", OnFailure = "MostrarResultados" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <div class="uk-grid uk-margin-small-top">
+                <div class="uk-width-medium-1-2">
+                    @Html.Label("CUIT", "CUIT")
+                    @Html.TextBoxFor(model => model.NumeroCuit, new { @class = "md-input label-fixed", maxlength = 15 })
+                    @Html.ValidationMessageFor(model => model.NumeroCuit, null, new { @class = "error" })
+
+                </div>
+
+                <div class="uk-width-medium-1-2">
+                    @Html.Label("RazonSocial", "Razón Social")
+                    @Html.TextBoxFor(model => model.RazonSocial, new { @class = "md-input label-fixed", maxlength = 255 })
+                    @Html.ValidationMessageFor(model => model.RazonSocial, null, new { @class = "error" })
+
+                </div>
+            </div>
+            <div class="uk-grid">
+                <div class="uk-width-1-5">
+                    @Html.Label("Usuario", "Usuario")
+                    @Html.TextBoxFor(model => model.NombreUsuario, new { @class = "md-input label-fixed" })
+                    @Html.ValidationMessageFor(model => model.NombreUsuario, null, new { @class = "error" })
+                </div>
+                <div class="uk-width-1-5" id="password">
+                    @Html.Label("Contraseña", "Contraseña")
+                    @Html.TextBoxFor(model => model.Contrasena, new { @id = "pass", @class = "md-input label-fixed", type = "password", minlength = 8, maxlength = 30 })
+                    @Html.ValidationMessageFor(model => model.Contrasena, null, new { @class = "error" })
+                </div>
+                <div class="uk-width-1-5" id="password-confirmar">
+                    @Html.Label("Confirmar Contraseña", "Confirmar Contraseña")
+                    @Html.TextBoxFor(model => model.Contrasena2, new { @id = "pass2", @class = "md-input label-fixed", type = "password", minlength = 8, maxlength = 30 })
+                    @Html.ValidationMessageFor(model => model.Contrasena2, null, new { @class = "error" })
+                </div>
+                <div class="uk-width-2-5">
+                    @Html.Label("E-Mail", "E-Mail")
+                    @Html.TextBoxFor(model => model.EMail, new { @class = "md-input label-fixed" })
+                    @Html.ValidationMessageFor(model => model.EMail, null, new { @class = "error" })
+                </div>
+            </div>
+            <div class="uk-grid">
+                <div class="uk-width-1-5">
+                    @Html.Label("TipoTel", "Tipo Telefono")
+                    <select id="tipoTelefono" name="TipoTelefono" class="selectize md-input label-fixed">
+                        <option value='C' selected>Movil</option>
+                        <option value='F' selected>Fijo</option>
+                    </select>
+                </div>
+                <div class="uk-width-1-5">
+                    @Html.Label("CodArea", "Cod Area")
+                    @Html.TextBoxFor(model => model.CodigoAreaTelefono, new { @class = "md-input label-fixed" })
+                    @Html.ValidationMessageFor(model => model.CodigoAreaTelefono, null, new { @class = "error" })
+                </div>
+                <div class="uk-width-2-5">
+                    @Html.Label("Numero", "Numero")
+                    @Html.TextBoxFor(model => model.NumeroTelefono, new { @class = "md-input label-fixed" })
+                    @Html.ValidationMessageFor(model => model.NumeroTelefono, null, new { @class = "error" })
+
+                </div>
+                <div id="interno" class="uk-width-1-5">
+                    @Html.Label("Interno", "Interno")
+                    @Html.TextBoxFor(model => model.NumeroInterno, new { @class = "md-input label-fixed", @maxlength = "5" })
+                </div>
+            </div>
+            <div class="uk-grid">
+                <div class="uk-width-1-1">
+                    <span class="icheck-inline">
+                        @Html.Label("Activo", "Activo")
+                        @Html.CheckBoxFor(model => model.SiActivo, new { data_switchery = "" })
+                    </span>
+                    <span class="icheck-inline">
+                        @Html.Label("Bloqueado", "Bloqueado")
+                        @Html.CheckBoxFor(model => model.SiBloqueado, new { data_switchery = "", data_switchery_color = "#d32f2f" })
+                    </span>
+                </div>
+            </div>
+            <div class="uk-width-1-1">
+                <div class="uk-flex uk-flex-center uk-margin-medium-top">
+                    <button title="Buscar" id="btnGuardar" class="md-btn md-btn-accent" type="submit"><span>Guardar</span></button>
+                </div>
+            </div>
+        }
+    </div>
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function () {
+            activarMenu("#ListadoAcreedores-Usuario");
+            aplicarSelectize($('.selectize'));
+            $('#tipoTelefono').on('change', function () {
+                if (this.value == 'F') {
+                    $('#interno').show();
+                } else {
+                    $('#interno').hide();
+                }
+            });
+        });
+
+        $("#btnGuardar").click(function (e) {
+            e.preventDefault();
+            if ($("#form0").valid()) {
+                $("#form0").submit();
+                showLoadingModal();
+            }
+        });
+
+        function MostrarResultados(data) {
+            hideLoadingModal();
+            swal({
+                title: "",
+                text: data.mensaje,
+                icon: data.tipoMensaje,
+                buttons: {
+                    confirm: "Aceptar"
+                },
+                closeOnClickOutside: false,
+            }).then(() => {
+                 if (data.tipoMensaje != "error") {
+                        //hideLoadingModal();
+                        window.location.href = "@Url.Action("ListadoAcreedores")";
+                    }
+            });
+        }
+    </script>
+}
+

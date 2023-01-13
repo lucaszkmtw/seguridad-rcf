@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "Acerca De";
+    Layout = "~/Views/Shared/_LayoutBootstrap.cshtml";
+}
+
+<div class="uk-grid">
+    <div class="uk-width-medium-5-10 uk-align-center uk-margin-large-top" style="max-width: 460px;">
+        <div class="md-card">
+            <div class="md-bg-primary" style="height:155px;">
+                <div class="uk-align-center">
+                    <div style="padding-top:90px; margin-left:30px;">
+                        <h2 class="uk-text-left md-color-white" style="font-weight:400; margin-bottom: 2px;">Sigaf <strong>PBA</strong></h2>
+                        <span class="heading_a md-color-white" style="font-weight:400;">
+                            Acerca de <span style="font-size: 20px;">
+                                <strong>SEGURIDAD</strong>
+                            </span>
+                        </span>
+                        <span class="heading_a uk-align-right md-color-white" style="margin-right:30px;"><strong>@ViewBag.Version</strong></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="md-card-content">
+                <div class="uk-text-center" style="margin-top:-5px;">
+                    <div class="uk-width-large-1-1 uk-width-medium-2-2">
+                        <ul class="md-list md-list-addon">
+                            <li>
+                                <div class="md-list-addon-element">
+                                    <i class="md-list-addon-icon material-icons md-36">account_balance</i>
+                                </div>
+                                <div class="md-list-content">
+                                    <span class="md-list-heading" style="text-align: left;">TESORERIA GENERAL DE LA PROVINCIA.</span>
+                                    <span class="uk-text-small uk-text-muted" style="text-align: left;">Dirección de Sistemas e Informática</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="md-list-addon-element">
+                                    <i class="md-list-addon-icon material-icons md-36">gavel</i>
+                                </div>
+                                <div class="md-list-content">
+                                    <span class="md-list-heading" style="text-align: left;">Copyright 2017.</span>
+                                    <span class="uk-text-small uk-text-muted" style="text-align: left;">® Todos los derechos reservados.</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="md-list-addon-element">
+                                    <i class="md-list-addon-icon material-icons md-36">event</i>
+                                </div>
+                                <div class="md-list-content">
+                                    <span class="md-list-heading md-color-accent" style="text-align: left;">@ViewBag.DateVersion</span>
+                                    <span class="uk-text-small uk-text-muted" style="text-align: left;">Actualizado el día</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="md-list-addon-element">
+                                    <i class="md-list-addon-icon material-icons md-36">computer</i>
+                                </div>
+                                <div class="md-list-content">
+                                    <span class="md-list-heading" style="text-align: left;">@ViewBag.Server</span>
+                                    <span class="uk-text-small uk-text-muted" style="text-align: left;">Ambiente/Servidor</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,202 @@
+﻿@using TGP.Seguridad.BussinessLogic.Dto
+@model  Conexiones
+@{
+    ViewBag.Title = "Seg - Informe de Usuarios";
+    Layout = "~/Views/Shared/_LayoutBootstrap.cshtml";
+}
+<div class="uk-grid sigaf-titulo">
+    <div class="uk-width-1-2">
+        <h2 class="uk-margin-bottom">Informe de Conexiones</h2>
+    </div>
+</div>
+<div class="md-card">
+    @Html.Partial("Partials/_TablaUsuarios")
+</div>
+
+
+<div class="md-card">
+    <div class="md-card-content">
+        <div class="heading_b uk-margin-small-top">Conexiones al PORTAL por día</div>
+    </div>
+    <div class="md-card-content">
+        <div class="uk-grid uk-margin-top">
+            <div class="uk-width-1-2 daterange">
+                @Html.Label("Rango-Predef", "Fecha de Conexión")
+                <div class="uk-grid-match uk-grid-collapse uk-margin-small-top">
+                    <a class="md-btn md-btn-mini md-btn-accent" onclick="configurarFecha(this)">Ultimos 15 dias</a>
+                    <a id="fechaPorDefecto" class="md-btn md-btn-mini md-btn-accent" onclick="configurarFecha(this)">Ultimos 7 dias</a>
+                    <a class="md-btn md-btn-mini md-btn-accent" onclick="configurarFecha(this)">Hoy</a>
+                </div>
+                <input id="reportrange-busqueda" name="fecha" class="md-input label-fixed">
+            </div>
+        </div>
+        <div id="container" class="uk-margin-top">
+            @Html.Partial("Partials/_GraficoConexiones", Model.GraficosConexion)
+        </div>
+    </div>
+</div>
+
+
+<div class="md-card">
+    <div class="md-card-content">
+        <div class="heading_b uk-margin-small-top">Conexiones al PORTAL por hora</div>
+    </div>
+    <div class="md-card-content">
+        <div class="uk-grid uk-margin-medium-top">
+            <div class="uk-width-1-2">
+                <label for="reportrange-busqueda-diaria" class="uk-form-label uk-padding-remove uk-margin-remove">Fecha de Conexión </label>
+                <input id="reportrange-busqueda-diaria" />
+                <a id="fechaPorDefectoDia" class="md-btn md-btn-mini md-btn-accent" onclick="configurarFechaDia(this)">Hoy</a>
+            </div>
+        </div>
+        <div id="containerDia" class="uk-margin-top">
+            @Html.Partial("Partials/_GraficoConexionesDiarias", Model.GraficoConexionesDiarias)
+        </div>
+    </div>
+</div>
+
+@section styles{
+    <link href="~/ResourceDesign//css/template/plugins/c3.min.css" rel="stylesheet" />
+    <link href="~/ResourceDesign//css/template/plugins/daterangepicker.min.css" rel="stylesheet" />
+    <link href="~/ResourceDesign//css/template/plugins/kendo/kendo.common-material.min.css" rel="stylesheet" />
+    <link href="~/ResourceDesign//css/template/plugins/kendo/kendo.material.min.css" rel="stylesheet" />
+}
+
+@section scripts{
+    <script src="~/ResourceDesign//Scripts/kendo-datepicker/kendoui_custom.min.js"></script>
+    <script src="~/ResourceDesign//Scripts/template/plugins/moment-locale-es.js"></script>
+    <script src="~/ResourceDesign//Scripts/template/plugins/jquery.daterangepicker.js"></script>
+    <script src="~/ResourceDesign//Scripts/chart-c3/c3.min.js"></script>
+    <script src="~/ResourceDesign//Scripts/chart-c3/d3.min.js"></script>
+    <script>
+
+    function configurarFecha(element) {
+        var fechaIni;
+        var fechaFin;
+        switch ($(element).text()) {
+            case "Hoy":
+                fechaIni = moment('@Session["DateToday"]', 'DD-MM-YYYY').format("DD-MM-YYYY");
+                fechaFin = moment('@Session["DateToday"]', 'DD-MM-YYYY').format("DD-MM-YYYY");
+                break;
+            case "Ultimos 7 dias":
+                fechaIni = moment('@Session["DateToday"]', 'DD-MM-YYYY').subtract(7, 'days').format("DD-MM-YYYY");
+                fechaFin = moment('@Session["DateToday"]', 'DD-MM-YYYY').format("DD-MM-YYYY");
+                break;
+            case "Ultimos 15 dias":
+                fechaIni = moment('@Session["DateToday"]', 'DD-MM-YYYY').subtract(15, 'days').format("DD-MM-YYYY");
+                fechaFin = moment('@Session["DateToday"]', 'DD-MM-YYYY').format("DD-MM-YYYY");
+                break;
+            default:
+        }
+        $("#reportrange-busqueda").data('dateRangePicker').setDateRange(fechaIni, fechaFin);
+}
+
+    function configurarFechaDia(element) {
+        let dia;
+        switch ($(element).text()) {
+            case "Hoy":
+                dia = moment(new Date());
+                break;
+            case "Ayer":
+                dia = moment(new Date()).subtract(1, 'day');
+                break;
+            default:
+        }
+        _FECHADIARIA.value(dia.toDate());
+        $("#reportrange-busqueda-diaria").change();
+        //usar la variable y asignarle fecha
+    }
+
+    $(document).ready(function () {
+        activarMenu('#Conexiones-Auditoria');
+        aplicarSelectize($('.selectize'));
+        var date1;
+        var date2;
+        _FECHADIARIA = "";
+        $("#reportrange-busqueda").dateRangePicker(configDateRangePicker()).bind('datepicker-change', function (event, obj) {
+            changeFilters();
+        });
+
+        if ('@Session["FechaInicioG"]' && '@Session["FechaFinG"]') {
+            date1 = '@Session["FechaInicioG"]';
+            date2 = '@Session["FechaFinG"]';
+            $("#reportrange-busqueda").data('dateRangePicker').setDateRange(date1, date2);
+        }
+        else {
+            $("#fechaPorDefecto").click();
+        }
+
+        _FECHADIARIA = $("#reportrange-busqueda-diaria").kendoDatePicker({
+            value: ('@Session["FechaInicioGD"]' !== "") ? moment('@Session["FechaInicioGD"]',"DD/MM/YYYY").toDate(): new Date() ,
+            format: "dd-MM-yyyy",
+            culture: "es-ES",
+        }).data("kendoDatePicker");
+
+        $("#reportrange-busqueda-diaria").change(function () {
+            changeFiltersDia();
+        });
+
+        changeFilters();
+        changeFiltersDia();
+    });
+
+
+
+    function changeFilters() {
+        var date = catchValuesDateRange($("#reportrange-busqueda"));
+        var fechaInicio = date[0];
+        var fechaFin = date[1];
+        $.ajax(
+            {
+                url: '@Url.Action("GraficosEstructurasPorFecha", "Auditoria")',
+                type: "POST",
+                data: {
+                    fechaInicio: fechaInicio,
+                    fechaFin: fechaFin
+                },
+                beforeSend: function (xhr) {
+                    //sacar el cerrar con el ESC al modal
+                    showLoadingModal();
+                },
+                success: function (data) {
+                    showLoadingModal();
+                    $('#container').html(data);
+                    armarGrafico();
+                    hideLoadingModal();
+                },
+                error: function (r) {
+                    hideLoadingModal();
+                }
+            });
+        }
+
+        function changeFiltersDia() {
+        $.ajax(
+            {
+                url: '@Url.Action("GraficoConexionesPorHora", "Auditoria")',
+                type: "POST",
+                data: {
+                    fechaInicio: $("#reportrange-busqueda-diaria").val()
+                },
+                beforeSend: function (xhr) {
+                    showLoadingModal();
+                },
+                success: function (data) {
+                    showLoadingModal();
+                    $('#containerDia').html(data);
+                    armarGraficoPorDia();
+                    hideLoadingModal();
+                },
+                error: function (r) {
+                    hideLoadingModal();
+                }
+            });
+        }
+
+        // get day function
+        function gt(y, m, d) {
+            return new Date(y, m - 1, d).getTime();
+        }
+
+    </script>
+}

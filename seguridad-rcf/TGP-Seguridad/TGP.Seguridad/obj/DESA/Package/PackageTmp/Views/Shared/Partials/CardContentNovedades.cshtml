@@ -1,0 +1,73 @@
+﻿<div id="cardContentNovedades" class="md-card-content">
+    <span id="spanCountNovedades" hidden>@ViewBag.CantidadNovedadesNoLeidas</span>
+    <div id="actualizandoNovedades" hidden>Actualizando...</div>
+    <ul class="uk-tab uk-tab-grid" data-uk-tab="{connect:'#header_alerts',animation:'slide-horizontal'}">
+        <li class="uk-width-1-1 uk-active" aria-expanded="true"><a href="#" class="js-uk-prevent uk-text-small">Novedades</a></li>
+    </ul>
+    <ul id="header_alerts" class="uk-switcher uk-margin">
+        @if (ViewBag.MensajeError == null)
+        {
+            if (ViewBag.UltimasNovedadesNoLeidas != null && ViewBag.UltimasNovedadesNoLeidas.Count > 0)
+            {
+                <li aria-hidden="false" class="uk-active">
+                    <ul class="md-list md-list-addon">
+                        @*FOREACH de todas las novedades esta deberia ser la estructura*@
+
+                        @foreach (var novedad in ViewBag.UltimasNovedadesNoLeidas)
+                        {<!-- un registro -->
+                            <li>
+                                <div class="md-list-addon-element">
+                                    @if (novedad.EstructuraFuncionalCodigo != null)
+                                    {
+                                        <span class="@novedad.EstructuraFuncionalCodigoUICss md-user-letters md-color-white">
+                                            @novedad.EstructuraFuncionalCodigo
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="md-user-letters md-color-white portal-color">
+                                            Por
+                                        </span>
+                                    }
+
+                                </div>
+                                <div class="md-list-content">
+                                    @if (novedad.EstructuraFuncionalCodigo != null)
+                                    {
+                                        <span class="md-list-heading"><a href="@Url.Action("IrPortalListaNovedades", "Home", new { selected = novedad.Id }, null)">@novedad.EstructuraFuncionalDescripcion</a></span>
+                                    }
+                                    else
+                                    {
+                                        <span class="md-list-heading">@Html.ActionLink("PORTAL", "IrPortalListaNovedades", "Home", new { selected = novedad.Id }, null)</span>
+                                    }
+                                    <span class="uk-text-small uk-text-muted">
+                                        @Html.Raw(novedad.GetResumen())
+                                    </span>
+                                </div>
+                            </li>
+                        }
+
+                    </ul>
+                    <div class="uk-text-center uk-margin-top uk-margin-small-bottom">
+                        <a href="@Url.Action("IrPortalListaNovedades", "Home",null)" class="md-btn md-btn-flat md-btn-flat-primary js-uk-prevent">Mostrar todo</a>
+                    </div>
+                </li>
+            }
+            else
+            {
+                <li class="uk-text-center uk-active" aria-hidden="false">
+                    <span>No hay novedades sin leer</span>
+                    <div class="uk-text-center uk-margin-top uk-margin-small-bottom">
+                        <a href="@Url.Action("IrPortalListaNovedades", "Home",null)" class="md-btn md-btn-flat md-btn-flat-primary js-uk-prevent">Mostrar todo</a>
+                    </div>
+                </li>
+            }
+        }
+        else
+        {
+            <li class="uk-text-center uk-active" aria-hidden="false">
+                <span>Error con la API de novedades: @ViewBag.MensajeError</span>
+            </li>
+        }
+    </ul>
+</div>

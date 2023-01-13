@@ -1,0 +1,72 @@
+﻿@import 'variables_sigaf.less';
+
+@error: #b33f31;
+@p-error: #797271;
+@span-ops-error: #b6b2b2;
+/*------------------------------------------------*/
+/*	Skin: Manejo de Errores
+/*------------------------------------------------*/
+span.ops {
+    color: @span-ops-error;
+    .md_font(200,72px,75px,"Arial");
+
+    @media @screen_small_max {
+        //position: relative;
+        .md_font(200,44px,65px,"Arial");
+    }
+}
+
+span.error {
+    color: @error;
+
+    @media @screen_small_max {
+        //position: relative;
+        .md_font(200,15px,17px);
+    }
+
+    .md_font(200,17px,20px,"Arial");
+}
+
+p.error {
+    /*font-family: Arial;
+    font-size: 12px;*/
+    .md_font(200,12px,20px,"Arial");
+    color: @p-error;
+
+    @media @screen_small_max {
+        //position: relative;
+        .md_font(200,10px,15px,"Arial");
+    }
+
+    margin-top: 20px;
+}
+
+a.enviarformulario {
+    font-family: Arial;
+    font-size: 12px;
+        padding: 7px;
+    background-color: @error;
+    color: white;
+    cursor: pointer;
+}
+
+a.enviarformulario:hover {
+    text-decoration: none;
+    background-color: #f9be45;
+    color: white;
+}
+
+a.enviarformulario2 {
+    font-family: Arial;
+    font-size: 12px;
+    padding: 7px;
+    background-color: #246195;
+    color: white;
+    cursor: pointer;
+}
+
+a.enviarformulario2:hover {
+    text-decoration: none;
+    background-color: #f9be45;
+    color: white;
+}

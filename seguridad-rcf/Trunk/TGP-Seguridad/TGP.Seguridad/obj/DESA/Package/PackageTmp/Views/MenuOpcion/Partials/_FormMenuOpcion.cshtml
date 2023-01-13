@@ -1,0 +1,64 @@
+﻿@using TGP.Seguridad.BussinessLogic.Dto
+@model MenuOpcionDTO
+<div class="uk-grid">
+    <div class="uk-width-medium-1-3">
+        @Html.Label("Codigo", "Codigo")
+        @Html.TextBoxFor(model => model.Codigo, new { @class = "md-input label-fixed", @readonly = "readonly", maxlength = 5 })
+        @Html.ValidationMessageFor(model => model.Codigo, null, new { @class = "error" })
+
+    </div>
+    <div class="uk-width-medium-1-3">
+        @Html.Label("Descripcion", "Descripción")
+        @Html.TextBoxFor(model => model.Descripcion, new { @class = "md-input label-fixed", maxlength = 50 })
+        @Html.ValidationMessageFor(model => model.Descripcion, null, new { @class = "error" })
+
+    </div>
+    <div class="uk-width-medium-1-3">
+        @Html.Label("EstructuraFuncional", "Estructura Funcional")
+        @Html.DropDownListFor(model => model.EstructuraFuncional, (SelectList)ViewBag.Estructuras, "Seleccione una Estructura", new { @class = "md-input label-fixed selectize" })
+        @Html.ValidationMessageFor(model => model.EstructuraFuncional, null, new { @class = "error" })
+
+    </div>
+</div>
+
+<div class="uk-grid">
+    <div class="uk-width-medium-1-3">
+        @Html.Label("Actividad", "Actividad")
+        @Html.DropDownListFor(model => model.ActividadAsociada, (SelectList)ViewBag.Actividades, new { @class = "md-input label-fixed selectize" })
+        @Html.ValidationMessageFor(model => model.ActividadAsociada, null, new { @class = "error" })
+    </div>
+    <div class="uk-width-medium-1-3">
+        @Html.Label("MenuPadre", "Menú Padre")
+        @Html.DropDownListFor(model => model.MenuOpcionPadre, (SelectList)ViewBag.MenuesPadre, new { @class = "md-input label-fixed selectize" })
+        @Html.ValidationMessageFor(model => model.MenuOpcionPadre, null, new { @class = "error" })
+
+    </div>
+    <div class="uk-width-medium-1-3">
+        @Html.Label("Orden", "Orden")
+        @Html.TextBoxFor(model => model.NumeroOrden, new { @class = "md-input label-fixed", maxlength = 3 })
+        @Html.ValidationMessageFor(model => model.NumeroOrden, null, new { @class = "error" })
+    </div>
+</div>
+
+<div class="uk-grid">
+    <div class="uk-width-medium-1-2">
+        @Html.Label("Url", "Url")
+        @Html.TextBoxFor(model => model.Url, new { @class = "md-input label-fixed", maxlength = 250 })
+        @Html.ValidationMessageFor(model => model.Url, null, new { @class = "error" })
+
+    </div>
+
+    <div class="uk-width-medium-1-2">
+        @Html.Label("Icono", "Icono")
+        @Html.TextBoxFor(model => model.Icono, new { @class = "md-input label-fixed", maxlength = 50 })
+        @Html.ValidationMessageFor(model => model.Icono, null, new { @class = "error" })
+
+    </div>
+</div>
+
+<div class="uk-width-1-1">
+    <div class="uk-flex uk-flex-center uk-margin-medium-top" >
+        <button id="btnGuardar" title="Buscar" class="md-btn md-btn-accent" type="submit"><span>Guardar</span></button>
+    </div>
+</div>
+

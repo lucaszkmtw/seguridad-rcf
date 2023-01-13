@@ -1,0 +1,540 @@
+﻿/* 
+    Este theme es el que se modifica para cada aplicacion, para incorporar los colores 
+*/
+
+// theme [APP]
+@app_theme_a_color: #d32f2f;
+@app_theme_a_colorLight: #ef9a9a;
+@app_theme_a_colorDark: #b71c1c;
+@app_theme_a_colorAccent: #4caf50;
+@white: white;
+
+
+#sidebar_main .sidebar_main_header {
+    background-color: @app_theme_a_colorDark;
+}
+
+.app_theme {
+    // --------- COMPONENTS ---------
+    // alerts
+    .uk-alert {
+        background: @app_theme_a_color;
+    }
+    // buttons
+    .md-btn {
+        &-primary {
+            &,
+            &:hover,
+            &:focus,
+            &:active {
+                background: @app_theme_a_color;
+                color: @white;
+            }
+        }
+
+        &-flat-primary {
+            &,
+            &:hover,
+            &:focus,
+            &:active {
+                color: @app_theme_a_colorDark;
+            }
+
+            &:hover,
+            &:focus,
+            &:active {
+                background: lighten(@app_theme_a_color,40%);
+            }
+        }
+    }
+    // badges
+    .uk-badge {
+        &-primary {
+            background: @app_theme_a_color;
+        }
+    }
+    // cards
+    .md-card-list-wrapper {
+        .md-card-list {
+            > ul > li.item-shown {
+                &.md-card-list-item-selected {
+                    &:before {
+                        background: @app_theme_a_colorLight;
+                    }
+                }
+            }
+
+            .md-card-list-item-selected {
+                background: @app_theme_a_colorLight;
+
+                &.item-shown {
+                    background: @white;
+
+                    &:before {
+                        background: @app_theme_a_colorLight;
+                    }
+                }
+            }
+        }
+    }
+    // fab
+    .md-fab {
+        &.md-fab-accent {
+            background: @app_theme_a_colorAccent;
+        }
+    }
+    // list
+    .md-list {
+        .uk-nestable-list > li,
+        > li {
+            &.md-list-item-active {
+                color: @app_theme_a_colorAccent;
+            }
+        }
+
+        &-addon {
+            > li {
+                &.md-list-item-active {
+                    .md-list-addon-element {
+                        &,
+                        .material-icons {
+                            color: @app_theme_a_colorAccent;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    // pagination
+    .uk-pagination {
+        > li {
+            > a {
+                &:hover {
+                    background: lighten(@app_theme_a_colorAccent,30%);
+                }
+            }
+
+            &.uk-active {
+                > a,
+                > span {
+                    background: @app_theme_a_colorAccent;
+                    color: @white;
+                }
+            }
+        }
+    }
+    // sub navigation
+    .uk-subnav {
+        &-pill {
+            > .uk-active {
+                > * {
+                    background: @app_theme_a_colorAccent;
+                }
+            }
+        }
+    }
+    // tabs
+    .uk-tab {
+        > li {
+            > a {
+                &:hover,
+                &:focus {
+                    border-bottom-color: lighten(@app_theme_a_color, 30%);
+                }
+            }
+
+            &.uk-active {
+                > a {
+                    border-bottom-color: @app_theme_a_color;
+                }
+            }
+        }
+
+        &-bottom {
+            li {
+                > a {
+                    &:hover,
+                    &:focus {
+                        border-top-color: lighten(@app_theme_a_color,30%);
+                    }
+                }
+
+                &.uk-active {
+                    > a {
+                        border-top-color: @app_theme_a_color;
+                    }
+                }
+            }
+        }
+
+        &-left {
+            li {
+                > a {
+                    &:hover,
+                    &:focus {
+                        border-right-color: lighten(@app_theme_a_color,30%);
+                    }
+                }
+
+                &.uk-active {
+                    > a {
+                        border-right-color: @app_theme_a_color;
+                    }
+                }
+            }
+        }
+
+        &-right {
+            li {
+                > a {
+                    &:hover,
+                    &:focus {
+                        border-left-color: lighten(@app_theme_a_color,30%);
+                    }
+                }
+
+                &.uk-active {
+                    > a {
+                        border-left-color: @app_theme_a_color;
+                    }
+                }
+            }
+        }
+
+        &-double-header {
+            li {
+                a {
+                    &:hover,
+                    &:focus {
+                        border-bottom-color: lighten(@app_theme_a_color,10%);
+                    }
+                }
+
+                &.uk-active {
+                    > a {
+                        border-bottom-color: @app_theme_a_colorAccent;
+                    }
+                }
+            }
+        }
+    }
+    // --------- PARTIALS ---------
+    // main header
+    #header_main {
+        background: @app_theme_a_color;
+    }
+
+    .header_double_height {
+        &:after {
+            background: @app_theme_a_color;
+        }
+    }
+    // top bar
+    #top_bar .top_bar_nav > li {
+        > a:hover {
+            box-shadow: inset 0 -3px 0 @app_theme_a_color;
+        }
+
+        &.uk-active a {
+            box-shadow: inset 0 -3px 0 @app_theme_a_color;
+        }
+    }
+    // user heading
+    .user_heading {
+        background: @app_theme_a_colorDark;
+    }
+    // main sidebar
+    #sidebar_main .menu_section > ul > li {
+        ul li.act_item a {
+            color: @app_theme_a_colorDark;
+        }
+
+        &.current_section {
+            > a {
+                > .menu_icon {
+                    .material-icons {
+                        color: @app_theme_a_colorDark;
+                    }
+                }
+
+                .menu_title {
+                    color: @app_theme_a_colorDark;
+                }
+            }
+        }
+    }
+
+    .sidebar_mini {
+        #sidebar_main {
+            .menu_section {
+                > ul {
+                    > li {
+                        > a {
+                            > .menu_title {
+                                background: @app_theme_a_colorAccent;
+                                color: @white;
+                            }
+                        }
+
+                        &:hover {
+                            &.sidebar_submenu {
+                                background: @app_theme_a_colorAccent;
+
+                                > a {
+                                    .menu_icon {
+                                        .material-icons {
+                                            color: @white;
+                                        }
+                                    }
+                                }
+
+                                ul {
+                                    border-left-color: @app_theme_a_colorAccent;
+                                }
+                            }
+                        }
+
+                        &.current_section {
+                            > a {
+                                > .menu_icon {
+                                    .material-icons {
+                                        color: @app_theme_a_colorAccent;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    // --------- PLUGINS ---------
+    // calendar
+    .clndr {
+        .clndr_days {
+            .clndr_days_grid {
+                .day {
+                    &.today {
+                        > span {
+                            background: @app_theme_a_colorAccent;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    // datatables
+    .DTTT_print_info {
+        h6 {
+            color: @app_theme_a_colorAccent;
+        }
+    }
+
+    .fc-unthemed .fc-button {
+        &.fc-state-active {
+            &:after {
+                color: @app_theme_a_colorAccent;
+            }
+        }
+    }
+    // fullcalendar
+    .fc-unthemed .fc-highlight {
+        box-shadow: inset 0 0 0 2px @app_theme_a_color,inset 0 -1px 0 2px @app_theme_a_color;
+    }
+    // tablesorter
+    .tablesorter-altair {
+        tbody {
+            > tr {
+                &.row_highlighted > td {
+                    background: @app_theme_a_colorLight;
+                }
+            }
+        }
+
+        .headerSortUp,
+        .tablesorter-headerSortUp,
+        .tablesorter-headerAsc,
+        .headerSortDown,
+        .tablesorter-headerSortDown,
+        .tablesorter-headerDesc {
+            color: @app_theme_a_colorAccent;
+        }
+    }
+    // wizard
+    .wizard {
+        > .steps {
+            background: @app_theme_a_color;
+
+            > ul {
+                > li {
+                    &.current {
+                        a {
+                            &,
+                            &:hover,
+                            &:active {
+                                background: lighten(@app_theme_a_color,10%);
+                            }
+                        }
+                    }
+
+                    &.done {
+                        a {
+                            &,
+                            &:hover,
+                            &:active {
+                                background: @app_theme_a_colorDark;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    // card left border
+    .md-card-primary {
+        border-left-color: @app_theme_a_color;
+    }
+    // wave effect
+    .waves-effect {
+        &.md-btn-flat-primary {
+            background: none;
+
+            .waves-ripple {
+                background: fade(@app_theme_a_color,40%);
+            }
+        }
+    }
+
+    .search_list_link {
+        color: @app_theme_a_colorAccent;
+    }
+    // chatboxes
+    .chatbox {
+        &.cb_active {
+            .chatbox_header {
+                background: @app_theme_a_colorDark;
+            }
+        }
+
+        &_content .chatbox_message.own .chatbox_message_content li > span {
+            background: @app_theme_a_color;
+        }
+    }
+}
+
+
+
+/*BUTTONSSS*/
+
+.md-preloader svg circle {
+    stroke: @app_theme_a_colorAccent;
+}
+
+.md-stroke-primary {
+    stroke: @app_theme_a_color;
+}
+
+.md-stroke-light {
+    stroke: @app_theme_a_colorLight;
+}
+
+.md-stroke-dark {
+    stroke: @app_theme_a_colorDark;
+}
+
+.md-stroke-accent {
+    stroke: @app_theme_a_colorAccent;
+}
+
+
+.md-bg-primary {
+    background-color: @app_theme_a_color;
+}
+
+.md-bg-light {
+    background-color: @app_theme_a_colorLight;
+}
+
+.md-bg-dark {
+    background-color: @app_theme_a_colorDark;
+}
+
+.md-bg-accent {
+    background-color: @app_theme_a_colorAccent;
+}
+
+.md-color-primary {
+    color: @app_theme_a_color;
+}
+
+.md-color-light {
+    color: @app_theme_a_colorLight;
+}
+
+.md-color-dark {
+    color: @app_theme_a_colorDark;
+}
+
+.md-color-accent {
+    color: @app_theme_a_colorAccent;
+}
+
+.md-color-black {
+    color: #3B3A3A !important;
+}
+
+.md-bg-black {
+    background: #3B3A3A !important;
+}
+
+.md-btn {
+    &-accent:not(.disabled) {
+        background: @app_theme_a_colorAccent !important;
+        color: @white;
+    }
+
+    &-dark:not(.disabled) {
+        background: @app_theme_a_colorDark !important;
+        color: @white;
+    }
+
+    &-light:not(.disabled) {
+        background: @app_theme_a_colorLight !important;
+        color: @white;
+    }
+
+
+    &-mini:not(.disabled) {
+        line-height: 19px !important;
+        min-width: 10px;
+        font-size: 9px !important;
+        min-height: 21px;
+        padding: 2px 10px !important;
+
+        + .md-btn {
+            margin-left: 0px !important;
+        }
+    }
+
+    &-clearStyle {
+        color: inherit;
+        border: none;
+        padding: 0 !important;
+        font: inherit;
+        cursor: pointer;
+        outline: inherit !important;
+    }
+}
+
+.dotnavSigaf {
+    a {
+        background: @app_theme_a_colorLight !important;
+        color: @white;
+
+        &:focus,
+        &.uk-active {
+            background: @app_theme_a_colorDark !important;
+            color: @white;
+        }
+    }
+}

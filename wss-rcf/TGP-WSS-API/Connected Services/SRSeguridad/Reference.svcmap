@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a8a6b8a6-c0e2-43c2-8166-3e25350cc151" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>true</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://ws-tesoreria.cgp.sigaf.bajos/TGP.WSS_desa/Seguridad.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Seguridad.xsd" MetadataType="Schema" ID="8142d599-c95a-42c1-9107-8cd890c4e435" SourceId="1" SourceUrl="http://ws-tesoreria.cgp.sigaf.bajos/TGP.WSS_desa/Seguridad.svc?xsd=xsd5" />
+    <MetadataFile FileName="Seguridad.wsdl" MetadataType="Wsdl" ID="9b7c7143-1b14-469f-9a72-a4ba74fc8682" SourceId="1" SourceUrl="http://ws-tesoreria.cgp.sigaf.bajos/TGP.WSS_desa/Seguridad.svc?wsdl" />
+    <MetadataFile FileName="Seguridad1.xsd" MetadataType="Schema" ID="98e1acb4-c168-4628-b9f1-496b06006433" SourceId="1" SourceUrl="http://ws-tesoreria.cgp.sigaf.bajos/TGP.WSS_desa/Seguridad.svc?xsd=xsd0" />
+    <MetadataFile FileName="Seguridad2.xsd" MetadataType="Schema" ID="d4bd37a3-691c-408d-9328-fc7e5818ff8c" SourceId="1" SourceUrl="http://ws-tesoreria.cgp.sigaf.bajos/TGP.WSS_desa/Seguridad.svc?xsd=xsd1" />
+    <MetadataFile FileName="Seguridad3.xsd" MetadataType="Schema" ID="e631a916-e01c-4a07-8451-d65c8d008bd0" SourceId="1" SourceUrl="http://ws-tesoreria.cgp.sigaf.bajos/TGP.WSS_desa/Seguridad.svc?xsd=xsd2" />
+    <MetadataFile FileName="Seguridad4.xsd" MetadataType="Schema" ID="22dc8420-e59d-4256-8054-7789ee2cf0fa" SourceId="1" SourceUrl="http://ws-tesoreria.cgp.sigaf.bajos/TGP.WSS_desa/Seguridad.svc?xsd=xsd3" />
+    <MetadataFile FileName="Seguridad5.xsd" MetadataType="Schema" ID="36ddc72c-ac8d-470a-a838-5fd155de51a1" SourceId="1" SourceUrl="http://ws-tesoreria.cgp.sigaf.bajos/TGP.WSS_desa/Seguridad.svc?xsd=xsd4" />
+    <MetadataFile FileName="Seguridad.disco" MetadataType="Disco" ID="e249813e-434f-475a-9055-c6ff89b8f016" SourceId="1" SourceUrl="http://ws-tesoreria.cgp.sigaf.bajos/TGP.WSS_desa/Seguridad.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

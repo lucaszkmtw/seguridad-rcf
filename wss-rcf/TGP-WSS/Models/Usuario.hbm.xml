@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="TGP.WSS" namespace="TGP.WSS" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="Usuario" table="SEG_USUARIO" lazy="false" abstract="true">
+    <id name="CId" column="C_ID">
+      <generator class="native" >
+        <param name="sequence">SEG_USUARIO_SQ</param>
+      </generator>
+    </id>
+    <version name="NVersionHibernate" unsaved-value="-1">
+      <column name="N_VERSION_HIBERNATE" sql-type="NUMBER" not-null="true" />
+    </version>
+    <property name="DUsuario">
+      <column name="D_USUARIO" sql-type="VARCHAR2" not-null="true" unique="true" />
+    </property>
+    <property name="DPassword">
+      <column name="D_PASSWORD" sql-type="VARCHAR2" not-null="false" />
+    </property>
+    <property name="FAlta">
+      <column name="F_ALTA" sql-type="DATE" not-null="true" />
+    </property>
+    <property name="FBaja">
+      <column name="F_BAJA" sql-type="DATE" not-null="false" />
+    </property>
+    <property name="MActivo">
+      <column name="M_ACTIVO" not-null="true" />
+    </property>
+    <property name="MBloqueado">
+      <column name="M_BLOQUEADO" not-null="true" />
+    </property>
+    <property name="DMail">
+      <column name="D_MAIL" sql-type="VARCHAR2" not-null="false" />
+    </property>
+    <property name="BAvatar">
+      <column name="B_AVATAR" sql-type="BLOB" not-null="false" />
+    </property>
+    <property name="FUltimaOperacion">
+      <column name="F_ULTIMA_OPERACION" sql-type="DATE" not-null="false" />
+    </property>
+    <property name="DHashResetClave">
+      <column name="D_HASH_RESET_CLAVE" sql-type="VARCHAR2" not-null="false" />
+    </property>
+    <property name="DTelefono">
+      <column name="D_TELEFONO" sql-type="VARCHAR2" not-null="false" />
+    </property>
+    <property name="DCelular">
+      <column name="D_CELULAR" sql-type="VARCHAR2" not-null="false" />
+    </property>
+    <property name="FUltimoIntento">
+      <column name="F_ULTIMO_INTENTO_LOGIN" sql-type="DATE" not-null="false" />
+    </property>
+    <property name="NCantIntentos">
+      <column name="N_CANTIDAD_INTENTOS" sql-type="NUMBER" not-null="false" />
+    </property>
+    <property name="CCodVerifMail">
+      <column name="C_CODIGO_VERIF_MAIL" not-null="false" />
+    </property>
+    <property name="MVerificaMail">
+      <column name="M_VERIFICA_MAIL" not-null="false" />
+    </property>
+    <property name="TipoTelefono">
+      <column name="C_TIPO_TELEFONO" not-null="false" />
+    </property>
+    <property name="CodArea">
+      <column name="N_COD_AREA" not-null="false" />
+    </property>
+    <property name="NumeroTel">
+      <column name="N_NUMERO_TELEFONO" not-null="false" />
+    </property>
+    <property name="Interno">
+      <column name="N_INTERNO" not-null="false" />
+    </property>
+    <property name="FAceptacionTerminos">
+      <column name="F_ACEPTA_TERMINOS_CONDICIONES" sql-type="DATE" not-null="false" />
+    </property>
+    <many-to-one name="TipoAutenticacion" cascade="none" insert="true" update="false">
+      <column name="C_ID_TIPO_AUTENTICACION" sql-type="NUMBER" not-null="true" />
+    </many-to-one>
+    <many-to-one name="UsuarioLogin">
+      <column name="C_ID_USUARIO_LOGIN" sql-type="NUMBER" not-null="false" />
+    </many-to-one>
+    <many-to-one name="TipoUsuario" cascade="none" insert="true" update="false">
+      <column name="C_ID_TIPO_USUARIO" sql-type="NUMBER" not-null="true" />
+    </many-to-one>
+    <many-to-one name="TerminosYCondiciones">
+      <column name="C_ID_TERMINOS_CONDICIONES" sql-type="NUMBER" not-null="false" />
+    </many-to-one>
+  </class>
+</hibernate-mapping>

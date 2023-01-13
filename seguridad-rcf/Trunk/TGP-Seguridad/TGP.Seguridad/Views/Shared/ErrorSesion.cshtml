@@ -1,0 +1,68 @@
+﻿@{
+    ViewBag.Title = "Expiro Sesion";
+    Layout = "~/Views/Shared/_LayoutBootstrap.cshtml";
+}
+
+<div class="uk-grid uk-flex uk-flex-center uk-margin-large-top ">
+    <div class="uk-width-large-3-5 uk-width-medium-3-4">
+        <div class="md-card">
+            <div class="uk-flex uk-flex-center">
+                <div class="md-card-content">
+                    <div class="uk-width-1-1">
+                        <img src="~/Content/img/error-sesion.png" />
+                    </div>
+                    <div class="uk-width-1-1">
+
+                        @*<img src="~/Content/img/error-sesion.png" />*@
+                        <div class="" style="margin-left:6%">
+                            <div class="uk-flex uk-flex-center">
+                                <span class="ops uk-text-center">OOPS!</span><br>
+                            </div>
+                            <div class="uk-flex uk-flex-center">
+                                <span class="error">@ViewData["ProgramerErrorMessage"]</span>
+                            </div>
+                        </div>
+
+                        @if ((bool)ViewData["esErrorSesion"] == true)
+                        {
+                            ViewBag.Title = "Caducidad de Sesión";
+                            <div class="uk-flex uk-flex-center">
+                                <p class="error">Por favor ingrese nuevamente.</p>
+                            </div>
+
+                            <div class="uk-flex uk-flex-center">
+                                <a class="md-btn md-btn-danger" id="btnVolverLogin">
+                                    <i class="material-icons" style="color:white">&#xE88A;</i>&nbsp;RE-INGRESAR
+                                </a>
+                            </div>
+                        }
+                        else
+                        {
+                            ViewBag.Title = "Acceso Denegado";
+                            <p></p>
+                            <div class="uk-flex uk-flex-center">
+                                <a class="md-btn md-btn-accent" href="javascript:history.back()" id="btnVolverAtras">
+                                    <i class="material-icons" aria-hidden="true">arrow_forward</i>&nbsp;VOLVER
+                                </a>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+    $(function(){
+        $("#btnVolverLogin").click(function () {
+            window.location.href = "@System.Configuration.ConfigurationManager.AppSettings["LoginURL"]";
+        });
+    });
+    </script>
+}
+
+

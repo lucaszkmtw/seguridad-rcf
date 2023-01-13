@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="TGP.WSS" namespace="TGP.WSS" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="UsuarioSIGAF" table="BUSUARIO">
+    <id name="CUser" column="C_USER"></id>
+    <property name="XcUser">
+      <column name="XC_USER" sql-type="VARCHAR2" not-null="true"/>
+    </property>
+    <property name="NDocumento">
+      <column name="N_DOCUMENTO" sql-type="NUMBER" not-null="true" />
+    </property>
+    <property name="XlTelefono">
+      <column name="XL_TELEFONO" sql-type="VARCHAR2" not-null="false" />
+    </property>
+    <property name="XlEmail">
+      <column name="XL_EMAIL" sql-type="VARCHAR2" not-null="false" />
+    </property>
+    <property name="MSaf">
+      <column name="C_SERVICIO" sql-type="VARCHAR2" not-null="false" />
+    </property>
+    <property name="FechaBaja">
+      <column name="FH_BAJA" sql-type="DATE" not-null="false" />
+    </property>
+    <property name="SiBloqueado">
+      <column name="M_BLOQUEO" sql-type="NUMBER" not-null="false" />
+    </property>
+    <property name="FechaBloqueo">
+      <column name="FH_BLOQUEO" sql-type="DATE" not-null="false" />
+    </property>
+  </class>
+</hibernate-mapping>

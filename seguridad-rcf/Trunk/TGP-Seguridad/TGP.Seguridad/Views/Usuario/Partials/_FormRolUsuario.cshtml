@@ -1,0 +1,30 @@
+﻿@using TGP.Seguridad.BussinessLogic.Dto
+
+
+<div class="uk-grid">
+    <div class="uk-width-medium-2-3">
+        @Html.Label("Estructura", "Estructura")
+        @Html.Partial("FiltroEstructuras", new Seguridad.FiltroEstructuras(false, null))
+    </div>
+</div>
+<div class="uk-grid">
+    <div id="RolesID" class="uk-width-medium-2-3">
+        <div class="uk-grid margin-top-grid">
+            <div class="uk-width-medium-2-3">
+                @Html.Label("Rol", "Rol")
+                @Html.DropDownList("rol", (SelectList)ViewBag.Roles, "- SELECCIONAR -", new { @class = "md-input label-fixed selectize", data_uk_tooltip = "{pos:'top'}", title = "Select with tooltip" })
+            </div>
+        </div>
+        <div class="uk-grid" id="nodoFuncionalID">
+            @Html.Partial("Partials/_SelectNodoFuncional")
+        </div>
+    </div>
+</div>
+
+<div class="uk-grid uk-margin-medium-top">
+    <div class="uk-flex uk-flex-center uk-width-1-1">
+        <button id="guardarRol" title="Guardar" class="md-btn md-btn-accent uk-hidden" type="submit"><span>Guardar</span></button>
+        &nbsp;
+        <a title="Cancerlar" class="md-btn md-btn-danger" onclick="window.location='@Url.Action("Permisos", "Usuario", new { id = Model.IdUsuario.ToString(), tipoUsuario = @ViewBag.TipoUsuario })'">Cancelar</a>
+    </div>
+</div>

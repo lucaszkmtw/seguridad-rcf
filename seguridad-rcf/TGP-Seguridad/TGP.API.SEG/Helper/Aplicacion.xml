@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Aplicaciones>
+  <Aplicacion Id="SEG">
+    <CssColor>seguridad-color</CssColor>
+  </Aplicacion>
+  <Aplicacion Id="ADA">
+    <CssColor>ada-color</CssColor>
+  </Aplicacion>
+  <Aplicacion Id="CONC">
+    <CssColor>conc-color</CssColor>
+  </Aplicacion>
+  <Aplicacion Id="CDP">
+    <CssColor>cdp-color</CssColor>
+  </Aplicacion>
+  <Aplicacion Id="ENTE">
+    <CssColor>ente-color</CssColor>
+  </Aplicacion>
+  <Aplicacion Id="GDR">
+    <CssColor>gdr-color</CssColor>
+  </Aplicacion>
+  <Aplicacion Id="GEP">
+    <CssColor>gep-color</CssColor>
+  </Aplicacion>
+  <Aplicacion Id="GRI">
+    <CssColor>gpr-color</CssColor>
+  </Aplicacion>
+  <Aplicacion Id="IDG">
+    <CssColor>idg-color</CssColor>
+  </Aplicacion>
+  <Aplicacion Id="MANT">
+    <CssColor>matenimiento-color</CssColor>
+  </Aplicacion>
+  <Aplicacion Id="MAP">
+    <CssColor>map-color</CssColor>
+  </Aplicacion>
+  <Aplicacion Id="POR">
+    <CssColor>portal-color</CssColor>
+  </Aplicacion>
+  <Aplicacion Id="RUC">
+    <CssColor>ruco-color</CssColor>
+  </Aplicacion>
+  <Aplicacion Id="SDH">
+    <CssColor>sds-color</CssColor>
+  </Aplicacion>
+  <Aplicacion Id="SIE">
+    <CssColor>siep-color</CssColor>
+  </Aplicacion>
+  <Aplicacion Id="ADL">
+    <CssColor>adl-color</CssColor>
+  </Aplicacion>
+  <Aplicacion Id="REN">
+    <CssColor>ren-color</CssColor>
+  </Aplicacion>
+  <Aplicacion Id="PFI">
+    <CssColor>pfi-color</CssColor>
+  </Aplicacion>
+  <Aplicacion Id="GDP">
+    <CssColor>gdp-color</CssColor>
+  </Aplicacion>
+  <Aplicacion Id="CBO">
+    <CssColor>cbo-color</CssColor>
+  </Aplicacion>
+  <Aplicacion Id="CLP">
+    <CssColor>ada-color</CssColor>
+  </Aplicacion>
+  <Aplicacion Id="BON">
+    <CssColor>bono-color</CssColor>
+  </Aplicacion>
+</Aplicaciones>
+

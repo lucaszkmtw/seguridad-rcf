@@ -1,0 +1,129 @@
+#dropdownAplicaciones {
+    max-height: none !important;
+    width: 260px;
+}
+
+#cardContentAplicaciones {
+    width: 100%;
+}
+
+#dropdownAplicaciones ul {
+    width: 100%;
+    min-width: 240px !important;
+}
+
+#apps {
+    width: 100%;
+}
+.containerApp {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    margin: 10px 0 0 4px;
+}
+
+.appItem {
+    display: grid;
+    place-items: center;
+    margin: 8px 8px 0 0;
+    width: calc(50% - 8px);
+    height: 80px;
+    background: #d32f2f;
+    border-radius: 0.2em;
+}
+
+.appItem div {
+    text-align: center;
+    color: whitesmoke;
+    cursor: pointer !important;
+}
+
+.appItem h2 {
+    margin: 0;
+    color: whitesmoke;
+    user-select: none !important;
+    cursor: pointer !important;
+}
+
+.appItem p {
+    margin: 0;
+    user-select: none !important;
+    cursor: pointer !important;
+}
+
+
+/* COLORES DE LAS APPS ------------------- */
+
+.seg-color { /*Seguridad*/
+    background-color: #d32f2f !important;
+}
+.mant-color { /*Mantenimiento*/
+    background-color: #3f51b5 !important;
+}
+.gep-color { /*Gestión Electronica de Pagos*/
+    background-color: #29b6f6 !important;
+}
+.por-color { /*Portal*/
+    background-color: #00b1c7 !important;
+}
+.ruc-color {  /*Ruco*/
+    background-color: #7e57c2 !important;
+}
+.sie-color { /*Siep*/
+    background-color: #009688 !important;
+}
+.gdr-color { /*Gestión de recursos*/
+    background-color: #fb8c00 !important;
+}
+.cdp-color { /*Consulta de pagos*/
+    background-color: #388e3c !important;
+}
+.gri-color { /*Gestión de retenciones impositivas*/
+    background-color: #fbc02d !important;
+}
+.sdh-color { /*Seguimiento de Haberes*/
+    background-color: #00acc1 !important;
+}
+.ente-color { /*Ente*/
+    background-color: #c33c69 !important;
+}
+.map-color { /*Medidas de afectacion patrimonial*/
+    background-color: #c0ca33 !important;
+}
+.conc-color { /*Conciliación*/
+    background-color: #ff7043 !important;
+}
+.adl-color { /*Administradores locales*/
+    background-color: #d24e38 !important;
+}
+.ren-color { /*Rendiciones*/
+    background-color: #ce5811 !important;
+}
+.pfi-color { /*Planificacion financiera*/
+    background-color: #799fba !important;
+}
+.gdp-color { /*Gestion de pagos*/
+    background-color: #39f !important;
+}
+.clp-color { /*Certificado de liquidación provisoria*/
+    background-color: #a50a97 !important;
+}
+.bon-color { /*Bonos*/
+    background-color: #4578cd !important;
+}
+.scut-color { /*Scut*/
+    background-color: #d5a727 !important;
+}
+
+.gpr-color { 
+    background-color: #fbc02d !important;
+}
+.ada-color {
+    background-color: #a50a97 !important;
+}
+.idg-color {
+    background-color: #6b8e26 !important;
+}
+.cbo-color {
+    background-color: #7e57c2 !important;
+}

@@ -1,0 +1,195 @@
+﻿@model TGP.Seguridad.Forms.UsuarioForm
+@{
+    ViewBag.Title = "TBP - Tesoreria";
+    Layout = "~/Views/Shared/_LayoutBootstrapLogin.cshtml";
+    Response.Cache.SetCacheability(HttpCacheability.NoCache);
+    Response.Cache.SetNoStore();
+}
+
+
+@**************Nueva plantilla login*****************@
+
+<div id="errorLogin" style="height:90px;">
+    &nbsp;
+    <div class="uk-flex uk-flex-center">
+        @if (TempData["ErrorLogin"] != null)
+            {
+            <div class="uk-alert uk-alert-danger" data-uk-alert="">
+                <a href="#" class="uk-alert-close uk-close"></a>
+                @TempData["ErrorLogin"].ToString()
+            </div>
+        }
+    </div>
+</div>
+
+<div class="md-card" id="login_card">
+    <div class="md-card-content large-padding" id="login_form" style="display: block;">
+        <div class="login_heading uk-margin-medium-bottom uk-margin-top uk-flex uk-flex-center">
+			<img src="~/ResourceDesign/css/img/logosigaf2020b.png" alt="logo sigaf" style="width:230px;height:auto;" />
+        </div>
+        <div id="divMayus" style="" class="uk-text-center uk-text-muted uk-margin-bottom">*Mayúscula Activada</div>
+        @using (Html.BeginForm(null, null, new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { id = "LoginForm" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            <div class="uk-form-row">
+                <div class="md-input-wrapper">
+                    <label for="username">Usuario</label>
+                    @Html.TextBoxFor(m => m.usuario, new { @class = "md-input userfield", @type = "text" })
+                    <span class="md-input-bar"></span>
+                </div>
+            </div>
+
+
+            <div class="uk-form-row">
+                <div class="md-input-wrapper">
+                    <label for="password">Clave</label>
+                    @Html.TextBoxFor(m => m.clave, new { @class = "md-input", @type = "password", onkeypress = "capLock(event)" })
+                    <span class="md-input-bar "></span>
+                </div>
+            </div>
+
+            <div class="uk-margin-medium-top uk-margin-medium-bottom">
+                <button id="login-button" type="submit" class="md-btn md-btn-primary md-btn-block md-btn-large">Ingresar</button>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+
+    <script>
+        $('#divMayus').hide();
+
+        $("#msg-error-login").fadeTo(10000, 500).slideUp(500, function () {
+            //$("#msg-error-login").alert('close');
+        });
+
+        $("#msg-error-changepass").fadeTo(12000, 500).slideUp(500, function () {
+            //$("#msg-error-changepass").alert('close');
+        });
+
+        function capLock(e) {
+            kc = e.keyCode ? e.keyCode : e.which;
+            sk = e.shiftKey ? e.shiftKey : ((kc == 16) ? true : false);
+            if (((kc >= 65 && kc <= 90) && !sk) || ((kc >= 97 && kc <= 122) && sk)) {
+                $('#divMayus').show();
+            } else {
+                $('#divMayus').hide();
+            }
+        }
+        $(document).ready(function () {
+            if ($("#usuario").val()) {
+                var attr = $("#usuario").parent().attr("class");
+                $("#usuario").parent().attr("class", attr + " md-input-focus");
+            }
+
+            if ($("#clave").val()) {
+                var attr = $("#clave").parent().attr("class");
+                $("#clave").parent().attr("class", attr + " md-input-focus");
+            }
+        });
+
+    </script>
+
+
+    @if (TempData["ErrorLogin"] != null)
+    {
+        <script>
+
+            $(".userfield").val("");
+            $("#clave").val("");
+        </script>
+    }
+
+    @if (TempData["SuccessChangePass"] != null)
+    {
+        <script>
+            showModalMail('#editModalDescargaID', '#editModalDescargaBodyID');
+        </script>
+    }
+}
+
+
+
+
+@*@model TGP.Seguridad.Forms.UsuarioForm
+@{
+    ViewBag.Title = "TBP - Tesoreria";
+    Layout = "~/Views/Shared/_LayoutBootstrapLogin.cshtml";
+    Response.Cache.SetCacheability(HttpCacheability.NoCache);
+    Response.Cache.SetNoStore();
+}
+
+
+
+@using (Html.BeginForm(null, null, new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    if (TempData["ErrorLogin"] != null)
+    {
+        <div class="alert alert-warning">
+            <button class="close" data-dismiss="alert" type="button">×</button>
+            <span class="error">@TempData["ErrorLogin"]</span>
+        </div>
+    }
+
+
+    <div class="error">
+        @Html.ValidationMessageFor(m => m.usuario)
+    </div>
+
+    <div class="form-group">
+        <label for="username" class="control-label sr-only">Usuario</label>
+        <div class="col-sm-12">
+            <div class="input-group">
+                @Html.TextBoxFor(m => m.usuario, new { @class = "form-control", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.usuario).ToHtmlString()) })
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="error">
+        @Html.ValidationMessageFor(m => m.clave)
+    </div>
+    <label for="password" class="control-label sr-only">Clave</label>
+    <div class="form-group">
+        <div class="col-sm-12">
+            <div class="input-group">
+                @Html.TextBoxFor(m => m.clave, new { @class = "form-control", @type = "password", @placeholder = HttpUtility.HtmlDecode(Html.DisplayNameFor(m => m.clave).ToHtmlString()) })
+                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+            </div>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-custom-primary btn-lg btn-block btn-auth" style="background-color:#7d3b5f; border-color:#DDD">
+        <i class="fa fa-arrow-circle-o-right"></i>Acceder
+    </button>
+
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+<script>
+    function capLock(e) {
+        kc = e.keyCode ? e.keyCode : e.which;
+        sk = e.shiftKey ? e.shiftKey : ((kc == 16) ? true : false);
+        if (((kc >= 65 && kc <= 90) && !sk) || ((kc >= 97 && kc <= 122) && sk)) {
+            $('#divMayus').show();
+        } else {
+            $('#divMayus').hide();
+        }
+    }
+</script>*@

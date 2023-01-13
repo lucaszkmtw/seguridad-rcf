@@ -1,0 +1,149 @@
+﻿/*Hoja de estilos de variables*/
+@import "src/_variables_mixins";
+@import "src/md/_md_colors";
+
+@provincia-color-primary: #9ACA3C;
+@provincia-color-light: #cefd6e;
+@provincia-color-dark: #689900;
+
+
+@footer-background: #3B3A3A;
+
+
+/*Theme variables*/
+@theme_primary_color: @md-color-light-blue-400;
+@theme_light_color: @md-color-light-blue-200;
+@theme_dark_color: @md-color-light-blue-900;
+@accent_color: @md-color-orange-500;
+
+@color_header_aside: @theme_dark_color;
+
+/*tamaños*/
+@login-card: 320px; 
+@header-sigaf-login: 72px;
+/*Sidebar*/
+@sidebar_main_width: 275px;
+@sidebar_main_width_mini: 60px;
+@sidebar_main_width_mini_hover:225px;
+
+
+/*Fonts*/
+/*Mixin para alterar fuentes*/
+.md_font(@weight: 400, @size: 14px, @height: 20px, @typography: "Roboto" ) {
+    font: @weight @size e('/') @height @typography, sans-serif;
+}
+
+/*Mixin para ubicar objetos relativos*/
+.position_abs_element(@top: 0, @right: 0) {
+    bottom: auto;
+    right: @right;
+    top: @top;
+    left:auto;
+}
+
+
+.md-bg-primary {
+    background-color: @theme_primary_color;
+}
+
+.md-bg-light {
+    background-color: @theme_light_color;
+}
+
+.md-bg-dark {
+    background-color: @theme_dark_color;
+}
+
+.md-bg-accent {
+    background-color: @accent_color;
+}
+
+.md-color-primary {
+    color: @theme_primary_color;
+}
+
+.md-color-light {
+    color: @theme_light_color;
+}
+
+.md-color-dark {
+    color: @theme_dark_color;
+}
+
+.md-color-accent {
+    color: @accent_color;
+}
+
+.md-btn {
+    &-accent {
+        &,
+        &:hover,
+        &:focus,
+        &:active,
+        &.uk-active {
+            background: @accent_color !important;
+            color: @white;
+        }
+    }
+
+    &-dark {
+        &,
+        &:hover,
+        &:focus,
+        &:active,
+        &.uk-active {
+            background: @theme_dark_color !important;
+            color: @white;
+        }
+    }
+
+    &-light {
+        &,
+        &:hover,
+        &:focus,
+        &:active,
+        &.uk-active {
+            background: @theme_light_color !important;
+            color: @white;
+        }
+    }
+
+    &-mini {
+        line-height: 19px !important;
+        min-width: 10px;
+        font-size: 9px !important;
+        min-height: 21px;
+        padding: 2px 10px !important;
+
+        + .md-btn {
+            margin-left: 0px !important;
+        }
+    }
+
+    &-clearStyle {
+        color: inherit;
+        border: none;
+        padding: 0 !important;
+        font: inherit;
+        cursor: pointer;
+        outline: inherit !important;
+    }
+}
+
+
+@font-face {
+    font-family: "FontAwesome";
+    src: url('../icons/FontAwesome/fontawesome-webfont.woff');
+}
+
+/*@font-face {
+    font-family: "sigaf-font";
+    src: url("../icons/sigaf-font/sigaf-font.eot");
+    src: url("../icons/sigaf-font/sigaf-font.eot?#iefix") format("embedded-opentype"), url("../icons/sigaf-font/sigaf-font.woff") format("woff"), url("../icons/sigaf-font/sigaf-font.ttf") format("truetype"), url("../icons/sigaf-font/sigaf-font.svg#sigaf-font") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}*/
+
+
+
+

@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Seg - Monitor";
+    Layout = "~/Views/Shared/_LayoutBootstrap.cshtml";
+}
+<h2 class="heading_b uk-margin-large-bottom">
+    Monitor
+    <span class="sub-heading">En tiempo real</span>
+</h2>
+<div class="md-card-list-wrapper" id="mailbox">
+    <div class="uk-width-large-1 uk-container-center">
+        <div class="md-card-list">
+            <div class="md-card-list-header md-card-list-header-combined heading_list" style="display: none">All Messages</div>
+            <ul class="hierarchical_slide" id="body1">
+                <li class="uk-hidden"></li>
+            </ul>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery.signalR-2.2.1.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.2.1.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script src="~/Scripts/page_mailbox.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            activarMenu('#monitor-Auditoria');
+        })
+
+        //Declaro el proxy.
+        var myHub = $.connection.auditoriaUsuarioHub;
+
+        //Creo la función que recibe la información del lado del cliente. Se le puede poner los parámetros q quieras.
+        myHub.on('recibeWEBData', function (avatar, nombreUsuario, estructuraFuncional, fechaRegistro, usuarioID, IPCliente, browserCliente, serverDescripcion) {
+            //$('#mailbox').show();
+            $('#body1').prepend("<li><span class='md-card-list-item-date' id='fechaRegistro'>" + fechaRegistro + "</span><div class='md-card-list-item-avatar-wrapper'><img class='md-card-list-item-avatar' src='data:image/jpeg;base64," + avatar + "' alt='Avatar' /></div><div class='md-card-list-item-sender uk-text-danger-middle-center'><span><strong>" + nombreUsuario + "</strong></span></div><div class='md-card-list-item-subject uk-text-danger-middle-center'><div class='md-card-list-item-sender-small'><span>Se <b>CONECTO</b> desde la aplicación: <strong>" + estructuraFuncional + "</strong></span></div><span>Se <b>CONECTO</b> desde la aplicación: <strong>" + estructuraFuncional + "</strong></span></div><div class='md-card-list-item-content-wrapper'><div class='md-card-list-item-content'>Con el browser: <strong>" + browserCliente + "</strong>, desde la IP: <strong>" + IPCliente + "</strong>, Servidor: <strong>" + serverDescripcion + "</strong>.</div></div></li>");
+            altair_md.init();
+        });
+
+        //Creo la función que recibe la información del lado del cliente. Se le puede poner los parámetros q quieras.
+        myHub.on('recibeWEBDataDisconect', function (avatar, nombreUsuario, estructuraFuncional, fechaRegistro, usuarioID, IPCliente, browserCliente, serverDescripcion) {
+            //$('#mailbox').show();
+            $('#body1').prepend("<li><span class='md-card-list-item-date' id='fechaRegistro'>" + fechaRegistro + "</span><div class='md-card-list-item-avatar-wrapper'><img class='md-card-list-item-avatar' src='data:image/jpeg;base64," + avatar + "' alt='Avatar' /></div><div class='md-card-list-item-sender uk-text-danger-middle-center'><span><strong>" + nombreUsuario + "</strong></span></div><div class='md-card-list-item-subject uk-text-danger-middle-center'><div class='md-card-list-item-sender-small'><span>Se <b>DESCONECTO</b> desde la aplicación: <strong>" + estructuraFuncional + "</strong></span></div><span>Se <b>DESCONECTO</b> desde la aplicación: <strong>" + estructuraFuncional + "</strong></span></div><div class='md-card-list-item-content-wrapper'><div class='md-card-list-item-content'>Con el browser: <strong>" + browserCliente + "</strong>, desde la IP: <strong>" + IPCliente + "</strong>, Servidor: <strong>" + serverDescripcion + "</strong>.</div></div></li>");
+            altair_md.init();
+        });
+
+        //Finalmente se inicia la coneccion.
+        $.connection.hub.start().done(function () { myHub.server.serverSignal(); });
+    </script>
+}

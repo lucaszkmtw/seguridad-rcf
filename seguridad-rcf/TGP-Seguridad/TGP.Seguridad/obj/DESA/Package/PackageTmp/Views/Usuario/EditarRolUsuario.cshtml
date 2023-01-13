@@ -1,0 +1,162 @@
+﻿@using TGP.Seguridad.BussinessLogic.Dto
+@model RolUsuarioViewModel
+@{
+    ViewBag.Title = "Permisos de Usuario";
+    Layout = "~/Views/Shared/_LayoutBootstrap.cshtml";
+}
+
+
+<div class="uk-grid sigaf-titulo">
+    <div class="uk-width-1-2">
+        <h2 class="uk-margin-bottom">@ViewBag.Title</h2>
+    </div>
+    <div class="uk-width-large-1-2">
+        <div class="uk-grid uk-grid-small uk-flex uk-flex-right" data-uk-grid-margin data-uk-grid-match="{target:'.md-btn-sigaf'}">
+            <div>
+                <button onclick="VolverBtn();" class="md-btn md-btn-primary md-btn-sigaf md-fab-wave-light waves-effect waves-button waves-light">
+                    <h2 class="heading_c md-color-white uk-text-left">
+                        Volver
+                        <span class="sub-heading md-color-white uk-text-upper">
+                            &nbsp;
+                        </span>
+                    </h2>
+                    <i class="icon-appSigaf md-color-black material-icons">reply</i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@if (ViewBag.ActividadesEnConflicto != null)
+{
+    foreach (string mensaje in (List<string>)ViewBag.ActividadesEnConflicto)
+    {
+        <div class="uk-alert" data-uk-alert>
+            <a href="" class="uk-alert-close uk-close"></a>
+            <p>@Html.Raw(mensaje)</p>
+        </div>
+
+    }
+
+}
+<div class="md-card uk-margin-bottom">
+    <div class="md-card-content">
+        @using (Html.BeginForm("EditarRolUsuario", "Usuario", FormMethod.Post, new { id = "formAsocUsuario" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            @Html.Hidden("IdUsuario", Model.IdUsuario)
+            @Html.Hidden("tipoUsuario", (string)ViewBag.TipoUsuario)
+            @Html.Hidden("Estructura", Model.Estructura)
+            @Html.Hidden("rolViejo", Model.Rol)
+            @Html.Partial("Partials/_FormRolUsuario")
+
+        }
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        //Inicio document ready
+        $(document).ready(function () {
+            @*var myArray = [];
+
+            @foreach (string d in Model.Nodos)
+            {
+                @:myArray.push("@d");
+            }*@
+
+            $("#formAsocUsuario").keydown(function (e) {
+                if(e.keyCode === 13){
+                    e.preventDefault();
+                }
+            });
+
+            $("#filterEstructuras").attr("disabled", "disabled");
+            aplicarSelectize($('.selectize'));
+            $("#filterEstructuras").val('@Model.Estructura');
+            $("#rol").val('@Model.Rol');
+            initSelectNodoFuncional();
+
+            activarMenu("#ListadoNominados-Usuario");
+
+            $("#rol").on("change", () => {
+                if ($('#rol').val() === "") {
+                    $('#nodoFuncionalID').hide();
+                    $("#guardarRol").addClass("uk-hidden");
+                } else {
+                    $('#nodoFuncionalID').show();
+                    $("#guardarRol").removeClass("uk-hidden");
+                }
+                if($('#multiselectNodo-all').selectize({})[0] != undefined)
+                    $('#multiselectNodo-all').selectize({})[0].selectize.clearOptions();
+
+                if (!isNullOrEmpty($("#rol option:selected").val())) {
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("GetNodosSelecionablesPorUsuarioRol", "Usuario")',
+                        data: {
+                            idUsuario: $("#IdUsuario").val(),
+                            rol: $("#rol option:selected").val()
+                        },
+                        beforeSend: function (xhr) {
+                            showLoadingModal();
+                        },
+                        success: function (data) {
+                            $("#nodoFuncionalID").html(data);
+                            initSelectNodoFuncional();
+                            hideLoadingModal();
+                        }, error: function (e) {
+                            hideLoadingModal();
+                        }
+                    });
+                }
+            });
+        });
+        //Fin document ready
+
+        function selectAll() {
+            $(function () {
+                var $projectNodosIds = $('#multiselectNodo-all')[0].selectize;
+                var optKeys = Object.keys($projectNodosIds.options);
+                optKeys.forEach(function (key, index) {
+                    $projectNodosIds.addItem(key);
+                });
+            });
+        }
+
+        function desSelectAll() {
+            $(function () {
+                $('#multiselectNodo-all').selectize({})[0].selectize.clear();
+            });
+        }
+
+        function initSelectNodoFuncional(){
+        if ($('#multiselectNodo-all').hasClass("selectize")) {
+            aplicarSelectize($('#multiselectNodo-all'));
+        } else {
+            aplicarSelectizeMultiple($("#multiselectNodo-all"));
+        }           
+
+        $("#multiselectNodo-all").unbind("change");
+        $("#multiselectNodo-all").on("change", function () {
+            if ($("#multiselectNodo-all").val() == null || $("#multiselectNodo-all").val() == "" ||  $("#multiselectNodo-all").val().length == 0) {
+                $("#guardarRol").addClass("uk-hidden");
+            } else {
+                $("#guardarRol").removeClass("uk-hidden");
+            }
+
+        });
+
+        $("#multiselectNodo-all").change();
+     }
+
+
+     function VolverBtn() {
+         window.location.href = '@Url.Action("Permisos", "Usuario", new { id = Model.IdUsuario, tipoUsuario = @ViewBag.TipoUsuario })'
+     }
+    </script>
+}
+

@@ -1,0 +1,38 @@
+﻿@using TGP.Seguridad.BussinessLogic.Dto
+@if (@ViewBag.AdminsExistentes != null && @ViewBag.AdminsExistentes.Count > 0)
+{
+    <table id="tabla-admins" class="uk-table" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Aplicación</th>
+                <th>Nodos</th>
+                <th>Roles</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (AdminsLocalesDeUsuarioEstructuraViewModel @vm in @ViewBag.AdminsExistentes)
+            {
+                <!-- un registro -->
+                <tr>
+                    <td>@vm.Estructura</td>
+                    <td>
+                        @foreach (AdministradorLocalDTO @admin in vm.AdministradoresLocales)
+                        {
+                            <span class="uk-badge uk-badge-warning uk-badge-notification">@admin.NodoFuncional.Descripcion</span>
+                        }
+                    </td>
+                    <td>
+                        @foreach (RolDelegadoAdminDTO @rolDelegadoAdmin in vm.AdministradoresLocales.First().RolesDelegadosAdmins)
+                        {
+                            <span class="uk-badge uk-badge-success uk-badge-notification">@rolDelegadoAdmin.Rol.Descripcion</span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h3>El Administrador Local aún no posee aplicaciones para administrar.</h3>
+}

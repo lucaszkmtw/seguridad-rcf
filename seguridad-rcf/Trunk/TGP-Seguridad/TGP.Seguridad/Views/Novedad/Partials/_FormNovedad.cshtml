@@ -1,0 +1,103 @@
+﻿@using TGP.Seguridad.BussinessLogic.Dto
+@model NovedadDTO
+<div class="md-card uk-margin-bottom">
+    <div class="md-card-content">
+        <div class="uk-grid uk-margin-top">
+            <div class="uk-width-medium-1-1">
+                <div class="md-input-wrapper md-input-filled">
+                    @Html.LabelFor(model => model.Titulo, new { @class = "uk-margin-bottom" })
+                    @Html.TextBoxFor(model => model.Titulo, new { @class = "md-input label-fixed", maxlength = 150, name = "Titulo", id = "Titulo" })
+                    <span class="md-input-bar "></span>
+                </div>
+            </div>
+        </div>
+        <div class="uk-grid uk-margin-top">
+            @Html.LabelFor(model => model.Descripcion, new { @class = "uk-margin-bottom" })
+            <div class="uk-width-medium-1-1">
+                @Html.TextAreaFor(model => model.Descripcion, new { @class = "wysiwyg_tinymce uk-margin-top", rows = "5", maxlength = 4000, name = "Descripcion", id = "descripcion" })
+                <span style="display:none;" id="rqDescripcion" class="error field-validation-error">Descripcion Requerida</span>
+                <span style="display:none;" id="rqDescripcionLarga" class="error field-validation-error">Descripcion Demasiado Larga</span>
+            </div>
+        </div>
+        <div class="uk-grid">
+            @*<div class="uk-width-medium-1-4">
+                    @Html.LabelFor(model => model.NumeroVersion)
+                    @Html.TextBoxFor(model => model.NumeroVersion, new { @class = "md-input label-fixed", maxlength = 50 })
+                    @Html.ValidationMessageFor(model => model.NumeroVersion, null, new { @class = "error" })
+                </div>*@
+            <div class="uk-width-medium-1-3">
+                @Html.LabelFor(model => model.FechaDesde)
+                @Html.TextBoxFor(model => model.FechaDesde, "{0:dd-MM-yyyy HH:mm}")
+                @Html.ValidationMessageFor(model => model.FechaDesde, null, new { @class = "error" })
+            </div>
+            <div class="uk-width-medium-1-3">
+                @Html.LabelFor(model => model.FechaHasta)
+                @Html.TextBoxFor(model => model.FechaHasta, "{0:dd-MM-yyyy HH:mm}", new {})
+            </div>
+            <div class="uk-width-medium-1-3 uk-flex uk-flex-middle">
+                <span class="icheck-inline">
+                    <label for="SiPublica" class="inline-label">Novedad para Todos</label>
+                    @Html.CheckBoxFor(m => m.SiPublica, new { data_md_icheck = "data-md-icheck" })
+                </span>
+            </div>
+        </div>
+        <div class="uk-grid">
+            <div class="uk-width-medium-1-2">
+                @Html.Label("Tipo de Novedad")
+                @Html.DropDownListFor(model => model.TipoNovedad, (SelectList)ViewBag.TiposNovedades, new { @class = "selectize md-input label-fixed", id = "tipoNovedadprueba", required = "required" })
+            </div>
+            <div class="uk-width-medium-1-2">
+                <div id="EstructuraFuncionalID">
+                    @Html.Label("Estructura", "Estructura")
+                    @Html.DropDownListFor(model => model.EstructuraFuncionalCodigo, (SelectList)ViewBag.Estructuras, new { @class = "selectize md-input label-fixed", id = "estructuras" })
+                </div>
+            </div>
+        </div>
+        <div class="uk-grid">
+            <div id="RolID" class="uk-width-1-1">
+                <div class="uk-grid">
+                    <div class="uk-width-medium-3-4">
+                        @Html.Label("Rol")
+                        <select id="roles" name="Roles" class="md-input label-fixed selectizeMulti" required multiple>
+                            @foreach (ComboGenerico rol in ViewBag.Roles)
+                            {
+                                <option value="@rol.Codigo">@rol.Descripcion</option>
+                            }
+                        </select>
+                        <span style="display:none;" id="rqRoles" class="error field-validation-error">Roles Requeridos</span>
+
+                    </div>
+                    <div class="uk-width-medium-1-4 uk-flex uk-flex-middle">
+                        <button class="md-btn md-btn-accent" type="button" onclick="selectAllRoles();">Todos</button>
+                        <button class="md-btn" type="button" onclick="desSelectAllRoles()">Ninguno</button>
+                    </div>
+                </div>
+
+                <div class="uk-grid">
+                    <div class="uk-width-medium-3-4">
+                        @Html.Label("Nodo Funcional")
+                        <select id="nodos" name="NodosFuncionales" class="md-input label-fixed selectizeMulti" required multiple>
+                            @foreach (ComboGenerico nodo in ViewBag.Nodos)
+                            {
+                                <option value="@nodo.Codigo">@nodo.Descripcion</option>
+                            }
+                        </select>
+                        <span style="display:none;" id="rqNodos" class="error field-validation-error">Nodos Requeridos</span>
+
+                    </div>
+                    <div class="uk-width-medium-1-4 uk-flex uk-flex-middle">
+                        <button class="md-btn md-btn-accent" type="button" onclick="selectAllNodos();">Todos</button>
+                        <button class="md-btn" type="button" onclick="desSelectAllNodos()">Ninguno</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="uk-grid">
+            <div class="uk-width-1-1 uk-flex uk-flex-center">
+                <button id="aceptar" type="submit" class="md-btn md-btn-flat">Aceptar</button>
+                &nbsp;
+                <a class="md-btn" href="@Url.Action("Listado","Novedad")">Cancelar</a>
+            </div>
+        </div>
+    </div>
+</div>

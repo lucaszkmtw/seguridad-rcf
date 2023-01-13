@@ -1,0 +1,34 @@
+﻿@using TGP.Seguridad.BussinessLogic.Dto
+@if (@ViewBag.Historial != null && @ViewBag.Historial.Count > 0)
+{
+    <table id="tabla-historial" class="uk-table" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Fecha de evento</th>
+                <th>Evento</th>
+                <th>Usuario</th>
+                <th>Aplicación</th>
+                <th>Rol</th>
+                <th>Nodo</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (AuditoriaAdminDTO @au in @ViewBag.Historial)
+            {
+                <!-- un registro -->
+                <tr>
+                    <td>@au.FechaOperacion.ToString("dd/MM/yyyy HH:mm:ss")</td>
+                    <td>@au.DescripcionOperacion</td>
+                    <td>@au.NombreUsuario</td>
+                    <td>@(au.DescripcionEstructura == null || au.DescripcionEstructura == ""? "-": @au.DescripcionEstructura)</td>
+                    <td>@(au.DescripcionRol == null || au.DescripcionRol == "" ? "-" : @au.DescripcionRol)</td>
+                    <td>@(au.DescripcionNodoFuncional == null || au.DescripcionNodoFuncional == "" ? "-" : @au.DescripcionNodoFuncional)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h3>El Administrador Local aún no ha realizado cambios.</h3>
+}

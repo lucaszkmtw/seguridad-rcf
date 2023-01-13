@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="TGP.WSS" namespace="TGP.WSS" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="AuditoriaConexion" table="SEG_AUDITORIA_CONEXION" lazy="false" >
+    <id name="CId" column="C_ID">
+      <generator class="native" >
+        <param name="sequence">SEG_AUDITORIA_CONEXION_SQ</param>
+      </generator>
+    </id>
+    <many-to-one name="Usuario">
+      <column name="C_ID_USUARIO" sql-type="NUMBER" not-null="true" />
+    </many-to-one>
+    <property name="FConexion">
+      <column name="F_CONEXION" sql-type="DATE" not-null="true" />
+    </property>
+    <property name="IPConexion">
+      <column name="D_IP" sql-type="VARCHAR2" not-null="false" />
+    </property>
+    <property name="Browser">
+      <column name="D_BROWSER" sql-type="VARCHAR2" not-null="false" />
+    </property>
+    <property name="Server">
+      <column name="D_SERVER" sql-type="VARCHAR2" not-null="false" />
+    </property>
+    <property name="EstructuraFuncionalCodigo">
+      <column name="c_estructura_funcional" sql-type="VARCHAR2" not-null="false" />
+    </property>
+  </class>
+</hibernate-mapping>

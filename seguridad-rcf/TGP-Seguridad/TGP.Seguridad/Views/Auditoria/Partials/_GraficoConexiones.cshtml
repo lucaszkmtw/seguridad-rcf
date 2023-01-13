@@ -1,0 +1,64 @@
+﻿@using TGP.Seguridad.BussinessLogic.Dto
+@model GraficosConexionesFecha
+<div class="uk-grid" data-uk-grid-margin>
+    <div class="uk-width-1-1">
+        <div class="md-card">
+            <div class="uk-form-row">
+                <div class="md-card-content">
+                    <h4 class="heading_c uk-margin-bottom">Conexiones de Usuarios</h4>
+                    @*<h7 class="uk-margin-bottom">@Session["FechaInicioG"] - @Session["FechaFinG"]</h7><br />*@
+                    <div id="c3_chart_spline" class="c3chart uk-margin-medium-top"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function armarGrafico() {
+        var c3chart_spline_id = '#c3_chart_spline';
+        if ($(c3chart_spline_id).length) {
+
+            var c3chart_spline = c3.generate({
+                bindto: c3chart_spline_id,
+                data: {
+                    x: 'x',
+                    columns: [
+                        ['x', @Model.Fechas],
+                        ['Acreedores', @Model.Acreedores],
+                        ['Nominados', @Model.Nominados]
+
+                    ]
+                },
+                color: {
+                    pattern: ['#5E35B1', '#FB8C00', '#FB8C00']
+                },
+                axis: {
+                    x: {
+                        type: 'timeseries',
+                        tick: {
+                        format: '%d/%m/%Y'
+                              }
+                       },
+                    y: {
+                        tick: { format: d3.format("d") },
+                        min: 0,
+                        padding: {
+                            bottom: 0
+                        },
+                        label: {
+                            text: 'Conexiones',
+                            position: 'outer-middle'
+                        }
+                    }
+                }
+            });
+
+            $window.on('debouncedresize', function () {
+                c3chart_spline.resize();
+            });
+
+        }
+    }
+
+
+</script>

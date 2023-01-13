@@ -1,0 +1,12 @@
+﻿@model List<string>
+
+@if (Model != null)
+{
+    foreach (string mensaje in (List<string>)Model)
+    {
+        <div class="uk-alert" data-uk-alert>
+            <a href="" class="uk-alert-close uk-close"></a>
+            <p>@Html.Raw(mensaje)</p>
+        </div>
+    }
+}

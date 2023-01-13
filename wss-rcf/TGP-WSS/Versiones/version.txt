@@ -1,0 +1,13 @@
+﻿
+
+
+VERSION 2
+08-09-2015
+Se cambian las estructuras datos que se pasan en el servicio
+Hasta hoy perdiamos los nodos asociados all rol, estabamos pasando todos sueltos.
+
+04-05-2015
+Se agrego en el login, que se puedan loguaer los usuarios a traves del Active Directory de Windows
+15-06-2015
+Se cambio el tipo de datos de los campos del telefono a string
+

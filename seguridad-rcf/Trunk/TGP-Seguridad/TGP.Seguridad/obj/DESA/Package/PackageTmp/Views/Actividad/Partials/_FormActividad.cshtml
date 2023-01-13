@@ -1,0 +1,28 @@
+﻿@using TGP.Seguridad.BussinessLogic.Dto
+@model ActividadDTO
+<div class="uk-grid uk-margin-top">
+    <div class="uk-width-medium-1-3">
+        @Html.Label("Codigo", "Codigo")
+        @Html.TextBoxFor(model => model.Codigo, new { @class = "md-input label-fixed", maxlength = 50})
+        @Html.ValidationMessageFor(model => model.Codigo, null, new { @class = "error" })
+
+    </div>
+    <div class="uk-width-medium-1-3">
+        @Html.Label("Descripcion", "Descripción")
+        @Html.TextBoxFor(model => model.Descripcion, new { @class = "md-input label-fixed", maxlength = 100 })
+        @Html.ValidationMessageFor(model => model.Descripcion, null, new { @class = "error" })
+
+    </div>
+    <div class="uk-width-medium-1-3">
+        @Html.Label("EstructuraFuncional", "Estructura Funcional")
+        @Html.DropDownListFor(model => model.EstructuraFuncional, (SelectList)ViewBag.Estructuras, "Selecciones una Estructura", new { @class = "md-input label-fixed selectize" })
+        @Html.ValidationMessageFor(model => model.EstructuraFuncional, null, new { @class = "error" })
+
+    </div>
+</div>
+
+<div class="uk-width-1-1">
+    <div class="uk-flex uk-flex-center uk-margin-medium-top" >
+        <button title="Buscar" class="md-btn md-btn-accent" type="submit" id="btnGuardar"><span>Guardar</span></button>
+    </div>
+</div>

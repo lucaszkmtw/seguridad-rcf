@@ -1,0 +1,232 @@
+﻿@using TGP.Seguridad.BussinessLogic.Dto
+@model AcreedorViewModel
+
+@{
+    ViewBag.Title = "Seg - Editar Acreedor";
+    Layout = "~/Views/Shared/_LayoutBootstrap.cshtml";
+}
+
+<h2>Editar Acreedor</h2>
+
+
+<div class="uk-grid" data-uk-grid-margin>
+    <div class="uk-width-large-10-10">
+        <div class="md-card">
+            <div class="user_heading" data-uk-sticky="{ top: 48, media: 960 }">
+                <div class="user_heading_avatar fileinput fileinput-new" data-provides="fileinput">
+                    @if (Model.Avatar != null && Model.Avatar.Length == 0)
+                    {
+                        <div class="fileinput-new thumbnail uk-margin-small-bottom">
+                            <img src="~/Content/img/add_user.png" alt="user avatar" />
+                        </div>
+
+                    }
+                    else
+                    {
+                        <div class="fileinput-new thumbnail uk-margin-small-bottom">
+                            <img class="user-imgs" src="@Url.Action("GetAvatar", "Usuario", new { idUsuario = Model.Id})" alt="user avatar" />
+                        </div>
+
+                    }
+                    <div class="user_avatar_controls">
+                        <span class="btn-file">
+                            <span class="fileinput-new"><i class="material-icons">&#xE2C6;</i></span>
+                            @using (Html.BeginForm("ImageUpload", "Usuario", FormMethod.Post, new { id = "imageForm", enctype = "multipart/form-data" }))
+                            {
+                                @Html.Hidden("idUsuario", Model.Id)
+                                <input type="file" name="imagefile" id="fileButton" onchange="document.getElementById('imageForm').submit()"
+                                       accept="image/x-png, image/jpeg" title="Seleccione una imagen">
+                            }
+                        </span>
+                    </div>
+                </div>
+                <div class="user_heading_content">
+                    <h2 class="heading_b"><span class="uk-text-truncate" id="user_edit_uname">@Model.NombreUsuario</span><span class="sub-heading" id="user_edit_position"></span></h2>
+                </div>
+            </div>
+            <div class="user_content">
+                @using (Ajax.BeginForm("GuardarEdicionAcreedor", "Usuario", new AjaxOptions() { HttpMethod = "POST", OnSuccess = "MostrarResultados", OnFailure = "MostrarResultados" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    @Html.HiddenFor(model => model.Id)
+                    @Html.HiddenFor(model => model.Version)
+                    <div class="uk-margin-top">
+                        <h3 class="full_width_in_card heading_c">
+                            Datos Personales
+                        </h3>
+                        <div class="uk-grid" data-uk-grid-margin>
+                            <div class="uk-width-medium-1-2">
+                                @Html.Label("CUIT", "CUIT")
+                                @Html.TextBoxFor(model => model.NumeroCuit, new { @class = "md-input label-fixed" })
+                                @Html.ValidationMessageFor(model => model.NumeroCuit, null, new { @class = "error" })
+                            </div>
+                            <div class="uk-width-medium-1-2">
+                                @Html.Label("RazonSocial", "Razón Social")
+                                @Html.TextBoxFor(model => model.RazonSocial, new { @class = "md-input label-fixed" })
+                                @Html.ValidationMessageFor(model => model.RazonSocial, null, new { @class = "error" })
+                            </div>
+                        </div>
+                        <h3 class="full_width_in_card heading_c">
+                            Datos de Sistema
+                        </h3>
+                        <div class="uk-grid">
+                            <div class="uk-width-1-1">
+                                <div class="uk-grid uk-grid-width-1-1 uk-grid-width-large-1-5" data-uk-grid-margin>
+                                    <div>
+                                        <div class="uk-input-group">
+                                            @Html.Label("Tipo Usuario", "Tipo Usuario")
+                                            @Html.TextBoxFor(model => model.DescripcionTipoUsuario, new { @class = "md-input label-fixed", @readonly = "readonly" })
+
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="uk-input-group">
+                                            @Html.Label("Usuario", "Usuario ")
+                                            @Html.TextBoxFor(model => model.NombreUsuario, new { @class = "md-input label-fixed" })
+                                            @Html.ValidationMessageFor(model => model.NombreUsuario, null, new { @class = "error" })
+
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="uk-input-group">
+                                            <div class="uk-width-medium-1-3 uk-row-first">
+                                                @Html.Label("Activo", "Activo")
+                                                @Html.CheckBoxFor(model => model.SiActivo, new { data_switchery = "" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="uk-input-group">
+                                            <div class="uk-width-medium-1-3 uk-row-first">
+                                                @Html.Label("Bloqueado", "Bloqueado")
+                                                @Html.CheckBoxFor(model => model.SiBloqueado, new { data_switchery = "" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="uk-input-group">
+                                            @Html.Label("Intentos", "Intentos ")
+                                            @Html.TextBoxFor(model => model.CantidadIntentos, new { @class = "md-input label-fixed" })
+                                            @Html.ValidationMessageFor(model => model.CantidadIntentos, null, new { @class = "error" })
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <h3 class="full_width_in_card heading_c">
+                            Datos de Contacto
+                        </h3>
+                        <div class="uk-form-row">
+                            <div class="uk-width-medium-1-3">
+                                @Html.Label("E-Mail", "E-Mail")
+                                @Html.TextBoxFor(model => model.EMail, new { @class = "md-input label-fixed" })
+                                @Html.ValidationMessageFor(model => model.EMail, null, new { @class = "error" })
+                            </div>
+                        </div>
+
+                        <div class="uk-grid uk-margin">
+                            <div class="uk-width-medium-1-5">
+                                @Html.Label("TipoTel", "Tipo Telefono")
+                                <select id="tipoTelefono" name="TipoTelefono" class="selectize md-input label-fixed">
+                                    @if (Model.TipoTelefono == "F")
+                                    {
+                                        @Html.Raw("<option value='F' selected>Fijo</option>")
+                                        @Html.Raw("<option value='C'>Movil</option>")
+                                    }
+                                    else
+                                    {
+                                        @Html.Raw("<option value='C' selected>Movil</option>")
+                                        @Html.Raw("<option value='F'>Fijo</option>")
+                                    }
+                                </select>
+                            </div>
+                            <div class="uk-width-1-5">
+                                @Html.Label("CodArea", "Cod Area")
+                                @Html.TextBoxFor(model => model.CodigoAreaTelefono, new { @class = "md-input label-fixed" })
+                            </div>
+                            <div class="uk-width-2-5">
+                                @Html.Label("Numero", "Numero")
+                                @Html.TextBoxFor(model => model.NumeroTelefono, new { @class = "md-input label-fixed" })
+                            </div>
+                            <div id="interno" class="uk-width-1-5">
+                                @Html.Label("Interno", "Interno")
+                                @Html.TextBoxFor(model => model.NumeroInterno, new { @class = "md-input label-fixed" })
+                            </div>
+
+                            @Html.ValidationMessageFor(model => model.CodigoAreaTelefono, null, new { @class = "error", @style = "color:#A80000" })
+                            @Html.ValidationMessageFor(model => model.NumeroTelefono, null, new { @class = "error", @style = "color:#A80000" })
+                            @Html.ValidationMessageFor(model => model.NumeroInterno, null, new { @class = "error", @style = "color:#A80000" })
+                        </div>
+
+                    </div>
+
+                    <div class="uk-width-1-1">
+                        <div class="uk-flex uk-flex-center uk-margin-medium-top">
+                            <button title="Buscar" id="btnGuardar" class="md-btn md-btn-accent" type="submit"><span>Guardar</span></button>
+                            <a class="md-btn md-btn-danger" href="@Url.Action("UsuarioDashboard", new { id = Model.Id, tipoUsuario = UsuarioDTO.USUARIOACREEDOR })">Cancelar</a>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @if (ViewBag.Error != null && ViewBag.Error != "")
+    {
+        <script>
+            swal("", '@Html.Raw(ViewBag.Error)', "error")
+        </script>
+    }
+
+    <script src="~/Scripts/template/plugins/uikit_fileinput.js"></script>
+    <script>
+        $(document).ready(function () {
+            activarMenu('#ListadoAcreedores-Usuario');
+            aplicarSelectize($('.selectize'));
+            $('#tipoTelefono').on('change', function () {
+                if (this.value == 'F') {
+                    $('#interno').show();
+                } else {
+                    $('#interno').hide();
+                }
+            });
+            $('#tipoTelefono').change();
+        });
+
+        $("#btnGuardar").click(function (e) {
+            e.preventDefault();
+            if ($("#form0").valid()) {
+                showLoadingModal();
+                $("#form0").submit();
+            }
+        });
+
+        function MostrarResultados(data) {
+            hideLoadingModal();
+            swal({
+                title: "",
+                text: data.mensaje,
+                icon: data.tipoMensaje,
+                buttons: {
+                    confirm: "Aceptar"
+                },
+                closeOnClickOutside: false
+            }).then(() => {
+                if (data.tipoMensaje != "error") {
+                        //hideLoadingModal();
+                        window.location.href = "@Url.Action("UsuarioDashboard", new {id=Model.Id, tipoUsuario = Model.CodigoTipoUsuario})";
+                    }
+            });
+        }
+    </script>
+}

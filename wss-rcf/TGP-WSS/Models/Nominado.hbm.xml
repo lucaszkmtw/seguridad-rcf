@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="TGP.WSS" namespace="TGP.WSS" xmlns="urn:nhibernate-mapping-2.2">
+  <joined-subclass name="Nominado" table="SEG_NOMINADO" extends="Usuario">
+    <key column="C_ID" on-delete="cascade"/>    
+    <property name="NDni">
+      <column name="N_DNI" sql-type="NUMBER" not-null="true" />
+    </property>
+    <property name="DApellido">
+      <column name="D_APELLIDO" sql-type="VARCHAR2" not-null="true" />
+    </property>
+    <property name="DNombre">
+      <column name="D_NOMBRE" sql-type="VARCHAR2" not-null="true" />
+    </property>
+    <property name="Cuit">
+      <column name="N_CUIT" sql-type="VARCHAR2" not-null="false" />
+    </property>
+  </joined-subclass>
+</hibernate-mapping>

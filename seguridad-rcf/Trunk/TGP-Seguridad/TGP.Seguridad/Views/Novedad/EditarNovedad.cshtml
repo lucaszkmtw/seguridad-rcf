@@ -1,0 +1,576 @@
+﻿@using TGP.Seguridad.BussinessLogic.Dto
+@model NovedadDTO
+
+@{
+    ViewBag.Title = "Editar Novedad";
+    Layout = "~/Views/Shared/_LayoutBootstrap.cshtml";
+}
+@*<h2>@ViewBag.Title</h2>*@
+
+<div class="uk-grid sigaf-titulo uk-margin-small-bottom">
+    <div class="uk-width-large-1-2 ">
+        <h2>@ViewBag.Title</h2>
+    </div>
+    <div class=" uk-width-large-1-2 uk-grid uk-grid-small uk-flex uk-flex-right" data-uk-grid-margin data-uk-grid-match="{target:'.md-btn-sigaf'}">
+
+        <a title="" onclick="showLoadingModal()" href="@Url.Action("Listado", "Novedad")" class="md-btn md-btn-primary md-btn-sigaf md-fab-wave-light waves-effect waves-button waves-light">
+            <h2 class="heading_d uk-text-left md-color-white">
+                Volver a
+                <span class="sub-heading md-color-white uk-text-upper">
+                    Listado
+                </span>
+            </h2>
+            <i class="icon-appSigaf md-color-black material-icons">reply</i>
+        </a>
+
+    </div>
+</div>
+@*@using (Html.BeginForm("GuardarEdicion", "Novedad", FormMethod.Post, new { id = "formNovedad" }))*@
+@using (Ajax.BeginForm(null, null, new AjaxOptions() { HttpMethod = "POST" }, new { id = "formNovedad" }))
+
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.Version)
+    @Html.Partial("Partials/_FormNovedad")
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/ResourceDesign//Scripts/template/plugins/tinyMCE/tinymce.min.js"></script>
+    <script src="~/ResourceDesign//Scripts/template/plugins/tinyMCE/langs/es_MX.js"></script>
+    <script src="~/ResourceDesign//Scripts/template/plugins/tinyMCE/forms_wysiwyg.js"></script>
+    <script src="~/ResourceDesign//Scripts/kendo-datepicker/kendoui_custom.min.js"></script>
+
+    <script src="~/ResourceDesign//Scripts/moment.min.js"></script>
+    @*<script src="~/Scripts/template/plugins/datepickerRangeSlider/datepickerconfig.js"></script>*@
+
+    <script>
+        //$(function () {
+        //    //debugger;
+        //    $.validator.methods.date = function (value, element) {
+        //        return this.optional(element) || moment(value, "L", true).isValid();
+        //    }
+        //});
+
+        $(document).ready(function () {
+
+            var nodos = [];
+            var roles = [];
+            @foreach (string d in Model.NodosFuncionales)
+            {
+                @:nodos.push("@d");
+            }
+            @foreach (string d in Model.Roles)
+            {
+                @:roles.push("@d");
+            }
+
+            aplicarSelectize($(".selectize"));
+            aplicarSelectizeMultiple($("#roles"));
+            aplicarSelectizeMultiple($("#nodos"));
+
+            $("#nodos").selectize()[0].selectize.setValue(nodos);
+            $("#roles").selectize()[0].selectize.setValue(roles);
+            @*if ('@Model.SiPublica' === "True") {
+                $("#estructuras").removeAttr("required");
+                $('#estructuras').selectize()[0].selectize.setValue("0");
+                $("#EstructuraFuncionalID").hide();
+                $("#RolID").hide();
+            }*@
+
+            configuracionInicial();
+            textArea();
+            applyevents();
+        });
+
+
+        function configuracionInicial() {
+            if ($('#SiPublica').prop('checked') == false) {
+                $("#EstructuraFuncionalID").show();
+                $("#RolID").show();
+                $("#IdRol").attr("required", "required");
+                $("#IdNodo").attr("required", "required");
+            }
+            else {
+                $("#EstructuraFuncionalID").hide();
+                $('#estructuras').selectize()[0].selectize.setValue("0");
+                $("#RolID").hide();
+                $("#IdRol").removeAttr("required");
+                $("#IdNodo").removeAttr("required");
+            }
+        }
+
+        function textArea() {
+            tinymce.init({
+                selector: "#ta",
+                contextmenu: false,
+                plugins: "textcolor link",
+                font_formats: "Sans Serif = arial, helvetica, sans-serif;Serif = times new roman, serif;Fixed Width = monospace;Wide = arial black, sans-serif;Narrow = arial narrow, sans-serif;Comic Sans MS = comic sans ms, sans-serif;Garamond = garamond, serif;Georgia = georgia, serif;Tahoma = tahoma, sans-serif;Trebuchet MS = trebuchet ms, sans-serif;Verdana = verdana, sans-serif",
+                toolbar: "fontselect | fontsizeselect | bold italic underline | forecolor | numlist bullist | alignleft aligncenter alignright alignjustify | outdent indent | link unlink | undo redo"
+            });
+        }
+
+        function applyevents() {
+            $("#estructuras").change(changeEstructura);
+        }
+
+
+        $('#SiPublica').on('ifChecked', function (event) {
+            $("#estructuras").removeAttr("required");
+            $('#estructuras').selectize()[0].selectize.setValue("0");
+            $("#IdRol").removeAttr("required");
+            $("#IdNodo").removeAttr("required");
+            $("#EstructuraFuncionalID").hide();
+            $("#RolID").hide();
+            $('#nodos').selectize()[0].selectize.clearOptions();
+            $('#roles').selectize()[0].selectize.clearOptions();
+        });
+
+        $('#SiPublica').on('ifUnchecked', function (event) {
+            $("#estructuras").attr("required", "required");
+            $("#EstructuraFuncionalID").show();
+            $("#RolID").show();
+            //if($("#estructuras").val() != "0"){
+            //    $("#RolID").show();
+            //}
+            $("#IdRol").attr("required", "required");
+            $("#IdNodo").attr("required", "required");
+            $('#nodos').selectize()[0].selectize.clearOptions();
+            $('#roles').selectize()[0].selectize.clearOptions();
+        });
+
+
+        //$("#btnGuardar").click(function (e) {
+        //    showLoadingModal();
+        //    e.preventDefault();
+        //    if ($('#SiPublica').prop('checked') == false) {
+        //        var aplicacion = $("#estructuras").text();
+        //         if (aplicacion == '--TODOS--') {
+        //             $('#estructuras').addClass("input-validation-error");
+        //             $('#rqEstructura').show();
+        //             return false;
+        //         }
+        //         else {
+        //             $('#rqEstructura').hide();
+        //         }
+        //        if (aplicacion != 'PORTAL') {
+        //            var valido = true;
+        //             //IdRol
+        //             var roles = $("#roles").val();
+        //             var nodos = $("#nodos").val();
+        //             //var desc = tinyMCE.activeEditor.getContent();
+        //             var desc = tinymce.get("descripcion").getContent();
+        //            //
+        //             if (roles == null) {
+        //                 $('#rqRoles').show();
+        //                 hideLoadingModal();
+        //                 //return false;
+        //                 valido = false;
+        //             }
+        //             else {
+        //                 $('#rqRoles').hide();
+        //             }
+        //            //
+        //             if (nodos == null) {
+        //                 $('#rqNodos').show();
+        //                 hideLoadingModal();
+        //                 //return false;
+        //                 valido = false;
+        //             }
+        //             else {
+        //                 $('#rqNodos').hide();
+        //             }
+        //            //
+        //            if (desc == '') {
+        //                $('#rqDescripcion').show();
+        //                $('#rqDescripcionLarga').hide();
+        //                hideLoadingModal();
+        //                //return false;
+        //                valido = false;
+        //            }
+        //            else
+        //                //comparo que la longitud de la descripcion en la BD no pase los 4000 caracteres
+        //                if (desc.length > 4000) {
+        //                    $('#rqDescripcion').hide();
+        //                    $('#rqDescripcionLarga').show();
+        //                    hideLoadingModal();
+        //                    //return false;
+        //                    valido = false;
+        //                }
+        //                else {
+        //                    $('#rqDescripcion').hide();
+        //                }
+        //            //
+        //            if (valido == false) {
+        //                return false;
+        //            }
+        //         }
+        //        $("#formNovedad").submit();
+        //        hideLoadingModal();
+        //     }
+        //    else {
+        //        //var desc = tinyMCE.activeEditor.getContent();
+        //        var desc = tinymce.get("descripcion").getContent();
+        //        if (desc == '') {
+        //            $('#rqDescripcion').show();
+        //            $('#rqDescripcionLarga').hide();
+        //            hideLoadingModal();
+        //            return false;
+        //        }
+        //        else
+        //        if (desc.length > 4000) {
+        //            $('#rqDescripcion').hide();
+        //            $('#rqDescripcionLarga').show();
+        //            hideLoadingModal();
+        //            return false;
+        //        }
+        //        else {
+        //            $('#rqDescripcion').hide();
+        //        }
+        //        $("#formNovedad").submit();
+        //        hideLoadingModal();
+        //     }
+        //});
+
+        function selectAllNodos() {
+            $(function () {
+                var $projectNodosIds = $('#nodos')[0].selectize;
+                var optKeys = Object.keys($projectNodosIds.options);
+                optKeys.forEach(function (key, index) {
+                    $projectNodosIds.addItem(key);
+                });
+            });
+        }
+
+        function desSelectAllRoles() {
+            $(function () {
+                $('#roles').selectize({})[0].selectize.clear();
+            });
+        }
+
+        function selectAllRoles() {
+            $(function () {
+                var $projectNodosIds = $('#roles')[0].selectize;
+                var optKeys = Object.keys($projectNodosIds.options);
+                optKeys.forEach(function (key, index) {
+                    $projectNodosIds.addItem(key);
+                });
+            });
+        }
+
+        function desSelectAllNodos() {
+            $(function () {
+                $('#nodos').selectize({})[0].selectize.clear();
+            });
+        }
+
+        function changeEstructura() {
+            $('#rqEstructura').hide();
+            if ($("#estructuras").val() === "0") {
+                //$("#RolID").hide();
+                $('#nodos').selectize()[0].selectize.clearOptions();
+                $('#roles').selectize()[0].selectize.clearOptions();
+            }
+            else {
+            $.ajax(
+               {
+                   url: '@Url.Action("GetRolesNodoPorEstructura", "Novedad")',
+                   type: "POST",
+                   data: {
+                       cod: $("#estructuras").val()
+                   },
+                   beforeSend: function (xhr) {
+                       showLoadingModal();
+                   },
+                   success: function (data) {
+                       hideLoadingModal();
+                       if (data !== null) {
+                           let selectizeControlNodos = $('#nodos').selectize()[0].selectize;
+                           let selectizeControlRoles = $('#roles').selectize()[0].selectize;
+
+                           selectizeControlNodos.clearOptions();
+                           selectizeControlRoles.clearOptions();
+
+                           $.each(data.nodos, function (i, data) {
+                               if (data.Value === -1) {
+                                   selectizeControlNodos.addOption({ value: data.Value, text: data.Text });
+                                   selectizeControlNodos.addItem(-1);
+                               } else {
+                                   selectizeControlNodos.addOption({ value: data.Value, text: data.Text });
+                               }
+                           }
+                           );
+                           let arrayNodos = Object.keys(selectizeControlNodos.options);
+                           if (arrayNodos.length === 1) {
+                               selectizeControlNodos.addItem(arrayNodos[0]);
+                           }
+
+                           $.each(data.roles, function (i, data) {
+                               if (data.Value === -1) {
+                                   selectizeControlRoles.addOption({ value: data.Value, text: data.Text });
+                                   selectizeControlRoles.addItem(-1);
+                               } else {
+                                   selectizeControlRoles.addOption({ value: data.Value, text: data.Text });
+                               }
+                           }
+                           );
+                           let arrayRoles = Object.keys(selectizeControlRoles.options);
+                           if (arrayRoles.length === 1) {
+                               selectizeControlRoles.addItem(arrayRoles[0]);
+                           }
+                       }
+                       $("#RolID").show();
+                   },
+                   error: function (e) {
+                       hideLoadingModal();
+                   }
+               });
+            }
+        }
+
+
+        //date piker
+
+        function startChange() {
+            var startDate = start.value(),
+                endDate = end.value();
+
+            if (startDate) {
+                startDate = new Date(startDate);
+                startDate.setDate(startDate.getDate());
+                end.min(startDate);
+                if (!end.value() || (end.value().getTime() < startDate.getTime())) {
+                    //end.value(startDate)
+                    end.value(null)
+                }
+            }
+            else {
+                start.value(new Date())
+                endDate = new Date();
+                end.min(endDate);
+            }
+        }
+
+        function endChange() {
+            var endDate = end.value(),
+                startDate = start.value();
+
+            if (!endDate) {
+                //endDate = new Date(endDate);
+                //endDate.setDate(endDate.getDate());
+                //start.max(endDate);
+                //end.value(startDate);
+                end.value(null);
+            }
+            //else if (startDate) {
+            //    end.min(new Date(startDate));
+            //} else {
+            //    endDate = new Date();
+            //    start.max(endDate);
+            //    end.min(endDate);
+            //}
+        }
+
+        var today = kendo.date.today();
+
+        var start = $("#FechaDesde").kendoDateTimePicker({
+            //value: moment(new Date()).toDate(),
+            value: new moment($("#FechaDesde").val(), "DD-MM-YYYY HH-mm").toDate(),
+            change: startChange,
+            culture: "es-ES",
+            format: "dd-MM-yyyy HH:mm"
+        }).data("kendoDateTimePicker");
+
+        var end = $("#FechaHasta").kendoDateTimePicker({
+            //value: new moment($("#FechaHasta").val(), "DD-MM-YYYY HH-mm").toDate(),
+            value: $('#FechaHasta').val(),
+            change: endChange,
+            culture: "es-ES",
+            format: "dd-MM-yyyy HH:mm"
+        }).data("kendoDateTimePicker");
+
+        start.min(new Date());
+        //start.max(end.value());
+        end.min(start.value());
+
+
+        $("#FechaHasta").keypress((e) => {
+            if (e.which === 13)
+                e.currentTarget.blur();
+        })
+
+        $("#FechaDesde").keypress((e) => {
+            if (e.which === 13)
+                e.currentTarget.blur();
+        })
+
+        //fin date piker
+
+                $("#formNovedad").submit(function (e) {
+            debugger;
+            var desc = tinymce.get("descripcion").getContent();
+            $('#descripcion').val(desc);
+
+                e.preventDefault();
+            var formdata = new FormData(this);
+
+             if ($('#SiPublica').prop('checked') == false) {
+                var aplicacion = $("#estructuras").text();
+                 if (aplicacion == '--TODOS--') {
+                     $('#estructuras').addClass("input-validation-error");
+                     $('#rqEstructura').show();
+                     return false;
+                 }
+                 else {
+                     $('#rqEstructura').hide();
+                 }
+                 if (aplicacion != 'PORTAL') {
+                     var valido = true;
+                     //IdRol
+                     var roles = $("#roles").val();
+                     var nodos = $("#nodos").val();
+                     //var desc = tinyMCE.activeEditor.getContent();
+                     var desc = tinymce.get("descripcion").getContent();
+                     //
+                     if (roles == null) {
+                         $('#rqRoles').show();
+                         hideLoadingModal();
+                         //return false;
+                         valido = false;
+                     }
+                     else {
+                         $('#rqRoles').hide();
+                     }
+                     //
+                     if (nodos == null) {
+                         $('#rqNodos').show();
+                         hideLoadingModal();
+                         //return false;
+                         valido = false;
+                     }
+                     else {
+                         $('#rqNodos').hide();
+                     }
+                     //
+                     if (desc == '') {
+                         $('#rqDescripcion').show();
+                         $('#rqDescripcionLarga').hide();
+                         hideLoadingModal();
+                         //return false;
+                         valido = false;
+                     }
+                     else
+                         //comparo que la longitud de la descripcion en la BD no pase los 4000 caracteres
+                         if (desc.length > 4000) {
+                             $('#rqDescripcion').hide();
+                             $('#rqDescripcionLarga').show();
+                             hideLoadingModal();
+                             //return false;
+                             valido = false;
+                         }
+                         else {
+                             $('#rqDescripcion').hide();
+                         }
+                     //
+                     if (valido == false) {
+                         return false;
+                     }
+                 }
+                  $.ajax({
+                    url: '@Url.Action("GuardarEdicion", "Novedad")',
+                    type: "POST",
+                    dataType: "json",
+                    data: formdata,
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function (xhr) {
+                        showLoadingModal();
+                    },
+                    success: function (data) {
+                        hideLoadingModal();
+                         swal({
+                            title: "",
+                            text: data.mensaje,
+                            icon: data.tipoMensaje,
+                            buttons: {
+                                confirm: "Aceptar"
+                            },
+                            closeOnClickOutside: false,
+                        }).then(() => {
+                            if (data.tipoMensaje == "success") {
+                                window.location.href = "@Url.Action("Listado", "Novedad")";
+                            }
+                        });
+                    },
+                    error: function (result) {
+                        hideLoadingModal();
+                    }
+                });
+
+
+            }
+            else {
+                //var desc = tinyMCE.activeEditor.getContent();
+                var desc = tinymce.get("descripcion").getContent();
+                if (desc == '') {
+                    $('#rqDescripcion').show();
+                    $('#rqDescripcionLarga').hide();
+                    hideLoadingModal();
+                    return false;
+                }
+                else
+                    if (desc.length > 4000) {
+                        $('#rqDescripcion').hide();
+                        $('#rqDescripcionLarga').show();
+                        hideLoadingModal();
+                        return false;
+                    }
+                    else {
+                        $('#rqDescripcion').hide();
+                    }
+                  $.ajax({
+                    url: '@Url.Action("GuardarEdicion", "Novedad")',
+                    type: "POST",
+                    dataType: "json",
+                    data: formdata,
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function (xhr) {
+                        showLoadingModal();
+                    },
+                    success: function (data) {
+                        hideLoadingModal();
+                         swal({
+                            title: "",
+                            text: data.mensaje,
+                            icon: data.tipoMensaje,
+                            buttons: {
+                                confirm: "Aceptar"
+                            },
+                            closeOnClickOutside: false,
+                        }).then(() => {
+                            if (data.tipoMensaje == "success") {
+                                window.location.href = "@Url.Action("Listado", "Novedad")";
+                            }
+                        });
+                    },
+                    error: function (result) {
+                        hideLoadingModal();
+                    }
+                });
+
+
+             }
+        });
+
+
+
+
+
+    </script>
+
+}
+

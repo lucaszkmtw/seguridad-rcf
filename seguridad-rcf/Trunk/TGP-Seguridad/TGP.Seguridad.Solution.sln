@@ -1,0 +1,111 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32901.82
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03.DataAccess", "03.DataAccess", "{461C0B9F-9177-4227-AE03-D21B8C23CB8B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01.Clients", "01.Clients", "{1EB3BEF9-EB7A-4ADB-AB4A-4740C86E9AA0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lib", "Lib", "{0765718E-617C-46B4-841F-CF9D4D9CA95E}"
+	ProjectSection(SolutionItems) = preProject
+		..\Lib\AttributeRouting.dll = ..\Lib\AttributeRouting.dll
+		..\Lib\AttributeRouting.Web.dll = ..\Lib\AttributeRouting.Web.dll
+		..\Lib\AttributeRouting.Web.Http.dll = ..\Lib\AttributeRouting.Web.Http.dll
+		..\Lib\AttributeRouting.Web.Http.WebHost.dll = ..\Lib\AttributeRouting.Web.Http.WebHost.dll
+		..\Lib\AttributeRouting.Web.Mvc.dll = ..\Lib\AttributeRouting.Web.Mvc.dll
+		..\Lib\AutoMapper.dll = ..\Lib\AutoMapper.dll
+		..\Lib\Castle.Core.dll = ..\Lib\Castle.Core.dll
+		..\Lib\CommonServiceLocator.NinjectAdapter.dll = ..\Lib\CommonServiceLocator.NinjectAdapter.dll
+		..\Lib\ephtmltopdf.dll = ..\Lib\ephtmltopdf.dll
+		..\Lib\EPPlus.dll = ..\Lib\EPPlus.dll
+		..\Lib\FluentNHibernate.dll = ..\Lib\FluentNHibernate.dll
+		..\Lib\GridMvc.dll = ..\Lib\GridMvc.dll
+		..\Lib\HibernatingRhinos.Profiler.Appender.dll = ..\Lib\HibernatingRhinos.Profiler.Appender.dll
+		..\Lib\Iesi.Collections.dll = ..\Lib\Iesi.Collections.dll
+		..\Lib\INCT.FNHProviders.dll = ..\Lib\INCT.FNHProviders.dll
+		..\Lib\LinFu.Core.dll = ..\Lib\LinFu.Core.dll
+		..\Lib\LinFu.DynamicProxy.dll = ..\Lib\LinFu.DynamicProxy.dll
+		..\Lib\LinqToExcel.dll = ..\Lib\LinqToExcel.dll
+		..\Lib\log4net.dll = ..\Lib\log4net.dll
+		..\Lib\Microsoft.Practices.Unity.Configuration.dll = ..\Lib\Microsoft.Practices.Unity.Configuration.dll
+		..\Lib\Microsoft.Practices.Unity.dll = ..\Lib\Microsoft.Practices.Unity.dll
+		..\Lib\Microsoft.Practices.Unity.Interception.Configuration.dll = ..\Lib\Microsoft.Practices.Unity.Interception.Configuration.dll
+		..\Lib\Microsoft.Practices.Unity.Interception.dll = ..\Lib\Microsoft.Practices.Unity.Interception.dll
+		..\Lib\Microsoft.Practices.Unity.RegistrationByConvention.dll = ..\Lib\Microsoft.Practices.Unity.RegistrationByConvention.dll
+		..\Lib\Microsoft.Web.Mvc.dll = ..\Lib\Microsoft.Web.Mvc.dll
+		..\Lib\MvcSiteMapProvider.dll = ..\Lib\MvcSiteMapProvider.dll
+		..\Lib\Newtonsoft.Json.dll = ..\Lib\Newtonsoft.Json.dll
+		..\Lib\NHibernate.ByteCode.LinFu.dll = ..\Lib\NHibernate.ByteCode.LinFu.dll
+		..\Lib\NHibernate.dll = ..\Lib\NHibernate.dll
+		..\Lib\Ninject.dll = ..\Lib\Ninject.dll
+		..\Lib\NLog.dll = ..\Lib\NLog.dll
+		..\Lib\Oracle.DataAccess.dll = ..\Lib\Oracle.DataAccess.dll
+		..\Lib\Oracle.ManagedDataAccess.dll = ..\Lib\Oracle.ManagedDataAccess.dll
+		..\Lib\Remotion.Data.Linq.dll = ..\Lib\Remotion.Data.Linq.dll
+		..\Lib\Sigaf.Framework.dll = ..\Lib\Sigaf.Framework.dll
+		..\Lib\Sigaf.Framework.Providers.dll = ..\Lib\Sigaf.Framework.Providers.dll
+		..\Lib\Sigaf.Framework.UIAuthorization.dll = ..\Lib\Sigaf.Framework.UIAuthorization.dll
+		..\Lib\System.Web.Http.Tracing.dll = ..\Lib\System.Web.Http.Tracing.dll
+		..\Lib\System.Web.Mvc.dll = ..\Lib\System.Web.Mvc.dll
+		..\Lib\Unity.AutoRegistration.dll = ..\Lib\Unity.AutoRegistration.dll
+		..\Lib\WebGrease.dll = ..\Lib\WebGrease.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02.BussinessLogic", "02.BussinessLogic", "{F9D4AA69-2359-40A4-AB84-CF858ABF5800}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TGP.Seguridad", "TGP.Seguridad\TGP.Seguridad.csproj", "{B238B815-EEED-4E9C-BC71-B916EEAFBEDF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7537100D-92C5-407F-846C-85269A22E8DD} = {7537100D-92C5-407F-846C-85269A22E8DD}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TGP.Seguridad.DataAccess", "TGP.Seguridad.DataAccess\TGP.Seguridad.DataAccess.csproj", "{A555CFCF-4750-44D0-9A8B-076228559EC7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TGP.Seguridad.BussinessLogic", "TGP.Seguridad.BussinessLogic\TGP.Seguridad.BussinessLogic.csproj", "{7537100D-92C5-407F-846C-85269A22E8DD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A555CFCF-4750-44D0-9A8B-076228559EC7} = {A555CFCF-4750-44D0-9A8B-076228559EC7}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TGP.API.SEG", "TGP.API.SEG\TGP.API.SEG.csproj", "{10253938-06BF-436B-949B-43DA499F45DC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		DESA|Any CPU = DESA|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B238B815-EEED-4E9C-BC71-B916EEAFBEDF}.Debug|Any CPU.ActiveCfg = DESA|Any CPU
+		{B238B815-EEED-4E9C-BC71-B916EEAFBEDF}.Debug|Any CPU.Build.0 = DESA|Any CPU
+		{B238B815-EEED-4E9C-BC71-B916EEAFBEDF}.DESA|Any CPU.ActiveCfg = DESA|Any CPU
+		{B238B815-EEED-4E9C-BC71-B916EEAFBEDF}.DESA|Any CPU.Build.0 = DESA|Any CPU
+		{B238B815-EEED-4E9C-BC71-B916EEAFBEDF}.Release|Any CPU.ActiveCfg = DESA|Any CPU
+		{A555CFCF-4750-44D0-9A8B-076228559EC7}.Debug|Any CPU.ActiveCfg = DESA|Any CPU
+		{A555CFCF-4750-44D0-9A8B-076228559EC7}.Debug|Any CPU.Build.0 = DESA|Any CPU
+		{A555CFCF-4750-44D0-9A8B-076228559EC7}.DESA|Any CPU.ActiveCfg = DESA|Any CPU
+		{A555CFCF-4750-44D0-9A8B-076228559EC7}.DESA|Any CPU.Build.0 = DESA|Any CPU
+		{A555CFCF-4750-44D0-9A8B-076228559EC7}.Release|Any CPU.ActiveCfg = DESA|Any CPU
+		{7537100D-92C5-407F-846C-85269A22E8DD}.Debug|Any CPU.ActiveCfg = DESA|Any CPU
+		{7537100D-92C5-407F-846C-85269A22E8DD}.Debug|Any CPU.Build.0 = DESA|Any CPU
+		{7537100D-92C5-407F-846C-85269A22E8DD}.DESA|Any CPU.ActiveCfg = DESA|Any CPU
+		{7537100D-92C5-407F-846C-85269A22E8DD}.DESA|Any CPU.Build.0 = DESA|Any CPU
+		{7537100D-92C5-407F-846C-85269A22E8DD}.Release|Any CPU.ActiveCfg = DESA|Any CPU
+		{10253938-06BF-436B-949B-43DA499F45DC}.Debug|Any CPU.ActiveCfg = DESA|Any CPU
+		{10253938-06BF-436B-949B-43DA499F45DC}.Debug|Any CPU.Build.0 = DESA|Any CPU
+		{10253938-06BF-436B-949B-43DA499F45DC}.DESA|Any CPU.ActiveCfg = DESA|Any CPU
+		{10253938-06BF-436B-949B-43DA499F45DC}.DESA|Any CPU.Build.0 = DESA|Any CPU
+		{10253938-06BF-436B-949B-43DA499F45DC}.Release|Any CPU.ActiveCfg = DESA|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B238B815-EEED-4E9C-BC71-B916EEAFBEDF} = {1EB3BEF9-EB7A-4ADB-AB4A-4740C86E9AA0}
+		{A555CFCF-4750-44D0-9A8B-076228559EC7} = {461C0B9F-9177-4227-AE03-D21B8C23CB8B}
+		{7537100D-92C5-407F-846C-85269A22E8DD} = {F9D4AA69-2359-40A4-AB84-CF858ABF5800}
+		{10253938-06BF-436B-949B-43DA499F45DC} = {1EB3BEF9-EB7A-4ADB-AB4A-4740C86E9AA0}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {87B7DD17-D087-41C9-A400-7F5E2E5B3658}
+	EndGlobalSection
+EndGlobal

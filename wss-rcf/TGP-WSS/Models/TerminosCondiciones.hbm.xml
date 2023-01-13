@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="TGP.WSS" namespace="TGP.WSS" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="TerminosCondiciones" table="seg_terminos_condiciones" lazy="true" >
+    <id name="CId" column="C_ID">
+      <generator class="native" >
+        <param name="sequence">SEG_TERMINOS_CONDICIONES_SQ</param>
+      </generator>
+    </id>
+    <version name="NVersionHibernate">
+      <column name="N_VERSION_HIBERNATE" sql-type="NUMBER" not-null="true" />
+    </version>
+    <property name="Descripcion">
+      <column name="d_terminos_condiciones" sql-type="BLOB" not-null="true" />
+    </property>
+    <property name="Version">
+      <column name="c_version" sql-type="VARCHAR2" not-null="true" />
+    </property>
+    <property name="FDesde">
+      <column name="F_DESDE" sql-type="DATE" not-null="true" />
+    </property>
+    <property name="FHasta">
+      <column name="F_HASTA" sql-type="DATE" not-null="false" />
+    </property>
+    <many-to-one name="EstructuraFuncional" cascade="none">
+      <column name="c_id_estructura_funcional" sql-type="NUMBER" not-null="true" />
+    </many-to-one>
+  </class>
+</hibernate-mapping>
+
+  
+    
+    

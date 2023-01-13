@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewBag.Title = "MonitorUsuario";
+    Layout = "~/Views/Shared/_LayoutBootstrap.cshtml";
+}
+@*<script src="~/Scripts/jquery/jquery-3.1.1.js"></script>*@
+<script src="~/Scripts/jquery.signalR-2.2.1.js"></script>
+@*<script src="~/Scripts/king-common.js"></script>*@
+@*<script src="~/Scripts/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>*@
+<script src="~/signalr/hubs"></script>
+
+<script>
+    //Declaro el proxy.
+    var myHub = $.connection.auditoriaUsuarioHub;
+
+    //Creo la función que recibe la información del lado del cliente. Se le puede poner los parámetros q quieras.
+    myHub.on('recibeWEBData', function (avatar, nombreUsuario, estructuraFuncional, fechaRegistro, usuarioID, IPCliente, browserCliente, serverDescripcion) {
+        $('#body1').append("<img class='img-circle pull-left avatar' style='border-radius: 50%; width: 24px;' src='data:image/jpeg;base64," + avatar + "' alt='Avatar'> <div class='text clearfix' style='margin-left:-20px;'> <span class='username'>" + nombreUsuario + "</span> <span class='timestamp'>" + fechaRegistro + "</span><p class='message'><span style='color:green;'>Se <b>CONECTO</b> desde la aplicación: <strong>" + estructuraFuncional + "</strong>, con el browser: " + browserCliente + ", y desde la IP: " + IPCliente + "</p></div>");
+    });
+
+    //Creo la función que recibe la información del lado del cliente. Se le puede poner los parámetros q quieras.
+    myHub.on('recibeWEBDataDisconect', function (avatar, nombreUsuario, estructuraFuncional, fechaRegistro, usuarioID, IPCliente, browserCliente, serverDescripcion) {
+        $('#body1').append("<img class='img-circle pull-left avatar' style='border-radius: 50%; width: 24px;' src='data:image/jpeg;base64," + avatar + "' alt='Avatar'> <div class='text clearfix' style='margin-left:-20px;'> <span class='username'>" + nombreUsuario + "</span> <span class='timestamp'>" + fechaRegistro + "</span><p class='message'><span style='color:red;'>Se <b>DESCONECTO</b> desde la aplicación: <strong>" + estructuraFuncional + "</strong>, con el browser: " + browserCliente + ", y desde la IP: " + IPCliente + "</p></div>");
+    });
+
+    //Finalmente se inicia la coneccion.
+    $.connection.hub.start().done(function () { myHub.server.serverSignal(); });
+
+
+</script>
+
+<div class="content">
+    <div class="main-header">
+        <h2>Monitor de Conexiones de Usuarios</h2>
+        <em>another dashboard alternative</em>
+    </div>
+    <div class="main-content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget widget-scrolling">
+                    <div class="widget-header">
+                        <h3>
+                            <i class="fa fa-slack"></i>
+                            Monitor
+                        </h3>
+                        <div class="btn-group widget-header-toolbar">
+                            <a class="btn-borderless btn-focus" href="#" title="Focus">
+                                <i class="fa fa-eye"></i>
+                            </a>
+                            <a class="btn-borderless btn-toggle-expand" href="#" title="Expand/Collapse">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="btn-borderless btn-remove" href="#" title="Remove">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="slimScrollDiv" style='position: relative; overflow: hidden; width: auto; height: 410px;'>
+                        <div class="widget-content" style="overflow: hidden; width: auto; height: 410px;">
+
+                            <ul class="list-unstyled slack-messages">
+                                <li class="day-separator">
+                                    <span>Tiempo real</span>
+                                </li>
+                                <li id="body1">
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

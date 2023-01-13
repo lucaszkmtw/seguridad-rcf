@@ -1,0 +1,358 @@
+﻿@using TGP.Seguridad.BussinessLogic.Dto
+@model ComparadorGenerico
+
+@{
+    
+    Layout = "~/Views/Shared/_LayoutBootstrap.cshtml";
+}
+
+<div class="uk-grid sigaf-titulo">
+    <div class="uk-width-large-1-2">
+        <h2 class="uk-margin-bottom">@ViewBag.Titulo</h2>
+    </div>
+</div>
+
+<div class="md-card" id="comboEstructuraCard">
+    <div class="md-card-content">
+        <div class="uk-grid uk-margin-top uk-margin-bottom">
+            <div class="uk-width-1-2">
+                @using (Ajax.BeginForm("GetEntidadesOrigenDestino", "Comparar", new AjaxOptions() { HttpMethod = "POST", OnSuccess = "UpdateDataTables", OnFailure = "UpdateDataTables" }, new { id = "formCambioEstructura" }))
+                {
+                    @Html.HiddenFor(model => model.TipoComparador)
+                    @Html.HiddenFor(model => model.OpcionActivar)
+                    @Html.HiddenFor(model => model.ElementosOrigen)
+                    @Html.HiddenFor(model => model.ElementosDestino)
+
+                    @Html.Label("Estructura", "Estructura")
+                    @Html.DropDownListFor(model => model.EstructuraSeleccionada, (SelectList)ViewBag.Estructuras, "Seleccione una Estructura", new { @class = "selectize md-input label-fixed" })
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<div id="div-resultados">
+    @Html.Partial("Partials/_ListadoComparacion")
+</div>
+
+
+
+@section scripts{
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    @if (ViewBag.Error != null && ViewBag.Error != "")
+    {
+        <script>
+                hideLoadingModal();
+                swal("", '@ViewBag.Error', "error")
+
+            swal({
+                title: "",
+                text: '@ViewBag.Error',
+                icon: "error",
+                buttons: {
+                    confirm: "Aceptar"
+                },
+                closeOnClickOutside: false
+            }).then(() => {
+                showLoadingModal();
+                    changeEstructura();
+                });
+
+        </script>
+    }
+    <script>
+            $(document).ready(function () {
+
+                activarMenu("@Model.OpcionActivar");
+                aplicarSelectize($('.selectize'));
+                $("#EstructuraSeleccionada").change(function () {
+                    if (!isNullOrEmpty('#EstructuraSeleccionada') && $("#EstructuraSeleccionada").val() != "")
+                        changeEstructura();
+                }).keyup(function () {
+                    if (!isNullOrEmpty('#EstructuraSeleccionada') && $("#EstructuraSeleccionada").val() != "")
+                        changeEstructura();
+                });
+
+                
+                updateDatatable('#datatable-origen');
+                updateDatatable('#datatable-destino');
+
+                if ('@Session["estructuraSelected"]') {
+                    $("#EstructuraSeleccionada").selectize({})[0].selectize.setValue('@Session["estructuraSelected"]', true);
+                    $("#EstructuraSeleccionada").change();
+            }
+
+                if ((!isNullOrEmpty('#EstructuraSeleccionada') && $("#EstructuraSeleccionada").val() != "")) {
+                    changeEstructura();
+                    actualizarCheckBoxes("idElemento");
+                }
+                if ('@Model.TipoComparador' === '@ComparadorGenerico.ESTRUCTURA') {
+                    $("#comboEstructuraCard").hide();
+                    changeEstructura();
+
+                }
+
+
+            });
+
+            function updateDatatable(id) {
+
+                table = $(id).dataTable({
+                    "scrollX": false,
+                    iDisplayLength: 25,
+                    aaSorting: [[2, "asc"]],
+                    dom: agregarDomDatatableWithoutButtons(),
+
+                    colVis: {
+                        buttonText: '<i class="fa fa-eye" title="Mostrar / Ocultar"></i>',
+                        restore: "Reestablecer",
+                        showAll: "Mostrar Todas"
+                    },
+                    aoColumnDefs: [
+                        { bSortable: false, aTargets: [0, 1] },
+                    ],
+                    "lengthMenu": [[25, 50, 100], [25, 50, 100]],
+                    buttons: [
+                        { extend: 'copy', className: 'md-btn md-btn-small', text: 'Copiar' },
+                        { extend: 'csv', title: 'Comparador de Roles', className: 'md-btn md-btn-small' },
+                        { extend: 'pdf', title: 'Comparador de Roles', className: 'md-btn md-btn-small', orientation: 'landscape', exportOptions: { columns: [1, 2, 3, 4], }, customize: function (doc) { doc.defaultStyle.alignment = 'landscape'; } },
+                        { extend: 'print', className: 'md-btn md-btn-small', text: 'Imprimir' }
+                    ],
+                    language: agregarLenguajeDatatable(),
+                    "drawCallback": function (settings) {
+                        if (id == "#datatable-origen")
+                            actualizarCheckBoxes("idElemento");
+                    }
+                });
+            }
+
+
+
+        function changeEstructura() {
+            showLoadingModal();
+            $("#formCambioEstructura").submit();
+        }
+
+        function UpdateDataTables(data) {
+            hideLoadingModal();
+            $("#div-resultados").html(data);
+            updateDatatable('#datatable-origen');
+            updateDatatable('#datatable-destino');
+            actualizarCheckBoxes("idRol");
+        }
+
+
+
+            function actualizarCheckBoxes(idText) {
+                altair_md.checkbox_radio($('#select-all'));
+                altair_md.checkbox_radio($('.checkDetalles'));
+                $('#select-all').on('ifChecked', function (event) {
+                    $(`input[name='${idText}'`).each(function () { $(this).iCheck("check") });
+
+                });
+                $('#select-all').on('ifUnchecked', function (event) {
+                    $(`input[name='${idText}']`).each(function () { $(this).iCheck("uncheck") });
+                    disabledBtn("#btnGenerar");
+                });
+                $(`input[name='${idText}']`).on('ifClicked', function () {
+
+                    $('#select-all').on('ifChecked', function (event) {
+                        $(`input[name='${idText}']`).each(function () { $(this).iCheck("check") });
+                    });
+                    $('#select-all').on('ifUnchecked', function (event) {
+                        $(`input[name='${idText}']`).each(function () { $(this).iCheck("uncheck") });
+                        disabledBtn("#btnGenerar");
+                    });
+                })
+
+                $(`input[name='${idText}']`).each(function () {
+                    $(this).on('ifChecked', function (event) {
+                        ableBtn("#btnGenerar");
+                    });
+                    $(this).on('ifUnchecked', function (event) {
+                        if ($(`input[name='${idText}']:checked`).length == 0) {
+                            disabledBtn("#btnGenerar");
+                        }
+                    });
+                });
+            }
+
+
+        function copiarDestino(descripcion, cod, tipoComparador, estructura) {
+            swal({
+                title: "",
+                text: "@Html.Raw(Model.TextoCopiarDestino)" + descripcion + "?",
+                icon: "warning",
+                buttons: {
+                    confirm: "Aceptar",
+                    cancel: "Cancelar"
+                },
+                closeOnClickOutside: false,
+            }).then(
+                (isConfirm) => {
+                    if (isConfirm) {
+                          $.ajax({
+                                type: "POST",
+                                url: '@Url.Action("CopiarDestino", "Comparador")',
+                                data: {
+                                    cod: cod,
+                                    tipoComparador: tipoComparador,
+                                    estructura: estructura
+                                },
+                                beforeSend: function (xhr) {
+                                    showLoadingModal();
+                                },
+                                success: function (data) {
+                                    hideLoadingModal();
+                                    if (data != null) {
+                                        swal({
+                                            title: "",
+                                            text: data.mensaje,
+                                            icon: data.tipoMensaje,
+                                            buttons: {
+                                                confirm: "Aceptar"
+                                            },
+                                            closeOnClickOutside: false,
+                                        }).then(() => {
+                                            if (data.tipoMensaje == "success") {
+                                                showLoadingModal();
+                                                changeEstructura();
+                                            }
+                                        });
+                                            
+                                    }
+                                },
+                              error: function (e) {
+                                  hideLoadingModal();
+                                    //swal("", e, "error");
+                                }
+                            });
+                    }
+                });
+
+                  
+            }
+
+
+        function copiarMasivo(tipoComparador, estructura) {
+                var len = $("input[name='idElemento']:checked").length;
+                if (len > 0) {
+                    var codigos = [];
+                    $.each($("input[name='idElemento']:checked"), function () {
+                        codigos.push($(this).val());
+                    });
+
+                    swal({
+                        title: "",
+                        text: '@Html.Raw(Model.TextoCopiarDestinoMasivo)',
+                        icon: "warning",
+                        buttons: {
+                            confirm: "Aceptar",
+                            cancel: "Cancelar"
+                        },
+                        closeOnClickOutside: false,
+                    }).then(
+                        (isConfirm) => {
+                            if (isConfirm) {
+                                 $.ajax({
+                                    type: "POST",
+                                    url: '@Url.Action("CopiarDestino", "Comparador")',
+                                    data: {
+                                        cod: codigos,
+                                        tipoComparador: tipoComparador,
+                                        estructura: estructura
+                                    },
+                                    beforeSend: function (xhr) {
+                                        showLoadingModal();
+                                    },
+                                    success: function (data) {
+                                        hideLoadingModal();
+                                            swal({
+                                                title: "",
+                                                text: data.mensaje,
+                                                icon: data.tipoMensaje,
+                                                buttons: {
+                                                    confirm: "Aceptar"
+                                                },
+                                                closeOnClickOutside: false,
+                                            }).then(() => {
+                                                changeEstructura();
+                                            });
+                                          
+                                    },
+                                    error: function (xhr, ajaxOptions, thrownError) {
+                                        hideLoadingModal();
+                                    }
+                            });
+                            }
+                        });
+                        
+                } else {
+                    swal({
+                        title: "",
+                        text: "No ha seleccionado elementos.",
+                        icon: "error",
+                        buttons: {
+                            confirm: "Aceptar"
+                        },
+                        closeOnClickOutside: false
+                    });
+                    return false;
+                }
+            }
+
+
+            function eliminarDestino(descripcion, id, tipoComparador ,version) {
+                swal({
+                    title: "",
+                    text: '@Html.Raw(Model.TextoEliminarDestino)' + descripcion +  "? ",
+                    icon: "warning",
+                    buttons: {
+                        confirm: "Aceptar",
+                        cancel: "Cancelar"
+                    },
+                    closeOnClickOutside: false,
+                    }).then(
+                        (isConfirm) => {
+                            if (isConfirm) {
+                                $.ajax({
+                                    type: "POST",
+                                    url: '@Url.Action("EliminarDestino", "Comparador")',
+                                    data: {
+                                        id: id,
+                                        tipoComparador: tipoComparador,
+                                        version: version
+                                    },
+                                    beforeSend: function (xhr) {
+                                        showLoadingModal();
+                                    },
+                                    success: function (data) {
+                                        hideLoadingModal();
+                                            swal({
+                                                title: "",
+                                                text: data.mensaje,
+                                                icon: data.tipoMensaje,
+                                                buttons: {
+                                                    confirm: "Aceptar"
+                                                },
+                                                closeOnClickOutside: false,
+                                            }).then(() => {
+                                                changeEstructura();
+                                            });
+                                    },
+                                    error: function (xhr, ajaxOptions, thrownError) {
+                                        hideLoadingModal();
+                                    }
+                                });
+                            }
+                        });
+            }
+
+
+
+    </script>
+
+
+}

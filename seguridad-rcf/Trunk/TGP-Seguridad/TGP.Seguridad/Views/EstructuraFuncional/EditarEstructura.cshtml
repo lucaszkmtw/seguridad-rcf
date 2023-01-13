@@ -1,0 +1,56 @@
+﻿@using TGP.Seguridad.BussinessLogic.Dto
+@model EstructuraFuncionalDTO
+@{
+    ViewBag.Title = "Seg - Editar Estructura Funcional";
+    Layout = "~/Views/Shared/_LayoutBootstrap.cshtml";
+}
+
+
+<div class="uk-grid sigaf-titulo">
+    <div class="uk-width-1-2">
+        <h2>Nueva Estructura Funcional</h2>
+    </div>
+</div>
+
+
+<div class="uk-grid" data-uk-grid-margin>
+    <div class="uk-width-1-1">
+        <div class="uk-form-row">
+            <div class="md-card uk-margin-bottom">
+                <div class="md-card-content">
+                    @using (Ajax.BeginForm("GuardarEdicionEstructura", "EstructuraFuncional", new AjaxOptions() { HttpMethod = "POST", OnSuccess = "VolverAlListado", OnFailure = "VolverAlListado" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                        @Html.HiddenFor(m => m.Id)
+                        @Html.HiddenFor(m => m.Version)
+                        @Html.Partial("Partials/_FormEstructuraFuncional")
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+    function VolverAlListado(data) {
+            hideLoadingModal();
+            swal({
+                title: "",
+                text: data.mensaje,
+                icon: data.tipoMensaje,
+                buttons: {
+                    confirm: "Aceptar"
+                },
+                closeOnClickOutside: false,
+            }).then(() => {
+                if (data.tipoMensaje != "error") {
+                        window.location.href = "@Url.Action("Listado","EstructuraFuncional")";
+                    }
+            });
+         
+        }
+    </script>
+}

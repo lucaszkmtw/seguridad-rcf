@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="TGP.WSS" namespace="TGP.WSS" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="Solicitud" table="SEG_SOLICITUD" lazy="true" >
+    <id name="Id" column="C_ID">
+      <generator class="native" >
+        <param name="sequence">seg_solicitud_sq</param>
+      </generator>
+    </id>
+    <version name="VersionHibernate">
+      <column name="N_VERSION_HIBERNATE" sql-type="NUMBER" not-null="true" />
+    </version>
+    <many-to-one name="EstadoSolicitud">
+      <column name="C_ID_ESTADO_SOLICITUD" sql-type="NUMBER" not-null="true" />
+    </many-to-one>
+    <property name="Cuit">
+      <column name="C_CUIT" sql-type="NUMBER" not-null="true" />
+    </property>
+    <property name="Apellido">
+      <column name="D_APELLIDO" sql-type="VARCHAR2" not-null="true" />
+    </property>
+    <property name="Nombre">
+      <column name="D_NOMBRE" sql-type="VARCHAR2" not-null="true" />
+    </property>
+    <property name="Email">
+      <column name="D_EMAIL" sql-type="VARCHAR2" not-null="true" />
+    </property>
+    <property name="CodigoValidacion">
+      <column name="C_VALIDACION" sql-type="VARCHAR2" not-null="true" />
+    </property>
+    <property name="Telefono">
+      <column name="D_TELEFONO" sql-type="VARCHAR2" not-null="false" />
+    </property>
+    <property name="FechaAlta">
+      <column name="F_ALTA" sql-type="DATE" not-null="true" />
+    </property>
+    <many-to-one name="TipoSolicitud">
+      <column name="C_TIPOSOLICITUD" sql-type="NUMBER" not-null="true" />
+    </many-to-one>
+    <property name="Cargo">
+      <column name="D_CARGO" sql-type="VARCHAR"  />
+    </property>
+    <property name="MEnviado">
+      <column name="M_ENVIADO"  not-null="true"  />
+    </property>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,27 @@
+﻿@using TGP.Seguridad.BussinessLogic.Dto
+@model EstructuraFuncionalDTO
+<div class="uk-grid">
+    <div class="uk-width-medium-1-3">
+        @Html.Label("Codigo", "Codigo")
+        @Html.TextBoxFor(model => model.Codigo, new { @class = "md-input label-fixed", maxlength = 50, id = "idTextBoxCodigo" })
+        @Html.ValidationMessageFor(model => model.Codigo, null, new { @class = "error" })
+    </div>
+
+    <div class="uk-width-medium-1-3">
+        @Html.Label("Descripcion", "Descripción")
+        @Html.TextBoxFor(model => model.DescripcionEstructura, new { @class = "md-input label-fixed", maxlength = 50 })
+        @Html.ValidationMessageFor(model => model.DescripcionEstructura, null, new { @class = "error" })
+    </div>
+
+    <div class="uk-width-medium-1-3">
+        @Html.Label("Bloqueado", "Bloqueado", new { @class = "inline-label" })
+        @Html.CheckBoxFor(model => model.SiBloqueado, new { data_md_icheck = "" })
+
+    </div>
+</div>
+
+<div class="uk-width-1-1">
+    <div class="uk-flex uk-flex-center uk-margin-medium-top">
+        <button title="Guardar" class="md-btn md-btn-accent" type="submit"><span>Guardar</span></button>
+    </div>
+</div>

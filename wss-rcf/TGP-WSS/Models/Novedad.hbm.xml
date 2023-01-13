@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="TGP.WSS" namespace="TGP.WSS" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="Novedad" table="SEG_NOVEDAD" lazy="false" >
+    <id name="CId" column="C_ID">
+      <generator class="native" >
+        <param name="sequence">SEG_NOVEDAD_SQ</param>
+      </generator>
+    </id>
+    <version name="NVersionHibernate">
+      <column name="N_VERSION_HIBERNATE" sql-type="NUMBER" not-null="true" />
+    </version>
+    <property name="DNovedad">
+      <column name="D_NOVEDAD" sql-type="VARCHAR2" not-null="true" />
+    </property>
+    <property name="FDesde">
+      <column name="F_DESDE" sql-type="DATE" not-null="true" />
+    </property>
+    <property name="FHasta">
+      <column name="F_HASTA" sql-type="DATE" not-null="false" />
+    </property>
+    <bag name="Roles" table="SEG_NOVEDAD_ROL" cascade="save-update">
+      <key column="C_ID_NOVEDAD" />      
+      <many-to-many  class="Rol" column="C_ID_ROL"/>
+    </bag>
+  </class>
+</hibernate-mapping>
+
+  
+    
+    

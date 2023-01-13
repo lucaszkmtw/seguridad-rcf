@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="TGP.WSS.Seguridad" CodeBehind="Seguridad.svc.cs" %>

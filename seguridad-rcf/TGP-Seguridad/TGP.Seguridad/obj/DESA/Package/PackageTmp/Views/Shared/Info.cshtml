@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutBootstrap.cshtml";
+}
+
+<div class="widget" style="border-color:orange">
+    <div class="widget-header" style="background-color:#FCCAA3; border-color:orange; color:#084951">
+        <h3><i class="fa fa-info-circle"></i>&nbsp;&nbsp;Información</h3>
+    </div>
+    <div class="widget-content">        
+            @if (ViewBag.ErrorMessage == null || ViewBag.ErrorMessage == "")
+            {
+                WriteLiteral("Error Inesperado.");
+            }
+            else if (Session["usuario"] == null)
+            {
+                <h4 class="text-center">@ViewBag.ErrorMessage</h4>
+                <br>
+                <div class="text-center">
+                    <a href="@FormsAuthentication.LoginUrl" class="btn btn-lg btn-warning text-center"><i class="fa fa-home"></i> Re-Ingresar</a>
+                </div>
+            }
+            else
+            {
+                <p class="text-center" style="font-size:18px;color:#084951"> @ViewBag.ErrorMessage</p>
+            }
+    </div>
+
+    <div class="widget-footer" style="text-align:center;">
+        <a href="javascript:history.back()" id="btn-cerrar" class="text-center btn btn-warning" style="background-color:#FCCAA3;color:#084951">
+            <i class=" fa fa-reply">
+            </i>&nbsp;&nbsp;Volver&nbsp;&nbsp;
+        </a>
+    </div>
+</div>

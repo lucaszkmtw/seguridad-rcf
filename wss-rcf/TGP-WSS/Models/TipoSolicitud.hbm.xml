@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="TGP.WSS" namespace="TGP.WSS" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="TipoSolicitud" table="SEG_TIPOSOLICITUD" lazy="true" >
+    <id name="CId" column="C_ID">      
+    </id>
+    <property name="Codigo">
+      <column name="C_CODIGO" sql-type="VARCHAR2"  />
+    </property>
+    <property name="Descripcion">
+      <column name="D_DESCRIPCION" sql-type="VARCHAR2"  />
+    </property>
+    
+  </class>
+</hibernate-mapping>

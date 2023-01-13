@@ -1,0 +1,43 @@
+﻿@import 'variables_sigaf.less';
+@import 'src/pages/login_page.less';
+
+body {
+    padding: 60px 24px;
+    background-image: url(../img/845-bn-contrastless.png);
+    height: 100%;
+    @media @screen_xlarge_max {
+        padding: 75px 24px 0px;
+    }
+}
+.login-page {
+    .logo-provincia {
+        @media @screen_small {
+            width: 290px;
+        }
+        width: 90%;
+    }
+
+    #header_main {
+        height: auto;
+    }
+
+    #footer {
+        font-weight: bold;
+        background-color: @footer-background;
+        text-align: center;
+        .md_font(300,12px,32px);
+        /*@media @screen_xlarge_max {
+            .md_font(300,12px,32px);
+            }*/
+        @media @screen_medium_max {
+            position: relative;
+        }
+
+        color: @white;
+    }
+
+    #header_main .uk-navbar .uk-navbar-brand {
+        height: auto;
+        margin: 7px 0;
+    }
+}

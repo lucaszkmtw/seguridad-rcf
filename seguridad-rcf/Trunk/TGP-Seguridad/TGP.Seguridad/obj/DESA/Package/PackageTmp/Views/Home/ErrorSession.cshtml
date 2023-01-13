@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "Caducidad de Sesión";
+    Layout = "~/Views/Shared/_LayoutBootstrap.cshtml";    
+}
+
+    <div class="full-page-wrapper page-error text-center">
+        <div class="inner-page">
+            <h1>
+                <span class="clearfix title">
+                    <h1>
+                        <img src="~/Content/img/adp-logo.png" alt="" style="background-color: #084951;
+                                                                 background-size: 58px 58px;
+                                                                 background-position: 0px 2px, 4px 35px, 29px 31px, 34px 6px;
+                                                                 border-radius: 100%; box-shadow: none; margin-left: 0; margin-right: 10px;
+                                                                 max-width: 72px;" />
+                        <a href="~/Home/Index" style="text-decoration: none;">SEG</a>
+                    </h1>
+                    <br />
+                    <span class="text" style="text-align: center">Oops!<br />
+                        La sesion ha caducado.</span>                    
+                </span>
+            </h1>
+            <div class="error" style="text-align: center">
+                        @ViewBag.ErrorMessage<br /><br /><br />
+            </div>
+            <p>Por favor ingrese nuevamente.</p>
+
+            <p>
+                <a href="@Url.Action("Login", "Account")" class="btn btn-primary"><i class="fa fa-home"></i>Re-Ingresar</a>
+            </p>
+        </div>
+
+
+
+    </div>
+
+ 

@@ -1,0 +1,218 @@
+﻿@using TGP.Seguridad.BussinessLogic.Dto
+@model NodoFuncionalDTO
+@{
+                /**/
+
+                ViewBag.Title = "Seg - Nuevo Nodo Funcional";
+                Layout = "~/Views/Shared/_LayoutBootstrap.cshtml";
+}
+
+
+<div class="uk-grid sigaf-titulo">
+    <div class="uk-width-1-2">
+        <h2 class="uk-margin-bottom">Nuevo Nodo Funcional</h2>
+    </div>
+    <div class="uk-width-large-1-2">
+        <div class="uk-grid uk-grid-small uk-flex uk-flex-right" data-uk-grid-margin data-uk-grid-match="{target:'.md-btn-sigaf'}">
+            <div>
+                <button onclick="VolverBtn();" class="md-btn md-btn-primary md-btn-sigaf md-fab-wave-light waves-effect waves-button waves-light">
+                    <h2 class="heading_c md-color-white uk-text-left">
+                        Volver
+                        <span class="sub-heading md-color-white uk-text-upper">
+                            &nbsp;
+                        </span>
+                    </h2>
+                    <i class="icon-appSigaf md-color-black material-icons">reply</i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+
+
+<div class="md-card uk-margin-bottom">
+    <div class="md-card-content">
+        @using (Ajax.BeginForm(null, null, new AjaxOptions() { HttpMethod = "POST" }, new { id = "formNodoFuncional" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            @Html.Partial("Partials/_FormNodoFuncional")
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+
+        $(document).ready(function () {
+            activarMenu('#Listado-NodoFuncional');
+            aplicarSelectize($(".selectize"));
+
+            $("#TipoNodoFuncional").change(function () {
+                if (isNullOrEmpty($('#TipoNodoFuncional').val())) {
+                    limpiarCampos();
+                } else {
+                    if (!isNullOrEmpty($("#EstructuraFuncional").val()) && !isNullOrEmpty($('#TipoNodoFuncional').val())) {
+                        $("#btnGuardar").show();
+                    }
+                }
+            }).keyup();
+
+            $("#EstructuraFuncional").change(function () {
+                if ((!isNullOrEmpty('#EstructuraFuncional') && $("#EstructuraFuncional").val() != 0)) {
+                    changeEstructura();
+                } else {
+                    limpiarCampos();
+                    $('#NodoPadre').selectize()[0].selectize.clearOptions();
+                }
+            }).keyup();
+            
+            function changeEstructura() {
+                if (!isNullOrEmpty($('#TipoNodoFuncional').val()))
+                    $("#btnGuardar").show();
+                GetNodosPadre();
+            }
+
+            $("#TipoNodoFuncional").change();
+            $("#EstructuraFuncional").change();
+        });
+
+        function limpiarCampos() {
+            $("#Codigo").val('');
+            $("#Descripcion").val('');
+            $("#SiDescentralizado").iCheck('uncheck');
+            $("#SiDescentralizado").iCheck('disable');
+            $("#btnGuardar").hide();
+        }
+
+        function GetNodosPadre() {
+            $("#SiDescentralizado").iCheck('enable');
+            $.ajax({
+                url: '@Url.Action("GetNodosPadre", "NodoFuncional")',
+                data: {
+                    cod: $("#EstructuraFuncional").val()
+                },
+                dataType: 'json',
+                type: 'POST',
+                beforeSend: function (xhr) {
+                    //sacar el cerrar con el ESC al modal
+                    showLoadingModal();
+                },
+                success: function (data) {
+                    hideLoadingModal();
+                    //Llenamos el combo de nodos padre
+                    let selectizeControlNodos = $('#NodoPadre').selectize()[0].selectize;
+                    selectizeControlNodos.clearOptions();
+                    $.each(data.Nodos, function (i, data) {
+                        if (data.Value === "-1") {
+                            selectizeControlNodos.addOption({ value: data.Value, text: data.Text });
+                            selectizeControlNodos.addItem("-1");
+                        } else {
+                            selectizeControlNodos.addOption({ value: data.Value, text: data.Text });
+                        }
+                    }
+                    );
+                    let arrayNodos = Object.keys(selectizeControlNodos.options);
+                    if (arrayNodos.length === 1) {
+                        selectizeControlNodos.addItem(arrayNodos[0]);
+                    }
+                },
+                error: function (e) {
+                    hideLoadingModal();
+
+                }
+            })
+
+        }
+        
+
+        $("#formNodoFuncional").submit(function (e) {
+            if ($("#formNodoFuncional").valid()) {
+                e.preventDefault();
+                var formdata = new FormData(this);
+                $.ajax({
+                    url: '@Url.Action("PrevGuardarNuevoNodo", "NodoFuncional")',
+                    type: "POST",
+                    dataType: "json",
+                    data: formdata,
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function (xhr) {
+                        showLoadingModal();
+                    },
+                    success: function (data) {
+                        hideLoadingModal();
+                        if (data.mensaje != "") {
+                            swal({
+                                title: "",
+                                text: data.mensaje,
+                                icon: data.tipoMensaje,
+                                buttons: {
+                                    accept: "Aceptar",
+                                    cancel: "Cancelar"
+                                },
+                                closeOnClickOutside: false,
+                            }).then((resolve) => {
+                                if (resolve) {
+                                    guardar(formdata);
+                                }
+                            });
+                        } else {
+                            guardar(formdata);
+                        }
+                    },
+                    error: function (result) {
+                        hideLoadingModal();
+                    }
+                });
+
+            }
+        });
+
+
+        function guardar(formdata) {
+            $.ajax({
+                url: '@Url.Action("GuardarNuevoNodo", "NodoFuncional")',
+                type: "POST",
+                dataType: "json",
+                data: formdata,
+                contentType: false,
+                processData: false,
+                beforeSend: function (xhr) {
+                    showLoadingModal();
+                },
+                success: function (data) {
+                    hideLoadingModal();
+                    var estructura = $('#EstructuraFuncional').val();
+                    hideLoadingModal();
+                    swal({
+                        title: "",
+                        text: data.mensaje,
+                        icon: data.tipoMensaje,
+                        buttons: {
+                            confirm: "Aceptar"
+                        },
+                        closeOnClickOutside: false,
+                    }).then(() => {
+                        if (data.tipoMensaje != "error" && data.tipoMensaje != "info") {
+                            window.location.href = "@Url.Action("Listado","NodoFuncional")";
+                        }
+                    });
+                },
+                error: function (result) {
+                    hideLoadingModal();
+                }
+            });
+        }
+
+        function VolverBtn() {
+            var estructura = $('#EstructuraFuncional').val();
+            window.location.href = "@Url.Action("Listado", "NodoFuncional")?est="+estructura;
+        }
+
+    </script>
+}
+

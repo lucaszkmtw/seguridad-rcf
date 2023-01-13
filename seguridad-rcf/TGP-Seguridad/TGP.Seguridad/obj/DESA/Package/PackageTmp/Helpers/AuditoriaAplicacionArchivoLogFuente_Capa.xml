@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<Aplicaciones>
+  <Aplicacion Id="SEG">
+    <ArchivoDebug>C:\\inetpub\\wwwroot\\TGPSeguridad_capa\logs\TGP.Seguridad_DEBUG_CAPACG.log</ArchivoDebug>
+    <ArchivoError>C:\\inetpub\\wwwroot\\TGPSeguridad_capa\logs\TGP.Seguridad_ERROR_CAPACG.log</ArchivoError>
+  </Aplicacion>
+  <Aplicacion Id="ADA">
+    <ArchivoDebug>C:\\inetpub\\wwwroot\\Autogestion_capa\logs\TGP.AutogestionProject_DEBUG_CAPACG.log</ArchivoDebug>
+    <ArchivoError>C:\\inetpub\\wwwroot\\Autogestion_capa\logs\TGP.AutogestionProject_ERROR_CAPACG.log</ArchivoError>
+  </Aplicacion>
+  <Aplicacion Id="CONC">
+    <ArchivoDebug>C:\\inetpub\\wwwroot\\Conciliacion_capa\logs\TGP.Conciliacion_DEBUG_CAPA.log</ArchivoDebug>
+    <ArchivoError>C:\\inetpub\\wwwroot\\Conciliacion_capa\logs\TGP.Conciliacion_ERROR_CAPA.log</ArchivoError>
+  </Aplicacion>
+  <Aplicacion Id="CDP">
+    <ArchivoDebug>C:\\inetpub\\wwwroot\\ConsultaDePagos_capa\logs\TGP.ConsultaDePagos_DEBUG_CAPACG.log</ArchivoDebug>
+    <ArchivoError>C:\\inetpub\\wwwroot\\ConsultaDePagos_capa\logs\TGP.ConsultaDePagos_ERROR_CAPACG.log</ArchivoError>
+  </Aplicacion>
+  <Aplicacion Id="ENTE">
+    <ArchivoDebug>C:\\inetpub\\wwwroot\\Ent_capa\logs\TGP.ENTE_DEBUG_CAPACG.log</ArchivoDebug>
+    <ArchivoError>C:\\inetpub\\wwwroot\\Ente_capa\logs\TGP.ENTE_ERROR_CAPACG.log</ArchivoError>
+  </Aplicacion>
+  <Aplicacion Id="GDR">
+    <ArchivoDebug>C:\\inetpub\\wwwroot\\GestionRecursos_capa\logs\TGP.Recursos_CAPACG.log</ArchivoDebug>
+    <ArchivoError>C:\\inetpub\\wwwroot\\GestionRecursos_capa\logs\TGP.Recursos_CAPACG.log</ArchivoError>
+  </Aplicacion>
+  <Aplicacion Id="GEP">
+    <ArchivoDebug>C:\\inetpub\\wwwroot\\GestionElectronicaDePago_capa\logs\TGP.GestionElectronicaDePagos_DEBUG_CAPACG.log</ArchivoDebug>
+    <ArchivoError>C:\\inetpub\\wwwroot\\GestionElectronicaDePago_capa\logs\TGP.GestionElectronicaDePagos_ERROR_CAPACG.log</ArchivoError>
+  </Aplicacion>
+  <Aplicacion Id="GRI">
+    <ArchivoDebug>C:\\inetpub\\wwwroot\\GestionRetencionesImpositiva_capa\logs\TGP.InfoPagoRetenciones_DEBUG_CAPACG.log</ArchivoDebug>
+    <ArchivoError>C:\\inetpub\\wwwroot\\GestionRetencionesImpositiva_capa\logs\TGP.InfoPagoRetenciones_ERROR_CAPACG.log</ArchivoError>
+  </Aplicacion>
+  <Aplicacion Id="IDG">
+    <ArchivoDebug>C:\\inetpub\\wwwroot\\InformeDeGestion_capa\logs\TGP.InformesDeGestion_DEBUG_CAPACG.log</ArchivoDebug>
+    <ArchivoError>C:\\inetpub\\wwwroot\\InformeDeGestion_desa\logs\TGP.InformesDeGestion_ERROR_CAPACG.log</ArchivoError>
+  </Aplicacion>
+  <Aplicacion Id="MANT">
+    <ArchivoDebug>C:\\inetpub\\wwwroot\\mantenimiento_capa\logs\TGP.Mantenimiento_DEBUG_CAPA.log</ArchivoDebug>
+    <ArchivoError>C:\\inetpub\\wwwroot\\mantenimiento_capa\logs\TGP.Mantenimiento_ERROR_CAPA.log</ArchivoError>
+  </Aplicacion>
+  <Aplicacion Id="MAP">
+    <ArchivoDebug>C:\\inetpub\\wwwroot\\MedidasDeAfectacionPatrimonial_capa\logs\TGP.MAP_DEBUG_DESA.log</ArchivoDebug>
+    <ArchivoError>C:\\inetpub\\wwwroot\\MedidasDeAfectacionPatrimonial_capa\logs\TGP.MAP_ERROR_DESA.log</ArchivoError>
+  </Aplicacion>
+  <Aplicacion Id="POR">
+    <ArchivoDebug>C:\\inetpub\\wwwroot\\portal_capa\logs\TGP.PortalProject_DEBUG_CAPA.log</ArchivoDebug>
+    <ArchivoError>C:\\inetpub\\wwwroot\\portal_capa\logs\TGP.PortalProject_ERROR_CAPA.log</ArchivoError>
+  </Aplicacion>
+  <Aplicacion Id="RUC">
+    <ArchivoDebug>C:\\inetpub\\wwwroot\\TGPRuco_capa\logs\TGP.RUCO_DEBUG_CAPACG.log</ArchivoDebug>
+    <ArchivoError>C:\\inetpub\\wwwroot\\TGPRuco_capa\logs\TGP.RUCO_ERROR_CAPACG.log</ArchivoError>
+  </Aplicacion>
+  <Aplicacion Id="SDH">
+    <ArchivoDebug>C:\\inetpub\\wwwroot\\SeguimientoDeSueldos_capa\logs\TGP.SeguimientoDeSueldos_DEBUG_CAPACG.log</ArchivoDebug>
+    <ArchivoError>C:\\inetpub\\wwwroot\\SeguimientoDeSueldos_desa\logs\TGP.SeguimientoDeSueldos_ERROR_CAPACG.log</ArchivoError>
+  </Aplicacion>
+  <Aplicacion Id="SIE">
+    <ArchivoDebug>C:\\inetpub\\wwwroot\\SIE_capa\logs\TGP.SIEP_DEBUG_CAPACG.log</ArchivoDebug>
+    <ArchivoError>C:\\inetpub\\wwwroot\\SIEP_capa\logs\TGP.SIEP_ERROR_CAPACG.log</ArchivoError>
+  </Aplicacion>
+  <Aplicacion Id="ADL">
+    <ArchivoDebug>C:\\inetpub\\wwwroot\\AdministradoresLocales_capa\\logs\\TGP.AdministradoresLocales_DEBUG_CAPACG.log</ArchivoDebug>
+    <ArchivoError>C:\\inetpub\\wwwroot\\AdministradoresLocales_capa\\logs\\TGP.AdministradoresLocales_ERROR_CAPACG.log</ArchivoError>
+  </Aplicacion>
+</Aplicaciones>

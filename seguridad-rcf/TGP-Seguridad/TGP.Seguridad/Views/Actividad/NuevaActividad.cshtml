@@ -1,0 +1,147 @@
+﻿@using TGP.Seguridad.BussinessLogic.Dto
+@model ActividadDTO
+@{
+    ViewBag.Title = "Seg - Nueva Actividad";
+    Layout = "~/Views/Shared/_LayoutBootstrap.cshtml";
+}
+
+
+<div class="uk-grid sigaf-titulo">
+    <div class="uk-width-1-2">
+        <h2 class="uk-margin-bottom">Nueva Actividad</h2>
+    </div>
+    <div class="uk-width-1-2">
+        <div class="uk-grid uk-grid-small uk-flex uk-flex-right" data-uk-grid-margin data-uk-grid-match="{target:'.md-btn-sigaf'}">
+            <div>
+                <button onclick="VolverBtn();" class="md-btn md-btn-primary md-btn-sigaf md-fab-wave-light waves-effect waves-button waves-light">
+                    <h2 class="heading_c md-color-white uk-text-left">
+                        Volver
+                        <span class="sub-heading md-color-white uk-text-upper">
+                            &nbsp;
+                        </span>
+                    </h2>
+                    <i class="icon-appSigaf md-color-black material-icons">reply</i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+
+
+
+<div class="md-card uk-margin-bottom">
+    <div class="md-card-content">
+        @using (Ajax.BeginForm(null, null, new AjaxOptions() { HttpMethod = "POST" }, new { id = "formActividad" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            @Html.Partial("Partials/_FormActividad")
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function () {
+            activarMenu('#Listado-Actividad');
+            aplicarSelectize($('.selectize'));
+            if ($("#EstructuraFuncional").val() == 0) {
+                $("#btnGuardar").hide();
+            }
+
+            $("#EstructuraFuncional").change(function () {
+                if ($("#EstructuraFuncional").val() == 0) {
+                    $("#Codigo").val('');
+                    $("#Descripcion").val('');
+                    $("#btnGuardar").hide();
+                } else {
+                    $("#btnGuardar").show();
+                }
+            }).keyup();
+            
+        });
+
+        function VolverBtn() {
+            var estructura = $('#EstructuraFuncional').val();
+            window.location.href = "@Url.Action("Listado", "Actividad")?est=" + estructura;
+        }
+
+
+        $("#formActividad").submit(function (e) {
+            var formdata = new FormData(this);
+            e.preventDefault();
+            $.ajax({
+                url: '@Url.Action("PrevGuardarNuevaActividad", "Actividad")',
+                type: "POST",
+                dataType: "json",
+                data: formdata,
+                contentType: false,
+                processData: false,
+                beforeSend: function (xhr) {
+                    showLoadingModal();
+                },
+                success: function (data) {
+                    hideLoadingModal();
+                    if (data.mensaje != "") {
+                        swal({
+                            title: "",
+                            text: data.mensaje,
+                            icon: data.tipoMensaje,
+                            buttons: {
+                                accept: "Aceptar",
+                                cancel: "Cancelar"
+                            },
+                            closeOnClickOutside: false,
+                        }).then((resolve) => {
+                            if (resolve) {
+                                guardar(formdata);
+                            }
+                        });
+                    } else {
+                        guardar(formdata);
+                    }
+                },
+                error: function (result) {
+                    hideLoadingModal();
+                }
+            });
+        });
+
+        function guardar(formdata) {
+            $.ajax({
+                url: '@Url.Action("GuardarNuevaActividad", "Actividad")',
+                type: "POST",
+                dataType: "json",
+                data: formdata,
+                contentType: false,
+                processData: false,
+                beforeSend: function (xhr) {
+                    showLoadingModal();
+                },
+                success: function (data) {
+                    hideLoadingModal();
+                swal({
+                    title: "",
+                    text: data.mensaje,
+                    icon: data.tipoMensaje,
+                    buttons: {
+                        confirm: "Aceptar"
+                    },
+                    closeOnClickOutside: false
+                }).then(() => {
+                    if (data.tipoMensaje != "error") {
+                            window.location.href = "@Url.Action("Listado","Actividad")";
+                    }
+                });
+                },
+                error: function (result) {
+                    hideLoadingModal();
+                }
+            });
+        }
+        
+    </script>
+}

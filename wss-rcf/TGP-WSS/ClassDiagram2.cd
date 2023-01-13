@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TGP.WSS.Models.Resultado.ResultadoObtenerUsuariosNominadosPorRolDTO">
+    <Position X="0.75" Y="8" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Models\Resultado\ResultadoObtenerUsuariosNominadosPorRolDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TGP.WSS.Models.Resultado.ResultadoDTO">
+    <Position X="4" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Resultado\ResultadoDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TGP.WSS.Models.Resultado.ResultadoObtenerUsuarioDTO">
+    <Position X="5.25" Y="8" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Models\Resultado\ResultadoObtenerUsuarioDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TGP.WSS.Models.Requerimiento.RequerimientoObtenerUsuarioDTO">
+    <Position X="1.75" Y="3.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Requerimiento\RequerimientoObtenerUsuarioDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TGP.WSS.Models.Requerimiento.RequerimientoObtenerUsuariosNominadosPorRolDTO">
+    <Position X="5.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Requerimiento\RequerimientoObtenerUsuariosNominadosPorRolDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TGP.WSS.Models.Requerimiento.RequerimientoDTO">
+    <Position X="3.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Models\Requerimiento\RequerimientoDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TGP.WSS.Models.DTO.UsuarioDTO">
+    <Position X="7.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAgAAAAAQAAAAAAAAAAAAAAIAAAgAAAAA=</HashCode>
+      <FileName>Models\DTO\UsuarioDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TGP.WSS.Services.UsuarioService">
+    <Position X="9.75" Y="1" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAIAAAAAAAAAAAAAAAAABAhAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Services\UsuarioService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TGP.WSS.Models.DTO.UsuarioNominadoDTO">
+    <Position X="7.5" Y="4" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAEgAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DTO\UsuarioNominadoDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TGP.WSS.Seguridad">
+    <Position X="10" Y="4" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>FAAAgAABACCAhACAARABAwgAAAgBAAAAAAlRAEAgDAA=</HashCode>
+      <FileName>Seguridad.svc.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

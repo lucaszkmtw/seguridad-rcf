@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="TGP.WSS" namespace="TGP.WSS" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="TipoAutenticacion" table="SEG_TIPO_AUTENTICACION" lazy="true" >
+    <id name="CId" column="C_ID">
+      <generator class="native" >
+        <param name="sequence">SEG_TIPO_AUTENTICACION_SQ</param>
+      </generator>
+    </id>
+    <version name="NVersionHibernate">
+      <column name="N_VERSION_HIBERNATE" sql-type="NUMBER" not-null="true" />
+    </version>
+    <many-to-one name="Usuario">
+      <column name="C_ID_USUARIO_LOGIN" sql-type="NUMBER" not-null="false" />
+    </many-to-one>
+    <property name="CCodigo">
+      <column name="C_CODIGO" sql-type="VARCHAR2" not-null="true" unique="true" />
+    </property>
+    <property name="DDescripcion">
+      <column name="D_DESCRIPCION" sql-type="VARCHAR2" not-null="true" />
+    </property>
+    <property name="FUltimaOperacion">
+      <column name="F_ULTIMA_OPERACION" sql-type="DATE" not-null="false" />
+    </property>
+
+  </class>
+</hibernate-mapping>

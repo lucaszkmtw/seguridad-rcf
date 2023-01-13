@@ -1,0 +1,154 @@
+﻿
+@{
+    ViewBag.Title = "ListadoAplicacionLog";
+    Layout = "~/Views/Shared/_LayoutBootstrap.cshtml";
+}
+<style>
+    tbody td {
+        padding: 30px;
+    }
+
+    tbody tr:nth-child(odd) {
+        background-color: #EFEFEF;
+        color: #000;
+    }
+</style>
+<div class="uk-grid sigaf-titulo">
+    <div class="uk-width-1-2">
+        <h2 class="uk-margin-bottom">Log por aplicación</h2>
+    </div>
+</div>
+<div class="md-card">
+    <div class="md-card-content">
+        <div class="uk-grid uk-margin-top uk-grid-match" data-uk-grid-margin data-uk-grid-match="{target:'.uk-width-medium-1-4'}">
+            <div class="uk-width-1-2">
+                <div class="md-input-wrapper md-input-filled">
+                    @Html.Label("Estructura", "Estructura")
+                    @Html.DropDownList("estructuras", (SelectList)ViewBag.Estructuras, "Seleccione una Estructura", new { @class = "selectize md-input label-fixed" })
+                </div>
+            </div>
+            <div class="uk-width-1-5 uk-flex uk-flex-bottom">
+                <div class="md-input-wrapper md-input-filled">
+                    <label>Tipo de Log</label>
+                    <select id="tipoLog" class="md-input label-fixed selectize selectized" tabindex="-1">
+                        <option value="" disabled selected hidden>Seleccione un Tipo</option>
+                        <option value="ERROR">ERROR</option>
+                        <option value="DEBUG">DEBUG</option>
+                    </select>
+                </div>
+            </div>
+            <div class="uk-width-1-5 uk-flex uk-flex-bottom">
+                <div class="md-input-wrapper md-input-filled">
+                    <label>Cantidad de Lineas</label>
+                    <select id="cantidadRegistros" class="md-input label-fixed selectize selectized" tabindex="-1">
+                        <option value="" disabled selected hidden>Seleccione una Cantidad</option>
+                        <option value="100">100</option>
+                        <option value="200">200</option>
+                        <option value="300">300</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="uk-grid">
+                <div class="uk-width-1-1 uk-flex uk-flex-center">
+                    <button title="Buscar" class="md-btn md-btn-accent" id="btnSearch" type="button"><span>Buscar</span></button>
+                    <button class="md-btn" id="btnClean">Limpiar</button>
+                    <button title="Buscar" class="md-btn md-btn-accent" id="linkTiempoReal" type="button"><span>En tiempo real</span></button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="md-card uk-margin-bottom">
+    <div class="md-card-content">
+        <div id="div-resultados" class="uk-overflow-container">
+            @Html.Partial("Partials/_ResultadoAuditoriaAplicacion")
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+
+    $(document).ready(function ()
+    {
+        activarMenu("#ListadoAplicacionLog-Auditoria");
+        aplicarSelectize($(".selectize"));
+        $("#partial-resultados").hide();
+        $("tr:odd").css({
+            "background-color": "#EFEFEF",
+            "color": "#0000"
+        });
+    });
+
+      $("#btnClean").on("click", function () {
+          $('#estructuras').selectize()[0].selectize.setValue("", true);
+          $('#tipoLog').selectize()[0].selectize.setValue("", true);
+          $('#cantidadRegistros').selectize()[0].selectize.setValue("", true);
+        });
+
+    $("#linkTiempoReal").on("click", function () {
+        $(".uk-accordion-title").click();
+        var tipoArchivo = $("#tipoLog").val();
+        var estructura = $("#estructuras").val();
+        if ((tipoArchivo != "") && (estructura !== 0)) {
+            var url = '@Url.Action("ListadoAplicacionLogTiempoReal", "Auditoria")';
+            url += "?tipoArchivo=" + escape(tipoArchivo);
+            url += "&estructura=" + escape(estructura);
+            window.location.href = url;
+        }
+        else {
+            const mensaje = document.createElement('p');
+            mensaje.innerHTML = "Debe seleccionar <b>Estructura Funcional</b> y/o <b>Tipo de Log</b>";
+            swal({ title: "Atención", content: mensaje, icon: 'error' });
+        }
+           
+    });
+
+
+    $("#btnSearch").on("click", function ()
+    {
+        if ($("#estructuras").val() != "") {
+            if ($("#tipoLog").val() != "") {
+                if ($("#cantidadRegistros").val() != "") {
+                    $(".uk-accordion-title").click();
+                    $.ajax({
+                        url: '@Url.Action("ListadoAplicacionLog", "Auditoria")',
+                        type: "POST",
+                        data: {
+                            tipoArchivo: $("#tipoLog").val(),
+                            estructura: $("#estructuras").val(),
+                            cantidadRegistros: $("#cantidadRegistros").val()
+                        },
+                        beforeSend: function (xhr) {
+                            //sacar el cerrar con el ESC al modal
+                            showLoadingModal();
+                        },
+                        success: function (Data) {
+                            if (Data != null) {
+                                hideLoadingModal();
+                                $("#partial-resultados").show();
+                                $("#div-resultados").html(Data);
+                            } else {
+                                swal("", ViewBag.Mensaje, ViewBag.tipoMensaje);
+                            };
+                        },
+                        error: function (req, status, error) {
+                            hideLoadingModal();
+                            swal('', "R: " + req + " S: " + status + " E: " + error);
+                        }
+                    });
+                } else {
+                    swal("", "Seleccione la cantidad de registros.", "error");
+                }
+            } else {
+                swal("", "Seleccione un tipo de log.", "error");
+            }
+        } else {
+            swal("", "Seleccione una estructura funcional.", "error");
+        }
+    });
+    </script>
+}
+

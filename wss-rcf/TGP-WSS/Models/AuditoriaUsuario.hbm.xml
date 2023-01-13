@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="TGP.WSS" namespace="TGP.WSS" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="AuditoriaUsuario" table="SEG_AUDITORIA_USUARIO" lazy="true" >
+    <id name="Id" column="C_ID">
+      <generator class="native" >
+        <param name="sequence">SEG_AUDITORIA_USUARIO_SQ</param>
+      </generator>
+    </id>
+    <version name="VersionHibernate" unsaved-value="-1">
+      <column name="N_VERSION_HIBERNATE" sql-type="NUMBER" not-null="true" />
+    </version>
+    <property name="Usuario">
+      <column name="D_USUARIO" sql-type="VARCHAR2" not-null="true" />
+    </property>
+    <property name="Accion">
+      <column name="F_ACCION" sql-type="DATE" not-null="true" />
+    </property>
+    <property name="EstructuraFuncional">
+      <column name="C_ESTRUCTURA_FUNCIONAL" sql-type="VARCHAR2" not-null="true" />
+    </property>
+    <property name="Actividad">
+      <column name="C_ACTIVIDAD" sql-type="VARCHAR2" not-null="true" />
+    </property>
+    <property name="Observacion">
+      <column name="D_OBSERVACION" sql-type="VARCHAR2" not-null="false" />
+    </property>    
+  </class>
+</hibernate-mapping>

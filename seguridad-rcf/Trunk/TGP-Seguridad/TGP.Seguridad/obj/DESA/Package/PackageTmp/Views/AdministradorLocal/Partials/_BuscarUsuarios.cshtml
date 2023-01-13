@@ -1,0 +1,22 @@
+﻿<div class="uk-modal" id="modal-usuarios" aria-hidden="true" style="display: none; overflow-y: auto;">
+    <div class="uk-modal-dialog" style="top: 97px;">
+        <div class="uk-modal-header modal-header-gestion">
+            <h3 class="uk-modal-title">Usuarios</h3>
+        </div>
+        @using (Html.BeginForm("NuevoAdministrador", "AdministradorLocal", FormMethod.Get, new { id = "formNuevoAdmin" }))
+        {
+            <div class="uk-modal-body">
+                <div class="uk-grid" data-uk-grid-margin>
+                    <div class="uk-width-medium-1">
+                        @Html.Label("Usuario", "Usuario")
+                        @Html.DropDownList("usuarioSelect", (SelectList)ViewBag.Usuarios, new { @class = "selectize md-input label-fixed", id="usuarioSelect"})
+                    </div>
+                </div>
+            </div>
+            <div class="uk-modal-footer uk-flex uk-flex-center">
+                <button id ="btnBuscar" class="md-btn md-btn-primary">Buscar</button>
+                <button type="button" class="md-btn uk-modal-close">Cancelar</button>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,317 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutBootstrap.cshtml";
+}
+
+<div class="uk-grid sigaf-titulo uk-margin-bottom">
+    <div class="uk-width-large-4-10">
+        <h2>@ViewBag.Title</h2>
+    </div>
+    <div class="uk-width-large-6-10 uk-flex uk-flex-right">
+        <div class="uk-grid uk-grid-small uk-flex uk-flex-right" data-uk-grid-margin data-uk-grid-match="{target:'.md-btn-sigaf'}">
+            <a title="Volver" href='@Url.Action("Listado","AdministradorLocal")' class="uk-margin-small-left md-btn md-btn-primary md-btn-sigaf md-fab-wave-light waves-effect waves-button waves-light">
+                <h2 class="heading_c md-color-white uk-text-left">
+                    Volver
+                    <span class="sub-heading md-color-white uk-text-upper">
+                        &nbsp;
+                    </span>
+                </h2>
+                <i class="icon-appSigaf md-color-black material-icons">reply</i>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="md-card">
+    <div class="md-card-content">
+        <div class="uk-grid uk-margin-top uk-grid-match" data-uk-grid-margin data-uk-grid-match="{target:'.uk-width-medium-1-3'}">
+            <div class="uk-width-medium-1-4">
+                <label>Usuario</label>
+                <input class="md-input label-fixed" type="text" value="@ViewBag.Nominado.NombreUsuario" readonly disabled>
+            </div>
+            <div class="uk-width-medium-1-4">
+                <label>Descripcion</label>
+                <input class="md-input label-fixed" type="text" value="@ViewBag.Nominado.DescripcionUsuario" readonly disabled>
+            </div>
+            <div class="uk-width-medium-2-4">
+                <label>Organismo</label>
+                <input class="md-input label-fixed" type="text" value="@ViewBag.Organismo" readonly disabled>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="md-card">
+    <div class="md-card-toolbar uk-background-muted uk-flex" style="height: 60px;">
+        <div class="uk-margin-small-top uk-width-medium-3-10">
+            @Html.DropDownList("estructura", (SelectList)ViewBag.Estructuras, "Seleccione una aplicación", new { @class = "selectize md-input label-fixed", @id = "selectEstructura" })
+        </div>
+    </div>
+    <div class="md-card-content" id="card-1" hidden>
+        <div class="uk-grid margin-top-grid">
+            <div class="uk-width-medium-2-3">
+                @Html.Label("Roles", "Roles")
+                @Html.DropDownList("Roles", new SelectList(Enumerable.Empty<SelectListItem>()), "Seleccione uno o mas Roles", new { @id = "Roles", @class = "md-input label-fixed  selectizeMulti", data_uk_tooltip = "{pos:'top'}", title = "Select with tooltip" })
+
+            </div>
+            <div class="uk-width-1-3 uk-flex uk-flex-middle">
+                <button class="md-btn  md-btn-accent" type="button" onclick="selectAll('#Roles');">Todos</button>
+                <button class="md-btn" type="button" onclick="desSelectAll('#Roles')">Ninguno</button>
+            </div>
+        </div>
+        <div class="uk-grid">
+            <div class="uk-width-2-3">
+                @Html.Label("Nodos", "Nodos")
+                @Html.DropDownList("Nodos", new SelectList(Enumerable.Empty<SelectListItem>()), "Seleccione uno o mas Nodos", new { @id = "Nodos", @class = "md-input label-fixed selectizeMulti", data_uk_tooltip = "{pos:'top'}", title = "Select with tooltip" })
+
+            </div>
+            <div class="uk-width-1-3 uk-flex uk-flex-middle">
+                <button class="md-btn  md-btn-accent" type="button" onclick="selectAll('#Nodos');">Todos</button>
+                <button class="md-btn" type="button" onclick="desSelectAll('#Nodos')">Ninguno</button>
+            </div>
+        </div>
+
+        <div class="uk-grid uk-margin-medium-top">
+            <div class="uk-width-1-1 uk-flex uk-flex-center">
+                <button id="guardar" type="button" class="md-btn md-btn-primary">Guardar</button>
+                <button id="botonLimpiar" onclick="limpiarTodo()" type="button" class="md-btn md-btn">Limpiar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="md-card">
+    <div class="md-card-content">
+        <ul class="uk-tab" data-uk-tab="{connect:'#tabs'}">
+            <li><a href="">Detalle</a></li>
+            <li><a href="">Historial</a></li>
+        </ul>
+        <ul id="tabs" class="uk-switcher uk-margin">
+            <li>
+                <div id="adminsExistentes">
+                    @Html.Partial("Partials/_AdminsExistentes")
+                </div>
+            </li>
+            <li>
+                <div id="adminsExistentes">
+                    @Html.Partial("Partials/_HistorialAdministrador")
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            activarMenu('#@ViewBag.MenuId');
+            aplicarSelectize($('.selectize'));
+
+            //AplicarSelectizeMultiple debe recibir un elemento jQuery identificado por id.
+            aplicarSelectizeMultiple($("#Roles"));
+            aplicarSelectizeMultiple($("#Nodos"));
+
+            $("#card-1").hide();
+            updateDatatableAdmin();
+            updateDatatableHistorial();
+        });
+
+        function AjaxReturn(data) {
+            hideLoadingModal();
+            swal({
+                title: "",
+                text: data.mensaje,
+                icon: data.tipoMensaje,
+                buttons: {
+                    confirm: "Aceptar"
+                },
+                closeOnClickOutside: false,
+            });
+        }
+
+        $("#guardar").click(function () {
+            var estructura = $("#selectEstructura option:selected").val();
+            var usuario = '@ViewBag.Nominado.Id';
+            var Roles = $('#Roles')[0].selectize.items;
+            var Nodos = $('#Nodos')[0].selectize.items;
+            $.ajax({
+                url: '@Url.Action("GuardarAdminsLocales", "AdministradorLocal")',
+                type: "POST",
+                data: {
+                    estructura: estructura,
+                    usuario: usuario,
+                    Roles: Roles,
+                    Nodos: Nodos
+                },
+                beforeSend: function (xhr) {
+                    showLoadingModal();
+                },
+                success: function (data) {
+                    if (data) {
+                        getAdminsExistentes(usuario);
+                    }
+                    AjaxReturn(data);
+                    limpiarTodo();
+                },
+                error: function (e) {
+                    hideLoadingModal();
+                    swal("", "Ha Ocurrido un error inesperado", "error");
+                }
+            });
+        });
+
+    $("#selectEstructura").on("change", function () {
+        if ($("#selectEstructura option:selected").val() != "") {
+            $.ajax({
+                url: '@Url.Action("GetRolesYNodos", "AdministradorLocal")',
+                type: "POST",
+                data: {
+                    idUsuario: '@ViewBag.Nominado.Id',
+                    cod: $("#selectEstructura option:selected").val(),
+                },
+                beforeSend: function (xhr) {
+                    showLoadingModal();
+                },
+                success: function (data) {
+                    hideLoadingModal();
+                    if (data.Roles !== null) {
+                        let selectizeControlRoles = $('#Roles').selectize()[0].selectize;
+                        selectizeControlRoles.clearOptions();
+                        $.each(data.Roles, function (i, data) {
+                            if (data.Value === -1) {
+                                selectizeControlRoles.addOption({ value: data.Value, text: data.Text });
+                                selectizeControlRoles.addItem(-1);
+                            } else {
+                                selectizeControlRoles.addOption({ value: data.Value, text: data.Text });
+                            }
+                        }
+                        );
+                        let arrayRoles = Object.keys(selectizeControlRoles.options);
+                        if (arrayRoles.length === 1) {
+                            selectizeControlRoles.addItem(arrayRoles[0]);
+                        }
+
+                        if (data.RolesExistentes !== null) {
+                            $("#Roles")[0].selectize.setValue(data.RolesExistentes);
+                        }
+                    }
+                    if (data.Nodos !== null) {
+                        let selectizeControlNodos = $('#Nodos').selectize()[0].selectize;
+                        selectizeControlNodos.clearOptions();
+                        $.each(data.Nodos, function (i, data) {
+                            if (data.Value === -1) {
+                                selectizeControlNodos.addOption({ value: data.Value, text: data.Text });
+                                selectizeControlNodos.addItem(-1);
+                            } else {
+                                selectizeControlNodos.addOption({ value: data.Value, text: data.Text });
+                            }
+                        }
+                        );
+                        let arrayNodos = Object.keys(selectizeControlNodos.options);
+                        if (arrayNodos.length === 1) {
+                            selectizeControlNodos.addItem(arrayNodos[0]);
+                        }
+
+
+                        if (data.NodosExistentes !== null) {
+                            $("#Nodos")[0].selectize.setValue(data.NodosExistentes);
+                        }
+
+                        if (data.Nodos.length == 1) {
+                            $("#Nodos")[0].selectize.setValue(data.Nodos[0].Value);
+                        }
+                    }
+                    $("#card-1").show();
+                },
+                error: function (e) {
+                    hideLoadingModal();
+                    swal("", "Ha Ocurrido un error inesperado", "error");
+                }
+            });
+            } else {
+                $("#card-1").hide();
+            }
+        });
+
+        function updateDatatableAdmin() {
+            tableAdmin = $('#tabla-admins').DataTable(configTablaAdmin());
+        }
+
+
+        function configTablaAdmin(id) {
+            return {
+                aaSorting: [[0, "asc"]],
+                buttons: [
+                    { extend: 'copy', className: 'md-btn md-btn-small', text: 'Copiar' },
+                    { extend: 'csv', className: 'md-btn md-btn-small' },
+                    { extend: 'pdf', className: 'md-btn md-btn-small' },
+                    { extend: 'print', className: 'md-btn md-btn-small', text: 'Imprimir' }
+                ]
+            }
+        }
+
+        function updateDatatableHistorial()
+        {
+            tableHistorial = $('#tabla-historial').DataTable(configTablaHistorial());
+
+        }
+
+        function configTablaHistorial(id) {
+            return {
+                aaSorting: [[0, "desc"]],
+                aoColumnDefs: [
+                    { sType: "de_datetime", aTargets: [0] },
+                ],
+                buttons: [
+                    { extend: 'copy', className: 'md-btn md-btn-small', text: 'Copiar' },
+                    { extend: 'csv', className: 'md-btn md-btn-small' },
+                    { extend: 'pdf', className: 'md-btn md-btn-small' },
+                    { extend: 'print', className: 'md-btn md-btn-small', text: 'Imprimir' }
+                ]
+            }
+        }
+
+        function selectAll(idselect) {
+            $(function () {
+                var $projectIds = $(idselect)[0].selectize;
+                var optKeys = Object.keys($projectIds.options);
+                optKeys.forEach(function (key, index) {
+                    $projectIds.addItem(key);
+                });
+            });
+        }
+
+        function desSelectAll(idselect) {
+            $(function () {
+                $(idselect).selectize({})[0].selectize.clear();
+            });
+        }
+
+        function limpiarTodo() {
+            $("#selectEstructura").selectize({})[0].selectize.clear();
+            $("#Roles").selectize({})[0].selectize.clear();
+            $("#Nodos").selectize({})[0].selectize.clear();
+            $("#card-1").hide();
+        }
+
+        function getAdminsExistentes(id) {
+            $.ajax({
+                url: '@Url.Action("GetAdminsExistentes", "AdministradorLocal")',
+                type: "POST",
+                data: {
+                    id: id,
+                },
+                beforeSend: function (xhr) {
+                    showLoadingModal();
+                },
+                success: function (data) {
+                    $("#adminsExistentes").html(data);
+                    updateDatatableAdmin();
+                },
+                error: function (e) {
+                    hideLoadingModal();
+                    swal("", "Ha Ocurrido un error inesperado", "error");
+                }
+            });
+        }
+    </script>
+}

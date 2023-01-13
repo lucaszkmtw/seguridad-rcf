@@ -1,0 +1,139 @@
+﻿@*
+        NO SE ESTA USANDO 
+    <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- Mimic Internet Explorer 11 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE11">
+    <meta name="description" content="Seguridad">
+    <meta name="author" content="Juan Cruz Sabatini">
+    <link rel="shortcut icon" href="~/Content/img/favicon-teso.ico" />
+    <title>@ViewBag.Title</title>
+    <!-- CSS -->
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/css/font-awesome.css" rel="stylesheet" />
+
+    <link href="~/Content/css/main.css" rel="stylesheet" type="text/css">
+    
+    <link href="~/Content/css/skins/darkblue.css" rel="stylesheet" />
+    <link href="~/Content/css/sweetalert.css" rel="stylesheet" />
+
+    <!-- Javascript -->
+    <script src="~/Scripts/jquery/jquery-2.1.0.min.js"></script>
+    <script src="~/Scripts/bootstrap/bootstrap.min.js"></script>
+    <script src="~/Scripts/plugins/modernizr/modernizr.js"></script> 
+    <script src="~/Scripts/sweetalert.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/king-common.js"></script>
+
+    @RenderSection("scripts", required: false)
+    <style>
+        .top-bar .logged-user .dropdown-menu {
+            left: -78px;
+        }
+
+        .top-bar {
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body class="dashboard">
+    <!-- WRAPPER -->
+    <div class="wrapper">
+
+        <!-- TOP BAR -->
+        <div class="top-bar">
+            <div class="container">
+                <div class="row">
+                    <!-- logo -->
+                    <div class="logo col-xs-6 col-sm-6 col-md-5 col-lg-4" style="top:0px;">                        
+                        <a href="~/ActaCompromiso/FormularioAyuda" style="text-decoration: none;">
+                            <span class="hidden-sm hidden-md hidden-lg" style="color: white; vertical-align: middle; font-size: 14px;">Deploys</span>
+                            <span class="hidden-xs" style="color: white; vertical-align: middle; font-size: 14px;">APP</span>
+                        </a>
+                        <h1 class="sr-only">TBP</h1>
+                    </div>
+                    <!-- end logo -->
+                    <div class="col-xs-6 col-sm-6 col-md-7 col-lg-8">
+                        <div class="top-bar-right">                            
+                            <a href="https://portal.tesoreria.gba.gov.ar" style="color:#FFF">                                
+                                <span class="text">PORTAL</span>
+                            </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <!-- responsive menu bar icon -->
+                            <a href="@Url.Action("AcercaDe", "Account")" style="color:#FFF">
+                                <i class="fa fa-info-circle"></i>
+                                <span class="text">Acerca de</span>
+                            </a>
+                            <a href="#" class="hidden-md hidden-lg main-nav-toggle"><i class="fa fa-bars"></i></a>
+                            <!-- end responsive menu bar icon -->
+                        </div>
+                        <!-- /top-bar-right -->
+                        <!-- /row -->
+                    </div>
+                </div>
+                <!-- /row -->
+            </div>
+            <!-- /container -->
+        </div>
+        <!-- /top -->
+        <!-- BOTTOM: LEFT NAV AND RIGHT MAIN CONTENT -->
+        <div class="bottom">
+            <div class="container">
+
+                <div class="row">
+                    <!-- content-wrapper -->
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 content-wrapper" style="min-height: 720px;">
+                        @RenderBody()
+                        <!-- /main -->
+                    </div>
+                    <!-- /content-wrapper -->
+                </div>
+
+                <!-- /row -->
+            </div>
+            <!-- /container -->
+        </div>
+        <!-- END BOTTOM: LEFT NAV AND RIGHT MAIN CONTENT -->
+        <div class="push-sticky-footer"></div>
+
+    </div>
+    <!-- /wrapper -->
+    <!-- FOOTER style="background-color: #ECECEC; color: #000000; font-size: 0.8em; padding: 10px; text-align: center;"-->
+    <footer class="footer">
+        2016 © Todos los Derechos Reservados &nbsp;&nbsp;-&nbsp;&nbsp; Tesoreria General de la Provincia
+    </footer>
+    <!-- END FOOTER -->
+    <!--MODAL LOADING-->
+    <!--MODAL PROCESAMIENTO + RESULTADO -->
+    <div id="divLoading" class="modal fade" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="text-align: center; background-color: transparent; padding-top: 15%; top:0; height:100%;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body" id="modal-body">
+                    <img id="imgLoading" src="~/Content/img/ajax-loader.gif" />&nbsp;&nbsp;&nbsp;Cargando...
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- FIN MODAL -->
+   </body>
+</html>
+
+<script>
+    $('a').each(function () {
+        var href = $(this).attr('href');
+        var target = $(this).attr('target');
+        if (href != null && href.toString().indexOf("#") == -1 && target != "_blank") {
+            $(this).attr('onclick', "$('#divLoading').modal({ keyboard: false });")
+        }
+    });
+
+    $(window).on("navigate", function (event, data) {
+        var direction = data.state.direction;
+        if (direction == 'back') {
+            $('#divLoading').hide();
+        }
+    });
+</script>*@

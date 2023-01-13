@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/TGP.WSS" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/TGP.WSS" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ResultadoLogin">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ApellidoNominado" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Avatar" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="CodTipoAutenticacion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CuitNominado" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DiasCambioClave" type="xs:int" />
+      <xs:element minOccurs="0" name="Exception" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Menues" nillable="true" type="tns:ArrayOfMenuWS" />
+      <xs:element minOccurs="0" name="Msj" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MsjActiveDirectory" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NombreNominado" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Permisos" nillable="true" type="tns:ArrayOfPermisoUsuarioWS" />
+      <xs:element minOccurs="0" name="RazonSocialAcreedor" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UsuarioId" type="xs:long" />
+      <xs:element minOccurs="0" name="Valido" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ResultadoLogin" nillable="true" type="tns:ResultadoLogin" />
+  <xs:complexType name="ArrayOfMenuWS">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MenuWS" nillable="true" type="tns:MenuWS" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMenuWS" nillable="true" type="tns:ArrayOfMenuWS" />
+  <xs:complexType name="MenuWS">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Icono" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="IdPadre" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Orden" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Url" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MenuWS" nillable="true" type="tns:MenuWS" />
+  <xs:complexType name="ArrayOfPermisoUsuarioWS">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PermisoUsuarioWS" nillable="true" type="tns:PermisoUsuarioWS" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPermisoUsuarioWS" nillable="true" type="tns:ArrayOfPermisoUsuarioWS" />
+  <xs:complexType name="PermisoUsuarioWS">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Audita" type="xs:boolean" />
+      <xs:element minOccurs="0" name="CodActividad" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CodigoRol" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DescripcionRol" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NodosAutorizados" nillable="true" type="tns:ArrayOfNodoFuncionalWS" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PermisoUsuarioWS" nillable="true" type="tns:PermisoUsuarioWS" />
+  <xs:complexType name="ArrayOfNodoFuncionalWS">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="NodoFuncionalWS" nillable="true" type="tns:NodoFuncionalWS" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfNodoFuncionalWS" nillable="true" type="tns:ArrayOfNodoFuncionalWS" />
+  <xs:complexType name="NodoFuncionalWS">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Codigo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NodoFuncionalWS" nillable="true" type="tns:NodoFuncionalWS" />
+  <xs:complexType name="ResultadoChangePassword">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Exception" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Msj" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Valido" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ResultadoChangePassword" nillable="true" type="tns:ResultadoChangePassword" />
+  <xs:complexType name="ResultadoSendPasswordFT">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Exception" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Msj" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Valido" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ResultadoSendPasswordFT" nillable="true" type="tns:ResultadoSendPasswordFT" />
+  <xs:complexType name="ResultadoResetPassword">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ResultadoSendPasswordFT">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ResultadoResetPassword" nillable="true" type="tns:ResultadoResetPassword" />
+  <xs:complexType name="ResultadoSetNewPasswordByActiveDirectory">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ResultadoChangePassword">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ResultadoSetNewPasswordByActiveDirectory" nillable="true" type="tns:ResultadoSetNewPasswordByActiveDirectory" />
+  <xs:complexType name="ArrayOfUsuarioSTGP">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UsuarioSTGP" nillable="true" type="tns:UsuarioSTGP" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUsuarioSTGP" nillable="true" type="tns:ArrayOfUsuarioSTGP" />
+  <xs:complexType name="UsuarioSTGP">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="Mail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Username" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UsuarioSTGP" nillable="true" type="tns:UsuarioSTGP" />
+</xs:schema>

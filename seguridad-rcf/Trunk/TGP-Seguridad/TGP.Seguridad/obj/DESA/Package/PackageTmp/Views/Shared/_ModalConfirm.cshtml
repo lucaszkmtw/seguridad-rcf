@@ -1,0 +1,61 @@
+﻿@*
+    
+    NO SE DEBERIA UTILIZAR ---> REEMPLAZO DE ESTOS MODALS SWEETALERT.... 
+    
+    model Utils.ModalConfirm
+
+<div id="modalConfirm" class="modal fade in" aria-hidden="false" aria-labelledby="myModalLabel" role="dialog" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header alert-success">
+                <h4 id="myModalLabel" class="modal-title">@Model.TitleSuccess</h4>
+            </div>
+            <div class="modal-body">
+                <p>@Model.MessageSuccess</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" type="button" onclick="window.location='@Url.Action(Model.ActionSuccess, Model.ControllerSuccess)'">
+                    <i class="fa fa-check-circle" style="color: #FFF"></i>
+                    Aceptar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modalError" class="modal fade in" aria-hidden="false" aria-labelledby="myModalLabel" role="dialog" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header alert-danger">
+                <h4 class="modal-title">Atención</h4>
+            </div>
+            <div class="modal-body">
+                <p>@Model.ErrorMessage</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default" data-dismiss="modal" type="button" onclick="$('#modalError').hide();">
+                    <i class="fa fa-times-circle" style="color: #FFF"></i>
+                    Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@if (Model.ErrorMessage != null && !Model.ErrorMessage.Equals(""))
+{
+    <script>
+        $("#modalError").show();
+    </script>
+}
+else
+{
+    if (Model.MessageSuccess != null && !Model.MessageSuccess.Equals(""))
+    {
+    <script>
+        $("#modalConfirm").show();
+    </script>
+    }
+}*@

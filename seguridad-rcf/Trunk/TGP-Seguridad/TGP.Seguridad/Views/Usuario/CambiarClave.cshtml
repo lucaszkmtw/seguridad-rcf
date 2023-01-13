@@ -1,0 +1,170 @@
+﻿@using TGP.Seguridad.BussinessLogic.Dto;
+@model CambioPasswordViewModel
+
+@{
+    ViewBag.Title = "Seg - Cambiar Contraseña";
+}
+
+
+<div class="uk-grid sigaf-titulo">
+    <div class="uk-width-1-2">
+        <h2 class="uk-margin-bottom">Cambiar Contraseña | <span> <em>@Model.NombreUsuario</em></span></h2>
+    </div>
+</div>
+<div class="uk-grid uk-margin-top">
+    <div class="uk-width-medium-1-1">
+        <label class="label-fixed">Cambio de Forma de Autenticación</label>
+
+    </div>
+</div>
+
+@if (ViewBag.TiposAutenticacion != null) //&& Model.CodigoTipoAutenticacion.Equals(UsuarioDTO.INTERNA)
+{
+    <div class="md-card uk-margin-bottom">
+        <div class="md-card-content">
+            <div class="uk-width-medium-1-3">
+                @Html.Label("Autenticacion", "Autenticación")
+                @Html.DropDownListFor(model => model.CodigoTipoAutenticacion, (SelectList)ViewBag.TiposAutenticacion, new { @class = "selectize md-input label-fixed", Id = "idTipoAutent" })
+
+            </div>
+        </div>
+    </div>
+
+}
+
+<div id="div-resultados">
+    @Html.Partial("Partials/_FormCambioClave", Model)
+</div>
+@section scripts{
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+
+        function changeTipoAutenticacion() {
+            swal({
+                title: "",
+                text: "¿Desea cambiar el tipo de Autenticación? ",
+                icon: "warning",
+                buttons: {
+                    confirm: "Aceptar",
+                    cancel: "Cancelar"
+                },
+                closeOnClickOutside: false,
+            }).then(
+                (isConfirm) => {
+                    if (isConfirm) {
+                      $.ajax(
+                        {
+                            url: '@Url.Action("CambiarTipoAutenticacion", "Usuario")',
+                            type: "POST",
+                            data: {
+                                tipoAutenticacion: $('#idTipoAutent').val(),
+                                idUsuario: '@Model.Id',
+                                tipoUsuario: '@Model.CodigoTipoUsuario'
+
+                            },
+                            beforeSend: function (xhr) {
+                                //sacar el cerrar con el ESC al modal
+                                showLoadingModal();
+
+                            },
+                            success: function (data) {
+                                hideLoadingModal();
+                                if (data.tipoMensaje == "warning") {
+                                        swal({
+                                        title: "",
+                                        text: data.mensaje,
+                                        icon: data.tipoMensaje,
+                                        buttons: {
+                                            confirm: "Aceptar"
+                                        },
+                                        closeOnClickOutside: false,
+                                        }).then(() => {
+                                            window.location.reload();
+                                    });
+
+                                } else {
+                                    if (data.cambioDeClave.CodigoTipoUsuario === 'N') {
+                                            if (data.cambioDeClave.CodigoTipoAutenticacion === '1') {
+                                                //$("#div-resultados").html(data);
+                                                $("#div-resultados").html(data.urlPartialView);
+                                            }
+                                            else {
+                                                window.location = '@Url.Action("UsuarioDashboard", "Usuario", new { id = Model.Id, tipoUsuario = UsuarioDTO.USUARIONOMINADO })';
+                                            }
+                                        }
+                                        else {
+                                            window.location = '@Url.Action("UsuarioDashboard", "Usuario", new { id = Model.Id, tipoUsuario = UsuarioDTO.USUARIOACREEDOR })';
+                                        }
+                                }
+
+
+
+                              },
+                        });
+                    }
+                });
+        }
+
+        function CambioSuccess(data) {
+            hideLoadingModal();
+            swal({
+                title: "",
+                text: data.mensaje,
+                icon: data.tipoMensaje,
+                buttons: {
+                    confirm: "Aceptar"
+                },
+                closeOnClickOutside: false,
+            }).then(() => {
+                if (data.tipoMensaje != "error") {
+                        if ('@Model.CodigoTipoUsuario' === 'N') {
+                            window.location = '@Url.Action("UsuarioDashboard", "Usuario", new { id = Model.Id, tipoUsuario = UsuarioDTO.USUARIONOMINADO })';
+                        }
+                        else {
+                            window.location = '@Url.Action("UsuarioDashboard", "Usuario", new { id = Model.Id, tipoUsuario = UsuarioDTO.USUARIOACREEDOR })';
+                        }
+                }
+            });
+        }
+
+    $(document).ready(function () {
+        aplicarSelectize($('.selectize'));
+        //actualizacion de la grilla y bloque x seleccion d eorganismo por mouse
+        //$("#idTipoAutent").bind("change", function () {
+        //    changeTipoAutenticacion();
+        //}).bind("keyup", function () {
+        //    changeTipoAutenticacion();
+        //});
+
+        $("#idTipoAutent").change(function () {
+            if (!isNullOrEmpty('#idTipoAutent') && $("#idTipoAutent").val() != "") {
+                changeTipoAutenticacion();
+            }
+        }).keyup(function () {
+            if (!isNullOrEmpty('#idTipoAutent') && $("#idTipoAutent").val() != "") {
+                changeTipoAutenticacion();
+            }
+
+        });
+
+
+        //Si el Usuario es Acreedor no puede cambiar la autenticacion
+        if ('@Model.CodigoTipoUsuario' == '@UsuarioDTO.USUARIOACREEDOR')
+        {
+            $("#idTipoAutent").selectize({})[0].selectize.disable();
+
+        }
+        else
+        {
+            $("#idTipoAutent").selectize({})[0].selectize.enable();
+        }
+
+
+        });
+
+    </script>
+
+
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="TGP.WSS" namespace="TGP.WSS" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="RolActividad" table="SEG_ROL_ACTIVIDAD" lazy="false" >
+    <composite-id>
+      <key-many-to-one name="Rol" column="C_ID_ROL" />
+      <key-many-to-one name="Actividad" column="C_ID_ACTIVIDAD" />
+    </composite-id>
+    <many-to-one name="UsuarioLogin">
+      <column name="C_ID_USUARIO_LOGIN" sql-type="NUMBER" not-null="false" />
+    </many-to-one>
+    <property name="FUltimaOperacion">
+      <column name="F_ULTIMA_OPERACION" sql-type="DATE" not-null="false" />
+    </property>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="TGP.WSS" namespace="TGP.WSS" xmlns="urn:nhibernate-mapping-2.2">
+  <joined-subclass name="Acreedor" table="SEG_ACREEDOR" extends="Usuario">
+    <key column="C_ID" on-delete="cascade"/>    
+    <property name="DCuit">
+      <column name="D_CUIT" sql-type="VARCHAR2" not-null="true" />
+    </property>
+    <property name="DRazonSocial">
+      <column name="D_RAZON_SOCIAL" sql-type="VARCHAR2" not-null="true" />
+    </property>
+  </joined-subclass>
+</hibernate-mapping>

@@ -1,0 +1,84 @@
+﻿@using TGP.Seguridad.BussinessLogic.Dto
+@*Tabla de permisos de usuario*@
+<table id="lista-permisos" class="uk-table" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>
+                Estructura Funcional
+            </th>
+            <th>
+                Rol
+            </th>
+            <th>
+                Nodo
+            </th>
+            <th>
+                Asignado por:
+            </th>
+            <th>
+                F. Asignación
+            </th>
+            <th class="uk-text-center">
+                Operación
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (PermisosViewModel permiso in Model)
+        {
+            <tr>
+                <td>
+                    @permiso.DescripcionEstructura
+                </td>
+                <td>
+                    @permiso.DescripcionRol
+                </td>
+                <td>
+                    @if (permiso.NodosAsignados.Count > 3)
+                    {
+                        for (int i = 0; i < 3; i++)
+                        {
+                            <span class="uk-badge uk-badge-success uk-badge-notification">@permiso.NodosAsignados[i]</span>
+                            @Html.Raw(" ")
+                        }
+                        <span class="uk-badge uk-badge-success uk-badge-notification">@(permiso.NodosAsignados.Count - 3) +</span>
+
+                    }
+                    else
+                    {
+                        foreach (var i in permiso.NodosAsignados)
+                        {
+                            <span class="uk-badge uk-badge-success uk-badge-notification">@i</span>
+
+
+                        }
+                    }
+
+                </td>
+
+                <td>
+                    @permiso.UsuarioAlta
+                </td>
+                <td>
+                    @string.Format("{0:dd/MM/yyyy HH:mm}", ((permiso.FechaUltimaOperacion != null) ? permiso.FechaUltimaOperacion.ToShortDateString() : ""))
+                </td>
+                <td class="uk-text-center">
+                    @using (Html.BeginForm("EditarRolUsuarioLink", "Usuario", FormMethod.Post, new { id = "form-detalle" }))
+                    {
+                        <input hidden id="idUsuario" name="idUsuario" value="@permiso.IdUsuario" />
+                        <input hidden id="rol" name="rol" value="@permiso.CodigoRol" />
+                        <input hidden id="tipoUsuario" name="tipoUsuario" value="@ViewBag.TipoUsuario" />
+                        <a href="#" onclick='this.parentNode.submit();' title="Editar Permiso" class="badge element-bg-color-blue">
+                            <i class="material-icons md-24">mode_edit</i>
+                        </a>
+                    }
+                    @*@Html.Raw(" | ")*@
+                    <a title="Eliminar Permiso" class="badge element-bg-color-red linkSubmit"
+                       onclick="DesasociarRolUsuario('@permiso.IdUsuario','@permiso.IdRol')">
+                        <i class="material-icons md-24">delete</i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

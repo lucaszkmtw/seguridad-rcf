@@ -1,0 +1,446 @@
+﻿<!DOCTYPE html>
+<html>
+
+@helper DisplayNode(System.Web.UI.WebControls.TreeNode nodoMenu)
+{
+    string[] split = nodoMenu.NavigateUrl.Split('/');
+
+    if (nodoMenu.ChildNodes.Count > 0)
+    {
+        @Html.Raw("<li class=" + "submenu_trigger" + ">");
+        if (split.Count() > 1) /*tiene un href*/
+        {
+            <a href="@Url.Action(split[2], split[1])">
+                @*<span class="menu_icon">
+                    <i class="material-icons">add</i>*@
+                @*@nodoMenu.ImageUrl*@
+                @*</span>*@
+                <span class="menu_title">@nodoMenu.Text</span>
+            </a>
+        }
+        else
+        {
+            <a href="#">
+                @*estos son los iconos particulares de sigaf*@
+                @if (nodoMenu.ImageUrl.Contains("icon-") || nodoMenu.ImageUrl.Contains("fa fa-"))
+                {
+                    <span class="menu_icon">
+                        <i class="@nodoMenu.ImageUrl"></i>
+                    </span>
+                    <span class="menu_title uk-text-top">@nodoMenu.Text</span>
+                }
+                else
+                {
+                    @*estos son los iconos de material icons*@
+                    <span class="menu_icon">
+                        <i class="material-icons">@nodoMenu.ImageUrl</i>
+                    </span>
+                    <span class="menu_title">@nodoMenu.Text</span>
+                }
+            </a>
+        }
+        @Html.Raw("<ul>");
+        foreach (System.Web.UI.WebControls.TreeNode child in nodoMenu.ChildNodes)
+        {
+            @DisplayNode(child);
+        }
+        @Html.Raw("</ul>");
+        @Html.Raw("</li>");
+    }
+    else
+    {
+        @Html.Raw("<li id='" + split[2] + "-" + split[1] + "'>");
+        if (split.Count() > 1)
+        {
+            <a href="@Url.Action(split[2], split[1])">
+                @if (nodoMenu.ImageUrl.Contains("icon-") || nodoMenu.ImageUrl.Contains("fa fa-"))
+                {
+                    <span class="menu_icon">
+                        <i class="@nodoMenu.ImageUrl"></i>
+                    </span>
+                    <span class="menu_title uk-text-top">@nodoMenu.Text</span>
+                }
+                else
+                {
+                    @*estos son los iconos de material icons*@
+                    <span class="menu_icon">
+                        <i class="material-icons">@nodoMenu.ImageUrl</i>
+                    </span>
+                    <span class="menu_title">@nodoMenu.Text</span>
+                }
+            </a>
+        }
+        else
+        {
+            <a href="#">
+                @*<span class="menu_icon">
+                        <i class="material-icons">@nodoMenu.ImageUrl</i>@
+                    </span>*@
+                <span class="menu_title">@nodoMenu.Text</span>
+            </a>
+        }
+        @Html.Raw("</li>");
+    }
+}
+
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- Mimic Internet Explorer 11 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE11">
+    <meta name="description" content="Seguridad">
+    <meta name="author" content="Juan Cruz Sabatini">
+    @RenderSection("metaRefresh", required: false)
+
+    <link rel="shortcut icon" href="~/ResourceDesign//css/img/icoprov.ico" />
+    <title>@ViewBag.Title</title>
+
+    @*CSS*@
+    <link href="~/ResourceDesign/css/template/estiloApps.css" rel="stylesheet" type="text/css" />
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="~/Content/template/sigaf-font.css" rel="stylesheet" />
+    <link href="~/ResourceDesign//css/template/uikit.almost-flat.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/ResourceDesign//css/template/plugins/kendo/kendo.common-material.min.css" rel="stylesheet" />
+    <link href="~/ResourceDesign//css/template/plugins/kendo/kendo.material.min.css" rel="stylesheet" />
+
+    @*<!-- altair admin -->*@
+    <link href="~/ResourceDesign//css/template/src/main.css" rel="stylesheet" type="text/css" />
+    <link href="~/ResourceDesign//css/template/BLANK.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/template/theme.css" rel="stylesheet" />
+
+    @*<link href="~/Content/icons/FontAwesome/less/fontawesome.min.css" rel="stylesheet" />*@
+    @*<!-- Own styles -->*@
+    <link href="~/ResourceDesign//css/template/manejo-errores.min.css?v=1.1" rel="stylesheet" />
+    <link href="~/ResourceDesign//css/template/plugins/sweetalert.css" rel="stylesheet" />
+
+    <script src="~/ResourceDesign//Scripts/template/common.min.js"></script>
+    <script src="~/ResourceDesign//Scripts/template/uikit_custom.min.js"></script>
+    <script src="~/ResourceDesign//Scripts/template/layoutScripts.js"></script>
+
+    @RenderSection("styles", required: false)
+
+
+</head>
+<body class="app_theme sidebar_main_open sidebar_main_swipe">
+    <header id="header_main">
+        <nav class="uk-navbar">
+            <!-- TOP BAR -->
+            <div class="uk-container-center">
+                <a href="#" id="sidebar_main_toggle" class="sSwitch sSwitch_left">
+                    <span class="sSwitchIcon"></span>
+                </a>
+                <a href="~/Home/Index" class="uk-navbar-brand uk-hidden-small" style="text-transform:none;" title="Ir a la home" data-uk-tooltip="{pos:'bottom'}">
+                    Seg <STRONG>TGP</STRONG>
+                </a>
+
+                @if (Session["usuario"] != null)
+                {
+                    <div class="uk-navbar-flip">
+                        <ul class="uk-navbar-nav user_actions">
+                            @*<li>
+                                    <div id="menu_top_dropdown" class="uk-float-left uk-hidden-small">
+                                        <div class="uk-button-dropdown" data-uk-dropdown="{mode:'click'}">
+                                            <a href="#" class="top_menu_toggle" title="Aplicaciones favoritas" data-uk-tooltip="{pos:'bottom'}"><i class="material-icons md-24">&#xE885;</i></a>
+                                            <div class="uk-dropdown uk-dropdown-width-3">
+                                                <div class="uk-grid uk-dropdown-grid">
+                                                    <div class="uk-width-1-1">
+                                                        <div class="uk-grid uk-grid-width-medium-1-3 uk-margin-bottom uk-text-center">
+                                                            <a href="page_mailbox.html" class="uk-margin-top">
+                                                                <i class="material-icons md-36 md-color-light-green-600">&#xE158;</i>
+                                                                <span class="">Mailbox</span>
+                                                            </a>
+                                                            <a href="page_invoices.html" class="uk-margin-top">
+                                                                <i class="material-icons md-36 md-color-purple-600">&#xE53E;</i>
+                                                                <span class="uk-display-block">Invoices</span>
+                                                            </a>
+                                                            <a href="page_chat.html" class="uk-margin-top">
+                                                                <i class="material-icons md-36 md-color-cyan-600">&#xE0B9;</i>
+                                                                <span class="uk-text-muted">Chat</span>
+                                                            </a>
+                                                            <a href="page_scrum_board.html" class="uk-margin-top">
+                                                                <i class="material-icons md-36 md-color-red-600">&#xE85C;</i>
+                                                                <span class="uk-text-muted uk-display-block">Scrum Board</span>
+                                                            </a>
+                                                            <a href="page_snippets.html" class="uk-margin-top">
+                                                                <i class="material-icons md-36 md-color-blue-600">&#xE86F;</i>
+                                                                <span class="uk-text-muted uk-display-block">Snippets</span>
+                                                            </a>
+                                                            <a href="page_user_profile.html" class="uk-margin-top">
+                                                                <i class="material-icons md-36 md-color-orange-600">&#xE87C;</i>
+                                                                <span class="uk-text-muted uk-display-block">User profile</span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>*@     @*Aplications favourites *@
+
+                                @if (Session["ambienteDB"] != null)
+                                {
+                                    if (Session["ambienteDB"].ToString() != "PRODCG")
+                                    {
+                                        <li class="uk-hidden-small"><span class="ambiente-header">@Session["ambienteDB"]</span></li>@*Ambiente APP *@
+                                    }
+                                }
+
+                                @{/*
+
+@if (System.Configuration.ConfigurationManager.AppSettings["Ambiente"] != null || @System.Configuration.ConfigurationManager.AppSettings["Ambiente"] != "")
+{
+<li class="uk-hidden-small"><span class="ambiente-header">@System.Configuration.ConfigurationManager.AppSettings["Ambiente"]</span></li>@*Ambiente APP *@
+}
+
+*/}
+
+
+                                <li>
+                                    <a href="#" id="full_screen_toggle" class="user_action_icon uk-visible-large" title="Ampliar Pantalla" data-uk-tooltip="{pos:'bottom'}">
+                                        <i class="material-icons md-24 md-light">fullscreen</i>
+                                    </a>
+                                </li> @*Fullscreen*@
+
+
+                                @*Aplicaciones*@
+                                <li id="cargaApps" data-uk-dropdown="{mode:'hover',pos:'bottom-right'}" aria-haspopup="true" aria-expanded="true" style="z-index: 200;">
+                                    <a href="@System.Configuration.ConfigurationManager.AppSettings["PortalURL"]Home/Index" class="user_action_icon">
+                                        <i class="material-icons md-24 md-light">widgets</i>
+                                    </a>
+                                    <div id="aplicacionesCarga">
+                                        <div id="dropdownAplicaciones" class="uk-dropdown uk-dropdown-xlarge" data-uk-check-display aria-hidden="true">
+                                            <ul class="uk-tab uk-tab-grid" data-uk-tab="{connect:'#header_alerts',animation:'slide-horizontal'}">
+                                                <li id="titulo-dropdown" class="uk-width-1-1 uk-active" aria-expanded="true"><a href="#" class="js-uk-prevent uk-text-small">esperando...</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li id="apps" data-uk-dropdown="{mode:'hover',pos:'bottom-right'}" aria-haspopup="true" aria-expanded="true" style="z-index: 200; display:none; ">
+                                    <a href="@System.Configuration.ConfigurationManager.AppSettings["PortalURL"]Home/Index" class="user_action_icon">
+                                        <i class="material-icons md-24 md-light">widgets</i>
+                                    </a>
+                                    <div id="aplicacionesHeader"></div>
+                                </li>
+
+                                @*<li>
+                                        <a onclick="UIkit.modal('#divLoading').show();" href="@System.Configuration.ConfigurationManager.AppSettings["PortalURL"]Home/Index" class="user_action_icon" title="Aplicaciones" data-uk-tooltip="{pos:'bottom'}">
+                                            <i class="material-icons md-24 md-light">widgets</i>
+                                        </a>
+                                    </li>*@
+                                <li id="novedadesHeader" data-uk-dropdown="{mode:'hover',pos:'bottom-right'}" aria-haspopup="true" aria-expanded="true">
+                                    @*El contador de novedades debe actualizarce continuamente*@
+                                    @Html.Partial("~/Views/Shared/Partials/LayoutNovedades.cshtml")
+                                </li> @*Notifications*@
+
+                                @*Notifications*@
+                                <li data-uk-dropdown="{mode:'click',pos:'bottom-right'}" aria-haspopup="true" aria-expanded="false">
+                                    <a href="#" class="user_action_image" title="Configuracion" data-uk-tooltip="{pos:'bottom'}">
+                                        @if (Session["avatar"] != null)
+                                        {
+                                            var imgSrc = String.Format("data:image/gif;base64,{0}", Convert.ToBase64String((Byte[])Session["avatar"]));
+                                            <img class="md-user-image" src='@imgSrc' title='@User.Identity.Name' style="">
+                                        }
+                                        else
+                                        {
+                                            <img class="md-user-image" src="~/Content/img/user.jpg" title='@User.Identity.Name' style="">
+                                        }
+                                        @*<span class="name">@User.Identity.Name</span>*@
+                                    </a>
+                                    <div class="uk-dropdown uk-dropdown-medium uk-dropdown-bottom" aria-hidden="true" tabindex="" style="min-width: 160px; top: 47px; left: 62px;">
+                                        <ul class="uk-nav js-uk-prevent">
+                                            <li>
+                                                <a href="@System.Configuration.ConfigurationManager.AppSettings["PortalURL"]Account/Perfil">
+                                                    @*<i class="material-icons">account_circle</i>*@
+                                                    Perfil
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:document.getElementById('logoutForm').submit()">
+                                                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                                                    {
+                                                        @Html.AntiForgeryToken()
+
+                                                        @*<i class="fa fa-power-off"></i>*@
+                                                        <span>Cerrar sesión</span>
+                                                    }
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a href="@Url.Action("AcercaDe", "Account")">
+                                                    @*<i class="fa fa-info-circle"></i>*@
+                                                    Acerca de
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li> @*User dropdown*@
+                            </ul>
+                        </div> @*right functionality*@
+                    }
+            </div>
+        </nav>
+    </header>
+
+    <aside id="sidebar_main">
+        @*<a id="change_sidebar" href="javascript:void(0)" class="md-fab sigaf_fab_sidebar uk-position-z-index uk-position-absolute md-fab-small waves-effect">
+                <i class="material-icons md-color-white">&#xE86F;</i>
+            </a>*@
+
+        <div class="sidebar_main_header">
+            <div class="sidebar_logo">
+                <div class="sSidebar_hide sidebar_logo_large">
+                    <img src="~/Content/img/logo_MHYF.png" alt="logo mhyf"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu_section">
+            @if (Session["usuario"] != null)
+            {
+                <ul>
+                    @*<li id="espacio">&nbsp;</li>*@
+                    @foreach (System.Web.UI.WebControls.TreeNode nodo in ((System.Web.UI.WebControls.TreeView)TGP.Seguridad.Controllers.AccountController.LoadTreeMenu((List<TGP.Seguridad.SRSeguridad.MenuWS>)Session["menues"])).Nodes)
+                    {
+                        @DisplayNode(nodo)
+                    }
+                </ul>
+            }
+        </div>
+    </aside>
+
+
+    <div id="page_content">
+        <div id="page_content_inner">
+            @RenderBody()
+        </div>
+    </div>
+
+    <footer id="footer" class="footer">
+        2017 © Todos los Derechos Reservados &nbsp;&nbsp;-&nbsp;&nbsp; Tesoreria General de la Provincia &nbsp;&nbsp;-&nbsp;&nbsp; Versión @System.Configuration.ConfigurationManager.AppSettings["version"]
+    </footer>
+    <!-- END FOOTER -->
+    <!-- Javascript -->
+    <script src="~/ResourceDesign//Scripts/template/altair_admin_common.js"></script>
+
+    <script src="~/ResourceDesign//Scripts/datatablesALTAIR/js/datatables.min.js"></script>
+    <script src="~/ResourceDesign//Scripts/datatablesALTAIR/js/dataTables.uikit.min.js"></script>
+    <script src="~/ResourceDesign//Scripts/datatablesALTAIR/js/plugins_datatables.min.js"></script>
+    <script src="~/ResourceDesign//Scripts/datatablesALTAIR/plugins/date-de.js"></script>
+
+    <script src="~/ResourceDesign//Scripts/sweetalert2.min.js"></script>
+
+    @*filter list*@
+    <script src="~/ResourceDesign//Scripts/FilterFramework/filterlist.js"></script>
+    <script src="~/ResourceDesign//Scripts/FilterFramework/filters/filter.js"></script>
+    <script src="~/ResourceDesign//Scripts/FilterFramework/filters/filter-type-autocomplete.js"></script>
+    <script src="~/ResourceDesign//Scripts/FilterFramework/filters/filter-type-check.js"></script>
+    <script src="~/ResourceDesign//Scripts/FilterFramework/filters/filter-type-text.js"></script>
+    <script src="~/ResourceDesign//Scripts/FilterFramework/filters/filter-type-text-ajax.js"></script>
+    <script src="~/ResourceDesign//Scripts/FilterFramework/filters/filter-type-text-multiple.js"></script>
+    <script src="~/ResourceDesign//Scripts/FilterFramework/filters/filter-type-select.js"></script>
+    <script src="~/ResourceDesign//Scripts/FilterFramework/filters/filter-type-select-multiple.js"></script>
+
+    @*<script src="~/Scripts/opcionMenu.js"></script>*@
+
+    <script src="~/ResourceDesign//Scripts/template/layoutScripts.js" + @Session["version"]></script>
+
+    @RenderSection("scripts", required: false)
+
+    <script>
+
+        //Para recuperar las novedades ni bien se carga la pagina
+        @*$(document).ready(function () {
+            ObtenerNovedades();
+        });
+
+         $(window).on('load', function () {
+            // code here
+             ObtenerApps("@Url.Action("GetApps", "Home")");
+        });*@
+
+
+        function ObtenerNovedades() {
+            $.ajax({
+            url: "@Url.Action("GetNovedades", "Home")",
+            type: 'POST',
+            dataType: 'html',
+            cache: false,
+            beforeSend: function () {
+                if ($("#cardContentNovedades").width() != null) {
+                    let cardWidth = $("#cardContentNovedades").width().toString();
+                    let cardHeight = $("#cardContentNovedades").height().toString();
+                    $("#actualizandoNovedades").css('width', cardWidth);
+                    $("#actualizandoNovedades").css('height', cardHeight);
+                    let paddingTop = parseInt((cardHeight / 2) - 35);
+                    $("#actualizandoNovedades").html(`<div class='uk-text-center'>
+                    <h5 class="uk-margin-small-bottom" style="padding-top: `+ paddingTop + `px">
+                        Espere unos segundos...
+                    </h5>
+                    <div class="uk-flex uk-flex-center">
+                        <div class="md-preloader"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="42" width="42" viewbox="0 0 75 75"><circle cx="37.5" cy="37.5" r="33.5" stroke-width="6" /></svg></div>
+                    </div>
+                </div>`);
+                    $("#dropdownNovedades").html($("#actualizandoNovedades"));
+                    $("#actualizandoNovedades").show();
+                }
+            },
+            success: function (html) {
+                $("#dropdownNovedades").html(html);
+            },
+            complete: function () {
+                $("#contadorNovedades").text($("#spanCountNovedades").text());
+                if ($("#spanCountNovedades").text() != "0") {
+                    $("#contadorNovedades").css('display', 'inline-block');
+                    $("#contadorNovedades").animate({ opacity: '0.2' }, "slow");
+                    $("#contadorNovedades").animate({ opacity: '1' }, "slow");
+                    $("#contadorNovedades").animate({ opacity: '0.2' }, "slow");
+                    $("#contadorNovedades").animate({ opacity: '1' }, "slow");
+                } else {
+                    $("#contadorNovedades").css('display', 'none');
+                }
+            }
+        });
+        };
+
+        //Timer que recupera las novedades cada un minuto
+        setInterval(function () {
+            ObtenerNovedades();
+        }, 60000);
+
+
+        $(document).ajaxError(function () {
+            $(".log").text("Triggered ajaxError handler.");
+        });
+
+        // Manejo de errores global para las peticiones ajax
+        $(document).ajaxError(function (evt, xhr) {
+            hideLoadingModal();
+            //le pongo ese valor por defecto
+            var mensajeError = "Ha ocurrido un error en la carga de la pantalla";
+            try {
+                var json = $.parseJSON(xhr.responseText);
+                var mensajeError = json.esPersonalizada ? json.errorMessage   : json.errorMessage + "\n" + json.codigoError ;
+                var tipo = (json.esErrorSesion) ? "warning" : json.esPersonalizada ? "warning" : "error";
+                swal({
+                    title: "Atención!",
+                    text: mensajeError,
+                    icon: tipo
+                }).then((data) => {
+                      if (json.esErrorSesion)
+                        window.location.href = "@System.Configuration.ConfigurationManager.AppSettings["LoginURL"]";
+                })
+            } catch (e) {
+                swal('Atención!', 'Ha ocurrido un error en la carga de la pantalla.', 'error');
+
+            }
+        });
+    </script>
+
+
+</body>
+</html>
+

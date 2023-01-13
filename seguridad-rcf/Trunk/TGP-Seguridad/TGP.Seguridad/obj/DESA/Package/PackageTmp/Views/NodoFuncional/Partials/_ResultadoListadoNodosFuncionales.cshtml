@@ -1,0 +1,38 @@
+﻿@using TGP.Seguridad.BussinessLogic.Dto
+@model IEnumerable<ListadoNodoFuncionalViewModel>
+<table id="lista-nodos" class="uk-table" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Descripción</th>
+            <th>Nodo Padre</th>
+            <th>Estructura Funcional</th>
+            <th>Descentralizado</th>
+            <th>Tipo Nodo</th>
+            <th>Operación</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (ListadoNodoFuncionalViewModel nodo in Model)
+        {
+            <!-- un registro -->
+            <tr>
+                <td>@nodo.Codigo</td>
+                <td>@nodo.Descripcion</td>
+                <td>@nodo.DescripcionNodoPadre</td>
+                <td>@nodo.DescripcionEstructura</td>
+                <td class="uk-width-1-10">@((nodo.SiDescentralizado) ? "SI" : "NO")</td>
+                <td class="uk-width-1-10">@nodo.TipoNodoFuncional</td>
+                <td class="uk-width-1-10">
+                    <a class="acciones" data-original-title="Editar" data-toggle="tooltip" href="@Url.Action("Editar", "NodoFuncional", new {id = nodo.Id })">
+                        <i class="material-icons md-24">mode_edit</i>
+                    </a>
+                    <a class="acciones" data-original-title="Editar" data-toggle="tooltip" href="#" onclick="eliminarNodo('@nodo.Descripcion',@nodo.Id,@nodo.Version)">
+                        <i class="material-icons md-24">delete</i>
+                    </a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

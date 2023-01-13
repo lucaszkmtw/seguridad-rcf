@@ -1,0 +1,36 @@
+﻿@using TGP.Seguridad.BussinessLogic.Dto
+@model  IEnumerable<ListadoMenuOpcionViewModel>
+    <table id="lista-menus" class="uk-table" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Descripción</th>
+                <th>Estructura Funcional</th>
+                <th>Menú Padre</th>
+                <th>Orden</th>
+                <th class="uk-text-center">Operación</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (ListadoMenuOpcionViewModel menu in Model)
+            {
+                <!-- un registro -->
+                <tr>
+                    <td>@menu.Codigo</td>
+                    <td>@menu.Descripcion</td>
+                    <td>@menu.DescripcionEstructura</td>
+                    <td>@(menu.MenuPadre ?? "") </td>
+
+                    <td>@menu.NumeroOrden</td>
+                    <td class="uk-text-center">
+                        <a class="acciones" data-original-title="Editar" data-toggle="tooltip" href="@Url.Action("Editar", "MenuOpcion", new {id = menu.Id })">
+                            <i class="material-icons ">mode_edit</i>
+                        </a>
+                        <a class="acciones" data-original-title="Eliminar" data-toggle="tooltip" href="#" onclick="eliminarMenu('@menu.Descripcion',@menu.Id,@menu.Version)">
+                            <i class="material-icons ">delete</i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>

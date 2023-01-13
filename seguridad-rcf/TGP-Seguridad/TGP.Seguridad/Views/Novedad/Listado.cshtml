@@ -1,0 +1,315 @@
+﻿@model IEnumerable<TGP.Seguridad.BussinessLogic.Dto.NovedadDTO>
+
+@{
+    ViewBag.Title = "Seg - Listado de Novedades";
+    Layout = "~/Views/Shared/_LayoutBootstrap.cshtml";
+}
+<!--NUEVO-->
+
+@section styles{
+    @*Se agrego el link para el estilo del daterangepicker*@
+    <link href="~/ResourceDesign//css/template/plugins/daterangepicker.min.css" rel="stylesheet" />
+
+}
+
+<div class="uk-grid sigaf-titulo">
+    <div class="uk-width-large-1-2">
+        <h2 class="uk-margin-bottom">Listado de Novedades</h2>
+    </div>
+    <div class="uk-width-large-1-2">
+        <div class="uk-grid uk-grid-small uk-flex uk-flex-right" data-uk-grid-margin data-uk-grid-match="{target:'.md-btn-sigaf'}">
+            <div id="divNuevaEst">
+                <a title="" onclick="showLoadingModal()" href="@Url.Action("Nuevo", "Novedad")" class="md-btn md-btn-sigaf md-btn-accent md-fab-wave-light waves-effect waves-button waves-light">
+                    <h2 class="heading_d uk-text-left md-color-white">
+                        Nueva
+                        <span class="sub-heading md-color-white uk-text-upper">
+                            Novedad
+                        </span>
+                    </h2>
+                    <i class="icon-appSigaf material-icons">add_box</i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="md-card">
+    <div class="md-card-content">
+        <div class="uk-grid uk-margin-medium-top">
+            <div class="uk-width-1-4 uk-margin-medium-top">
+                @Html.Label("Estructura", "Estructura")
+                @Html.Partial("FiltroEstructuras", new Seguridad.FiltroEstructuras(true, null))
+            </div>
+            <div class="uk-width-1-4 uk-margin-medium-top">
+                <div id="combo_roles">
+                    @Html.Label("Rol", "Rol")
+                    @Html.DropDownList("roles", (SelectList)ViewBag.Roles, new { @class = "selectize md-input label-fixed" })
+                </div>
+            </div>
+            @*Se agrego div para implementacion de calendario de fecha desde fecha hasta*@
+            <div class="uk-width-2-4 daterange">
+                @Html.Label("", "Fecha")
+                <div class="uk-grid-match uk-grid-collapse uk-margin-small-top">
+                    <a class="md-btn md-btn-mini md-btn-accent" onclick="configurarFecha(this)">Ultimos 6 meses</a>
+                    <a class="md-btn md-btn-mini md-btn-accent" onclick="configurarFecha(this)">Ultimos 3 meses</a>
+                    <a class="md-btn md-btn-mini md-btn-accent" onclick="configurarFecha(this)">Ultimos 30 dias</a>
+                    <a class="md-btn md-btn-mini md-btn-accent" onclick="configurarFecha(this)">Ultimos 7 dias</a>
+                    <a class="md-btn md-btn-mini md-btn-accent" onclick="configurarFecha(this)">Hoy</a>
+                </div>
+                <input id="reportrange-busqueda-Fecha" name="fecha" class="md-input label-fixed">
+            </div>
+        </div>
+        @*Se agrego boton para funcionalidad buscar*@
+        <div class="uk-width-1-1 uk-margin-medium-top uk-margin-medium-bottom">
+            <div class="uk-flex uk-flex-center">
+                <button title="Buscar" onclick="changeFilters()" class="md-btn md-btn-accent" id="btnSearch" type="button"><span>Buscar</span></button>
+                <button type="button" id="btnClean" class="md-btn"><span>Limpiar</span></button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="md-card uk-margin-bottom">
+    <div class="md-card-content">
+        <div id="div-resultados">
+            @Html.Partial("Partials/_ResultadoListadoNovedades")
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+
+    @*Se agregaron los script para la utilizacion de el calendario*@
+    <script src="~/ResourceDesign//Scripts/moment.min.js"></script>
+    <script src="~/ResourceDesign//Scripts/template/plugins/jquery.daterangepicker.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+
+        //Implementacion calendario
+        $("#reportrange-busqueda-Fecha").dateRangePicker(configDateRangePicker()).bind('datepicker-change', function (event, obj) {
+            fechaDate1 = moment(obj.date1, 'DD-MM-YYYY').format("DD-MM-YYYY");
+            fechaDate2 = moment(obj.date2, 'DD-MM-YYYY').format("DD-MM-YYYY");
+        });
+        $("#fechaPorDefecto").click();
+        defineDatatable(0);
+        activarMenu("#Listado-Novedad");
+        aplicarSelectize($('.selectize'));
+        //changeFilters();
+        $('#filterEstructuras').change();
+    });
+
+    _MAX_LENGTH_STR = 200;
+    function defineDatatable(order) {
+        $('#detalle-datatable').dataTable({
+            iDisplayLength: 25,
+            aaSorting: [[2, "desc"]],
+            dom: agregarDomDatatable(),
+            colVis: {
+                "exclude": [3],
+                buttonText: 'Mostrar / Ocultar Columnas',
+                restore: "Reestablecer",
+                showAll: "Mostrar Todas"
+            },
+            aoColumnDefs: [
+                { "bSortable": true, aTargets: [0] },
+                { "bSortable": true, aTargets: [1] },
+                { "sType": "de_date", aTargets: [2] },
+                { "sType": "de_date", aTargets: [3] },
+                { "bSortable": true, aTargets: [4] },
+                { "bSortable": false, aTargets: [5] }
+            ],
+            buttons: [
+                { extend: 'copy', className: 'md-btn md-btn-small', text: 'Copiar' },
+                { extend: 'csv', title: 'Listado de Novedades', className: 'md-btn md-btn-small' },
+                { extend: 'pdf', title: 'Listado de Novedades', className: 'md-btn md-btn-small', orientation: 'landscape', exportOptions: { columns: [0, 1, 2, 3, 4, 5], }, customize: function (doc) { doc.defaultStyle.alignment = 'landscape'; } },
+                { extend: 'print', className: 'md-btn md-btn-small', text: 'Imprimir' }
+            ],
+            language: agregarLenguajeDatatable()
+        });
+    }   
+
+    $('#filterEstructuras').change(function () {
+    // cargo la variable fecha con el catch con la fecha tomada de el id #  *Mauro
+        if (!isNullOrEmpty('#filterEstructuras') && $("#filterEstructuras").val() != "") {
+            showLoadingModal();
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("GetRolesEstructura","Novedad")',
+                data: {
+                    cod: $('select[name=Estructura]').val(),
+                },
+                success: function (data) {
+                    hideLoadingModal();
+                    if (data !== null) {
+                        let selectizeControl = $('#roles').selectize()[0].selectize;
+                        selectizeControl.clearOptions();
+                        $.each(data, function (i, data) {
+                            if (data.Value === -1) {
+                                selectizeControl.addOption({ value: data.Value, text: data.Text });
+                                selectizeControl.addItem(-1);
+                            } else {
+                                selectizeControl.addOption({ value: data.Value, text: data.Text });
+                            }
+                        }
+                        );
+                        let array = Object.keys(selectizeControl.options);
+                        if (array.length === 1) {
+                            selectizeControl.addItem(array[0]);
+                        }
+                        selectizeControl.setValue("0");
+
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                hideLoadingModal();
+                }
+            });
+        }
+    });
+
+$('#roles').change(function () {
+    if (!isNullOrEmpty('#roles') && $("#roles").val() != "") {
+        //changeFilters();
+    }
+});
+
+function changeFilters() {
+    if ($("#reportrange-busqueda-Fecha").val() != '') {
+        var fecha = catchValuesDateRange($("#reportrange-busqueda-Fecha"));
+    }
+    else {
+        var fecha = ['', ''];
+    }
+    $.ajax(
+        {
+            url: '@Url.Action("GetNovedades", "Novedad")',
+            type: "POST",
+            data: {
+                estructura: $('select[name=Estructura]').val(),
+                rol: $('#roles').val(),
+                fechaInicio: fecha[0], 
+                fechaFin: fecha[1]
+                // Se agregaron las variables fecha inicio y fecha fin para la utilizacion del filtro por fecha
+            },
+            beforeSend: function (xhr) {
+                //sacar el cerrar con el ESC al modal
+                showLoadingModal();
+            },
+            success: function (data) {
+                hideLoadingModal();
+                $("#div-resultados").html(data);
+                defineDatatable(0);
+                actualizarSigafTooltips();
+                //defineDatatable(0)
+            },
+            error: function (e) {
+                //hideLoadingModal();
+                console.log(e)
+            }
+        });
+    }
+    // calendario
+    /*daterange tange of dates */
+
+    function configurarFecha(element) {
+        var input = $(element).parent().parent().find("input").first();
+        var fechaIni;
+        var fechaFin;
+        switch ($(element).text()) {
+            case "Hoy":
+                fechaIni = moment('@Session["FechaInicio"]', 'DD-MM-YYYY').format("DD-MM-YYYY");
+                fechaFin = moment('@Session["FechaInicio"]', 'DD-MM-YYYY').format("DD-MM-YYYY");
+                break;
+            case "Ultimos 7 dias":
+                fechaIni = moment('@Session["FechaInicio"]', 'DD-MM-YYYY').subtract(7, 'days').format("DD-MM-YYYY");
+                fechaFin = moment('@Session["FechaInicio"]', 'DD-MM-YYYY').format("DD-MM-YYYY");
+            break;
+            case "Ultimos 30 dias":
+                fechaIni = moment('@Session["FechaInicio"]', 'DD-MM-YYYY').subtract(1, 'month').format("DD-MM-YYYY");
+                fechaFin = moment('@Session["FechaInicio"]', 'DD-MM-YYYY').format("DD-MM-YYYY");
+            break;
+            case "Ultimos 3 meses":
+                fechaIni = moment('@Session["FechaInicio"]', 'DD-MM-YYYY').subtract(3, 'month').format("DD-MM-YYYY");
+                fechaFin = moment('@Session["FechaInicio"]', 'DD-MM-YYYY').format("DD-MM-YYYY");
+            break;
+            case "Ultimos 6 meses":
+                fechaIni = moment('@Session["FechaInicio"]', 'DD-MM-YYYY').subtract(6, 'month').format("DD-MM-YYYY");
+                fechaFin = moment('@Session["FechaInicio"]', 'DD-MM-YYYY').format("DD-MM-YYYY");
+            break;
+            default:
+        }
+        $("#reportrange-busqueda-Fecha").data('dateRangePicker').setDateRange(fechaIni, fechaFin);
+    }
+    // fin calendario
+
+function deleteItem(id, descripcion, version) {
+    var descrip = $('<div>' + descripcion + '</div>').text();
+    if (descrip.length > _MAX_LENGTH_STR) {
+        descrip = descrip.slice(0, _MAX_LENGTH_STR);
+    }
+    swal({
+        title: "",
+        text: "¿Desea Eliminar la Novedad " + descrip + "?",
+        icon: "warning",
+        buttons: {
+            confirm: "Aceptar",
+            cancel: "Cancelar"
+        },
+        closeOnClickOutside: false,
+    }).then(
+        (isConfirm) => {
+            if (isConfirm) {
+                showLoadingModal();
+                $.ajax({
+                    url: '@Url.Action("Eliminar", "Novedad")',
+                    type: "POST",
+                    data: {
+                        version: version,
+                        id: id,
+                    },
+                    beforesSend: function (xhr) {
+                        showLoadingModal();
+                    },
+                    success: function (data) {
+                        hideLoadingModal();
+                        swal({
+                            title: "",
+                            text: data.mensaje,
+                            icon: data.tipo,
+                            buttons: {
+                                confirm: "Aceptar"
+                            },
+                            closeOnClickOutside: false,
+                        }).then(() => {
+                            window.location.reload();
+                        });
+                    },
+                    error: function (e) {
+                        hideLoadingModal();
+                    }
+                });
+            }
+        });
+    return false;
+    }
+
+
+    $("#btnClean").on("click", function () {
+        debugger;
+        $("#filterEstructuras")[0].selectize.setValue(0);
+        $("#roles")[0].selectize.setValue(0);
+
+        $('#reportrange-busqueda-Fecha').val('');
+
+
+
+
+    });
+
+
+</script>
+}

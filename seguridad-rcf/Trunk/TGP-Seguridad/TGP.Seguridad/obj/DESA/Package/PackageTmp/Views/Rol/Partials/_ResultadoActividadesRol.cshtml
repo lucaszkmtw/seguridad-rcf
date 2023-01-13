@@ -1,0 +1,71 @@
+﻿@model IList<TGP.Seguridad.BussinessLogic.Dto.RolActividadViewModel>
+    <table id="lista-actividades" class="uk-table" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th style="width: 20%;">
+                    Codigo Actividad
+                </th>
+                <th>
+                    Descripcion Actividad
+                </th>
+                <th>
+                    Descripcion Rol
+                </th>
+                <th style="width: 10%;">
+                    Usuarios
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (TGP.Seguridad.BussinessLogic.Dto.RolActividadViewModel rolActividad in Model)
+            {
+            <tr>
+                <td>
+                    @rolActividad.CodigoActividad
+                </td>
+                <td>
+                    @rolActividad.DescripcionActividad
+                </td>
+                <td>
+                    @rolActividad.DescripcionRol
+                </td>
+                <td>
+                    <a class="acciones" data-original-title="Ver Usuarios" data-toggle="tooltip" href="@Url.Action("ConsultaAsignacionDeUsuarios", "Usuario", new {idEstructura = rolActividad.CodigoEstructura , idRol = rolActividad.CodigoRol})">
+                        <i class="material-icons ">group</i>
+                    </a>
+                </td>
+                @*@{ string tipplyContent = ""; }
+                @if (user.Nodos.Count > 3)
+                {
+                    tipplyContent = "<div style='max-height: 300px; overflow-y: scroll;'>";
+                    foreach (string nodo in user.Nodos)
+                    {
+                        tipplyContent += "<p class='uk-text-small' style='margin: 5px;'>" + @nodo + "</p>";
+                    }
+                    tipplyContent += "</div>";
+                }
+                <td>
+                    @if (user.Nodos.Count > 3)
+                    {
+                        <span class="nodosNoVisibles" data-tippy-content='@tipplyContent'>
+                            @for (int i = 0; i < 3; i++)
+                            {
+                                <span class="uk-badge uk-badge-success uk-badge-notification">@user.Nodos[i]</span>
+                                @Html.Raw(" ")
+                            }
+                            <span class="uk-badge uk-badge-success uk-badge-notification">@(user.Nodos.Count - 3) +</span>
+                        </span>
+
+                    }
+                    else
+                    {
+                        foreach (var i in user.Nodos)
+                        {
+                            <span class="uk-badge uk-badge-success uk-badge-notification">@i</span>
+                        }
+                    }
+                </td>*@
+            </tr>
+            }
+        </tbody>
+    </table>

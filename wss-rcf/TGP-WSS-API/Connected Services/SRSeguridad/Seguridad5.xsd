@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/TGP.WSS.Models.DTO" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/TGP.WSS.Models.DTO" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://ws-tesoreria.cgp.sigaf.bajos/TGP.WSS_desa/Seguridad.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/TGP.WSS.Models.Resultado" />
+  <xs:complexType name="UsuarioNominadoDTO">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:UsuarioDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Apellidos" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CodigoRol" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Nombres" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NumeroDocumento" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UsuarioNominadoDTO" nillable="true" type="tns:UsuarioNominadoDTO" />
+  <xs:complexType name="UsuarioDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Avatar" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:long" />
+      <xs:element minOccurs="0" name="NombreUsuario" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UsuarioDTO" nillable="true" type="tns:UsuarioDTO" />
+  <xs:complexType name="ArrayOfUsuarioNominadoDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UsuarioNominadoDTO" nillable="true" type="tns:UsuarioNominadoDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUsuarioNominadoDTO" nillable="true" type="tns:ArrayOfUsuarioNominadoDTO" />
+  <xs:complexType name="SolicitudGetAuditoria">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Actividad" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EstructuraFuncional" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FechaDesde" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FechaHasta" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Observacion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Usuario" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SolicitudGetAuditoria" nillable="true" type="tns:SolicitudGetAuditoria" />
+  <xs:complexType name="ResultadoGetAuditoriaDTO">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/TGP.WSS.Models.Resultado" base="q1:ResultadoDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Items" nillable="true" type="tns:ArrayOfAuditoriaDTO" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ResultadoGetAuditoriaDTO" nillable="true" type="tns:ResultadoGetAuditoriaDTO" />
+  <xs:complexType name="ArrayOfAuditoriaDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AuditoriaDTO" nillable="true" type="tns:AuditoriaDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAuditoriaDTO" nillable="true" type="tns:ArrayOfAuditoriaDTO" />
+  <xs:complexType name="AuditoriaDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Actividad" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EstructuraFuncional" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FechaAccion" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Observacion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Usuario" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AuditoriaDTO" nillable="true" type="tns:AuditoriaDTO" />
+</xs:schema>

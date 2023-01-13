@@ -1,0 +1,50 @@
+﻿<div class="alert alert-warning">
+    <!--<button class="close" type="button" data-dismiss="alert">×</button>-->
+    <h4><i class="fa fa-warning"></i>&nbsp;&nbsp;Atención!</h4>
+    <p style="color: black; text-align: center;">
+
+        @if (ViewBag.ErrorMessage == null || ViewBag.ErrorMessage == "")
+        {
+            WriteLiteral("Error Inesperado.");
+        }
+        else if (Session["usuario"] == null)
+        {
+            @ViewBag.ErrorMessage;
+            WriteLiteral("<span class='label' style='padding: 0 20px; font-size: 14px;'>");
+            @Html.ActionLink("Ingresar", "Login", "Account");
+            WriteLiteral("</span>");
+        }
+        else
+        {
+            @ViewBag.ErrorMessage;
+        }
+
+    </p>
+</div>
+<div class="widget" style="border-color:#808080;overflow:hidden;">
+    <div class="widget-header" style="background-color:#EEE; color:#808080; border-color:#808080">
+        <h3>
+            <i class="fa fa-file-text-o"></i>
+            Detalle del Error
+        </h3>
+        <div class="btn-group widget-header-toolbar">
+            <a id="btna" class="btn-borderless btn-toggle-expand" title="Expand/Collapse" href="#" style="color: #808080">
+                <i class="fa fa-chevron-up"></i>
+            </a>
+        </div>
+    </div>
+    <div class="widget-content">
+        <p style="color: navy;">@ViewBag.ProgramerErrorMessage</p>
+    </div>
+</div>
+<div class="modal-footer">
+    <a href="#" id="btn-cerrar" class="btn btn-primary" data-dismiss="modal">Cerrar</a>
+</div>
+
+
+
+<script>
+    $(document).ready(function () {
+        $('#btna').click();
+    });
+</script>

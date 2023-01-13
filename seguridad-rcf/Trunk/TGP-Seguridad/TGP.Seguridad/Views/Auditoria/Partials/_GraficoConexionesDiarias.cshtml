@@ -1,0 +1,82 @@
+﻿@using TGP.Seguridad.BussinessLogic.Dto
+@model GraficoConexionesHora
+<div class="uk-grid" data-uk-grid-margin>
+    <div class="uk-width-1-1">
+        <div class="md-card">
+            <div class="uk-form-row">
+                <div class="md-card-content">
+                    <h4 class="heading_c uk-margin-bottom">Conexiones de Usuarios en el día @Session["FechaInicioGD"]</h4>
+                    <div id="c3_chart_spline_dia" class="c3chart uk-margin-medium-top"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    function armarGraficoPorDia() {
+        var c3chart_spline_id = '#c3_chart_spline_dia';
+        if ($(c3chart_spline_id).length) {
+
+            var c3chart_spline = c3.generate({
+                bindto: c3chart_spline_id,
+                size: {
+                    height: 400,
+                    width: 1000
+                },
+                data: {
+                    x: 'x',
+                    columns: [
+                        //Horas del dia
+                        ['x', '00hs', '01hs', '02hs', '03hs', '04hs', '05hs', '06hs', '07hs', '08hs', '09hs', '10hs', '11hs', '12hs', '13hs', '14hs', '15hs', '16hs', '17hs', '18hs', '19hs', '20hs', '21hs', '22hs', '23hs'],
+                        ['Acreedores', @Model.Acreedores],
+                        ['Nominados', @Model.Nominados]
+
+                    ],
+                    type: 'spline'
+                },
+                //tooltip: {
+                //    grouped: false
+                //},
+                //zoom: {
+                //    enabled: true
+                //},
+                subchart: {
+                    show: true
+                },
+                color: {
+                    pattern: ['#5E35B1', '#FB8C00', '#FB8C00']
+                },
+                axis: {
+                    x: {
+                        type: 'category',
+                        label: {
+                            text: 'Horas',
+                            position: 'outer-left'
+                            // inner-right : default
+                            // inner-center
+                            // inner-left
+                            // outer-right
+                            // outer-center
+                            // outer-left
+                        }
+                    },
+                    y: {
+                        tick: { format: d3.format("d") },
+                        min: 0,
+                        padding: {
+                            bottom: 0
+                        },
+                        label: {
+                            text: 'Conexiones',
+                            position: 'outer-middle'
+                        }
+                    }
+                }
+            });
+
+        }
+    }
+
+
+</script>

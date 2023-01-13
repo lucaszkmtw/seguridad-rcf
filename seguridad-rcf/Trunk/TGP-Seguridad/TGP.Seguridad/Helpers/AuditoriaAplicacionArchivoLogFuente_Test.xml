@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<Aplicaciones>
+  <Aplicacion Id="SEG">
+    <ArchivoDebug>C:\\inetpub\\wwwroot\\TGPSeguridad_test\\logs\\TGP.Seguridad_DEBUG_TEST.log</ArchivoDebug>
+    <ArchivoError>C:\\inetpub\\wwwroot\\TGPSeguridad_test\\logs\\TGP.Seguridad_ERROR_TEST.log</ArchivoError>
+  </Aplicacion>
+  <Aplicacion Id="ADA">
+    <ArchivoDebug>C:\\inetpub\\wwwroot\\Autogestion_test\\logs\TGP.AutogestionProject_DEBUG_TESTCG.log</ArchivoDebug>
+    <ArchivoError>C:\\inetpub\\wwwroot\\Autogestion_test\\logs\\TGP.AutogestionProject_ERROR_TESTCG.log</ArchivoError>
+  </Aplicacion>
+  <Aplicacion Id="CONC">
+    <ArchivoDebug>C:\\inetpub\\wwwroot\\Conciliacion_test\\logs\\TGP.Conciliacion_DEBUG_TEST.log</ArchivoDebug>
+    <ArchivoError>C:\\inetpub\\wwwroot\\Conciliacion_test\\logs\\TGP.Conciliacion_ERROR_TEST.log</ArchivoError>
+  </Aplicacion>
+  <Aplicacion Id="CDP">
+    <ArchivoDebug>C:\\inetpub\\wwwroot\\ConsultaDePagos_test\\logs\\TGP.ConsultaDePagos_DEBUG_TESTCG.log</ArchivoDebug>
+    <ArchivoError>C:\\inetpub\\wwwroot\\ConsultaDePagos_test\\logs\\TGP.ConsultaDePagos_ERROR_TESTCG.log</ArchivoError>
+  </Aplicacion>
+  <Aplicacion Id="ENTE">
+    <ArchivoDebug>C:\\inetpub\\wwwroot\\Ente_test\\logs\\TGP.ENTE_DEBUG_TEST.log</ArchivoDebug>
+    <ArchivoError>C:\\inetpub\\wwwroot\\Ente_test\\logs\\TGP.ENTE_ERROR_TEST.log</ArchivoError>
+  </Aplicacion>
+  <Aplicacion Id="GDR">
+    <ArchivoDebug>C:\\inetpub\\wwwroot\\GestionRecursos_test\\logs\\TGP.Recursos_DEBUG_TESTCG.log</ArchivoDebug>
+    <ArchivoError>C:\\inetpub\\wwwroot\\GestionRecursos_test\\logs\\TGP.Recursos_ERROR_TESTCG.log</ArchivoError>
+  </Aplicacion>
+  <Aplicacion Id="GEP">
+    <ArchivoDebug>C:\\inetpub\\wwwroot\\GestionElectronicaDePago_test\\logs\\TGP.GestionElectronicaDePagos_DEBUG_TEST.log</ArchivoDebug>
+    <ArchivoError>C:\\inetpub\\wwwroot\\GestionElectronicaDePago_test\\logs\\TGP.GestionElectronicaDePagos_ERROR_TEST.log</ArchivoError>
+  </Aplicacion>
+  <Aplicacion Id="GRI">
+    <ArchivoDebug>C:\\inetpub\\wwwroot\\GestionRetencionesImpositiva_test\\logs\\TGP.InfoPagoRetenciones_DEBUG_TESTCG.log</ArchivoDebug>
+    <ArchivoError>C:\\inetpub\\wwwroot\\GestionRetencionesImpositiva_test\logs\\TGP.InfoPagoRetenciones_ERROR_TESTCG.log</ArchivoError>
+  </Aplicacion>
+  <Aplicacion Id="IDG">
+    <ArchivoDebug>C:\\inetpub\\wwwroot\\InformeDeGestion_test\\logs\\TGP.InformesDeGestion_DEBUG_TESTCG.log</ArchivoDebug>
+    <ArchivoError>C:\\inetpub\\wwwroot\\InformeDeGestion_test\\logs\\TGP.InformesDeGestion_ERROR_TESTCG.log</ArchivoError>
+  </Aplicacion>
+  <Aplicacion Id="MANT">
+    <ArchivoDebug>C:\\inetpub\\wwwroot\\mantenimiento_test\\logs\\TGP.Mantenimiento_DEBUG_TEST.log</ArchivoDebug>
+    <ArchivoError>C:\\inetpub\\wwwroot\\mantenimiento_test\\logs\\TGP.Mantenimiento_ERROR_TEST.log</ArchivoError>
+  </Aplicacion>
+  <Aplicacion Id="MAP">
+    <ArchivoDebug>C:\\inetpub\\wwwroot\\MedidasDeAfectacionPatrimonial_test\\logs\\TGP.MAP_DEBUG_TEST.log</ArchivoDebug>
+    <ArchivoError>C:\\inetpub\\wwwroot\\MedidasDeAfectacionPatrimonial_test\\logs\\TGP.MAP_ERROR_TEST.log</ArchivoError>
+  </Aplicacion>
+  <Aplicacion Id="POR">
+    <ArchivoDebug>C:\\inetpub\\wwwroot\\portal_test\\logs\\TGP.PortalProject_DEBUG_TEST.log</ArchivoDebug>
+    <ArchivoError>C:\\inetpub\\wwwroot\\portal_test\\logs\\TGP.PortalProject_ERROR_TEST.log</ArchivoError>
+  </Aplicacion>
+  <Aplicacion Id="RUC">
+    <ArchivoDebug>C:\\inetpub\\wwwroot\\TGPRuco_test\\logs\\TGP.RUCO_DEBUG_TESTCG.log</ArchivoDebug>
+    <ArchivoError>C:\\inetpub\\wwwroot\\TGPRuco_test\\logs\\TGP.RUCO_ERROR_TESTCG.log</ArchivoError>
+  </Aplicacion>
+  <Aplicacion Id="SDH">
+    <ArchivoDebug>C:\\inetpub\\wwwroot\\SeguimientoDeSueldos_test\\logs\\TGP.SeguimientoDeSueldos_DEBUG_TEST.log</ArchivoDebug>
+    <ArchivoError>C:\\inetpub\\wwwroot\\SeguimientoDeSueldos_test\\logs\\TGP.SeguimientoDeSueldos_ERROR_TEST.log</ArchivoError>
+  </Aplicacion>
+  <Aplicacion Id="SIE">
+    <ArchivoDebug>C:\\inetpub\\wwwroot\\SIEP_test\\logs\\TGP.SIEP_DEBUG_TESTCG.log</ArchivoDebug>
+    <ArchivoError>C:\\inetpub\\wwwroot\\SIEP_test\\logs\\TGP.SIEP_ERROR_TESTCG.log</ArchivoError>
+  </Aplicacion>
+  <Aplicacion Id="ADL">
+    <ArchivoDebug>C:\\inetpub\\wwwroot\\AdministradoresLocales_test\\logs\\TGP.AdministradoresLocales_DEBUG_TESTCG.log</ArchivoDebug>
+    <ArchivoError>C:\\inetpub\\wwwroot\\AdministradoresLocales_test\\logs\\TGP.AdministradoresLocales_ERROR_TESTCG.log</ArchivoError>
+  </Aplicacion>
+</Aplicaciones>

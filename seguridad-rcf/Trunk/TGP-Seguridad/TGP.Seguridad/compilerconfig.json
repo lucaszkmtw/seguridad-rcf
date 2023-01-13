@@ -1,0 +1,26 @@
+﻿[
+  {
+    "outputFile": "Content/template/src/main.css",
+    "inputFile": "Content/template/src/main.less"
+  },
+  {
+    "outputFile": "Content/template/BLANK.css",
+    "inputFile": "Content/template/BLANK.less"
+  },
+  {
+    "outputFile": "Content/template/login_sigaf.css",
+    "inputFile": "Content/template/login_sigaf.less"
+  },
+  {
+    "outputFile": "Content/template/manejo-errores.css",
+    "inputFile": "Content/template/manejo-errores.less"
+  },
+  {
+    "outputFile": "Content/template/theme.css",
+    "inputFile": "Content/template/theme.less"
+  },
+  {
+    "outputFile": "Content/template/src/themes/_theme_login.css",
+    "inputFile": "Content/template/src/themes/_theme_login.less"
+  }
+]

@@ -1,0 +1,57 @@
+﻿@using TGP.Seguridad.BussinessLogic.Dto;
+@model CambioPasswordViewModel
+
+
+<div id="cambio-clave">
+    @if (Model.CodigoTipoAutenticacion.Equals(UsuarioDTO.INTERNA)) //@if (Model.CodigoTipoUsuario.Equals(UsuarioDTO.USUARIONOMINADO) || Model.CodigoTipoUsuario.Equals(UsuarioDTO.USUARIOACREEDOR))
+    {
+        <div class="uk-grid uk-margin-top">
+            <div class="uk-width-medium-1-1">
+                <label class="label-fixed">Cambio de Contraseña</label>
+
+            </div>
+        </div>
+
+        <div class="md-card uk-margin-bottom">
+            <div class="md-card-content">
+                @using (Ajax.BeginForm("GuardarNuevaClave", "Usuario", new AjaxOptions() { HttpMethod = "POST", OnSuccess = "CambioSuccess", OnFailure = "CambioSuccess" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    @Html.HiddenFor(model => model.Id)
+                    @Html.HiddenFor(model => model.Version)
+                    @Html.HiddenFor(model => model.NombreUsuario)
+                    @Html.HiddenFor(model => model.CodigoTipoAutenticacion)
+                    @Html.HiddenFor(model => model.CodigoTipoUsuario)
+                    <div class="error" id="divMayus" style="display: none">
+                        Mayuscula Activada
+                    </div>
+                    <div class="uk-grid uk-margin-top">
+                        <div class="uk-width-medium-1-2">
+                            @Html.Label("NuevaContraseña", "Nueva Contraseña")
+                            @Html.TextBoxFor(model => model.NuevaContraseña, new { @class = "md-input label-fixed", @type = "password", @placeholder = HttpUtility.HtmlDecode("8-30 Caracteres"), autocomplete = "off", minlength = 8, maxlength = 30, onkeypress = "capLock(event)" })
+                            @Html.ValidationMessageFor(model => model.NuevaContraseña, null, new { @class = "error" })
+
+                        </div>
+                        <div class="uk-width-medium-1-2">
+                            @Html.Label("ConfirmarContraseña", "Confirmar Contraseña")
+                            @Html.TextBoxFor(model => model.NuevaContraseñaConfirmacion, new { @class = "md-input label-fixed", @type = "password", @placeholder = HttpUtility.HtmlDecode("Reingrese la nueva contraseña"), autocomplete = "off", minlength = 8, maxlength = 30, onkeypress = "capLock(event)" })
+                            @Html.ValidationMessageFor(model => model.NuevaContraseñaConfirmacion, null, new { @class = "error" })
+
+                        </div>
+                    </div>
+                    <div class="uk-width-1-1">
+                        <div class="uk-flex uk-flex-center uk-margin-medium-top">
+                            <button title="Actualizar" class="md-btn md-btn-accent" type="submit" id="btnActualizar"><span>Actualizar</span></button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+    else
+    {
+        @Html.Raw("<div class='alert alert-warning fade in' style='vertical-align:middle'>")
+        @Html.Raw("<i class='fa fa-2x fa-info-circle'></i>&nbsp;&nbsp;El tipo de autenticacion seleccionada para este usuario no permite cambio de contraseña.</div>")
+    }
+</div>

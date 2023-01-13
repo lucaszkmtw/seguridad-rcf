@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="TGP.WSS" namespace="TGP.WSS" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="SolicitudNodo" table="SEG_SOLICITUD_NODO" lazy="true" >
+    <id name="Id" column="C_ID">
+      <generator class="native" >
+        <param name="sequence">seg_solicitud_nodo_sq</param>
+      </generator>
+    </id>
+    <version name="VersionHibernate">
+      <column name="N_VERSION_HIBERNATE" sql-type="NUMBER" not-null="true" />
+    </version>
+    <many-to-one name="Solicitud">
+      <column name="C_ID_SOLICITUD" sql-type="NUMBER" not-null="true" />
+    </many-to-one>
+    <many-to-one name="NodoFuncional">
+      <column name="C_ID_NODO_FUNCIONAL" sql-type="NUMBER" not-null="true" />
+    </many-to-one>
+    <property name="FechaAlta">
+      <column name="F_ALTA" sql-type="DATE" not-null="true" />
+    </property>
+  </class>
+</hibernate-mapping>

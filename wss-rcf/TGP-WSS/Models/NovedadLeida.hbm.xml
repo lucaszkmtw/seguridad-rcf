@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="TGP.WSS" namespace="TGP.WSS" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="NovedadLeida" table="SEG_NOVEDAD_LEIDA" lazy="false" >
+    <composite-id>
+      <key-many-to-one name="Usuario" column="C_ID_USUARIO" />
+      <key-many-to-one name="Novedad" column="C_ID_NOVEDAD" />
+    </composite-id>
+    <version name="NVersionHibernate">
+      <column name="N_VERSION_HIBERNATE" sql-type="NUMBER" not-null="true" />
+    </version>
+    <property name="FLectura">
+      <column name="F_LECTURA" sql-type="DATE" not-null="true" />
+    </property>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Seguridad" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://ws-tesoreria.cgp.sigaf.bajos/TGP.WSS_desa/Seguridad.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://ws-tesoreria.cgp.sigaf.bajos/TGP.WSS_desa/Seguridad.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://ws-tesoreria.cgp.sigaf.bajos/TGP.WSS_desa/Seguridad.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/TGP.WSS.Models.Requerimiento" />
+      <xsd:import schemaLocation="http://ws-tesoreria.cgp.sigaf.bajos/TGP.WSS_desa/Seguridad.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/TGP.WSS.Models.Resultado" />
+      <xsd:import schemaLocation="http://ws-tesoreria.cgp.sigaf.bajos/TGP.WSS_desa/Seguridad.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/TGP.WSS.Models.DTO" />
+      <xsd:import schemaLocation="http://ws-tesoreria.cgp.sigaf.bajos/TGP.WSS_desa/Seguridad.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/TGP.WSS" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="LibreriaSeguridad_Eco_InputMessage">
+    <wsdl:part name="parameters" element="tns:Eco" />
+  </wsdl:message>
+  <wsdl:message name="LibreriaSeguridad_Eco_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EcoResponse" />
+  </wsdl:message>
+  <wsdl:message name="LibreriaSeguridad_Favoritear_InputMessage">
+    <wsdl:part name="parameters" element="tns:Favoritear" />
+  </wsdl:message>
+  <wsdl:message name="LibreriaSeguridad_Favoritear_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FavoritearResponse" />
+  </wsdl:message>
+  <wsdl:message name="LibreriaSeguridad_ObtenerFavoritos_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerFavoritos" />
+  </wsdl:message>
+  <wsdl:message name="LibreriaSeguridad_ObtenerFavoritos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerFavoritosResponse" />
+  </wsdl:message>
+  <wsdl:message name="LibreriaSeguridad_ObtenerUsuarioNominado_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerUsuarioNominado" />
+  </wsdl:message>
+  <wsdl:message name="LibreriaSeguridad_ObtenerUsuarioNominado_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerUsuarioNominadoResponse" />
+  </wsdl:message>
+  <wsdl:message name="LibreriaSeguridad_ObtenerUsuariosNominadosPorRol_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerUsuariosNominadosPorRol" />
+  </wsdl:message>
+  <wsdl:message name="LibreriaSeguridad_ObtenerUsuariosNominadosPorRol_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerUsuariosNominadosPorRolResponse" />
+  </wsdl:message>
+  <wsdl:message name="LibreriaSeguridad_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="LibreriaSeguridad_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="LibreriaSeguridad_ExternalLogin_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExternalLogin" />
+  </wsdl:message>
+  <wsdl:message name="LibreriaSeguridad_ExternalLogin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExternalLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="LibreriaSeguridad_ChangePassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangePassword" />
+  </wsdl:message>
+  <wsdl:message name="LibreriaSeguridad_ChangePassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangePasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="LibreriaSeguridad_SendPasswordFT_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendPasswordFT" />
+  </wsdl:message>
+  <wsdl:message name="LibreriaSeguridad_SendPasswordFT_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendPasswordFTResponse" />
+  </wsdl:message>
+  <wsdl:message name="LibreriaSeguridad_ResetPassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:ResetPassword" />
+  </wsdl:message>
+  <wsdl:message name="LibreriaSeguridad_ResetPassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ResetPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="LibreriaSeguridad_SetNewPasswordByActiveDirectory_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetNewPasswordByActiveDirectory" />
+  </wsdl:message>
+  <wsdl:message name="LibreriaSeguridad_SetNewPasswordByActiveDirectory_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetNewPasswordByActiveDirectoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="LibreriaSeguridad_addAuditoria_InputMessage">
+    <wsdl:part name="parameters" element="tns:addAuditoria" />
+  </wsdl:message>
+  <wsdl:message name="LibreriaSeguridad_addAuditoria_OutputMessage">
+    <wsdl:part name="parameters" element="tns:addAuditoriaResponse" />
+  </wsdl:message>
+  <wsdl:message name="LibreriaSeguridad_RegistarAuditoriaConexion_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegistarAuditoriaConexion" />
+  </wsdl:message>
+  <wsdl:message name="LibreriaSeguridad_RegistarAuditoriaConexion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegistarAuditoriaConexionResponse" />
+  </wsdl:message>
+  <wsdl:message name="LibreriaSeguridad_RegistarAuditoriaDesconexion_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegistarAuditoriaDesconexion" />
+  </wsdl:message>
+  <wsdl:message name="LibreriaSeguridad_RegistarAuditoriaDesconexion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegistarAuditoriaDesconexionResponse" />
+  </wsdl:message>
+  <wsdl:message name="LibreriaSeguridad_UsuariosXEstructura_InputMessage">
+    <wsdl:part name="parameters" element="tns:UsuariosXEstructura" />
+  </wsdl:message>
+  <wsdl:message name="LibreriaSeguridad_UsuariosXEstructura_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UsuariosXEstructuraResponse" />
+  </wsdl:message>
+  <wsdl:message name="LibreriaSeguridad_GetAuditoria_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAuditoria" />
+  </wsdl:message>
+  <wsdl:message name="LibreriaSeguridad_GetAuditoria_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAuditoriaResponse" />
+  </wsdl:message>
+  <wsdl:portType name="LibreriaSeguridad">
+    <wsdl:operation name="Eco">
+      <wsdl:input wsaw:Action="http://tempuri.org/LibreriaSeguridad/Eco" message="tns:LibreriaSeguridad_Eco_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/LibreriaSeguridad/EcoResponse" message="tns:LibreriaSeguridad_Eco_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Favoritear">
+      <wsdl:input wsaw:Action="http://tempuri.org/LibreriaSeguridad/Favoritear" message="tns:LibreriaSeguridad_Favoritear_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/LibreriaSeguridad/FavoritearResponse" message="tns:LibreriaSeguridad_Favoritear_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerFavoritos">
+      <wsdl:input wsaw:Action="http://tempuri.org/LibreriaSeguridad/ObtenerFavoritos" message="tns:LibreriaSeguridad_ObtenerFavoritos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/LibreriaSeguridad/ObtenerFavoritosResponse" message="tns:LibreriaSeguridad_ObtenerFavoritos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerUsuarioNominado">
+      <wsdl:input wsaw:Action="http://tempuri.org/LibreriaSeguridad/ObtenerUsuarioNominado" message="tns:LibreriaSeguridad_ObtenerUsuarioNominado_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/LibreriaSeguridad/ObtenerUsuarioNominadoResponse" message="tns:LibreriaSeguridad_ObtenerUsuarioNominado_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerUsuariosNominadosPorRol">
+      <wsdl:input wsaw:Action="http://tempuri.org/LibreriaSeguridad/ObtenerUsuariosNominadosPorRol" message="tns:LibreriaSeguridad_ObtenerUsuariosNominadosPorRol_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/LibreriaSeguridad/ObtenerUsuariosNominadosPorRolResponse" message="tns:LibreriaSeguridad_ObtenerUsuariosNominadosPorRol_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="http://tempuri.org/LibreriaSeguridad/Login" message="tns:LibreriaSeguridad_Login_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/LibreriaSeguridad/LoginResponse" message="tns:LibreriaSeguridad_Login_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExternalLogin">
+      <wsdl:input wsaw:Action="http://tempuri.org/LibreriaSeguridad/ExternalLogin" message="tns:LibreriaSeguridad_ExternalLogin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/LibreriaSeguridad/ExternalLoginResponse" message="tns:LibreriaSeguridad_ExternalLogin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangePassword">
+      <wsdl:input wsaw:Action="http://tempuri.org/LibreriaSeguridad/ChangePassword" message="tns:LibreriaSeguridad_ChangePassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/LibreriaSeguridad/ChangePasswordResponse" message="tns:LibreriaSeguridad_ChangePassword_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendPasswordFT">
+      <wsdl:input wsaw:Action="http://tempuri.org/LibreriaSeguridad/SendPasswordFT" message="tns:LibreriaSeguridad_SendPasswordFT_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/LibreriaSeguridad/SendPasswordFTResponse" message="tns:LibreriaSeguridad_SendPasswordFT_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ResetPassword">
+      <wsdl:input wsaw:Action="http://tempuri.org/LibreriaSeguridad/ResetPassword" message="tns:LibreriaSeguridad_ResetPassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/LibreriaSeguridad/ResetPasswordResponse" message="tns:LibreriaSeguridad_ResetPassword_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetNewPasswordByActiveDirectory">
+      <wsdl:input wsaw:Action="http://tempuri.org/LibreriaSeguridad/SetNewPasswordByActiveDirectory" message="tns:LibreriaSeguridad_SetNewPasswordByActiveDirectory_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/LibreriaSeguridad/SetNewPasswordByActiveDirectoryResponse" message="tns:LibreriaSeguridad_SetNewPasswordByActiveDirectory_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="addAuditoria">
+      <wsdl:input wsaw:Action="http://tempuri.org/LibreriaSeguridad/addAuditoria" message="tns:LibreriaSeguridad_addAuditoria_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/LibreriaSeguridad/addAuditoriaResponse" message="tns:LibreriaSeguridad_addAuditoria_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegistarAuditoriaConexion">
+      <wsdl:input wsaw:Action="http://tempuri.org/LibreriaSeguridad/RegistarAuditoriaConexion" message="tns:LibreriaSeguridad_RegistarAuditoriaConexion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/LibreriaSeguridad/RegistarAuditoriaConexionResponse" message="tns:LibreriaSeguridad_RegistarAuditoriaConexion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegistarAuditoriaDesconexion">
+      <wsdl:input wsaw:Action="http://tempuri.org/LibreriaSeguridad/RegistarAuditoriaDesconexion" message="tns:LibreriaSeguridad_RegistarAuditoriaDesconexion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/LibreriaSeguridad/RegistarAuditoriaDesconexionResponse" message="tns:LibreriaSeguridad_RegistarAuditoriaDesconexion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UsuariosXEstructura">
+      <wsdl:input wsaw:Action="http://tempuri.org/LibreriaSeguridad/UsuariosXEstructura" message="tns:LibreriaSeguridad_UsuariosXEstructura_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/LibreriaSeguridad/UsuariosXEstructuraResponse" message="tns:LibreriaSeguridad_UsuariosXEstructura_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAuditoria">
+      <wsdl:input wsaw:Action="http://tempuri.org/LibreriaSeguridad/GetAuditoria" message="tns:LibreriaSeguridad_GetAuditoria_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/LibreriaSeguridad/GetAuditoriaResponse" message="tns:LibreriaSeguridad_GetAuditoria_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_LibreriaSeguridad" type="tns:LibreriaSeguridad">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Eco">
+      <soap:operation soapAction="http://tempuri.org/LibreriaSeguridad/Eco" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Favoritear">
+      <soap:operation soapAction="http://tempuri.org/LibreriaSeguridad/Favoritear" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerFavoritos">
+      <soap:operation soapAction="http://tempuri.org/LibreriaSeguridad/ObtenerFavoritos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerUsuarioNominado">
+      <soap:operation soapAction="http://tempuri.org/LibreriaSeguridad/ObtenerUsuarioNominado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerUsuariosNominadosPorRol">
+      <soap:operation soapAction="http://tempuri.org/LibreriaSeguridad/ObtenerUsuariosNominadosPorRol" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://tempuri.org/LibreriaSeguridad/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExternalLogin">
+      <soap:operation soapAction="http://tempuri.org/LibreriaSeguridad/ExternalLogin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangePassword">
+      <soap:operation soapAction="http://tempuri.org/LibreriaSeguridad/ChangePassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendPasswordFT">
+      <soap:operation soapAction="http://tempuri.org/LibreriaSeguridad/SendPasswordFT" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetPassword">
+      <soap:operation soapAction="http://tempuri.org/LibreriaSeguridad/ResetPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetNewPasswordByActiveDirectory">
+      <soap:operation soapAction="http://tempuri.org/LibreriaSeguridad/SetNewPasswordByActiveDirectory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addAuditoria">
+      <soap:operation soapAction="http://tempuri.org/LibreriaSeguridad/addAuditoria" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegistarAuditoriaConexion">
+      <soap:operation soapAction="http://tempuri.org/LibreriaSeguridad/RegistarAuditoriaConexion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegistarAuditoriaDesconexion">
+      <soap:operation soapAction="http://tempuri.org/LibreriaSeguridad/RegistarAuditoriaDesconexion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UsuariosXEstructura">
+      <soap:operation soapAction="http://tempuri.org/LibreriaSeguridad/UsuariosXEstructura" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAuditoria">
+      <soap:operation soapAction="http://tempuri.org/LibreriaSeguridad/GetAuditoria" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Seguridad">
+    <wsdl:port name="BasicHttpBinding_LibreriaSeguridad" binding="tns:BasicHttpBinding_LibreriaSeguridad">
+      <soap:address location="http://ws-tesoreria.cgp.sigaf.bajos/TGP.WSS_desa/Seguridad.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

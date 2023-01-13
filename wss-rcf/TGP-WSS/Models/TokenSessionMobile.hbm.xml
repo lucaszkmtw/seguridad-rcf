@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="TGP.WSS" namespace="TGP.WSS" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="TokenSesionMobile" table="SEG_TOKEN_SESION_MOBILE" lazy="false" >
+    <id name="Id" column="C_ID">
+      <generator class="native" >
+        <param name="sequence">SEG_TOKEN_SESION_MOBILE_SQ</param>
+      </generator>
+    </id>
+    <version name="NVersionHibernate" unsaved-value="-1">
+      <column name="N_VERSION_HIBERNATE" sql-type="NUMBER" not-null="true" />
+    </version>
+    <property name="UsuarioID">
+      <column name="C_ID_USUARIO" sql-type="NUMBER" not-null="false" />
+    </property>
+    <property name="Token">
+      <column name="C_GUID" sql-type="VARCHAR2" not-null="false" />
+    </property>
+    <property name="FechaRegistro">
+      <column name="F_REGISTRO" sql-type="DATE" not-null="false" />
+    </property>
+    <property name="FechaExpiracion">
+      <column name="F_EXPIRACION" sql-type="DATE"  />
+    </property>
+    <property name="FechaAlta">
+      <column name="FH_ALTA" sql-type="DATE" not-null="false" />
+    </property>
+    <property name="FechaBaja">
+      <column name="FH_BAJA" sql-type="DATE" />
+    </property>
+  </class>
+</hibernate-mapping>

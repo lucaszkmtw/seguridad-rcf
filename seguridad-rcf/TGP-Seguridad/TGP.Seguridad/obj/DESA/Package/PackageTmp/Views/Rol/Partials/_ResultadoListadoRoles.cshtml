@@ -1,0 +1,37 @@
+﻿@using TGP.Seguridad.BussinessLogic.Dto
+@model IEnumerable<RolDTO>
+    <table id="lista-roles" class="uk-table" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Descripción</th>
+                <th>Estructura Funcional</th>
+                <th>Tipo Nodo Funcional</th>
+                <th>Multinodo</th>
+                <th>Creado Por</th>
+                <th>Operación</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (RolDTO rol in Model)
+            {
+                <!-- un registro -->
+            <tr>
+                <td>@rol.Codigo</td>
+                <td>@rol.Descripcion</td>
+                <td>@rol.EstructuraFuncional</td>
+                <td>@rol.TipoNodoFuncional</td>
+                <td class="uk-width-1-10">@((rol.EsMultinodo) ? "SI" : "NO")</td>
+                <td>@rol.UsuarioAlta</td>
+                <td>
+                    <a data-original-title="Editar" data-toggle="tooltip" href="@Url.Action("EditarRol", "Rol", new {id = rol.Id })">
+                        <i class="material-icons md-24">mode_edit</i>
+                    </a>
+                    <a data-original-title="Editar" data-toggle="tooltip" href="#" onclick="eliminarRol('@rol.Descripcion',@rol.Id, @rol.Version)">
+                        <i class="material-icons md-24">delete</i>
+                    </a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>

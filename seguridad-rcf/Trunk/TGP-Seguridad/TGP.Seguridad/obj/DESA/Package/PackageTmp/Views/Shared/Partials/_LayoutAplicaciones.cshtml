@@ -1,0 +1,27 @@
+﻿@if (ViewBag.Apps != null)
+{
+    <div id="dropdownAplicaciones" class="uk-dropdown uk-dropdown-xlarge" data-uk-check-display aria-hidden="true">
+        <div id="cardContentAplicaciones">
+            <ul class="uk-tab uk-tab-grid" data-uk-tab>
+                <li id="titulo-dropdown" class="uk-width-1-1 uk-active" aria-expanded="true"><a href="#" class="js-uk-prevent uk-text-small">Aplicaciones</a></li>
+                <li id="apps">
+                    <div class="containerApp">
+                        @foreach (var app in ViewBag.Apps)
+                        {
+                            <div class="appItem @app.CodigoEstructura.ToLower()-color" onclick="urlApp('@app.Url', '@Session["usuario"].ToString()')">
+                                <div>
+                                    <h2>@app.CodigoEstructura</h2>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </li>
+                <li class="uk-width-1-1">
+                    <div class="uk-text-center uk-margin-top uk-margin-small-bottom">
+                        <a href="@System.Configuration.ConfigurationManager.AppSettings["PortalURL"]Home/Index" class="md-btn md-btn-flat md-btn-flat-primary js-uk-prevent">Ver todo</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+}

@@ -1,0 +1,16 @@
+﻿
+<a href="#" class="user_action_icon" title="Notificaciones Recientes" data-uk-tooltip="{pos:'bottom'}">
+    <i class="material-icons md-24 md-light"></i>
+    @if (ViewBag.UltimasNovedadesNoLeidas != null && ViewBag.CantidadNovedadesNoLeidas > 0)
+    {
+        <span id="contadorNovedades" class="uk-badge"> @ViewBag.CantidadNovedadesNoLeidas </span>
+    }
+    else
+    {
+        <span id="contadorNovedades" class="uk-badge" style="display:none;"> 0 </span>
+    }
+</a>
+<div id="dropdownNovedades" class="uk-dropdown uk-dropdown-xlarge" data-uk-check-display aria-hidden="true">
+    @Html.Partial("~/Views/Shared/Partials/CardContentNovedades.cshtml")
+</div>
+

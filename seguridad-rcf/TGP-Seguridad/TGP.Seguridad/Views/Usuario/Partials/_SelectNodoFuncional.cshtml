@@ -1,0 +1,36 @@
+﻿@using TGP.Seguridad.BussinessLogic.Dto
+@model RolUsuarioViewModel
+
+@if (ViewBag.NodosFuncionales != null && ViewBag.NodosFuncionales.Count > 0)
+{
+    <div class="uk-width-medium-4-5">
+        @Html.Label("Nodo Funcional")
+        <select id="multiselectNodo-all" name="Nodos" class="md-input label-fixed @(Model.RolEsMultinodo?"selectizeMulti":"selectize")" @(Model.RolEsMultinodo ? "multiple" : "")>
+            @if (!Model.RolEsMultinodo)
+            {
+                <option value="">--SELECCIONAR--</option>
+            }
+            @foreach (ComboGenerico nodo in (ViewBag.NodosFuncionales))
+            {
+                <option value="@nodo.Codigo" @(Model.Nodos != null && ((List<string>)Model.Nodos).Contains(nodo.Codigo) ? "selected" : "")>@nodo.Codigo - @nodo.Descripcion</option>
+            }
+        </select>
+    </div>
+    if (Model.RolEsMultinodo)
+    {
+        <div class="uk-width-medium-1-5 uk-flex uk-flex-middle">
+            <button class="md-btn  md-btn-accent" type="button" onclick="selectAll();">Todos</button>
+            <button class="md-btn" type="button" onclick="desSelectAll()">Ninguno</button>
+        </div>
+    }
+}
+else
+{
+    <div class="uk-width-medium-4-5">
+        @Html.Label("Nodo Funcional")
+        <select id="multiselectNodo-all" data-md-selectize disabled>
+            <option value="">--SELECCIONAR--</option>
+        </select>
+        <span class="uk-form-help-block">No se le puede asignar ningún nodo funcional al rol seleccionado</span>
+    </div>
+}

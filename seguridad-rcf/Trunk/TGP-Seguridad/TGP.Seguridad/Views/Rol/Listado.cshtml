@@ -1,0 +1,175 @@
+﻿@using TGP.Seguridad.BussinessLogic.Dto
+@model IEnumerable<RolDTO>
+@{
+    ViewBag.Title = "Seg - Listado de Roles";
+    Layout = "~/Views/Shared/_LayoutBootstrap.cshtml";
+}
+
+<div class="uk-grid sigaf-titulo">
+    <div class="uk-width-large-1-2">
+        <h2 class="uk-margin-bottom">Listado de Roles</h2>
+    </div>
+    @*@if (ViewBag.EsAmbienteDESACG != null && ViewBag.EsAmbienteDESACG)
+     {*@
+        <div class="uk-width-large-1-2">
+            <div class="uk-grid uk-grid-small uk-flex uk-flex-right" data-uk-grid-margin data-uk-grid-match="{target:'.md-btn-sigaf'}">
+                <div id="divNuevaEst">
+                    <a title="" onclick="NuevoRol()" href="#" class="md-btn md-btn-sigaf md-btn-accent md-fab-wave-light waves-effect waves-button waves-light">
+                        <h2 class="heading_d uk-text-left md-color-white">
+                            Nuevo
+                            <span class="sub-heading md-color-white uk-text-upper">
+                                Rol
+                            </span>
+                        </h2>
+                        <i class="icon-appSigaf material-icons">add_circle</i>
+                    </a>
+                </div>
+            </div>
+        </div>
+     @*}*@
+</div>
+
+<div class="md-card">
+    <div class="md-card-content">
+        <div class="uk-grid">
+            <div class="uk-width-1-2">
+                <div class="md-input-wrapper md-input-filled">
+                    @Html.Label("Estructura", "Estructura")
+                    @Html.Partial("FiltroEstructuras", new Seguridad.FiltroEstructuras(true, null))
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="md-card uk-margin-bottom">
+    <div class="md-card-content">
+        <div id="div-resultados">
+            @Html.Partial("Partials/_ResultadoListadoRoles")
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+            $(document).ready(function () {
+                activarMenu('#Listado-Rol');
+                aplicarSelectize($('.selectize'));
+                $("#filterEstructuras").change(function () {
+                    if (!isNullOrEmpty('#filterEstructuras') && $('#filterEstructuras').val() != "")
+                    changeEstructura();
+                }).keyup(function () {
+                    if (!isNullOrEmpty('#filterEstructuras') && $('#filterEstructuras').val() != "")
+                        changeEstructura();
+                });
+                updateDatatable();
+                changeEstructura();
+
+            });
+
+            function NuevoRol() {
+                showLoadingModal();
+                window.location.href = '@Url.Action("NuevoRol", "Rol")?cod=' + $('select[name=Estructura]').val();
+            }
+
+            function updateDatatable() {
+                table = $('#lista-roles').dataTable({
+                    "scrollX": true,
+                    iDisplayLength: 25,
+                    aaSorting: [[1, "asc"]],
+                    dom: agregarDomDatatable(),
+                    colVis: {
+                        buttonText: '<i class="fa fa-eye" title="Mostrar / Ocultar"></i>',
+                        restore: "Reestablecer",
+                        showAll: "Mostrar Todas"
+                    },
+                    aoColumnDefs: [
+                        { bSortable: false, aTargets: [6] }
+                    ],
+                    "lengthMenu": [[25, 50, 100, 300], [25, 50, 100, 300]],
+                    buttons: [
+                        { extend: 'copy', className: 'md-btn md-btn-small', text: 'Copiar' },
+                        { extend: 'csv', title: 'Listado de Roles', className: 'md-btn md-btn-small' },
+                        { extend: 'pdf', title: 'Listado de Roles', className: 'md-btn md-btn-small', orientation: 'landscape', exportOptions: { columns: [0, 1, 2], }, customize: function (doc) { doc.defaultStyle.alignment = 'landscape'; } },
+                        { extend: 'print', className: 'md-btn md-btn-small', text: 'Imprimir' }
+                    ],
+                    language: agregarLenguajeDatatable(),
+                });
+            }
+
+
+
+            function changeEstructura() {
+                $.ajax(
+                    {
+                       url: '@Url.Action("GetRoles", "Rol")',
+                       type: "POST",
+                       data: {
+                           cod: $('select[name=Estructura]').val()
+                       },
+                       beforeSend: function (xhr) {
+                           //sacar el cerrar con el ESC al modal
+                           showLoadingModal();
+                       },
+                       success: function (data) {
+                           hideLoadingModal();
+                           $("#div-resultados").html(data);
+                           updateDatatable();
+                           //actualizacion de la grilla y bloque x seleccion d eorganismo por mouse
+                       },
+                       error: function (e) {
+                           hideLoadingModal();
+                       }
+                   });
+            }
+
+
+        function eliminarRol(descripcion, id, version) {
+            swal({
+                title: "",
+                text: "¿Desea eliminar el Rol " + descripcion +  "? ",
+                icon: "warning",
+                buttons: {
+                    confirm: "Aceptar",
+                    cancel: "Cancelar"
+                },
+                closeOnClickOutside: false,
+            }).then(
+                (isConfirm) => {
+                    if (isConfirm) {
+                         $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("EliminarRol", "Rol")',
+                        data: {
+                            id: id,
+                            version: version
+                        },
+                        beforeSend: function (xhr) {
+                            showLoadingModal();
+                        },
+                        success: function (data) {
+                            hideLoadingModal();
+                            swal({
+                                title: "",
+                                text: data.mensaje,
+                                icon: data.tipoMensaje,
+                                buttons: {
+                                    confirm: "Aceptar"
+                                },
+                                closeOnClickOutside: false,
+                            }).then(() => {
+                                changeEstructura();
+                                swal.close();
+                            });
+                        }
+                    });
+                    }
+                });
+        }
+
+
+    </script>
+
+
+}

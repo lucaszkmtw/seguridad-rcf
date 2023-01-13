@@ -1,0 +1,247 @@
+﻿@using TGP.Seguridad.BussinessLogic.Dto
+@model IList<PermisosViewModel>
+@{
+    ViewBag.Title = "Seg - Permisos de Usuario";
+    Layout = "~/Views/Shared/_LayoutBootstrap.cshtml";
+}
+
+<div class="uk-grid sigaf-titulo">
+    <div class="uk-width-1-2">
+        <h2>Permisos de Usuario | <span> <em>@ViewBag.NombreUsuario</em></span></h2>
+    </div>
+    <div class="uk-width-large-1-2">
+        <div class="uk-grid uk-grid-small uk-flex uk-flex-right" data-uk-grid-margin data-uk-grid-match="{target:'.md-btn-sigaf'}">
+            <div>
+                <button onclick="VolverBtn();" class="md-btn md-btn-primary md-btn-sigaf md-fab-wave-light waves-effect waves-button waves-light">
+                    <h2 class="heading_c md-color-white uk-text-left">
+                        Volver
+                        <span class="sub-heading md-color-white uk-text-upper">
+                            &nbsp;
+                        </span>
+                    </h2>
+                    <i class="icon-appSigaf md-color-black material-icons">reply</i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="md-card uk-margin-bottom">
+    <div class="md-card-content">
+        <div class="uk-grid">
+            <div class="uk-width-medium-4-6">
+                @Html.Label("Estructura", "Estructura")
+                @Html.Partial("FiltroEstructuras", new Seguridad.FiltroEstructuras(true, null))
+            </div>
+
+            <div id="verRol-btn" class="uk-width-1-6 uk-flex uk-flex-middle">
+                @using (Html.BeginForm("NuevoRol", "Usuario", FormMethod.Post, new { id = "form-detalle" }))
+                {
+                    <input hidden id="id" name="id" value="@ViewBag.IdUsuario" />
+                    <input hidden id="codigoEstructura" name="codigoEstructura" value="" />
+                    <input hidden id="tipoUsuario" name="tipoUsuario" value="@ViewBag.TipoUsuario" />
+                    <a id="btn-verRol" href="#" onclick='this.parentNode.submit();' title="Editar Permiso" class="md-btn  md-btn-accent">
+                        ASIGNAR ROL
+                    </a>
+                }
+            </div>
+            <div id="copiarRol-btn" class="uk-width-1-6 uk-flex uk-flex-middle">
+                @using (Html.BeginForm("CopiarRolesMasivamente", "Usuario", FormMethod.Get, new { id = "form-detalle2" }))
+                {
+                    <input hidden id="id2" name="id2" value="@ViewBag.IdUsuario" />
+                    <input hidden id="codigoEstructura2" name="codigoEstructura2" value="" />
+                    <input hidden id="tipoUsuario2" name="tipoUsuario2" value="@ViewBag.TipoUsuario" />
+                    <a id="btn-copiarRol" href="#" onclick="copiarRol();" title="Copiar Rol/es" class="md-btn  md-btn-accent">
+                        COPIAR ROL
+                    </a>
+                }
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="md-card uk-margin-bottom">
+    <div class="md-card-content">
+        <div id="div-resultados">
+            @if (Model.Count > 0) //Esto no funciona... siempre va a devolver la partial!!!
+            {
+                @Html.Partial("Partials/_ListadoPermisosUsuario")
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+    <script>
+        $(document).ready(function () {
+            activarMenu('#@ViewBag.MenuId');
+            aplicarSelectize($('.selectize'));
+            estructura = new FilterTypeSelect($('#filterEstructuras'));
+
+            if (estructura.value == "0") {
+                disabledBtn("#verRol-btn a");
+                $("#btn-copiarRol").text("COPIAR ROLES");
+            }
+            else {
+                ableBtn("#verRol-btn a");
+                $("#btn-copiarRol").text("COPIAR ROL");
+            };
+
+            $("#filterEstructuras").bind("change", function () {
+                if (!isNullOrEmpty('#filterEstructuras')) {
+                    ableBtn("#verRol-btn a");
+                    changeEstructura();
+                } else {
+                    disabledBtn("#verRol-btn a")
+                }
+            }).bind("keyup", function () {
+                if (!isNullOrEmpty('#filterEstructuras') && estructura.value != "") {
+                    ableBtn("#verRol-btn a");
+                    changeEstructura();
+                } else {
+                    disabledBtn("#verRol-btn a");
+                }
+                });
+            changeEstructura();
+        });           
+
+        function getCodEstructura() {
+            return estructura.value;
+        }
+
+        function changeEstructura() {
+            $.ajax(
+                {
+                    url: '@Url.Action("ChangeEstructuraFilter", "Usuario")',
+                    type: "POST",
+                    data: {
+                        codigoEstructura: estructura.value,
+                        idUsuario: '@ViewBag.IdUsuario',
+                        tipoUsuario: '@ViewBag.TipoUsuario'
+                    },
+                    beforeSend: function (xhr) {
+                        showLoadingModal();
+                    },
+                    success: function (data) {
+                        if (estructura.value == 0) {
+                            disabledBtn("#verRol-btn a");
+                            $("#btn-copiarRol").text("COPIAR ROLES");
+                            $("#codigoEstructura2").val(estructura.value);
+                        } else {
+                            $("#codigoEstructura").val(estructura.value);
+                            $("#codigoEstructura2").val(estructura.value);
+                            ableBtn("#verRol-btn a");
+                            $("#btn-copiarRol").text("COPIAR ROL");
+                        };
+
+                        $("#filterEstructuras").bind("change", function () {
+                            if (!isNullOrEmpty('#filterEstructuras') && estructura.value != "") {
+                                ableBtn("#verRol-btn a");
+                            } else {
+                                disabledBtn("#verRol-btn a")
+                            }
+                        }).bind("keyup", function () {
+                            if (!isNullOrEmpty('#filterEstructuras') && estructura.value != "") {
+                                ableBtn("#verRol-btn a");
+                            } else {
+                                disabledBtn("#verRol-btn a");
+                            }
+                        });
+                        hideLoadingModal();
+                        $("#div-resultados").html(data);
+                        updateDatatable();
+                        var tabla = $('#lista-permisos').DataTable();
+                        var filas = tabla.rows().count();
+                        if (filas == 0) {
+                            disabledBtn("#copiarRol-btn a");
+                        }
+                        else {
+                            ableBtn("#copiarRol-btn a");
+                        }
+                        //defineDatatable(0);
+                        //actualizacion de la grilla y bloque x seleccion d eorganismo por mouse
+                    },
+                });
+            }
+
+
+        function updateDatatable() {
+            table = $('#lista-permisos').dataTable({
+                "scrollX": true,
+                iDisplayLength: 25,
+                aaSorting: [[1, "asc"]],
+                dom: "<'uk-grid' <'uk-width-large-1-2 countCheck'><'uk-width-large-1-2 uk-flex uk-flex-right'<'agregarNuevoDestBtn uk-margin-right'><'eliminarDestBtn'>>>" +
+                "<'uk-grid uk-margin-small-bottom'<'uk-width-large-3-10'l><'uk-width-large-3-10 uk-padding-remove'f> <'uk-width-large-4-10 uk-padding-remove uk-flex uk-flex-right'B>>tirp",
+                colVis: {
+                    buttonText: '<i class="fa fa-eye" title="Mostrar / Ocultar"></i>',
+                    restore: "Reestablecer",
+                    showAll: "Mostrar Todas"
+                },
+                aoColumnDefs: [
+                    { bSortable: false, aTargets: [-1, 2] },
+                    { sType: "de_datetime", aTargets: [4] },
+
+                    //Ancho de columnas
+                    { "width": "16%", "targets": 0 },
+                    { "width": "12%", "targets": 1 },
+                    { "width": "35%", "targets": 2 },
+                    { "width": "15%", "targets": 3 },
+                    { "width": "15%", "targets": 4 },
+                    { "width": "7%", "targets": 5 }
+
+                ],
+                "lengthMenu": [[25, 50, 100, 300], [25, 50, 100, 300]],
+                buttons: [
+                    { extend: 'copy', className: 'md-btn md-btn-small', text: 'Copiar' },
+                    { extend: 'csv', title: '@ViewBag.Title', className: 'md-btn md-btn-small' },
+                    { extend: 'pdf', title: ' @ViewBag.Title', className: 'md-btn md-btn-small', orientation: 'landscape', exportOptions: { columns: [0, 1, 2], }, customize: function (doc) { doc.defaultStyle.alignment = 'landscape'; } },
+                    { extend: 'print', className: 'md-btn md-btn-small', text: 'Imprimir' }
+                ],
+                language: agregarLenguajeDatatable(),
+            });
+        }
+
+        function DesasociarRolUsuario(idUsuario, idRol) {
+            swal({
+                title: "",
+                text: "¿Confirma que desea desasociar este Rol?",
+                icon: "warning",
+                buttons: {
+                    confirm: "Aceptar",
+                    cancel: "Cancelar"
+                },
+                closeOnClickOutside: false,
+            }).then(
+                (isConfirm) => {
+                    if (isConfirm) {
+                         $.ajax(
+                       {
+                           url: '@Url.Action("DesasociarRolUsuario", "Usuario")',
+                           type: "POST",
+                           data: {
+                               IdUsuario: idUsuario,
+                               IdRol: idRol
+                           },
+                            success: function (data) {
+                                if (data.ErrorMsj)
+                                    swal("Error", data.ErrorMsj, "error");
+                                else window.location.reload();
+                           }
+                       });
+                    }
+                });
+            return false;
+            }
+
+        function copiarRol() {
+            window.location.href = '@Url.Action("CopiarRolesMasivamente", "Usuario")' + "?id2=" + '@ViewBag.IdUsuario' + "&codigoEstructura2=" + estructura.value + "&tipoUsuario2=" + '@ViewBag.TipoUsuario';
+        }
+
+        function VolverBtn() {
+            window.location.href = '@Url.Action("UsuarioDashboard", "Usuario", new { id = @ViewBag.IdUsuario, tipoUsuario = @ViewBag.TipoUsuario })'
+        }
+
+    </script>
+}

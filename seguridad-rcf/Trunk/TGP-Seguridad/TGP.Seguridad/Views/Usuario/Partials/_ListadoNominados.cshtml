@@ -1,0 +1,68 @@
+﻿@using TGP.Seguridad.BussinessLogic.Dto;
+@model IList<ListadoNominadoViewModel>
+
+@if (Model != null && Model.Count > 0)
+{
+
+    <table id="lista-usuarios" class="uk-table" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+
+                <th>Usuario</th>
+                <th>Descripcion</th>
+                <th>E-Mail</th>
+                <th>Activo</th>
+                <th>Bloqueado</th>
+                <th>Tipo Autenticación</th>
+                @*<th>Intentos</th>*@
+                <th class="uk-text-left">Operación</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (ListadoNominadoViewModel usuario in Model)
+            {
+                <!-- un registro -->
+                <tr>
+                    <td>@usuario.NombreUsuario</td>
+                    <td>@usuario.DescripcionUsuario</td>
+                    <td>@usuario.EMail</td>
+                    @if (usuario.SiActivo)
+                    {
+                        <td><i class="material-icons">done</i></td>
+
+                    }
+                    else
+                    {
+                        <td></td>
+                    }
+                    @if (usuario.SiBloqueado)
+                    {
+                        <td><i class="material-icons">done</i></td>
+                    }
+                    else
+                    {
+                        <td>@Html.Raw("")</td>
+                    }
+                    <td>@usuario.DescripcionTipoAutenticacion</td>
+                    @*<td>@usuario.CantidadIntentos</td>*@
+                    <td class="uk-text-left">
+                        <a class="acciones" data-original-title="Editar" data-toggle="tooltip" href="@Url.Action("UsuarioDashboard", "Usuario", new {id = usuario.Id, tipoUsuario = UsuarioDTO.USUARIONOMINADO })">
+                            <i class="material-icons ">mode_edit</i>
+                        </a>
+                        <a class="acciones" data-original-title="Editar" data-toggle="tooltip" href="#" onclick="EliminarUsuario('@usuario.NombreUsuario',@usuario.Id, @usuario.Version)">
+                            <i class="material-icons ">delete</i>
+                        </a>
+                        @if (usuario.SiActivo && usuario.CodigoTipoAutenticacion == UsuarioDTO.INTERNA)
+                        {
+                            <a href="#" title="Enviar contraseña via mail al Usuario" class="badge element-bg-color-orange linkSubmit" data-toggle="modal" onclick="EnviarMail('@usuario.NombreUsuario', '@usuario.EMail', '@usuario.Id', 'ListadoNominados', '@UsuarioDTO.USUARIONOMINADO', @usuario.Version)">
+                                <i class='material-icons'>mail</i>
+                            </a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
